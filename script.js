@@ -63,7 +63,6 @@ function createFeedbackForm(videoId, onSubmit) {
     feedbackContainer.style.display = "block";
 }
 
-
 function createEmotionGraph(videoId, onSubmit) {
     const emotionGraphContainer = document.getElementById('emotionGraphContainer');
     const emotionSubmit = document.getElementById('emotionSubmit');
@@ -79,9 +78,9 @@ function createEmotionGraph(videoId, onSubmit) {
 
     // Create the x-axis line and add it to the SVG
     const xAxisLine = document.createElementNS("http://www.w3.org/2000/svg", "line");
-    xAxisLine.setAttribute("x1", 20);
+    xAxisLine.setAttribute("x1", 30);
     xAxisLine.setAttribute("y1", 200); // This should be at half of the SVG height assuming it is 400px
-    xAxisLine.setAttribute("x2", 380); // This should be the full width of the SVG assuming it is 400px
+    xAxisLine.setAttribute("x2", 370); // This should be the full width of the SVG assuming it is 400px
     xAxisLine.setAttribute("y2", 200);
     xAxisLine.setAttribute("stroke", "black");
     xAxisLine.setAttribute("stroke-width", 1);
@@ -90,9 +89,9 @@ function createEmotionGraph(videoId, onSubmit) {
     // Create the y-axis line and add it to the SVG
     const yAxisLine = document.createElementNS("http://www.w3.org/2000/svg", "line");
     yAxisLine.setAttribute("x1", 200); // This should be at half of the SVG width assuming it is 400px
-    yAxisLine.setAttribute("y1", 20);
+    yAxisLine.setAttribute("y1", 30);
     yAxisLine.setAttribute("x2", 200);
-    yAxisLine.setAttribute("y2", 380); // This should be the full height of the SVG assuming it is 400px
+    yAxisLine.setAttribute("y2", 370); // This should be the full height of the SVG assuming it is 400px
     yAxisLine.setAttribute("stroke", "black");
     yAxisLine.setAttribute("stroke-width", 1);
     emotionGraph.appendChild(yAxisLine);
@@ -121,14 +120,14 @@ function createEmotionGraph(videoId, onSubmit) {
     const dragDot = (e) => {
         if (dragging) {
             dotMoved = true;
-            let x = e.offsetX;
-            let y = e.offsetY;
+            let x = Math.round(e.offsetX / 7) * 7;
+            let y = Math.round(e.offsetY / 7) * 7;
 
             // Boundaries for SVG (400 x 400)
-            if (x < 0) x = 0;
-            if (x > 400) x = 400;
-            if (y < 0) y = 0;
-            if (y > 400) y = 400;
+            if (x < 30) x = 30;
+            if (x > 370) x = 370;
+            if (y < 30) y = 30;
+            if (y > 370) y = 370;
 
             dot.setAttribute("cx", x);
             dot.setAttribute("cy", y);
