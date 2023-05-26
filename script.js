@@ -197,7 +197,7 @@ function startPart3() {
             videoPlayer.src = video.src;
             videoPlayer.style.display = "block";
 
-            const watchButton = createButton("Watch this video", (reactionTime) => {
+            const watchButton = createButton("Choose", (reactionTime) => {
                 watchButton.style.display = "none";
                 skipButton.style.display = "none";
                 videoPlayer.play();
@@ -225,7 +225,7 @@ function startPart3() {
                 currentVideoIndex++;
             });
 
-            const skipButton = createButton("Skip this video", (reactionTime) => {
+            const skipButton = createButton("Avoid", (reactionTime) => {
                 watchButton.style.display = "none";
                 skipButton.style.display = "none";
                 const randomVideo = playRandomVideo(video.id, videos);
@@ -303,18 +303,18 @@ function startPart5() {
     function playNextVideo() {
         if (currentPairIndex < videoRewardPairs.length) {
             const { video, rewards } = videoRewardPairs[currentPairIndex];
-            const watchReward = rewards.find(reward => reward.type === 'watch');
-            const skipReward = rewards.find(reward => reward.type === 'skip');
+            const watchReward = rewards.find(reward => reward.type === 'Choose');
+            const skipReward = rewards.find(reward => reward.type === 'Avoid');
 
             const rewardOnWatch = Math.random() < 0.5;  // Decide randomly if reward is on watch or skip button
 
             videoPlayer.src = video.src;
             videoPlayer.style.display = "block";
 
-            const watchButtonText = rewardOnWatch ? `Watch this video (${watchReward.value})` : `Watch this video`;
+            const watchButtonText = rewardOnWatch ? `Choose (${watchReward.value})` : `Choose`;
             const watchButton = createButton(watchButtonText, getButtonCallback(video, watchReward, 'watch', rewardOnWatch));
 
-            const skipButtonText = !rewardOnWatch ? `Skip this video (${skipReward.value})` : `Skip this video`;
+            const skipButtonText = !rewardOnWatch ? `Avoid (${skipReward.value})` : `Avoid`;
             const skipButton = createButton(skipButtonText, getButtonCallback(video, skipReward, 'skip', !rewardOnWatch));
 
             clearButtons();

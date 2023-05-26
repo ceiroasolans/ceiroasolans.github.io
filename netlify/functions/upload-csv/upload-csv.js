@@ -1,4 +1,5 @@
-const AWS = require(‘aws-sdk’);
+
+const AWS = require('aws-sdk');
 exports.handler = async function(event, context, callback) {
   const csvContent = event.body; // The CSV content received from the frontend
   // Configure AWS SDK with your credentials and the desired endpoint URL
@@ -22,12 +23,12 @@ exports.handler = async function(event, context, callback) {
     const response = await s3.upload(params).promise();
     return {
       statusCode: 200,
-      body: JSON.stringify({ message: ‘File uploaded successfully’}),
+      body: JSON.stringify({ message: 'File uploaded successfully'}),
     };
   } catch (error) {
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: ‘An error occurred during file upload’ }),
+      body: JSON.stringify({ error: 'An error occurred during file upload' }),
     };
   }
 };
