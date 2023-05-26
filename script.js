@@ -1,7 +1,6 @@
 // UPDATES TO DO: 
 //-Short videos for practice (prototypical), extended version for testing
 //-Include neutral videos (conclusion: approach or avoid tendency)
-//-Interest and emo in the same page
 
 //DONE
 //Changed button names
@@ -30,8 +29,6 @@ let startTime;
 function startTimer() {  // Function to start the timer when buttons appear
     startTime = performance.now();
 }
-
-const feedbackContainer = document.getElementById("feedbackContainer");
 
 function createFeedbackForm(videoId, onSubmit) {
     feedbackContainer.innerHTML = '';
@@ -62,7 +59,6 @@ function createFeedbackForm(videoId, onSubmit) {
     feedbackContainer.appendChild(feedbackContainer.button);
     feedbackContainer.style.display = "block";
 }
-
 function createEmotionGraph(videoId, onSubmit) {
     const emotionGraphContainer = document.getElementById('emotionGraphContainer');
     const emotionSubmit = document.getElementById('emotionSubmit');
@@ -120,7 +116,7 @@ function createEmotionGraph(videoId, onSubmit) {
     const dragDot = (e) => {
         if (dragging) {
             dotMoved = true;
-            let x = Math.round(e.offsetX / 40) * 40;
+            let x = Math.round(e.offsetX / 40) * 40; // change this to a small number if we want it to be fluid (and line below)
             let y = Math.round(e.offsetY / 40) * 40;
 
             // Boundaries for SVG (400 x 400)
@@ -430,3 +426,5 @@ function generateAndUploadCSV(participantChoices) {
 // git push
 // npx netlify deploy --prod               (deploy to website)
 // to check new files, go to AWS S3 (amazon), buckets, emotionregulation
+
+// or in short:         git add -A && git commit -m "update" && git push
