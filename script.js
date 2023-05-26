@@ -64,18 +64,38 @@ function createFeedbackForm(videoId, onSubmit) {
 }
 
 
-
-
 function createEmotionGraph(videoId, onSubmit) {
     const emotionGraphContainer = document.getElementById('emotionGraphContainer');
     const emotionSubmit = document.getElementById('emotionSubmit');
     const emotionGraph = document.getElementById('emotionGraph');
+
+    emotionSubmit.disabled = true; // Disable the submit button initially
 
     // Clear any existing dots from the graph
     const existingDots = emotionGraph.getElementsByClassName('emotion-dot');
     while (existingDots[0]) {
         existingDots[0].parentNode.removeChild(existingDots[0]);
     }
+
+    // Create the x-axis line and add it to the SVG
+    const xAxisLine = document.createElementNS("http://www.w3.org/2000/svg", "line");
+    xAxisLine.setAttribute("x1", 0);
+    xAxisLine.setAttribute("y1", 200); // This should be at half of the SVG height assuming it is 400px
+    xAxisLine.setAttribute("x2", 400); // This should be the full width of the SVG assuming it is 400px
+    xAxisLine.setAttribute("y2", 200);
+    xAxisLine.setAttribute("stroke", "black");
+    xAxisLine.setAttribute("stroke-width", 1);
+    emotionGraph.appendChild(xAxisLine);
+
+    // Create the y-axis line and add it to the SVG
+    const yAxisLine = document.createElementNS("http://www.w3.org/2000/svg", "line");
+    yAxisLine.setAttribute("x1", 200); // This should be at half of the SVG width assuming it is 400px
+    yAxisLine.setAttribute("y1", 0);
+    yAxisLine.setAttribute("x2", 200);
+    yAxisLine.setAttribute("y2", 400); // This should be the full height of the SVG assuming it is 400px
+    yAxisLine.setAttribute("stroke", "black");
+    yAxisLine.setAttribute("stroke-width", 1);
+    emotionGraph.appendChild(yAxisLine);
 
     // Create the dot and add it to the SVG
     const dot = document.createElementNS("http://www.w3.org/2000/svg", "circle");
@@ -96,9 +116,7 @@ function createEmotionGraph(videoId, onSubmit) {
 
     const stopDragging = (e) => {
         dragging = false;
-        if(dotMoved) feedbackContainer.button.disabled = false;
     };
-  
 
     const dragDot = (e) => {
         if (dragging) {
@@ -114,6 +132,8 @@ function createEmotionGraph(videoId, onSubmit) {
 
             dot.setAttribute("cx", x);
             dot.setAttribute("cy", y);
+            
+            emotionSubmit.disabled = false; // Enable the submit button as the dot has been moved
         }
     };
 
@@ -123,19 +143,19 @@ function createEmotionGraph(videoId, onSubmit) {
     emotionGraph.addEventListener('mouseleave', stopDragging);
 
     // Handle submit button click
-    
     emotionSubmit.onclick = () => {
         if(dotMoved){
-        emotionGraphContainer.style.display = "none";
-        const valence = dot.getAttribute("cx");
-        const arousal = 400 - dot.getAttribute("cy"); // Subtract from 400 because SVG Y-axis goes from top to bottom
+            emotionGraphContainer.style.display = "none";
+            const valence = dot.getAttribute("cx");
+            const arousal = 400 - dot.getAttribute("cy"); // Subtract from 400 because SVG Y-axis goes from top to bottom
 
-        onSubmit(valence, arousal);
+            onSubmit(valence, arousal);
         }
     };
 
     emotionGraphContainer.style.display = "block";
 }
+
 
 
 
