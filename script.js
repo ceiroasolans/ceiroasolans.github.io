@@ -2,14 +2,13 @@
 //-Short videos for practice (prototypical), extended version for testing
 //-Include neutral videos (conclusion: approach or avoid tendency)
 
-
-//-Add timer for selection decision: 5 seconds, or automatic choice
 //-Add requirement for ratings (interest and emo)
 //-Interest and emo in the same page
 
 //DONE
 //Changed button names
 //Practice videos play automatically
+//Add timer for selection decision: 5 seconds, or automatic choice
 
 const mainContainer = document.getElementById("mainContainer");
 const videoPlayer = document.getElementById("videoPlayer");
@@ -126,10 +125,17 @@ function createEmotionGraph(videoId, onSubmit) {
 }
 
 
+function instructions() {
+    showMessage("Welcome! Please press "Next" to begin.");
+    clearButtons();
+    addButton(createButton("Next", () => {
+        showMessage("");
+        practiceSet();
+    }));
+}
 
 
-
-function startPart1() {
+function practiceSet() {
     const shuffledVideos = shuffleArray([...videos]);
     let currentVideoIndex = 0;
 
@@ -164,7 +170,7 @@ function startPart1() {
             currentVideoIndex++;
         } else {
             showMessage("");
-            startPart2();
+            instructions2();
         }
     }
 
@@ -175,12 +181,12 @@ function startPart1() {
 
 
 
-function startPart2() {
+function instructions2() {
     showMessage("You have finished the first exercise. Press 'Next' to move on to the next one.");
     clearButtons();
     addButton(createButton("Next", () => {
         showMessage("");
-        startPart3();
+        experimentalSet();
     }));
 }
 
@@ -192,7 +198,7 @@ function playRandomVideo(excludeVideoId, videos) {
 }
 
 
-function startPart3() {
+function experimentalSet() {
     const shuffledVideos = shuffleArray([...videos]);
     let currentVideoIndex = 0;
 
@@ -277,7 +283,7 @@ function startPart3() {
             addButton(watchButton);
             addButton(skipButton);
         } else {
-            startPart4();
+            instructions3();
         }
     }
 
@@ -287,7 +293,7 @@ function startPart3() {
 
 
 
-function startPart4() {
+function instructions3() {
     showMessage("Congratulations! You have completed this study :)");
     clearButtons();
 	generateAndUploadCSV(participantChoices);
@@ -378,7 +384,7 @@ function generateAndUploadCSV(participantChoices) {
   
 
 
-startPart1();       
+instructions();       
 
 
 
