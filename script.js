@@ -1,3 +1,16 @@
+// UPDATES TO DO: 
+//-Short videos for practice (prototypical), extended version for testing
+//-Include neutral videos (conclusion: approach or avoid tendency)
+
+
+//-Add timer for selection decision: 5 seconds, or automatic choice
+//-Add requirement for ratings (interest and emo)
+//-Interest and emo in the same page
+
+//DONE
+//Changed button names
+//Practice videos play automatically
+
 const mainContainer = document.getElementById("mainContainer");
 const videoPlayer = document.getElementById("videoPlayer");
 const fixationCross = document.getElementById("fixationCross");
@@ -125,6 +138,8 @@ function startPart1() {
             const video = shuffledVideos[currentVideoIndex];
             videoPlayer.src = video.src;
             videoPlayer.style.display = "block";
+            videoPlayer.play();
+
             videoPlayer.onended = () => {
                 videoPlayer.style.display = "none";
                 clearButtons();
@@ -146,18 +161,7 @@ function startPart1() {
                 });
             };
 
-            const playButton = createButton("Play", (reactionTime) => {
-                playButton.style.display = "none";
-                videoPlayer.play();
-                
-                // Store the reaction time temporarily, to be added to the data object later
-                video.reactionTime = reactionTime;
-
-                currentVideoIndex++;
-            });
-
-            clearButtons();
-            addButton(playButton);
+            currentVideoIndex++;
         } else {
             showMessage("");
             startPart2();
@@ -166,6 +170,7 @@ function startPart1() {
 
     playNextVideo();
 }
+
 
 
 
@@ -197,10 +202,20 @@ function startPart3() {
             videoPlayer.src = video.src;
             videoPlayer.style.display = "block";
 
-            const watchButton = createButton("Choose", (reactionTime) => {
+            let watchButton;
+            let skipButton;
+
+            const buttonTimeout = setTimeout(() => {
+                const randomButton = Math.random() < 0.5 ? watchButton : skipButton;
+                randomButton.click();
+            }, 7000); // 7 seconds
+
+            watchButton = createButton("Choose", (reactionTime) => {
+                clearTimeout(buttonTimeout);
                 watchButton.style.display = "none";
                 skipButton.style.display = "none";
                 videoPlayer.play();
+
                 videoPlayer.onended = () => {
                     videoPlayer.style.display = "none";
                     clearButtons();
@@ -225,7 +240,8 @@ function startPart3() {
                 currentVideoIndex++;
             });
 
-            const skipButton = createButton("Avoid", (reactionTime) => {
+            skipButton = createButton("Avoid", (reactionTime) => {
+                clearTimeout(buttonTimeout);
                 watchButton.style.display = "none";
                 skipButton.style.display = "none";
                 const randomVideo = playRandomVideo(video.id, videos);
@@ -260,8 +276,6 @@ function startPart3() {
             clearButtons();
             addButton(watchButton);
             addButton(skipButton);
-
-            startTimer();
         } else {
             startPart4();
         }
@@ -269,6 +283,7 @@ function startPart3() {
 
     playNextVideo();
 }
+
 
 
 
