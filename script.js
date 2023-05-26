@@ -2,13 +2,13 @@
 //-Short videos for practice (prototypical), extended version for testing
 //-Include neutral videos (conclusion: approach or avoid tendency)
 
-//-Add requirement for ratings (interest and emo)
 //-Interest and emo in the same page
 
 //DONE
 //Changed button names
 //Practice videos play automatically
 //Add timer for selection decision: 5 seconds, or automatic choice
+//Add requirement for ratings (interest and emo)
 
 const mainContainer = document.getElementById("mainContainer");
 const videoPlayer = document.getElementById("videoPlayer");
@@ -32,11 +32,16 @@ function startTimer() {  // Function to start the timer when buttons appear
     startTime = performance.now();
 }
 
+
+
 const feedbackContainer = document.getElementById("feedbackContainer");
 
-function createFeedbackForm(videoId, onSubmit) {
-    feedbackContainer.innerHTML = '';
 
+let dotMoved = false;
+
+function createFeedbackAndEmotionGraph(videoId, onSubmit) {
+    feedbackContainer.innerHTML = '';
+    
     const question = document.createElement("p");
     question.textContent = "How interesting did you find this video?";
 
@@ -45,31 +50,25 @@ function createFeedbackForm(videoId, onSubmit) {
     feedbackContainer.slider.min = 0;
     feedbackContainer.slider.max = 7;
     feedbackContainer.slider.value = 3;
-    feedbackContainer.slider.addEventListener('change', function(){
-        feedbackContainer.button.disabled = false;
+    feedbackContainer.slider.addEventListener('change', function() {
+        if(dotMoved) feedbackContainer.button.disabled = false;
     });
 
     feedbackContainer.button = document.createElement("button");
     feedbackContainer.button.innerText = "Submit";
     feedbackContainer.button.disabled = true;
     feedbackContainer.button.onclick = () => {
-        const rating = feedbackContainer.slider.value;
-        feedbackContainer.button.disabled = true;
-        onSubmit(rating);
+        if(dotMoved) {
+            const rating = feedbackContainer.slider.value;
+            feedbackContainer.button.disabled = true;
+            onSubmit(rating);
+        }
     };
 
     feedbackContainer.appendChild(question);
     feedbackContainer.appendChild(feedbackContainer.slider);
-    feedbackContainer.appendChild(feedbackContainer.button);
-    feedbackContainer.style.display = "block";
-}
-
-
-
-
-function createEmotionGraph(videoId, onSubmit) {
+    
     const emotionGraphContainer = document.getElementById('emotionGraphContainer');
-    const emotionSubmit = document.getElementById('emotionSubmit');
     const emotionGraph = document.getElementById('emotionGraph');
 
     // Clear any existing dots from the graph
@@ -87,9 +86,7 @@ function createEmotionGraph(videoId, onSubmit) {
     dot.setAttribute("class", "emotion-dot");
     emotionGraph.appendChild(dot);
 
-    // Dragging state
     let dragging = false;
-    let dotMoved = false;
 
     const startDragging = (e) => {
         dragging = true;
@@ -97,9 +94,8 @@ function createEmotionGraph(videoId, onSubmit) {
 
     const stopDragging = (e) => {
         dragging = false;
-        if(dotMoved) feedbackContainer.button.disabled = false;
+        if(feedbackContainer.slider.value !== '3') feedbackContainer.button.disabled = false;
     };
-  
 
     const dragDot = (e) => {
         if (dragging) {
@@ -123,20 +119,13 @@ function createEmotionGraph(videoId, onSubmit) {
     emotionGraph.addEventListener('mouseup', stopDragging);
     emotionGraph.addEventListener('mouseleave', stopDragging);
 
-    // Handle submit button click
-    
-    emotionSubmit.onclick = () => {
-        if(dotMoved){
-        emotionGraphContainer.style.display = "none";
-        const valence = dot.getAttribute("cx");
-        const arousal = 400 - dot.getAttribute("cy"); // Subtract from 400 because SVG Y-axis goes from top to bottom
-
-        onSubmit(valence, arousal);
-        }
-    };
-
-    emotionGraphContainer.style.display = "block";
+    feedbackContainer.appendChild(emotionGraphContainer);
+    feedbackContainer.appendChild(feedbackContainer.button);
+    feedbackContainer.style.display = "block";
 }
+
+// Then replace the separate calls to createFeedbackForm and createEmotionGraph in your code with createFeedbackAndEmotionGraph.
+
 
 
 
@@ -166,20 +155,21 @@ function practiceSet() {
                 videoPlayer.style.display = "none";
                 clearButtons();
 
-                createFeedbackForm(video.id, (rating) => {
+                createFeedbackAndEmotionGraph(video.id, (rating) => {
                     feedbackContainer.style.display = "none";
-                    createEmotionGraph(video.id, (valence, arousal) => {
-                        showFixationCross(playNextVideo);
+                    const valence = document.querySelector('.emotion-dot').getAttribute('cx');
+                    const arousal = 400 - document.querySelector('.emotion-dot').getAttribute('cy');
 
-                        // Consolidate data into one object and add it to the participantChoices array
-                        participantChoices.push({
-                            part: "Practice",
-                            videoId: video.id,
-                            rating: rating,
-                            valence: valence, 
-                            arousal: arousal
-                        });
+                    // Consolidate data into one object and add it to the participantChoices array
+                    participantChoices.push({
+                        part: "Practice",
+                        videoId: video.id,
+                        rating: rating,
+                        valence: valence, 
+                        arousal: arousal
                     });
+
+                    showFixationCross(playNextVideo);
                 });
             };
 
@@ -192,6 +182,7 @@ function practiceSet() {
 
     playNextVideo();
 }
+
 
 
 
@@ -242,21 +233,22 @@ function experimentalSet() {
                     videoPlayer.style.display = "none";
                     clearButtons();
 
-                    createFeedbackForm(video.id, (rating) => {
+                    createFeedbackAndEmotionGraph(video.id, (rating) => {
                         feedbackContainer.style.display = "none";
-                        createEmotionGraph(video.id, (valence, arousal) => {
-                            showFixationCross(playNextVideo);
+                        const valence = document.querySelector('.emotion-dot').getAttribute('cx');
+                        const arousal = 400 - document.querySelector('.emotion-dot').getAttribute('cy');
 
-                            participantChoices.push({
-                                part: "Experimental_Choice",
-                                decision: "watch",
-                                videoId: video.id,
-                                reactionTime: reactionTime,
-                                rating: rating,
-                                valence: valence, 
-                                arousal: arousal
-                            });
+                        participantChoices.push({
+                            part: "Experimental_Choice",
+                            decision: "watch",
+                            videoId: video.id,
+                            reactionTime: reactionTime,
+                            rating: rating,
+                            valence: valence, 
+                            arousal: arousal
                         });
+
+                        showFixationCross(playNextVideo);
                     });
                 };
                 currentVideoIndex++;
@@ -274,22 +266,23 @@ function experimentalSet() {
                     videoPlayer.style.display = "none";
                     clearButtons();
 
-                    createFeedbackForm(video.id, (rating) => {
+                    createFeedbackAndEmotionGraph(video.id, (rating) => {
                         feedbackContainer.style.display = "none";
-                        createEmotionGraph(video.id, (valence, arousal) => {
-                            showFixationCross(playNextVideo);
+                        const valence = document.querySelector('.emotion-dot').getAttribute('cx');
+                        const arousal = 400 - document.querySelector('.emotion-dot').getAttribute('cy');
 
-                            participantChoices.push({
-                                part: "Experimental_Choice",
-                                decision: "skip",
-                                videoId: video.id,
-                                reactionTime: reactionTime,
-                                forcedVideoId: randomVideo.id,
-                                rating: rating,
-                                valence: valence, 
-                                arousal: arousal
-                            });
+                        participantChoices.push({
+                            part: "Experimental_Choice",
+                            decision: "skip",
+                            videoId: video.id,
+                            reactionTime: reactionTime,
+                            forcedVideoId: randomVideo.id,
+                            rating: rating,
+                            valence: valence, 
+                            arousal: arousal
                         });
+
+                        showFixationCross(playNextVideo);
                     });
                 };
                 currentVideoIndex++;
