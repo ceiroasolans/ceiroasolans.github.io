@@ -1,7 +1,6 @@
 // UPDATES TO DO: 
 //-Short videos for practice (prototypical), extended version for testing
 //-Include neutral videos (conclusion: approach or avoid tendency)
-//-Interest and emo in the same page
 
 //DONE
 //Changed button names
@@ -64,7 +63,6 @@ function createFeedbackForm(videoId, onSubmit) {
 }
 
 
-
 function createEmotionGraph(videoId, onSubmit) {
     const emotionGraphContainer = document.getElementById('emotionGraphContainer');
     const emotionSubmit = document.getElementById('emotionSubmit');
@@ -77,6 +75,26 @@ function createEmotionGraph(videoId, onSubmit) {
     while (existingDots[0]) {
         existingDots[0].parentNode.removeChild(existingDots[0]);
     }
+
+    // Create the x-axis line and add it to the SVG
+    const xAxisLine = document.createElementNS("http://www.w3.org/2000/svg", "line");
+    xAxisLine.setAttribute("x1", 0);
+    xAxisLine.setAttribute("y1", 200); // This should be at half of the SVG height assuming it is 400px
+    xAxisLine.setAttribute("x2", 400); // This should be the full width of the SVG assuming it is 400px
+    xAxisLine.setAttribute("y2", 200);
+    xAxisLine.setAttribute("stroke", "black");
+    xAxisLine.setAttribute("stroke-width", 1);
+    emotionGraph.appendChild(xAxisLine);
+
+    // Create the y-axis line and add it to the SVG
+    const yAxisLine = document.createElementNS("http://www.w3.org/2000/svg", "line");
+    yAxisLine.setAttribute("x1", 200); // This should be at half of the SVG width assuming it is 400px
+    yAxisLine.setAttribute("y1", 0);
+    yAxisLine.setAttribute("x2", 200);
+    yAxisLine.setAttribute("y2", 400); // This should be the full height of the SVG assuming it is 400px
+    yAxisLine.setAttribute("stroke", "black");
+    yAxisLine.setAttribute("stroke-width", 1);
+    emotionGraph.appendChild(yAxisLine);
 
     // Create the dot and add it to the SVG
     const dot = document.createElementNS("http://www.w3.org/2000/svg", "circle");
