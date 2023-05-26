@@ -273,110 +273,6 @@ function startPart3() {
 
 
 function startPart4() {
-    showMessage("You have finished the second exercise. Now you will move on to the last one.");
-    clearButtons();
-	addButton(createButton("Next", () => {
-        showMessage("");
-	startPart5();
-	}));
-}
-	
-
-
-function startPart5() {
-    const watchRewardsAll = ["+1", "-1"];
-    const skipRewardsAll = ["+1", "-1"];
-    let videoRewardPairs = [];
-
-    for (let video of videos) {
-        for (let wr of watchRewardsAll) {
-            for (let sr of skipRewardsAll) {
-                videoRewardPairs.push({ video, rewards: [{type: 'watch', value: wr}, {type: 'skip', value: sr}] });
-            }
-        }
-    }
-
-    videoRewardPairs = shuffleArray(videoRewardPairs);
-
-    let currentPairIndex = 0;
-
-    function playNextVideo() {
-        if (currentPairIndex < videoRewardPairs.length) {
-            const { video, rewards } = videoRewardPairs[currentPairIndex];
-            const watchReward = rewards.find(reward => reward.type === 'watch');
-            const skipReward = rewards.find(reward => reward.type === 'skip');
-
-            const rewardOnWatch = Math.random() < 0.5;  // Decide randomly if reward is on watch or skip button
-
-            videoPlayer.src = video.src;
-            videoPlayer.style.display = "block";
-
-            const watchButtonText = rewardOnWatch ? `Watch this video (${watchReward.value})` : `Watch this video`;
-            const watchButton = createButton(watchButtonText, getButtonCallback(video, watchReward, 'watch', rewardOnWatch));
-
-            const skipButtonText = !rewardOnWatch ? `Skip this video (${skipReward.value})` : `Skip this video`;
-            const skipButton = createButton(skipButtonText, getButtonCallback(video, skipReward, 'skip', !rewardOnWatch));
-
-            clearButtons();
-            addButton(watchButton);
-            addButton(skipButton);
-            startTimer();
-
-            currentPairIndex++;
-        } else {
-            startPart6();
-        }
-    }
-
-    function getButtonCallback(video, reward, buttonType, rewardOnButton) {
-        return (reactionTime) => {
-            buttonsContainer.style.display = "none";  // hide buttons
-            let randomVideo;
-
-            const processEndOfVideo = () => {
-                videoPlayer.style.display = "none";
-                buttonsContainer.style.display = "";  // show buttons again
-                clearButtons();
-
-                createFeedbackForm(video.id, (rating) => {
-                    feedbackContainer.style.display = "none";
-
-                    createEmotionGraph(video.id, (valence, arousal) => {
-                        showFixationCross(playNextVideo);
-
-                        participantChoices.push({
-                            part: "Experimental_Reward",
-                            decision: reward.type,
-                            videoId: video.id,
-                            reactionTime: reactionTime,
-                            forcedVideoId: reward.type === 'skip' ? randomVideo.id : undefined,
-                            reward: reward.value,
-                            rewardButton: rewardOnButton ? buttonType : (buttonType === 'watch' ? 'skip' : 'watch'),
-                            rating: rating,
-                            valence: valence, 
-                            arousal: arousal
-                        });
-                    });
-                });
-            };
-
-            if (reward.type === 'watch') {
-                videoPlayer.play();
-                videoPlayer.onended = processEndOfVideo;
-            } else {
-                randomVideo = playRandomVideo(video.id, videos);
-                videoPlayer.src = randomVideo.src;
-                videoPlayer.play();
-                videoPlayer.onended = processEndOfVideo;
-            }
-        };
-    }
-
-    playNextVideo();
-}
-
-
-function startPart6() {
     showMessage("Congratulations! You have completed this study :)");
     clearButtons();
 	generateAndUploadCSV(participantChoices);
@@ -427,7 +323,7 @@ function shuffleArray(array) {
 
 
 function generateAndUploadCSV(participantChoices) {
-    const header = ["part", "decision", "videoId", "reactionTime", "forcedVideoId", "reward", "rewardButton", "rating", "valence", "arousal"];
+    const header = ["part", "decision", "videoId", "reactionTime", "forcedVideoId", "rating", "valence", "arousal"];
     const csvRows = [header];
   
     for (const row of participantChoices) {
@@ -437,8 +333,6 @@ function generateAndUploadCSV(participantChoices) {
         row.videoId,
         row.reactionTime,
         row.forcedVideoId || "",
-        row.reward || "",
-        row.rewardButton || "",
         row.rating || "",
         row.valence || "",
         row.arousal || "",
@@ -470,3 +364,13 @@ function generateAndUploadCSV(participantChoices) {
 
 
 startPart1();       
+
+
+
+
+//Cheat code (to push to git):
+// git status
+// git add .                               (preparing all new changes to be added)
+// git commit -m "Your commit message"     (commiting changes)
+// git push
+// npx netlify deploy --prod               (deploy to website)
