@@ -140,6 +140,7 @@ function instructions1() {
 
 
 function practiceSet() {
+    clearButtons();
     const shuffledVideos = shuffleArray([...videos]);
     let currentVideoIndex = 0;
 
