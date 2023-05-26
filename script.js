@@ -1,6 +1,7 @@
 // UPDATES TO DO: 
 //-Short videos for practice (prototypical), extended version for testing
 //-Include neutral videos (conclusion: approach or avoid tendency)
+//-Interest and emo in the same page
 
 //DONE
 //Changed button names
@@ -64,12 +65,11 @@ function createFeedbackForm(videoId, onSubmit) {
 
 
 
+
 function createEmotionGraph(videoId, onSubmit) {
     const emotionGraphContainer = document.getElementById('emotionGraphContainer');
     const emotionSubmit = document.getElementById('emotionSubmit');
     const emotionGraph = document.getElementById('emotionGraph');
-
-    emotionSubmit.disabled = true; // Disable the submit button initially
 
     // Clear any existing dots from the graph
     const existingDots = emotionGraph.getElementsByClassName('emotion-dot');
@@ -96,7 +96,9 @@ function createEmotionGraph(videoId, onSubmit) {
 
     const stopDragging = (e) => {
         dragging = false;
+        if(dotMoved) feedbackContainer.button.disabled = false;
     };
+  
 
     const dragDot = (e) => {
         if (dragging) {
@@ -112,8 +114,6 @@ function createEmotionGraph(videoId, onSubmit) {
 
             dot.setAttribute("cx", x);
             dot.setAttribute("cy", y);
-            
-            emotionSubmit.disabled = false; // Enable the submit button as the dot has been moved
         }
     };
 
@@ -123,19 +123,19 @@ function createEmotionGraph(videoId, onSubmit) {
     emotionGraph.addEventListener('mouseleave', stopDragging);
 
     // Handle submit button click
+    
     emotionSubmit.onclick = () => {
         if(dotMoved){
-            emotionGraphContainer.style.display = "none";
-            const valence = dot.getAttribute("cx");
-            const arousal = 400 - dot.getAttribute("cy"); // Subtract from 400 because SVG Y-axis goes from top to bottom
+        emotionGraphContainer.style.display = "none";
+        const valence = dot.getAttribute("cx");
+        const arousal = 400 - dot.getAttribute("cy"); // Subtract from 400 because SVG Y-axis goes from top to bottom
 
-            onSubmit(valence, arousal);
+        onSubmit(valence, arousal);
         }
     };
 
     emotionGraphContainer.style.display = "block";
 }
-
 
 
 
