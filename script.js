@@ -197,7 +197,7 @@ function startPart3() {
             videoPlayer.src = video.src;
             videoPlayer.style.display = "block";
 
-            const watchButton = createButton("Watch this video", (reactionTime) => {
+            const watchButton = createButton("Choose", (reactionTime) => {
                 watchButton.style.display = "none";
                 skipButton.style.display = "none";
                 videoPlayer.play();
@@ -225,7 +225,7 @@ function startPart3() {
                 currentVideoIndex++;
             });
 
-            const skipButton = createButton("Skip this video", (reactionTime) => {
+            const skipButton = createButton("Avoid", (reactionTime) => {
                 watchButton.style.display = "none";
                 skipButton.style.display = "none";
                 const randomVideo = playRandomVideo(video.id, videos);
@@ -368,9 +368,10 @@ startPart1();
 
 
 
-//Cheat code (to push to git):
+//CHEAT CODE (to update):
 // git status
 // git add .                               (preparing all new changes to be added)
 // git commit -m "Your commit message"     (commiting changes)
 // git push
 // npx netlify deploy --prod               (deploy to website)
+// to check new files, go to AWS S3 (amazon), buckets, emotionregulation
