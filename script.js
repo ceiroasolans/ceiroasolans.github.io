@@ -79,9 +79,9 @@ function createEmotionGraph(videoId, onSubmit) {
 
     // Create the x-axis line and add it to the SVG
     const xAxisLine = document.createElementNS("http://www.w3.org/2000/svg", "line");
-    xAxisLine.setAttribute("x1", 0);
+    xAxisLine.setAttribute("x1", 20);
     xAxisLine.setAttribute("y1", 200); // This should be at half of the SVG height assuming it is 400px
-    xAxisLine.setAttribute("x2", 400); // This should be the full width of the SVG assuming it is 400px
+    xAxisLine.setAttribute("x2", 380); // This should be the full width of the SVG assuming it is 400px
     xAxisLine.setAttribute("y2", 200);
     xAxisLine.setAttribute("stroke", "black");
     xAxisLine.setAttribute("stroke-width", 1);
@@ -90,9 +90,9 @@ function createEmotionGraph(videoId, onSubmit) {
     // Create the y-axis line and add it to the SVG
     const yAxisLine = document.createElementNS("http://www.w3.org/2000/svg", "line");
     yAxisLine.setAttribute("x1", 200); // This should be at half of the SVG width assuming it is 400px
-    yAxisLine.setAttribute("y1", 0);
+    yAxisLine.setAttribute("y1", 20);
     yAxisLine.setAttribute("x2", 200);
-    yAxisLine.setAttribute("y2", 400); // This should be the full height of the SVG assuming it is 400px
+    yAxisLine.setAttribute("y2", 380); // This should be the full height of the SVG assuming it is 400px
     yAxisLine.setAttribute("stroke", "black");
     yAxisLine.setAttribute("stroke-width", 1);
     emotionGraph.appendChild(yAxisLine);
