@@ -2,8 +2,6 @@
 //-Short videos for practice (prototypical), extended version for testing
 //-Include neutral videos (conclusion: approach or avoid tendency)
 
-
-
 //-Add requirement for ratings (interest and emo)
 //-Interest and emo in the same page
 
@@ -42,24 +40,31 @@ function createFeedbackForm(videoId, onSubmit) {
     const question = document.createElement("p");
     question.textContent = "How interesting did you find this video?";
 
-    const slider = document.createElement("input");
-    slider.type = "range";
-    slider.min = 0;
-    slider.max = 7;
-    slider.value = 3;
+    feedbackContainer.slider = document.createElement("input");
+    feedbackContainer.slider.type = "range";
+    feedbackContainer.slider.min = 0;
+    feedbackContainer.slider.max = 7;
+    feedbackContainer.slider.value = 3;
+    feedbackContainer.slider.addEventListener('change', function(){
+        feedbackContainer.button.disabled = false;
+    });
 
-    const button = document.createElement("button");
-    button.innerText = "Submit";
-    button.onclick = () => {
-        const rating = slider.value;
+    feedbackContainer.button = document.createElement("button");
+    feedbackContainer.button.innerText = "Submit";
+    feedbackContainer.button.disabled = true;
+    feedbackContainer.button.onclick = () => {
+        const rating = feedbackContainer.slider.value;
+        feedbackContainer.button.disabled = true;
         onSubmit(rating);
     };
 
     feedbackContainer.appendChild(question);
-    feedbackContainer.appendChild(slider);
-    feedbackContainer.appendChild(button);
+    feedbackContainer.appendChild(feedbackContainer.slider);
+    feedbackContainer.appendChild(feedbackContainer.button);
     feedbackContainer.style.display = "block";
 }
+
+
 
 
 function createEmotionGraph(videoId, onSubmit) {
@@ -84,6 +89,7 @@ function createEmotionGraph(videoId, onSubmit) {
 
     // Dragging state
     let dragging = false;
+    let dotMoved = false;
 
     const startDragging = (e) => {
         dragging = true;
@@ -91,10 +97,13 @@ function createEmotionGraph(videoId, onSubmit) {
 
     const stopDragging = (e) => {
         dragging = false;
+        if(dotMoved) feedbackContainer.button.disabled = false;
     };
+  
 
     const dragDot = (e) => {
         if (dragging) {
+            dotMoved = true;
             let x = e.offsetX;
             let y = e.offsetY;
 
@@ -115,17 +124,19 @@ function createEmotionGraph(videoId, onSubmit) {
     emotionGraph.addEventListener('mouseleave', stopDragging);
 
     // Handle submit button click
+    
     emotionSubmit.onclick = () => {
+        if(dotMoved){
         emotionGraphContainer.style.display = "none";
         const valence = dot.getAttribute("cx");
         const arousal = 400 - dot.getAttribute("cy"); // Subtract from 400 because SVG Y-axis goes from top to bottom
 
         onSubmit(valence, arousal);
+        }
     };
 
     emotionGraphContainer.style.display = "block";
 }
-
 
 
 
