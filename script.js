@@ -63,6 +63,7 @@ function createFeedbackForm(videoId, onSubmit) {
 }
 
 
+
 function createEmotionGraph(videoId, onSubmit) {
     const emotionGraphContainer = document.getElementById('emotionGraphContainer');
     const emotionSubmit = document.getElementById('emotionSubmit');
@@ -70,44 +71,11 @@ function createEmotionGraph(videoId, onSubmit) {
 
     emotionSubmit.disabled = true; // Disable the submit button initially
 
-    // Clear any existing dots and lines from the graph
-    while (emotionGraph.firstChild) {
-        emotionGraph.firstChild.remove();
+    // Clear any existing dots from the graph
+    const existingDots = emotionGraph.getElementsByClassName('emotion-dot');
+    while (existingDots[0]) {
+        existingDots[0].parentNode.removeChild(existingDots[0]);
     }
-
-    // Create the x-axis line and add it to the SVG
-    const xAxisLine = document.createElementNS("http://www.w3.org/2000/svg", "line");
-    xAxisLine.setAttribute("x1", 0);
-    xAxisLine.setAttribute("y1", 200);
-    xAxisLine.setAttribute("x2", 400);
-    xAxisLine.setAttribute("y2", 200);
-    xAxisLine.setAttribute("stroke", "black");
-    xAxisLine.setAttribute("stroke-width", 1);
-    emotionGraph.appendChild(xAxisLine);
-
-    // Create the y-axis line and add it to the SVG
-    const yAxisLine = document.createElementNS("http://www.w3.org/2000/svg", "line");
-    yAxisLine.setAttribute("x1", 200);
-    yAxisLine.setAttribute("y1", 0);
-    yAxisLine.setAttribute("x2", 200);
-    yAxisLine.setAttribute("y2", 400);
-    yAxisLine.setAttribute("stroke", "black");
-    yAxisLine.setAttribute("stroke-width", 1);
-    emotionGraph.appendChild(yAxisLine);
-
-    // Create x-axis label and add it to the SVG
-    const xAxisLabel = document.createElementNS("http://www.w3.org/2000/svg", "text");
-    xAxisLabel.setAttribute("x", 200);
-    xAxisLabel.setAttribute("y", 420);
-    xAxisLabel.textContent = "Valence";
-    emotionGraph.appendChild(xAxisLabel);
-
-    // Create y-axis label and add it to the SVG
-    const yAxisLabel = document.createElementNS("http://www.w3.org/2000/svg", "text");
-    yAxisLabel.setAttribute("x", 10);
-    yAxisLabel.setAttribute("y", 200);
-    yAxisLabel.textContent = "Arousal";
-    emotionGraph.appendChild(yAxisLabel);
 
     // Create the dot and add it to the SVG
     const dot = document.createElementNS("http://www.w3.org/2000/svg", "circle");
@@ -144,7 +112,7 @@ function createEmotionGraph(videoId, onSubmit) {
 
             dot.setAttribute("cx", x);
             dot.setAttribute("cy", y);
-
+            
             emotionSubmit.disabled = false; // Enable the submit button as the dot has been moved
         }
     };
@@ -167,7 +135,6 @@ function createEmotionGraph(videoId, onSubmit) {
 
     emotionGraphContainer.style.display = "block";
 }
-
 
 
 
