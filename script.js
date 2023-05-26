@@ -1,19 +1,12 @@
-// UPDATES TO DO: 
-//-Short videos for practice (prototypical), extended version for testing
-//-Include neutral videos (conclusion: approach or avoid tendency)
-
-//DONE
-//Changed button names
-//Practice videos play automatically
-//Add timer for selection decision: 5 seconds, or automatic choice
-//Add requirement for ratings (interest and emo)
-
+//Constants
 const mainContainer = document.getElementById("mainContainer");
 const videoPlayer = document.getElementById("videoPlayer");
 const fixationCross = document.getElementById("fixationCross");
 const message = document.getElementById("message");
 const buttonsContainer = document.getElementById("buttonsContainer");
 
+
+// Other
 const videos = [
     { id: "positive1", src: "positive1.mp4", type: "positive" },
     //{ id: "positive2", src: "positive2.mp4", type: "positive" },
@@ -30,6 +23,8 @@ function startTimer() {  // Function to start the timer when buttons appear
     startTime = performance.now();
 }
 
+
+// Create response variables
 function createFeedbackForm(videoId, onSubmit) {
     feedbackContainer.innerHTML = '';
 
@@ -153,7 +148,7 @@ function createEmotionGraph(videoId, onSubmit) {
 
 
 
-
+//Experimental flow
 function instructions1() {
     showMessage("Welcome! Press 'Next' to begin.");
     clearButtons();
@@ -162,7 +157,6 @@ function instructions1() {
         practiceSet();
     }));
 }
-
 
 function practiceSet() {
     clearButtons();
@@ -207,10 +201,6 @@ function practiceSet() {
     playNextVideo();
 }
 
-
-
-
-
 function instructions2() {
     showMessage("You have finished the first exercise. Press 'Next' to move on to the next one.");
     clearButtons();
@@ -220,13 +210,11 @@ function instructions2() {
     }));
 }
 
-
 function playRandomVideo(excludeVideoId, videos) {
     let remainingVideos = videos.filter(video => video.id !== excludeVideoId);
     let randomVideoIndex = Math.floor(Math.random() * remainingVideos.length);
     return remainingVideos[randomVideoIndex];
 }
-
 
 function experimentalSet() {
     const shuffledVideos = shuffleArray([...videos]);
@@ -320,9 +308,6 @@ function experimentalSet() {
     playNextVideo();
 }
 
-
-
-
 function instructions3() {
     showMessage("Congratulations! You have completed this study :)");
     clearButtons();
@@ -330,6 +315,8 @@ function instructions3() {
 	
 }
 
+
+// Auxiliary functions
 function showMessage(text) {
     message.innerText = text;
     message.style.display = "block";
@@ -372,7 +359,7 @@ function shuffleArray(array) {
 
 
 
-
+// Generate data 
 function generateAndUploadCSV(participantChoices) {
     const header = ["part", "decision", "videoId", "reactionTime", "forcedVideoId", "rating", "valence", "arousal"];
     const csvRows = [header];
@@ -414,6 +401,7 @@ function generateAndUploadCSV(participantChoices) {
   
 
 
+  //START
   instructions1();       
 
 
