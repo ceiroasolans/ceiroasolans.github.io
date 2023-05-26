@@ -1,4 +1,3 @@
-
 const AWS = require('aws-sdk');
 exports.handler = async function(event, context, callback) {
   const csvContent = event.body; // The CSV content received from the frontend
@@ -28,7 +27,7 @@ exports.handler = async function(event, context, callback) {
   } catch (error) {
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: 'An error occurred during file upload' }),
+      body: JSON.stringify({ error: 'An error occurred during file upload'}),
     };
   }
 };
