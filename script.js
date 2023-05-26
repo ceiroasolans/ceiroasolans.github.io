@@ -384,7 +384,7 @@ function generateAndUploadCSV(participantChoices) {
   
 
 
-startPart1();       
+  instructions();       
 
 
 
