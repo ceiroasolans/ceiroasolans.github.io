@@ -129,6 +129,15 @@ function createEmotionGraph(videoId, onSubmit) {
 
 
 
+function instructions1() {
+    showMessage("Welcome! Press 'Next' to begin.");
+    clearButtons();
+    addButton(createButton("Next", () => {
+        showMessage("");
+        practiceSet();
+    }));
+}
+
 
 function practiceSet() {
     const shuffledVideos = shuffleArray([...videos]);
@@ -379,7 +388,7 @@ function generateAndUploadCSV(participantChoices) {
   
 
 
-practiceSet();       
+  instructions1();       
 
 
 
