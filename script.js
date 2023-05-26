@@ -130,12 +130,12 @@ function instructions() {
     clearButtons();
     addButton(createButton("Next", () => {
         showMessage("");
-        practiceSet();
+        startPart1();
     }));
 }
 
 
-function practiceSet() {
+function startPart1() {
     const shuffledVideos = shuffleArray([...videos]);
     let currentVideoIndex = 0;
 
@@ -170,7 +170,7 @@ function practiceSet() {
             currentVideoIndex++;
         } else {
             showMessage("");
-            instructions2();
+            startPart2();
         }
     }
 
@@ -181,12 +181,12 @@ function practiceSet() {
 
 
 
-function instructions2() {
+function startPart2() {
     showMessage("You have finished the first exercise. Press 'Next' to move on to the next one.");
     clearButtons();
     addButton(createButton("Next", () => {
         showMessage("");
-        experimentalSet();
+        startPart3();
     }));
 }
 
@@ -198,7 +198,7 @@ function playRandomVideo(excludeVideoId, videos) {
 }
 
 
-function experimentalSet() {
+function startPart3() {
     const shuffledVideos = shuffleArray([...videos]);
     let currentVideoIndex = 0;
 
@@ -283,7 +283,7 @@ function experimentalSet() {
             addButton(watchButton);
             addButton(skipButton);
         } else {
-            instructions3();
+            startPart4();
         }
     }
 
@@ -293,7 +293,7 @@ function experimentalSet() {
 
 
 
-function instructions3() {
+function startPart4() {
     showMessage("Congratulations! You have completed this study :)");
     clearButtons();
 	generateAndUploadCSV(participantChoices);
@@ -384,7 +384,7 @@ function generateAndUploadCSV(participantChoices) {
   
 
 
-instructions();       
+startPart1();       
 
 
 
