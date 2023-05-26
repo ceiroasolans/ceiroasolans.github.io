@@ -61,12 +61,10 @@ function createFeedbackForm(videoId, onSubmit) {
     feedbackContainer.appendChild(feedbackContainer.slider);
     feedbackContainer.appendChild(feedbackContainer.button);
     feedbackContainer.style.display = "block";
-}
 
 
 
 
-function createEmotionGraph(videoId, onSubmit) {
     const emotionGraphContainer = document.getElementById('emotionGraphContainer');
     const emotionSubmit = document.getElementById('emotionSubmit');
     const emotionGraph = document.getElementById('emotionGraph');
@@ -137,7 +135,7 @@ function createEmotionGraph(videoId, onSubmit) {
     emotionGraphContainer.style.display = "block";
 }
 
-
+function createEmotionGraph(videoId, onSubmit) {}
 
 function instructions1() {
     showMessage("Welcome! Press 'Next' to begin.");
