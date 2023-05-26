@@ -2,6 +2,8 @@
 //-Short videos for practice (prototypical), extended version for testing
 //-Include neutral videos (conclusion: approach or avoid tendency)
 
+
+
 //-Add requirement for ratings (interest and emo)
 //-Interest and emo in the same page
 
@@ -125,14 +127,7 @@ function createEmotionGraph(videoId, onSubmit) {
 }
 
 
-function instructions() {
-    showMessage("Welcome! Please press "Next" to begin.");
-    clearButtons();
-    addButton(createButton("Next", () => {
-        showMessage("");
-        startPart1();
-    }));
-}
+
 
 
 function startPart1() {
@@ -384,7 +379,7 @@ function generateAndUploadCSV(participantChoices) {
   
 
 
-  instructions();       
+startPart1();       
 
 
 
