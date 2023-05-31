@@ -5,7 +5,7 @@ const fixationCross = document.getElementById("fixationCross");
 const message = document.getElementById("message");
 const buttonsContainer = document.getElementById("buttonsContainer");
 
-
+//The goal is to have participants choose, out of a list of x movies for every emotion, the one that made them the happiest. Then, use this choice to show them the corresponding movie clips during the task. 
 
 //const fullSetOfVideos = [
 //    { id: "positive1", src: "positive1.mp4", type: "positive" },
