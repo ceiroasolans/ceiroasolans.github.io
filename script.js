@@ -6,6 +6,65 @@ const message = document.getElementById("message");
 const buttonsContainer = document.getElementById("buttonsContainer");
 
 
+
+//const fullSetOfVideos = [
+//    { id: "positive1", src: "positive1.mp4", type: "positive" },
+//    //{ id: "positive2", src: "positive2.mp4", type: "positive" },
+ //   //{ id: "positive3", src: "positive3.mp4", type: "positive" },
+//    { id: "negative1", src: "negative1.mp4", type: "negative" },
+ //   //{ id: "negative2", src: "negative2.mp4", type: "negative" },
+ //   //{ id: "negative3", src: "negative3.mp4", type: "negative" },
+ //   { id: "positive1", src: "positive1.mp4", type: "positive" },
+ //   //{ id: "positive2", src: "positive2.mp4", type: "positive" },
+ //   //{ id: "positive3", src: "positive3.mp4", type: "positive" },
+  //  { id: "negative1", src: "negative1.mp4", type: "negative" },
+ //   //{ id: "negative2", src: "negative2.mp4", type: "negative" },
+  //  //{ id: "negative3", src: "negative3.mp4", type: "negative" },
+ //   { id: "positive1", src: "positive1.mp4", type: "positive" },
+ //   //{ id: "positive2", src: "positive2.mp4", type: "positive" },
+ //   //{ id: "positive3", src: "positive3.mp4", type: "positive" },
+ //   { id: "negative1", src: "negative1.mp4", type: "negative" },
+//    //{ id: "negative2", src: "negative2.mp4", type: "negative" },
+ //   //{ id: "negative3", src: "negative3.mp4", type: "negative" },
+//];
+
+
+//Question: Which of the following movie scenes made you feel the happiest? 
+// *A*
+// B 
+// C 
+// D 
+
+// Favorite1 <- A 
+
+
+// Question: Which of the following movie scenes made you feel the happiest? 
+// A
+// *B* 
+// C 
+// D 
+
+
+// Favorite2<- B
+
+
+// // Other
+// const videosParticipantX = [
+//     select the videos that correspond to Favorite1, Favorite2, etc
+
+
+//     { id: "positive1", src: "positive1.mp4", type: "positive" },
+//     //{ id: "positive2", src: "positive2.mp4", type: "positive" },
+//     //{ id: "positive3", src: "positive3.mp4", type: "positive" },
+//     { id: "negative1", src: "negative1.mp4", type: "negative" },
+//     //{ id: "negative2", src: "negative2.mp4", type: "negative" },
+//     //{ id: "negative3", src: "negative3.mp4", type: "negative" },
+// ];
+
+
+
+
+
 // Other
 const videos = [
     { id: "positive1", src: "positive1.mp4", type: "positive" },
