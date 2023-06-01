@@ -66,14 +66,47 @@ const buttonsContainer = document.getElementById("buttonsContainer");
 
 
 // Other
-const videos = [
-    { id: "positive1", src: "positive1.mp4", type: "positive" },
-    //{ id: "positive2", src: "positive2.mp4", type: "positive" },
-    //{ id: "positive3", src: "positive3.mp4", type: "positive" },
-    { id: "negative1", src: "negative1.mp4", type: "negative" },
-    //{ id: "negative2", src: "negative2.mp4", type: "negative" },
-    //{ id: "negative3", src: "negative3.mp4", type: "negative" },
+// const videos = [
+//     { id: "positive1", src: "positive1.mp4", type: "positive" },
+//     //{ id: "positive2", src: "positive2.mp4", type: "positive" },
+//     //{ id: "positive3", src: "positive3.mp4", type: "positive" },
+//     { id: "negative1", src: "negative1.mp4", type: "negative" },
+//     //{ id: "negative2", src: "negative2.mp4", type: "negative" },
+//     //{ id: "negative3", src: "negative3.mp4", type: "negative" },
+// ];
+
+const videos_T = [
+    { id: "disgust1", src: "disgust_1_T.mp4", type: "negative" },
+    { id: "disgust2", src: "disgust_2_T.mp4", type: "negative" },
+    { id: "disgust3", src: "disgust_3_T.mp4", type: "negative" },
+    { id: "sad1", src: "sad_1_T.mp4", type: "negative" },
+    { id: "sad2", src: "sad_2_T.mp4", type: "negative" },
+    { id: "sad3", src: "sad_3_T.mp4", type: "negative" },
+    { id: "indifference1", src: "indifference_1_T.mp4", type: "neutral" },
+    { id: "indifference2", src: "indifference_2_T.mp4", type: "neutral" },
+    { id: "indifference3", src: "indifference_3_T.mp4", type: "neutral" },
+    { id: "joy1", src: "satisfaction_1_T.mp4", type: "positive" },
+    { id: "joy2", src: "satisfaction_2_T.mp4", type: "positive" },
+    { id: "joy3", src: "satisfaction_3_T.mp4", type: "positive" },
 ];
+
+
+const videos = [
+    { id: "disgust1", src: "disgust_1.mp4", type: "negative" },
+    { id: "disgust2", src: "disgust_2.mp4", type: "negative" },
+    { id: "disgust3", src: "disgust_3.mp4", type: "negative" },
+    { id: "sad1", src: "sad_1.mp4", type: "negative" },
+    { id: "sad2", src: "sad_2.mp4", type: "negative" },
+    { id: "sad3", src: "sad_3.mp4", type: "negative" },
+    { id: "indifference1", src: "indifference_1.mp4", type: "neutral" },
+    { id: "indifference2", src: "indifference_2.mp4", type: "neutral" },
+    { id: "indifference3", src: "indifference_3.mp4", type: "neutral" },
+    { id: "joy1", src: "satisfaction_1.mp4", type: "positive" },
+    { id: "joy2", src: "satisfaction_2.mp4", type: "positive" },
+    { id: "joy3", src: "satisfaction_3.mp4", type: "positive" },
+];
+
+
 
 let participantChoices = [];
 let startTime; 
@@ -219,8 +252,8 @@ function instructions1() {
 
 function practiceSet() {
     clearButtons();
-    const shuffledVideos = shuffleArray([...videos]);
-    let currentVideoIndex = 0;
+    const shuffledVideos = shuffleArray([...videos_T]);
+    let currentVideoIndex = 0; 
 
     function playNextVideo() {
         if (currentVideoIndex < shuffledVideos.length) {
