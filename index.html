@@ -15,41 +15,66 @@
         <div id="feedbackContainer" style="display:none;">
         </div>
 
-<!--<div id="dropdown-list" style="display: none;">-->
-<!--    <form>-->
-<!--                <select id="mySelect">-->
-<!--                </select>-->
-<!--    </form>-->
+<!--<div id="movieForm">-->
+<!--    <div id="movie-select-container"></div>-->
+<!--  <h2>Please choose the most interesting movies below!</h2>-->
+<!--    <text x="20" y="225" transform="rotate(-90 20,225)">Note: this is to help use personalize this study for you.</text>-->
+<!--  <br>-->
+<!--  <div>-->
+<!--    <h3>Question 1:</h3>-->
+<!--    <fieldset>-->
+<!--      <legend>Movie options:</legend>-->
+<!--      <label><input type="radio" name="question1" value="movie1">Movie 1</label>-->
+<!--      <label><input type="radio" name="question1" value="movie2">Movie 2</label>-->
+<!--      <label><input type="radio" name="question1" value="movie3">Movie 3</label>-->
+<!--      <label><input type="radio" name="question1" value="movie4">Movie 4</label>-->
+<!--    </fieldset>-->
+<!--  </div>-->
+<!--  <br>-->
+<!--  <div>-->
+<!--    <h3>Question 2:</h3>-->
+<!--    <fieldset>-->
+<!--      <legend>Movie options:</legend>-->
+<!--      <label><input type="radio" name="question2" value="movie1">Movie 1</label>-->
+<!--      <label><input type="radio" name="question2" value="movie2">Movie 2</label>-->
+<!--      <label><input type="radio" name="question2" value="movie3">Movie 3</label>-->
+<!--      <label><input type="radio" name="question2" value="movie4">Movie 4</label>-->
+<!--    </fieldset>-->
+<!--  </div>-->
+<!--  &lt;!&ndash; Add more divs for the remaining questions here &ndash;&gt;-->
+<!--  <br>-->
+<!--  <button id="submit">Submit</button>-->
 <!--</div>-->
 
-<div id="movieForm">
-  <h2>Please choose the most interesting movies below:</h2>
+<form id="movie-form">
+    <h2>Please choose the most interesting movies below!</h2>
+  <fieldset>
+    <legend>Question 1:</legend>
+    <div id="movie-select-container1"></div>
+  </fieldset>
   <br>
-  <div>
-    <h3>Question 1:</h3>
-    <fieldset>
-      <legend>Movie options:</legend>
-      <label><input type="radio" name="question1" value="movie1">Movie 1</label>
-      <label><input type="radio" name="question1" value="movie2">Movie 2</label>
-      <label><input type="radio" name="question1" value="movie3">Movie 3</label>
-      <label><input type="radio" name="question1" value="movie4">Movie 4</label>
-    </fieldset>
-  </div>
+  <fieldset>
+    <legend>Question 2:</legend>
+    <div id="movie-select-container2"></div>
+  </fieldset>
   <br>
-  <div>
-    <h3>Question 2:</h3>
-    <fieldset>
-      <legend>Movie options:</legend>
-      <label><input type="radio" name="question2" value="movie1">Movie 1</label>
-      <label><input type="radio" name="question2" value="movie2">Movie 2</label>
-      <label><input type="radio" name="question2" value="movie3">Movie 3</label>
-      <label><input type="radio" name="question2" value="movie4">Movie 4</label>
-    </fieldset>
-  </div>
-  <!-- Add more divs for the remaining questions here -->
+  <fieldset>
+    <legend>Question 3:</legend>
+    <div id="movie-select-container3"></div>
+  </fieldset>
   <br>
-  <button id="submit">Submit</button>
-</div>
+  <fieldset>
+    <legend>Question 4:</legend>
+    <div id="movie-select-container4"></div>
+  </fieldset>
+  <br>
+  <fieldset>
+    <legend>Question 5:</legend>
+    <div id="movie-select-container5"></div>
+  </fieldset>
+</form>
+<br>
+<button id="submit">Submit</button>
 
 
 <div id="emotionGraphContainer" style="display: none;">

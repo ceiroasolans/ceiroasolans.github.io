@@ -4,7 +4,10 @@ const videoPlayer = document.getElementById("videoPlayer");
 const fixationCross = document.getElementById("fixationCross");
 const message = document.getElementById("message");
 const buttonsContainer = document.getElementById("buttonsContainer");
-const form = document.getElementById('movieForm');
+const form = document.getElementById('movie-form');
+// Create an empty array to store selected movie titles and IDs
+const favoriteMovies = Array.from({ length: 5 });
+const selectedMovieIdList = Array.from({ length: 5 });
 
 //The goal is to have participants choose, out of a list of x movies for every emotion, the one that made them the happiest. Then, use this choice to show them the corresponding movie clips during the task. 
 
@@ -28,25 +31,6 @@ const form = document.getElementById('movieForm');
 //    //{ id: "negative2", src: "negative2.mp4", type: "negative" },
  //   //{ id: "negative3", src: "negative3.mp4", type: "negative" },
 //];
-
-
-//Question: Which of the following movie scenes made you feel the happiest? 
-// *A*
-// B 
-// C 
-// D 
-
-// Favorite1 <- A 
-
-
-// Question: Which of the following movie scenes made you feel the happiest? 
-// A
-// *B* 
-// C 
-// D 
-
-
-// Favorite2<- B
 
 
 // // Other
@@ -116,55 +100,99 @@ function startTimer() {  // Function to start the timer when buttons appear
     startTime = performance.now();
 }
 
-// Create presurvey question - choose the most interested movie from ABCD four options
-// Return selected value
-// Input example: ["John Wick", "Avatar", "The Flash", "Star Wars"]
+// Create pre-study questions:
+// to have participants choose out of a list of x movies for every emotion, the one that made them the happiest.
+// Then use this choice to show them the corresponding movie clips during the task.
+// movie lists for each questions
+const movies = [
+  {id: "joy1",title: "The Godfather",},
+  {id: "indifference1",title: "The Godfather",},
+  {id: "sad1",title: "The Godfather",},
+  {id: "disgust1",title: "The Godfather",},
 
-//function chooseInterest(movieList) {
+  {id: "joy2",title: "The Godfather",},
+  {id: "indifference2",title: "The Godfather",},
+  {id: "sad2",title: "The Godfather",},
+  {id: "disgust2",title: "The Godfather",},
 
-//    clearButtons();
-//    const dropdown = document.getElementById("dropdown-list");
-//    const movieSubmit = document.getElementById('movieSubmit');
-//    const min = 0,
-//        max = movieList.length - 1, // Fix the index issue
-//        select = document.getElementById("mySelect");
-//
-//    for (let i = min; i <= max; i++){
-//        const opt = document.createElement('option');
-//        opt.value = movieList[i];
-//        opt.innerHTML = movieList[i];
-//        select.appendChild(opt);
-//    }
+  {id: "joy3",title: "The Godfather",},
+  {id: "indifference3",title: "The Godfather",},
+  {id: "sad3",title: "The Godfather",},
+  {id: "disgust3",title: "The Godfather",},
 
-//    movieSubmit.onclick = () => {
-//        dropdown.style.display = "none"; // Hide the dropdown list
-//        const selected = select.value; // Simplify getting the selected value
-//        onSubmit(selected);
-//    };
-//    dropdown.style.display = "block";
-//}
+  {id: "joy4",title: "The Godfather",},
+  {id: "indifference4",title: "The Godfather",},
+  {id: "sad4",title: "The Godfather",},
+  {id: "disgust4",title: "The Godfather",},
 
-// choose interested movies
+  {id: "joy5",title: "The Godfather",},
+  {id: "indifference5",title: "The Godfather",},
+  {id: "sad5",title: "The Godfather",},
+  {id: "disgust5",title: "The Godfather",},
+  // Add more movies as needed
+];
 
-function interestSubmit(event) {
-  event.preventDefault();
-  const interestSubmit = document.getElementById('submit');
+// Example input: movies, "movie-select-container1", 1
+// This is to generate the first question, which has four choices
+function createMovieRadioButtons(movies, movieContainerName, questionNumber) {
+  const movieSelectContainer = document.getElementById(movieContainerName);
+  var startIndex = (questionNumber-1)*4
+  for (const movie of movies.slice(startIndex, startIndex+4)) {
+    const radioButtonContainer = document.createElement("div");
+    radioButtonContainer.classList.add("movie-radio-button-container");
 
-  // get the data from the form
-  const formData = new FormData(event.target);
-  const data = {};
-  for (const [key, value] of formData.entries()) {
-    data[key] = value;
+    const radioButton = document.createElement("input");
+    radioButton.type = "radio";
+    radioButton.name = "favorite-movie"+questionNumber;
+    radioButton.value = movie.id;
+
+    const label = document.createElement("label");
+    label.textContent = movie.title;
+
+    radioButtonContainer.appendChild(radioButton);
+    radioButtonContainer.appendChild(label);
+
+    movieSelectContainer.appendChild(radioButtonContainer);
   }
-
-  // hide the form and show the message
-//  form.classList.add('form-submitted');
-  // Handle submit button click
-    form.style.display = "none";
-//  document.getElementById('submitMsg').innerText = 'Thank you for submitting!';
-
 }
 
+function createPreStudyPage() {
+    createMovieRadioButtons(movies, "movie-select-container1", 1);
+    createMovieRadioButtons(movies, "movie-select-container2", 2);
+    createMovieRadioButtons(movies, "movie-select-container3", 3);
+    createMovieRadioButtons(movies, "movie-select-container4", 4);
+    createMovieRadioButtons(movies, "movie-select-container5", 5);
+    // Add more RadioButtons if needed
+}
+
+function saveFavoriteMovieIDs() {
+    // Get the IDs of the selected movies
+    const selectedMovieIdList = [
+    document.querySelector('input[name="favorite-movie1"]:checked').value,
+    document.querySelector('input[name="favorite-movie2"]:checked').value,
+    document.querySelector('input[name="favorite-movie3"]:checked').value,
+    document.querySelector('input[name="favorite-movie4"]:checked').value,
+    document.querySelector('input[name="favorite-movie5"]:checked').value
+    ];
+    // Add more lines if needed
+
+    // Create a lookup object to map movie IDs to movie names
+    const movieNameLookup = {};
+    for (const movie of movies) {
+        movieNameLookup[movie.id] = movie.title;
+    }
+
+    // Get the names of the selected movies
+    var i = 0
+    for (var eachID of selectedMovieIdList) {
+        favoriteMovies[i] = movieNameLookup[selectedMovieIdList[i]];
+        i ++;
+    }
+
+    // The title of the selected movies got saved into favoriteMovies
+    console.log(`You selected "${favoriteMovies}"`);
+    console.log(`You selected "${selectedMovieIdList}"`);
+}
 
 // Create response variables
 function createFeedbackForm(videoId, onSubmit) {
@@ -292,21 +320,21 @@ function createEmotionGraph(videoId, onSubmit) {
 
 //Experimental flow
 function instructions1() {
-//    chooseInterest(["John Wick", "Avatar", "The Flash", "Star Wars"])
-//    addButton(createButton("Submit", () => {
-//        showMessage("Please choose the most interesting movie from below dropdown list:")
-//        chooseInterest(["John Wick", "Avatar", "The Flash", "Star Wars"])
-//    }));
+    createPreStudyPage();
     const interestSubmit = document.getElementById("submit");
-    interestSubmit.onclick = () => {
+    // Add an event listener to the submit button
+    interestSubmit.addEventListener("click", () => {
+        // Save all the selected choices
+        saveFavoriteMovieIDs()
         form.style.display = "none";
-        showMessage("Welcome! You are now going to finish several pre-survey questions \n to better personalize this study.");
+        interestSubmit.style.display = "none";
+        showMessage("Thank you for submission. Now welcome to the study! Press next \n and you are going to watch several clips of videos based on your answers.");
         clearButtons();
         addButton(createButton("Next", () => {
-        showMessage("");
-        practiceSet();
+            showMessage("");
+            practiceSet();
         }));
-    };
+    });
 }
 
 function practiceSet() {

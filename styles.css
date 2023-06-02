@@ -8,20 +8,24 @@ body {
     background-color: #f0f0f0;
 }
 
+legend {
+  font-size: 1.0em;
+  font-weight: bold;
+}
+select, input[type="radio"] {
+  margin-bottom: 10px;
+}
+.movie-radio-button-container {
+  display: inline-block;
+  margin-right: 10px;
+}
+
 #mainContainer {
     text-align: center;
 }
 
 #videoPlayer {
     margin-bottom: 1rem;
-}
-
-#movieForm {
-  display: block;
-}
-
-.form-submitted {
-  display: none;
 }
 
 #fixationCross {
