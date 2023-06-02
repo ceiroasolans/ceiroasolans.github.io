@@ -82,6 +82,55 @@ function startTimer() {  // Function to start the timer when buttons appear
     startTime = performance.now();
 }
 
+// Create presurvey question - choose the most interested movie from ABCD four options
+// Return selected value
+// Input example: ["John Wick", "Avatar", "The Flash", "Star Wars"]
+
+//function chooseInterest(movieList) {
+
+//    clearButtons();
+//    const dropdown = document.getElementById("dropdown-list");
+//    const movieSubmit = document.getElementById('movieSubmit');
+//    const min = 0,
+//        max = movieList.length - 1, // Fix the index issue
+//        select = document.getElementById("mySelect");
+//
+//    for (let i = min; i <= max; i++){
+//        const opt = document.createElement('option');
+//        opt.value = movieList[i];
+//        opt.innerHTML = movieList[i];
+//        select.appendChild(opt);
+//    }
+
+//    movieSubmit.onclick = () => {
+//        dropdown.style.display = "none"; // Hide the dropdown list
+//        const selected = select.value; // Simplify getting the selected value
+//        onSubmit(selected);
+//    };
+//    dropdown.style.display = "block";
+//}
+
+// choose interested movies
+const form = document.getElementById('movieForm');
+
+function interestSubmit(event) {
+  event.preventDefault();
+
+  // get the data from the form
+  const formData = new FormData(event.target);
+  const data = {};
+  for (const [key, value] of formData.entries()) {
+    data[key] = value;
+  }
+
+  // hide the form and show the message
+  form.classList.add('form-submitted');
+  document.getElementById('submitMsg').innerText = 'Thank you for submitting!';
+
+  // call the next function
+
+}
+
 
 // Create response variables
 function createFeedbackForm(videoId, onSubmit) {
@@ -209,8 +258,14 @@ function createEmotionGraph(videoId, onSubmit) {
 
 //Experimental flow
 function instructions1() {
-    showMessage("Welcome! Press 'Next' to begin.");
+    showMessage("Welcome! You are now going to finish several pre-survey questions \n to better personalize this study.");
     clearButtons();
+//    chooseInterest(["John Wick", "Avatar", "The Flash", "Star Wars"])
+//    addButton(createButton("Submit", () => {
+//        showMessage("Please choose the most interesting movie from below dropdown list:")
+//        chooseInterest(["John Wick", "Avatar", "The Flash", "Star Wars"])
+//    }));
+    form.addEventListener('submit', interestSubmit);
     addButton(createButton("Next", () => {
         showMessage("");
         practiceSet();
@@ -258,6 +313,7 @@ function practiceSet() {
     }
 
     playNextVideo();
+
 }
 
 function instructions2() {

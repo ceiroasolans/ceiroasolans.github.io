@@ -16,6 +16,14 @@ body {
     margin-bottom: 1rem;
 }
 
+#movieForm {
+  display: block;
+}
+
+.form-submitted {
+  display: none;
+}
+
 #fixationCross {
     font-size: 2rem;
     margin-bottom: 1rem;
