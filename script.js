@@ -124,10 +124,9 @@ function interestSubmit(event) {
   }
 
   // hide the form and show the message
-  form.classList.add('form-submitted');
-  document.getElementById('submitMsg').innerText = 'Thank you for submitting!';
-
-  // call the next function
+//  form.classList.add('form-submitted');
+  form.style.display = 'none';
+//  document.getElementById('submitMsg').innerText = 'Thank you for submitting!';
 
 }
 
