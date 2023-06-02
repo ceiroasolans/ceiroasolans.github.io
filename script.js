@@ -530,3 +530,8 @@ function generateAndUploadCSV(participantChoices) {
 // to check new files, go to AWS S3 (amazon), buckets, emotionregulation
 
 // or in short:         git add -A && git commit -m "update" && git push
+
+//HOW TO MERGE ORIGIN MAIN TO BRANCH:
+//git checkout dmgr2      # gets you "on branch dmgr2"
+//git fetch origin        # gets you up to date with origin
+//git merge origin
