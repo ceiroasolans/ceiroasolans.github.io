@@ -4,6 +4,7 @@ const videoPlayer = document.getElementById("videoPlayer");
 const fixationCross = document.getElementById("fixationCross");
 const message = document.getElementById("message");
 const buttonsContainer = document.getElementById("buttonsContainer");
+const form = document.getElementById('movieForm');
 
 //The goal is to have participants choose, out of a list of x movies for every emotion, the one that made them the happiest. Then, use this choice to show them the corresponding movie clips during the task. 
 
@@ -144,10 +145,10 @@ function startTimer() {  // Function to start the timer when buttons appear
 //}
 
 // choose interested movies
-const form = document.getElementById('movieForm');
 
 function interestSubmit(event) {
   event.preventDefault();
+  const interestSubmit = document.getElementById('submit');
 
   // get the data from the form
   const formData = new FormData(event.target);
@@ -158,7 +159,8 @@ function interestSubmit(event) {
 
   // hide the form and show the message
 //  form.classList.add('form-submitted');
-  form.style.display = 'none';
+  // Handle submit button click
+    form.style.display = "none";
 //  document.getElementById('submitMsg').innerText = 'Thank you for submitting!';
 
 }
@@ -290,18 +292,21 @@ function createEmotionGraph(videoId, onSubmit) {
 
 //Experimental flow
 function instructions1() {
-    showMessage("Welcome! You are now going to finish several pre-survey questions \n to better personalize this study.");
-    clearButtons();
 //    chooseInterest(["John Wick", "Avatar", "The Flash", "Star Wars"])
 //    addButton(createButton("Submit", () => {
 //        showMessage("Please choose the most interesting movie from below dropdown list:")
 //        chooseInterest(["John Wick", "Avatar", "The Flash", "Star Wars"])
 //    }));
-    form.addEventListener('submit', interestSubmit);
-    addButton(createButton("Next", () => {
+    const interestSubmit = document.getElementById("submit");
+    interestSubmit.onclick = () => {
+        form.style.display = "none";
+        showMessage("Welcome! You are now going to finish several pre-survey questions \n to better personalize this study.");
+        clearButtons();
+        addButton(createButton("Next", () => {
         showMessage("");
         practiceSet();
-    }));
+        }));
+    };
 }
 
 function practiceSet() {
