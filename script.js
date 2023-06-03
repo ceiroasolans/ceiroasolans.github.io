@@ -5,107 +5,161 @@ const fixationCross = document.getElementById("fixationCross");
 const message = document.getElementById("message");
 const buttonsContainer = document.getElementById("buttonsContainer");
 
-//The goal is to have participants choose, out of a list of x movies for every emotion, the one that made them the happiest. Then, use this choice to show them the corresponding movie clips during the task. 
-
-//const fullSetOfVideos = [
-//    { id: "positive1", src: "positive1.mp4", type: "positive" },
-//    //{ id: "positive2", src: "positive2.mp4", type: "positive" },
- //   //{ id: "positive3", src: "positive3.mp4", type: "positive" },
-//    { id: "negative1", src: "negative1.mp4", type: "negative" },
- //   //{ id: "negative2", src: "negative2.mp4", type: "negative" },
- //   //{ id: "negative3", src: "negative3.mp4", type: "negative" },
- //   { id: "positive1", src: "positive1.mp4", type: "positive" },
- //   //{ id: "positive2", src: "positive2.mp4", type: "positive" },
- //   //{ id: "positive3", src: "positive3.mp4", type: "positive" },
-  //  { id: "negative1", src: "negative1.mp4", type: "negative" },
- //   //{ id: "negative2", src: "negative2.mp4", type: "negative" },
-  //  //{ id: "negative3", src: "negative3.mp4", type: "negative" },
- //   { id: "positive1", src: "positive1.mp4", type: "positive" },
- //   //{ id: "positive2", src: "positive2.mp4", type: "positive" },
- //   //{ id: "positive3", src: "positive3.mp4", type: "positive" },
- //   { id: "negative1", src: "negative1.mp4", type: "negative" },
-//    //{ id: "negative2", src: "negative2.mp4", type: "negative" },
- //   //{ id: "negative3", src: "negative3.mp4", type: "negative" },
-//];
-
-
-//Question: Which of the following movie scenes made you feel the happiest? 
-// *A*
-// B 
-// C 
-// D 
-
-// Favorite1 <- A 
-
-
-// Question: Which of the following movie scenes made you feel the happiest? 
-// A
-// *B* 
-// C 
-// D 
-
-
-// Favorite2<- B
-
-
-// // Other
-// const videosParticipantX = [
-//     select the videos that correspond to Favorite1, Favorite2, etc
-
-
-//     { id: "positive1", src: "positive1.mp4", type: "positive" },
-//     //{ id: "positive2", src: "positive2.mp4", type: "positive" },
-//     //{ id: "positive3", src: "positive3.mp4", type: "positive" },
-//     { id: "negative1", src: "negative1.mp4", type: "negative" },
-//     //{ id: "negative2", src: "negative2.mp4", type: "negative" },
-//     //{ id: "negative3", src: "negative3.mp4", type: "negative" },
-// ];
-
-
-
-
 
 // Other
 const videos = [
-    { id: "positive1", src: "positive1.mp4", type: "positive" },
-    //{ id: "positive2", src: "positive2.mp4", type: "positive" },
-    //{ id: "positive3", src: "positive3.mp4", type: "positive" },
-    { id: "negative1", src: "negative1.mp4", type: "negative" },
-    //{ id: "negative2", src: "negative2.mp4", type: "negative" },
-    //{ id: "negative3", src: "negative3.mp4", type: "negative" },
-];
-
-// const videos_T = [
-//     { id: "disgust1", src: "disgust_1_T.mp4", type: "negative" },
-//     { id: "disgust2", src: "disgust_2_T.mp4", type: "negative" },
-//     { id: "disgust3", src: "disgust_3_T.mp4", type: "negative" },
-//     { id: "sad1", src: "sad_1_T.mp4", type: "negative" },
-//     { id: "sad2", src: "sad_2_T.mp4", type: "negative" },
-//     { id: "sad3", src: "sad_3_T.mp4", type: "negative" },
-//     { id: "indifference1", src: "indifference_1_T.mp4", type: "neutral" },
-//     { id: "indifference2", src: "indifference_2_T.mp4", type: "neutral" },
-//     { id: "indifference3", src: "indifference_3_T.mp4", type: "neutral" },
-//     { id: "joy1", src: "satisfaction_1_T.mp4", type: "positive" },
-//     { id: "joy2", src: "satisfaction_2_T.mp4", type: "positive" },
-//     { id: "joy3", src: "satisfaction_3_T.mp4", type: "positive" },
-// ];
-
-
-// const videos = [
-//     { id: "disgust1", src: "disgust_1.mp4", type: "negative" },
-//     { id: "disgust2", src: "disgust_2.mp4", type: "negative" },
-//     { id: "disgust3", src: "disgust_3.mp4", type: "negative" },
-//     { id: "sad1", src: "sad_1.mp4", type: "negative" },
-//     { id: "sad2", src: "sad_2.mp4", type: "negative" },
-//     { id: "sad3", src: "sad_3.mp4", type: "negative" },
-//     { id: "indifference1", src: "indifference_1.mp4", type: "neutral" },
-//     { id: "indifference2", src: "indifference_2.mp4", type: "neutral" },
-//     { id: "indifference3", src: "indifference_3.mp4", type: "neutral" },
-//     { id: "joy1", src: "satisfaction_1.mp4", type: "positive" },
-//     { id: "joy2", src: "satisfaction_2.mp4", type: "positive" },
-//     { id: "joy3", src: "satisfaction_3.mp4", type: "positive" },
-// ];
-
+    { src: "0036.mp4", type: "positive" },
+    { src: "0055.mp4", type: "positive" },
+    { src: "0060.mp4", type: "positive" },
+    { src: "0074.mp4", type: "positive" },
+    { src: "0080.mp4", type: "positive" },
+    { src: "0087.mp4", type: "positive" },
+    { src: "0089.mp4", type: "positive" },
+    { src: "0090.mp4", type: "positive" },
+    { src: "0096.mp4", type: "positive" },
+    { src: "0098.mp4", type: "positive" },
+    { src: "0107.mp4", type: "positive" },
+    { src: "0110.mp4", type: "positive" },
+    { src: "0116.mp4", type: "positive" },
+    { src: "0124.mp4", type: "positive" },
+    { src: "0174.mp4", type: "positive" },
+    { src: "0187.mp4", type: "positive" },
+    { src: "0195.mp4", type: "positive" },
+    { src: "0202.mp4", type: "positive" },
+    { src: "0204.mp4", type: "positive" },
+    { src: "0228.mp4", type: "positive" },
+    { src: "0235.mp4", type: "positive" },
+    { src: "0252.mp4", type: "positive" },
+    { src: "0329.mp4", type: "positive" },
+    { src: "0339.mp4", type: "positive" },
+    { src: "0344.mp4", type: "positive" },
+    { src: "0348.mp4", type: "positive" },
+    { src: "0360.mp4", type: "positive" },
+    { src: "0369.mp4", type: "positive" },
+    { src: "0402.mp4", type: "positive" },
+    { src: "0414.mp4", type: "positive" },
+    { src: "0458.mp4", type: "positive" },
+    { src: "0479.mp4", type: "positive" },
+    { src: "0492.mp4", type: "positive" },
+    { src: "0519.mp4", type: "positive" },
+    { src: "0550.mp4", type: "positive" },
+    { src: "0551.mp4", type: "positive" },
+    { src: "0560.mp4", type: "positive" },
+    { src: "0573.mp4", type: "positive" },
+    { src: "0574.mp4", type: "positive" },
+    { src: "0590.mp4", type: "positive" },
+    { src: "0593.mp4", type: "positive" },
+    { src: "0595.mp4", type: "positive" },
+    { src: "0598.mp4", type: "positive" },
+    { src: "0611.mp4", type: "positive" },
+    { src: "0615.mp4", type: "positive" },
+    { src: "0650.mp4", type: "positive" },
+    { src: "0656.mp4", type: "positive" },
+    { src: "0666.mp4", type: "positive" },
+    { src: "0681.mp4", type: "positive" },
+    { src: "0684.mp4", type: "positive" },
+    { src: "0688.mp4", type: "positive" },
+    { src: "0701.mp4", type: "positive" },
+    { src: "0713.mp4", type: "positive" },
+    { src: "0722.mp4", type: "positive" },
+    { src: "0724.mp4", type: "positive" },
+    { src: "0741.mp4", type: "positive" },
+    { src: "0744.mp4", type: "positive" },
+    { src: "0756.mp4", type: "positive" },
+    { src: "0767.mp4", type: "positive" },
+    { src: "0780.mp4", type: "positive" },
+    { src: "0795.mp4", type: "positive" },
+    { src: "0803.mp4", type: "positive" },
+    { src: "0817.mp4", type: "positive" },
+    { src: "0834.mp4", type: "positive" },
+    { src: "0860.mp4", type: "positive" },
+    { src: "0876.mp4", type: "positive" },
+    { src: "0883.mp4", type: "positive" },
+    { src: "0893.mp4", type: "positive" },
+    { src: "0898.mp4", type: "positive" },
+    { src: "0921.mp4", type: "positive" },
+    { src: "0929.mp4", type: "positive" },
+    { src: "0940.mp4", type: "positive" },
+    { src: "0975.mp4", type: "positive" },
+    { src: "0986.mp4", type: "positive" },
+    { src: "0996.mp4", type: "positive" },
+    { src: "1009.mp4", type: "positive" },
+    { src: "1012.mp4", type: "positive" },
+    { src: "1056.mp4", type: "positive" },
+    { src: "1145.mp4", type: "positive" },
+    { src: "1164.mp4", type: "positive" },
+    { src: "1165.mp4", type: "positive" },
+    { src: "1191.mp4", type: "positive" },
+    { src: "1194.mp4", type: "positive" },
+    { src: "1197.mp4", type: "positive" },
+    { src: "1202.mp4", type: "positive" },
+    { src: "1216.mp4", type: "positive" },
+    { src: "1229.mp4", type: "positive" },
+    { src: "1232.mp4", type: "positive" },
+    { src: "1261.mp4", type: "positive" },
+    { src: "1267.mp4", type: "positive" },
+    { src: "1282.mp4", type: "positive" },
+    { src: "1311.mp4", type: "positive" },
+    { src: "1323.mp4", type: "positive" },
+    { src: "1349.mp4", type: "positive" },
+    { src: "1358.mp4", type: "positive" },
+    { src: "1374.mp4", type: "positive" },
+    { src: "1400.mp4", type: "positive" },
+    { src: "1411.mp4", type: "positive" },
+    { src: "1423.mp4", type: "positive" },
+    { src: "1424.mp4", type: "positive" },
+    { src: "1432.mp4", type: "positive" },
+    { src: "1440.mp4", type: "positive" },
+    { src: "1449.mp4", type: "positive" },
+    { src: "1468.mp4", type: "positive" },
+    { src: "1471.mp4", type: "positive" },
+    { src: "1498.mp4", type: "positive" },
+    { src: "1518.mp4", type: "positive" },
+    { src: "1560.mp4", type: "positive" },
+    { src: "1592.mp4", type: "positive" },
+    { src: "1606.mp4", type: "positive" },
+    { src: "1623.mp4", type: "positive" },
+    { src: "1647.mp4", type: "positive" },
+    { src: "1666.mp4", type: "positive" },
+    { src: "1667.mp4", type: "positive" },
+    { src: "1687.mp4", type: "positive" },
+    { src: "1717.mp4", type: "positive" },
+    { src: "1740.mp4", type: "positive" },
+    { src: "1745.mp4", type: "positive" },
+    { src: "1755.mp4", type: "positive" },
+    { src: "1760.mp4", type: "positive" },
+    { src: "1780.mp4", type: "positive" },
+    { src: "1786.mp4", type: "positive" },
+    { src: "1795.mp4", type: "positive" },
+    { src: "1798.mp4", type: "positive" },
+    { src: "1819.mp4", type: "positive" },
+    { src: "1826.mp4", type: "positive" },
+    { src: "1828.mp4", type: "positive" },
+    { src: "1830.mp4", type: "positive" },
+    { src: "1832.mp4", type: "positive" },
+    { src: "1835.mp4", type: "positive" },
+    { src: "1844.mp4", type: "positive" },
+    { src: "1868.mp4", type: "positive" },
+    { src: "1876.mp4", type: "positive" },
+    { src: "1911.mp4", type: "positive" },
+    { src: "1924.mp4", type: "positive" },
+    { src: "1935.mp4", type: "positive" },
+    { src: "1955.mp4", type: "positive" },
+    { src: "1959.mp4", type: "positive" },
+    { src: "2013.mp4", type: "positive" },
+    { src: "2018.mp4", type: "positive" },
+    { src: "2021.mp4", type: "positive" },
+    { src: "2025.mp4", type: "positive" },
+    { src: "2049.mp4", type: "positive" },
+    { src: "2058.mp4", type: "positive" },
+    { src: "2066.mp4", type: "positive" },
+    { src: "2083.mp4", type: "positive" },
+    { src: "2085.mp4", type: "positive" },
+    { src: "2168.mp4", type: "positive" },
+    { src: "2181.mp4", type: "positive" },
+    { src: "2183.mp4", type: "positive" }
+  ];
+  
 
 
 let participantChoices = [];
@@ -250,57 +304,57 @@ function instructions1() {
     }));
 }
 
-function practiceSet() {
-    clearButtons();
-    const shuffledVideos = shuffleArray([...videos]);
-    let currentVideoIndex = 0; 
+// function practiceSet() {
+//     clearButtons();
+//     const shuffledVideos = shuffleArray([...videos]);
+//     let currentVideoIndex = 0; 
 
-    function playNextVideo() {
-        if (currentVideoIndex < shuffledVideos.length) {
-            const video = shuffledVideos[currentVideoIndex];
-            videoPlayer.src = video.src;
-            videoPlayer.style.display = "block";
-            videoPlayer.play();
+//     function playNextVideo() {
+//         if (currentVideoIndex < shuffledVideos.length) {
+//             const video = shuffledVideos[currentVideoIndex];
+//             videoPlayer.src = video.src;
+//             videoPlayer.style.display = "block";
+//             videoPlayer.play();
 
-            videoPlayer.onended = () => {
-                videoPlayer.style.display = "none";
-                clearButtons();
+//             videoPlayer.onended = () => {
+//                 videoPlayer.style.display = "none";
+//                 clearButtons();
 
-                createFeedbackForm(video.id, (rating) => {
-                    feedbackContainer.style.display = "none";
-                    createEmotionGraph(video.id, (valence, arousal) => {
-                        showFixationCross(playNextVideo);
+//                 createFeedbackForm(video.id, (rating) => {
+//                     feedbackContainer.style.display = "none";
+//                     createEmotionGraph(video.id, (valence, arousal) => {
+//                         showFixationCross(playNextVideo);
 
-                        // Consolidate data into one object and add it to the participantChoices array
-                        participantChoices.push({
-                            part: "Practice",
-                            videoId: video.id,
-                            rating: rating,
-                            valence: valence, 
-                            arousal: arousal
-                        });
-                    });
-                });
-            };
+//                         // Consolidate data into one object and add it to the participantChoices array
+//                         participantChoices.push({
+//                             part: "Practice",
+//                             videoId: video.id,
+//                             rating: rating,
+//                             valence: valence, 
+//                             arousal: arousal
+//                         });
+//                     });
+//                 });
+//             };
 
-            currentVideoIndex++;
-        } else {
-            showMessage("");
-            instructions2();
-        }
-    }
+//             currentVideoIndex++;
+//         } else {
+//             showMessage("");
+//             instructions2();
+//         }
+//     }
 
-    playNextVideo();
-}
+//     playNextVideo();
+// }
 
-function instructions2() {
-    showMessage("You have finished the first exercise. Press 'Next' to move on to the next one.");
-    clearButtons();
-    addButton(createButton("Next", () => {
-        showMessage("");
-        experimentalSet();
-    }));
-}
+// function instructions2() {
+//     showMessage("You have finished the first exercise. Press 'Next' to move on to the next one.");
+//     clearButtons();
+//     addButton(createButton("Next", () => {
+//         showMessage("");
+//         experimentalSet();
+//     }));
+// }
 
 function playRandomVideo(excludeVideoId, videos) {
     let remainingVideos = videos.filter(video => video.id !== excludeVideoId);
