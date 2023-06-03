@@ -296,66 +296,66 @@ function createEmotionGraph(videoId, onSubmit) {
 
 // //Experimental flow
 
-// function instructions1() {
-//     showMessage("Welcome! Press 'Next' to begin.");
-//     clearButtons();
-//     addButton(createButton("Next", () => {
-//         showMessage("");
-//         practiceSet();
-//     }));
-// }
+function instructions1() {
+    showMessage("Welcome! Press 'Next' to begin.");
+    clearButtons();
+    addButton(createButton("Next", () => {
+        showMessage("");
+        practiceSet();
+    }));
+}
 
-// function practiceSet() {
-//     clearButtons();
-//     const shuffledVideos = shuffleArray([...videos]);
-//     let currentVideoIndex = 0; 
+function practiceSet() {
+    clearButtons();
+    const shuffledVideos = shuffleArray([...videos]);
+    let currentVideoIndex = 0; 
 
-//     function playNextVideo() {
-//         if (currentVideoIndex < shuffledVideos.length) {
-//             const video = shuffledVideos[currentVideoIndex];
-//             videoPlayer.src = video.src;
-//             videoPlayer.style.display = "block";
-//             videoPlayer.play();
+    function playNextVideo() {
+        if (currentVideoIndex < shuffledVideos.length) {
+            const video = shuffledVideos[currentVideoIndex];
+            videoPlayer.src = video.src;
+            videoPlayer.style.display = "block";
+            videoPlayer.play();
 
-//             videoPlayer.onended = () => {
-//                 videoPlayer.style.display = "none";
-//                 clearButtons();
+            videoPlayer.onended = () => {
+                videoPlayer.style.display = "none";
+                clearButtons();
 
-//                 createFeedbackForm(video.id, (rating) => {
-//                     feedbackContainer.style.display = "none";
-//                     createEmotionGraph(video.id, (valence, arousal) => {
-//                         showFixationCross(playNextVideo);
+                createFeedbackForm(video.id, (rating) => {
+                    feedbackContainer.style.display = "none";
+                    createEmotionGraph(video.id, (valence, arousal) => {
+                        showFixationCross(playNextVideo);
 
-//                         // Consolidate data into one object and add it to the participantChoices array
-//                         participantChoices.push({
-//                             part: "Practice",
-//                             videoId: video.id,
-//                             rating: rating,
-//                             valence: valence, 
-//                             arousal: arousal
-//                         });
-//                     });
-//                 });
-//             };
+                        // Consolidate data into one object and add it to the participantChoices array
+                        participantChoices.push({
+                            part: "Practice",
+                            videoId: video.id,
+                            rating: rating,
+                            valence: valence, 
+                            arousal: arousal
+                        });
+                    });
+                });
+            };
 
-//             currentVideoIndex++;
-//         } else {
-//             showMessage("");
-//             instructions2();
-//         }
-//     }
+            currentVideoIndex++;
+        } else {
+            showMessage("");
+            instructions2();
+        }
+    }
 
-//     playNextVideo();
-// }
+    playNextVideo();
+}
 
-// function instructions2() {
-//     showMessage("You have finished the first exercise. Press 'Next' to move on to the next one.");
-//     clearButtons();
-//     addButton(createButton("Next", () => {
-//         showMessage("");
-//         experimentalSet();
-//     }));
-// }
+function instructions2() {
+    showMessage("You have finished the first exercise. Press 'Next' to move on to the next one.");
+    clearButtons();
+    addButton(createButton("Next", () => {
+        showMessage("");
+        experimentalSet();
+    }));
+}
 
 
 function instructions() {
