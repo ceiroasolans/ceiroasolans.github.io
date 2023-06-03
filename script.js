@@ -296,15 +296,15 @@ function createEmotionGraph(videoId, onSubmit) {
 
 
 
-//Experimental flow
-function instructions1() {
-    showMessage("Welcome! Press 'Next' to begin.");
-    clearButtons();
-    addButton(createButton("Next", () => {
-        showMessage("");
-        practiceSet();
-    }));
-}
+// //Experimental flow
+// function instructions1() {
+//     showMessage("Welcome! Press 'Next' to begin.");
+//     clearButtons();
+//     addButton(createButton("Next", () => {
+//         showMessage("");
+//         practiceSet();
+//     }));
+// }
 
 // function practiceSet() {
 //     clearButtons();
@@ -357,6 +357,16 @@ function instructions1() {
 //         experimentalSet();
 //     }));
 // }
+
+
+function instructions() {
+    showMessage("Welcome! Pleaseress 'Next' to begin.");
+    clearButtons();
+    addButton(createButton("Next", () => {
+        showMessage("");
+        experimentalSet();
+    }));
+}
 
 function playRandomVideo(excludeVideoId, videos) {
     let remainingVideos = videos.filter(video => video.id !== excludeVideoId);
@@ -550,7 +560,7 @@ function generateAndUploadCSV(participantChoices) {
 
 
   //START
-  instructions1();       
+  instructions();       
 
 
 
