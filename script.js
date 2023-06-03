@@ -8,10 +8,8 @@ const buttonsContainer = document.getElementById("buttonsContainer");
  
 // Other
 const videos = [
-    { src: "positive1.mp4", type: "positive"},
-    { src: "positive2.mp4", type: "positive"}
-    //{ src: "0036.mp4", type: "positive" },
-  // { src: "0055.mp4", type: "positive" },
+    { src: "0036.mp4", type: "positive" },
+    { src: "0055.mp4", type: "positive" }
     // { src: "0060.mp4", type: "positive" },
     // { src: "0074.mp4", type: "positive" },
     // { src: "0080.mp4", type: "positive" },
