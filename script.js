@@ -295,6 +295,7 @@ function createEmotionGraph(videoId, onSubmit) {
 
 
 // //Experimental flow
+
 // function instructions1() {
 //     showMessage("Welcome! Press 'Next' to begin.");
 //     clearButtons();
@@ -358,7 +359,7 @@ function createEmotionGraph(videoId, onSubmit) {
 
 
 function instructions() {
-    showMessage("Welcome! Pleaseress 'Next' to begin.");
+    showMessage("Welcome! Please press 'Next' to begin.");
     clearButtons();
     addButton(createButton("Next", () => {
         showMessage("");
