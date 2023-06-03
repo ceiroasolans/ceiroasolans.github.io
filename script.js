@@ -5,7 +5,7 @@ const fixationCross = document.getElementById("fixationCross");
 const message = document.getElementById("message");
 const buttonsContainer = document.getElementById("buttonsContainer");
 
-
+ 
 // Other
 const videos = [
     { src: "0036.mp4", type: "positive" },
