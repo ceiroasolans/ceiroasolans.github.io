@@ -160,9 +160,11 @@ const videos = [
     { src: "2183.mp4", type: "positive" }
   ];
   
+  for(let i = 0; i < videos.length; i++) {
+    videos[i].id = i.toString();
+}
 
 
-  
 
 let participantChoices = [];
 let startTime; 
