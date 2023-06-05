@@ -204,6 +204,11 @@ function createFeedbackForm(videoId, onSubmit) {
     feedbackContainer.appendChild(feedbackContainer.button);
     feedbackContainer.style.display = "block";
 }
+
+
+
+
+
 function createEmotionGraph(videoId, onSubmit) {
     const emotionGraphContainer = document.getElementById('emotionGraphContainer');
     const emotionSubmit = document.getElementById('emotionSubmit');
@@ -245,6 +250,41 @@ function createEmotionGraph(videoId, onSubmit) {
     dot.setAttribute("fill", "red");
     dot.setAttribute("class", "emotion-dot");
     emotionGraph.appendChild(dot);
+
+
+// Create a function for creating text elements
+function createText(x, y, text) {
+    const textElement = document.createElementNS("http://www.w3.org/2000/svg", "text");
+    textElement.setAttribute("x", x);
+    textElement.setAttribute("y", y);
+    textElement.textContent = text;
+    return textElement;
+}
+
+// Mapping of emotions to coordinates
+const emotions = {
+    "Angry": [40, 90],
+    "Fearful": [15, 85],
+    "Disgusted": [10, 60],
+    "Sad": [15, 30],
+    "Calm": [60, 10],
+    "Content": [80, 40],
+    "Happy": [90, 60],
+    "Elated": [85, 80],
+    "Excited": [60, 90]
+};
+
+// Add the emotions to the SVG
+for (let emotion in emotions) {
+    const [xPercent, yPercent] = emotions[emotion];
+    const x = 4 * xPercent; // multiply by 4 to convert percentage to 400px scale
+    const y = 400 - (4 * yPercent); // subtract from 400 because SVG Y-axis goes from top to bottom
+    const textElement = createText(x, y, emotion);
+    emotionGraph.appendChild(textElement);
+}
+
+
+
 
     // Dragging state
     let dragging = false;
