@@ -268,12 +268,11 @@ const emotions = {
     "Angry": [30, 90],
     "Fearful": [15, 80],
     "Disgusted": [10, 65],
-    "Sad": [15, 30],
-    "Depressed": [15, 10],
-    "Fatigued": [40, 10],
+    "Sad": [10, 30],
+    "Fatigued": [35, 10],
     "Calm": [60, 10],
-    "Content": [80, 40],
-    "Happy": [90, 60],
+    "Content": [75, 40],
+    "Happy": [85, 60],
     "Elated": [85, 80],
     "Excited": [60, 90]
 };
