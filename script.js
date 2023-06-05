@@ -206,7 +206,6 @@ function createFeedbackForm(videoId, onSubmit) {
 }
 
 
-
 function createEmotionGraph(videoId, onSubmit) {
     const emotionGraphContainer = document.getElementById('emotionGraphContainer');
     const emotionSubmit = document.getElementById('emotionSubmit');
@@ -246,8 +245,8 @@ function createEmotionGraph(videoId, onSubmit) {
         textElement.setAttribute("x", x);
         textElement.setAttribute("y", y);
         textElement.textContent = text;
-        textElement.style.fontSize = "12px"; // Makes the text smaller
-        textElement.style.fontStyle = "italic"; // Makes the text italic
+        textElement.style.fontSize = "12px";
+        textElement.style.fontStyle = "italic";
         return textElement;
     }
 
@@ -285,9 +284,10 @@ function createEmotionGraph(videoId, onSubmit) {
         dot.setAttribute("fill", "red");
         dot.setAttribute("class", "emotion-dot");
         emotionGraph.appendChild(dot);
+
+        // Remove the click event listener after the first click
         emotionGraph.removeEventListener('click', createDot);
         emotionSubmit.disabled = false; // Enable the submit button as the dot has been created
-        startDragging(e); // Immediately start dragging
     }
 
     emotionGraph.addEventListener('click', createDot);
@@ -297,7 +297,10 @@ function createEmotionGraph(videoId, onSubmit) {
     let dotMoved = false;
 
     const startDragging = (e) => {
-        dragging = true;
+        // Ensure the drag only begins if the mouse is over the dot
+        if (e.target === dot) {
+            dragging = true;
+        }
     };
 
     const stopDragging = (e) => {
@@ -307,7 +310,7 @@ function createEmotionGraph(videoId, onSubmit) {
     const dragDot = (e) => {
         if (dragging && dot) {
             dotMoved = true;
-            let x = Math.round(e.offsetX / 40) * 40; 
+            let x = Math.round(e.offsetX / 40) * 40;
             let y = Math.round(e.offsetY / 40) * 40;
 
             // Boundaries for SVG (400 x 400)
