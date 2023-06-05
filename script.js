@@ -447,24 +447,23 @@ function playRandomVideo(excludeVideoId, videos) {
 function experimentalSet() {
     const shuffledVideos = shuffleArray([...videos]);
     let currentVideoIndex = 0;
-    
+
     function playVideoUntil3Seconds(onComplete) {
         let startTime = Date.now();
-        let cumulativeTime = 0;
         videoPlayer.play();
-    
+
         videoPlayer.onended = videoPlayer.onpause = () => {
-            cumulativeTime += Date.now() - startTime;  // add time of current play to cumulativeTime
-            if (cumulativeTime < 3000) {  // check if cumulativeTime is less than 3 seconds
-                startTime = Date.now();  // reset startTime for the next play
-                videoPlayer.play();  // immediately replay video
+            let timeElapsed = (Date.now() - startTime) / 1000;
+            if (timeElapsed < 3) {
+                setTimeout(() => {
+                    videoPlayer.play();
+                }, 1000 * (3 - timeElapsed));
             } else {
                 videoPlayer.onended = videoPlayer.onpause = null;  // remove the listeners once done
                 onComplete();
             }
         };
     }
-    
 
     function playNextVideo() {
         if (currentVideoIndex < shuffledVideos.length) {
