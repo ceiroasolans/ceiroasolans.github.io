@@ -307,22 +307,40 @@ function createEmotionGraph(videoId, onSubmit) {
         dragging = false;
     };
 
+    // const dragDot = (e) => {
+    //     if (dragging && dot) {
+    //         dotMoved = true;
+    //         let x = Math.round(e.offsetX / 40) * 40;
+    //         let y = Math.round(e.offsetY / 40) * 40;
+
+    //         // Boundaries for SVG (400 x 400)
+    //         if (x < 30) x = 30;
+    //         if (x > 370) x = 370;
+    //         if (y < 30) y = 30;
+    //         if (y > 370) y = 370;
+
+    //         dot.setAttribute("cx", x);
+    //         dot.setAttribute("cy", y);
+    //     }
+    // };
+
     const dragDot = (e) => {
         if (dragging && dot) {
             dotMoved = true;
-            let x = Math.round(e.offsetX / 40) * 100;
-            let y = Math.round(e.offsetY / 40) * 100;
-
+            let x = e.offsetX;
+            let y = e.offsetY;
+    
             // Boundaries for SVG (400 x 400)
             if (x < 30) x = 30;
             if (x > 370) x = 370;
             if (y < 30) y = 30;
             if (y > 370) y = 370;
-
+    
             dot.setAttribute("cx", x);
             dot.setAttribute("cy", y);
         }
     };
+    
 
     emotionGraph.addEventListener('mousedown', startDragging);
     emotionGraph.addEventListener('mousemove', dragDot);
