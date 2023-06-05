@@ -310,8 +310,8 @@ function createEmotionGraph(videoId, onSubmit) {
     const dragDot = (e) => {
         if (dragging && dot) {
             dotMoved = true;
-            let x = Math.round(e.offsetX / 40) * 40;
-            let y = Math.round(e.offsetY / 40) * 40;
+            let x = Math.round(e.offsetX / 40) * 1;
+            let y = Math.round(e.offsetY / 40) * 1;
 
             // Boundaries for SVG (400 x 400)
             if (x < 30) x = 30;
