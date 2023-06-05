@@ -470,7 +470,6 @@ function experimentalSet() {
         if (currentVideoIndex < shuffledVideos.length) {
             const video = shuffledVideos[currentVideoIndex];
             videoPlayer.src = video.src;
-            videoPlayer.load(); //force broswer to re-buffer the video
             videoPlayer.style.display = "block";
 
             let watchButton;
