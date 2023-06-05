@@ -207,8 +207,6 @@ function createFeedbackForm(videoId, onSubmit) {
 
 
 
-
-
 function createEmotionGraph(videoId, onSubmit) {
     const emotionGraphContainer = document.getElementById('emotionGraphContainer');
     const emotionSubmit = document.getElementById('emotionSubmit');
@@ -225,8 +223,8 @@ function createEmotionGraph(videoId, onSubmit) {
     // Create the x-axis line and add it to the SVG
     const xAxisLine = document.createElementNS("http://www.w3.org/2000/svg", "line");
     xAxisLine.setAttribute("x1", 30);
-    xAxisLine.setAttribute("y1", 200); // This should be at half of the SVG height assuming it is 400px
-    xAxisLine.setAttribute("x2", 370); // This should be the full width of the SVG assuming it is 400px
+    xAxisLine.setAttribute("y1", 200);
+    xAxisLine.setAttribute("x2", 370);
     xAxisLine.setAttribute("y2", 200);
     xAxisLine.setAttribute("stroke", "black");
     xAxisLine.setAttribute("stroke-width", 1);
@@ -234,60 +232,65 @@ function createEmotionGraph(videoId, onSubmit) {
 
     // Create the y-axis line and add it to the SVG
     const yAxisLine = document.createElementNS("http://www.w3.org/2000/svg", "line");
-    yAxisLine.setAttribute("x1", 200); // This should be at half of the SVG width assuming it is 400px
+    yAxisLine.setAttribute("x1", 200);
     yAxisLine.setAttribute("y1", 30);
     yAxisLine.setAttribute("x2", 200);
-    yAxisLine.setAttribute("y2", 370); // This should be the full height of the SVG assuming it is 400px
+    yAxisLine.setAttribute("y2", 370);
     yAxisLine.setAttribute("stroke", "black");
     yAxisLine.setAttribute("stroke-width", 1);
     emotionGraph.appendChild(yAxisLine);
 
-    // Create the dot and add it to the SVG
-    const dot = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-    dot.setAttribute("cx", 200);
-    dot.setAttribute("cy", 200);
-    dot.setAttribute("r", 10);
-    dot.setAttribute("fill", "red");
-    dot.setAttribute("class", "emotion-dot");
-    emotionGraph.appendChild(dot);
+    // Create a function for creating text elements
+    function createText(x, y, text) {
+        const textElement = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        textElement.setAttribute("x", x);
+        textElement.setAttribute("y", y);
+        textElement.textContent = text;
+        textElement.style.fontSize = "12px"; // Makes the text smaller
+        textElement.style.fontStyle = "italic"; // Makes the text italic
+        return textElement;
+    }
 
+    // Mapping of emotions to coordinates
+    const emotions = {
+        "Angry": [30, 90],
+        "Fearful": [15, 80],
+        "Disgusted": [10, 65],
+        "Sad": [10, 30],
+        "Fatigued": [35, 10],
+        "Calm": [60, 10],
+        "Content": [75, 40],
+        "Happy": [85, 60],
+        "Elated": [85, 80],
+        "Excited": [60, 90]
+    };
 
-// Create a function for creating text elements
-function createText(x, y, text) {
-    const textElement = document.createElementNS("http://www.w3.org/2000/svg", "text");
-    textElement.setAttribute("x", x);
-    textElement.setAttribute("y", y);
-    textElement.textContent = text;
-    textElement.style.fontSize = "12px"; // Makes the text smaller
-    textElement.style.fontStyle = "italic"; // Makes the text italic
-    return textElement;
-}
+    // Add the emotions to the SVG
+    for (let emotion in emotions) {
+        const [xPercent, yPercent] = emotions[emotion];
+        const x = 4 * xPercent;
+        const y = 400 - (4 * yPercent);
+        const textElement = createText(x, y, emotion);
+        emotionGraph.appendChild(textElement);
+    }
 
-// Mapping of emotions to coordinates
-const emotions = {
-    "Angry": [30, 90],
-    "Fearful": [15, 80],
-    "Disgusted": [10, 65],
-    "Sad": [10, 30],
-    "Fatigued": [35, 10],
-    "Calm": [60, 10],
-    "Content": [75, 40],
-    "Happy": [85, 60],
-    "Elated": [85, 80],
-    "Excited": [60, 90]
-};
+    let dot; // Declare the dot variable
 
-// Add the emotions to the SVG
-for (let emotion in emotions) {
-    const [xPercent, yPercent] = emotions[emotion];
-    const x = 4 * xPercent; // multiply by 4 to convert percentage to 400px scale
-    const y = 400 - (4 * yPercent); // subtract from 400 because SVG Y-axis goes from top to bottom
-    const textElement = createText(x, y, emotion);
-    emotionGraph.appendChild(textElement);
-}
+    const createDot = (e) => {
+        // Create the dot and add it to the SVG
+        dot = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+        dot.setAttribute("cx", e.offsetX);
+        dot.setAttribute("cy", e.offsetY);
+        dot.setAttribute("r", 10);
+        dot.setAttribute("fill", "red");
+        dot.setAttribute("class", "emotion-dot");
+        emotionGraph.appendChild(dot);
+        emotionGraph.removeEventListener('click', createDot);
+        emotionSubmit.disabled = false; // Enable the submit button as the dot has been created
+        startDragging(e); // Immediately start dragging
+    }
 
-
-
+    emotionGraph.addEventListener('click', createDot);
 
     // Dragging state
     let dragging = false;
@@ -302,9 +305,9 @@ for (let emotion in emotions) {
     };
 
     const dragDot = (e) => {
-        if (dragging) {
+        if (dragging && dot) {
             dotMoved = true;
-            let x = Math.round(e.offsetX / 40) * 40; // change this to a small number if we want it to be fluid (and line below)
+            let x = Math.round(e.offsetX / 40) * 40; 
             let y = Math.round(e.offsetY / 40) * 40;
 
             // Boundaries for SVG (400 x 400)
@@ -315,8 +318,6 @@ for (let emotion in emotions) {
 
             dot.setAttribute("cx", x);
             dot.setAttribute("cy", y);
-            
-            emotionSubmit.disabled = false; // Enable the submit button as the dot has been moved
         }
     };
 
@@ -330,7 +331,7 @@ for (let emotion in emotions) {
         if(dotMoved){
             emotionGraphContainer.style.display = "none";
             const valence = dot.getAttribute("cx");
-            const arousal = 400 - dot.getAttribute("cy"); // Subtract from 400 because SVG Y-axis goes from top to bottom
+            const arousal = 400 - dot.getAttribute("cy");
 
             onSubmit(valence, arousal);
         }
@@ -338,6 +339,7 @@ for (let emotion in emotions) {
 
     emotionGraphContainer.style.display = "block";
 }
+
 
 
 
