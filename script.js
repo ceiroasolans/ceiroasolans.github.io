@@ -205,7 +205,6 @@ function createFeedbackForm(videoId, onSubmit) {
     feedbackContainer.style.display = "block";
 }
 
-
 function createEmotionGraph(videoId, onSubmit) {
     const emotionGraphContainer = document.getElementById('emotionGraphContainer');
     const emotionSubmit = document.getElementById('emotionSubmit');
