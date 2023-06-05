@@ -258,6 +258,8 @@ function createText(x, y, text) {
     textElement.setAttribute("x", x);
     textElement.setAttribute("y", y);
     textElement.textContent = text;
+    textElement.style.fontSize = "12px"; // Makes the text smaller
+    textElement.style.fontStyle = "italic"; // Makes the text italic
     return textElement;
 }
 
@@ -635,4 +637,5 @@ function generateAndUploadCSV(participantChoices) {
 // npx netlify deploy --prod               (deploy to website)
 // to check new files, go to AWS S3 (amazon), buckets, emotionregulation
 
-// or in short:         git add -A && git commit -m "update" && git push
+// or in short:         git add . && git commit -m "update" && git push
+
