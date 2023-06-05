@@ -387,6 +387,27 @@ function experimentalSet() {
             videoPlayer.src = video.src;
             videoPlayer.style.display = "block";
 
+
+
+
+        // Adding event listener to get video duration
+        videoPlayer.onloadedmetadata = function() {
+            // calculate how many times we need to replay the video
+            const replayTimes = Math.ceil(3 / videoPlayer.duration);
+            let playCount = 0;
+
+            videoPlayer.onended = function() {
+                playCount++;
+                // replay the video if it hasn't been watched for at least 3 seconds
+                if (playCount < replayTimes) {
+                    videoPlayer.play();
+                }
+            };
+        };
+
+
+
+
             let watchButton;
             let skipButton;
 
@@ -461,6 +482,8 @@ function experimentalSet() {
             clearButtons();
             addButton(watchButton);
             addButton(skipButton);
+
+            videoPlayer.play(); ////HERE TOOOOOOOOOOOOOOOO
         } else {
             instructions3();
         }
