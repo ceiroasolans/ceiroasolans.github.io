@@ -265,10 +265,12 @@ function createText(x, y, text) {
 
 // Mapping of emotions to coordinates
 const emotions = {
-    "Angry": [40, 90],
-    "Fearful": [15, 85],
-    "Disgusted": [10, 60],
+    "Angry": [30, 90],
+    "Fearful": [15, 80],
+    "Disgusted": [10, 65],
     "Sad": [15, 30],
+    "Depressed": [15, 10],
+    "Fatigued": [40, 10],
     "Calm": [60, 10],
     "Content": [80, 40],
     "Happy": [90, 60],
