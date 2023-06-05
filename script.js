@@ -450,25 +450,27 @@ function experimentalSet() {
 
     function playVideoUntil3Seconds(onComplete) {
         let startTime = Date.now();
+        let cumulativeTime = 0;
         videoPlayer.play();
-
+    
         videoPlayer.onended = videoPlayer.onpause = () => {
-            let timeElapsed = (Date.now() - startTime) / 1000;
-            if (timeElapsed < 3) {
-                setTimeout(() => {
-                    videoPlayer.play();
-                }, 1000 * (3 - timeElapsed));
+            cumulativeTime += Date.now() - startTime;  // add time of current play to cumulativeTime
+            if (cumulativeTime < 3000) {  // check if cumulativeTime is less than 3 seconds
+                startTime = Date.now();  // reset startTime for the next play
+                videoPlayer.play();  // immediately replay video
             } else {
                 videoPlayer.onended = videoPlayer.onpause = null;  // remove the listeners once done
                 onComplete();
             }
         };
     }
+    
 
     function playNextVideo() {
         if (currentVideoIndex < shuffledVideos.length) {
             const video = shuffledVideos[currentVideoIndex];
             videoPlayer.src = video.src;
+            videoPlayer.load(); //force browser to re-buffer vid
             videoPlayer.style.display = "block";
 
             let watchButton;
