@@ -349,13 +349,13 @@ function createEmotionGraph(videoId, onSubmit) {
 
     // Handle submit button click
     emotionSubmit.onclick = () => {
-        if(dotMoved){
+       
             emotionGraphContainer.style.display = "none";
             const valence = dot.getAttribute("cx");
             const arousal = 400 - dot.getAttribute("cy");
 
             onSubmit(valence, arousal);
-        }
+        
     };
 
     emotionGraphContainer.style.display = "block";
