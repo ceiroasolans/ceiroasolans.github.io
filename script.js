@@ -400,20 +400,19 @@ function experimentalSet() {
                 watchButton.style.display = "none";
                 skipButton.style.display = "none";
 
-    
-                    videoPlayer.onloadedmetadata = () => {  // THIS IS NEW
-                        let totalTimeWatched = 0;
+                videoPlayer.play();
+                videoPlayer.pause();
+                videoPlayer.currentTime = 0;
+
+                let totalTimeWatched = 0;
+                videoPlayer.ontimeupdate = () => {
+                    totalTimeWatched = videoPlayer.currentTime;
+                    if (totalTimeWatched < 3) {
                         videoPlayer.play();
-    
-                        videoPlayer.ontimeupdate = () => {
-                            totalTimeWatched = videoPlayer.currentTime;
-                            if (totalTimeWatched < 3) {
-                                videoPlayer.play();
-                            } else {
-                                videoPlayer.ontimeupdate = null; // remove the event listener when done
-                            }
-                        };
-                    };
+                    } else {
+                        videoPlayer.ontimeupdate = null; // remove the event listener when done
+                    }
+                };
 
 
                 videoPlayer.onended = () => {
@@ -450,20 +449,21 @@ function experimentalSet() {
                 const randomVideo = playRandomVideo(video.id, videos);
                 videoPlayer.src = randomVideo.src;
                
-                
-                videoPlayer.onloadedmetadata = () => { // THIS IS NEWWWW
-                    let totalTimeWatched = 0;
-                    videoPlayer.play();
+                videoPlayer.play();
+                videoPlayer.pause();
+                videoPlayer.currentTime = 0;
 
-                    videoPlayer.ontimeupdate = () => {
-                        totalTimeWatched = videoPlayer.currentTime;
-                        if (totalTimeWatched < 3) {
-                            videoPlayer.play();
-                        } else {
-                            videoPlayer.ontimeupdate = null; // remove the event listener when done
-                        }
-                    };
+
+                let totalTimeWatched = 0;
+                videoPlayer.ontimeupdate = () => {
+                    totalTimeWatched = videoPlayer.currentTime;
+                    if (totalTimeWatched < 3) {
+                        videoPlayer.play();
+                    } else {
+                        videoPlayer.ontimeupdate = null; // remove the event listener when done
+                    }
                 };
+
 
 
 
