@@ -377,11 +377,12 @@ function playRandomVideo(excludeVideoId, videos) {
     return remainingVideos[randomVideoIndex];
 }
 
+
 function experimentalSet() {
     const shuffledVideos = shuffleArray([...videos]);
     let currentVideoIndex = 0;
 
-    function playVideoUntil3Seconds() {
+    function playVideoUntil3Seconds(onComplete) {
         let startTime = Date.now();
         videoPlayer.play();
 
@@ -393,6 +394,7 @@ function experimentalSet() {
                 }, 1000 * (3 - timeElapsed));
             } else {
                 videoPlayer.onended = videoPlayer.onpause = null;  // remove the listeners once done
+                onComplete();
             }
         };
     }
@@ -416,9 +418,7 @@ function experimentalSet() {
                 watchButton.style.display = "none";
                 skipButton.style.display = "none";
 
-                playVideoUntil3Seconds();
-
-                videoPlayer.onended = () => {
+                playVideoUntil3Seconds(() => {
                     videoPlayer.style.display = "none";
                     clearButtons();
 
@@ -438,7 +438,7 @@ function experimentalSet() {
                             });
                         });
                     });
-                };
+                });
                 currentVideoIndex++;
             });
 
@@ -449,9 +449,7 @@ function experimentalSet() {
                 const randomVideo = playRandomVideo(video.id, videos);
                 videoPlayer.src = randomVideo.src;
                 
-                playVideoUntil3Seconds();
-
-                videoPlayer.onended = () => {
+                playVideoUntil3Seconds(() => {
                     videoPlayer.style.display = "none";
                     clearButtons();
 
@@ -472,7 +470,7 @@ function experimentalSet() {
                             });
                         });
                     });
-                };
+                });
                 currentVideoIndex++;
             });
 
@@ -486,6 +484,9 @@ function experimentalSet() {
 
     playNextVideo();
 }
+
+
+
 
 function instructions3() {
     showMessage("Congratulations! You have completed this study :)");
