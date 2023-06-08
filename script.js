@@ -401,27 +401,37 @@ function experimentalSet() {
             }
         };
     }
-    
 
     function playNextVideo() {
         if (currentVideoIndex < shuffledVideos.length) {
             const video = shuffledVideos[currentVideoIndex];
             videoPlayer.src = video.src;
-            videoPlayer.load(); //force browser to re-buffer vid
+            videoPlayer.oncanplay = () => { videoPlayer.currentTime = 0; videoPlayer.pause(); };
             videoPlayer.style.display = "block";
 
             let watchButton;
             let skipButton;
 
             const buttonTimeout = setTimeout(() => {
+                videoPlayer.oncanplay = () => {
+                    videoPlayer.currentTime = videoPlayer.duration * 0.6;
+                    videoPlayer.onseeked = () => {
+                        videoPlayer.onseeked = null;
+                        videoPlayer.pause();
+                    };
+                };
+
                 const randomButton = Math.random() < 0.5 ? watchButton : skipButton;
                 randomButton.click();
-            }, 7000); // 7 seconds
+            }, 7000);
 
             watchButton = createButton("Choose", (reactionTime) => {
                 clearTimeout(buttonTimeout);
                 watchButton.style.display = "none";
                 skipButton.style.display = "none";
+
+                videoPlayer.currentTime = 0;
+                videoPlayer.play();
 
                 playVideoUntil3Seconds(() => {
                     videoPlayer.style.display = "none";
@@ -452,8 +462,11 @@ function experimentalSet() {
                 watchButton.style.display = "none";
                 skipButton.style.display = "none";
                 const randomVideo = playRandomVideo(video.id, videos);
-                videoPlayer.src = randomVideo.src;
                 
+                videoPlayer.oncanplay = null;
+                videoPlayer.src = randomVideo.src;
+                videoPlayer.oncanplay = () => { videoPlayer.currentTime = 0; videoPlayer.pause(); };
+
                 playVideoUntil3Seconds(() => {
                     videoPlayer.style.display = "none";
                     clearButtons();
@@ -489,6 +502,7 @@ function experimentalSet() {
 
     playNextVideo();
 }
+
 
 
 
