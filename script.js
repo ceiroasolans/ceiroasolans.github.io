@@ -407,7 +407,7 @@ function experimentalSet() {
             const video = shuffledVideos[currentVideoIndex];
             videoPlayer.src = video.src;
             videoPlayer.onloadedmetadata = () => {
-                videoPlayer.currentTime = videoPlayer.duration * 0.6; // Seek to 60% of the video's duration
+                videoPlayer.currentTime = videoPlayer.duration * 6.5; // Seek to 70% of the video's duration
                 videoPlayer.onseeked = () => {
                     videoPlayer.onseeked = null;
                     videoPlayer.pause();  // Pause the video after seeking
