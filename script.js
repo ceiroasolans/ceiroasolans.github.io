@@ -366,14 +366,14 @@ function createEmotionGraph(videoId, onSubmit) {
 
 // //Experimental flow
 
-function instructions1() {
-    showMessage("Welcome! Press 'Next' to begin.");
-    clearButtons();
-    addButton(createButton("Next", () => {
-        showMessage("");
-        practiceSet();
-    }));
-}
+// function instructions1() {
+//     showMessage("Welcome! Press 'Next' to begin.");
+//     clearButtons();
+//     addButton(createButton("Next", () => {
+//         showMessage("");
+//         practiceSet();
+//     }));
+// }
 
 function practiceSet() {
     clearButtons();
@@ -418,14 +418,14 @@ function practiceSet() {
     playNextVideo();
 }
 
-function instructions2() {
-    showMessage("You have finished the first exercise. Press 'Next' to move on to the next one.");
-    clearButtons();
-    addButton(createButton("Next", () => {
-        showMessage("");
-        experimentalSet();
-    }));
-}
+// function instructions2() {
+//     showMessage("You have finished the first exercise. Press 'Next' to move on to the next one.");
+//     clearButtons();
+//     addButton(createButton("Next", () => {
+//         showMessage("");
+//         experimentalSet();
+//     }));
+// }
 
 
 function instructions() {
