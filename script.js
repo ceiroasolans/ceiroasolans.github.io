@@ -455,7 +455,7 @@ function experimentalSet() {
     
         videoPlayer.onended = videoPlayer.onpause = () => {
             cumulativeTime += Date.now() - startTime;  // add time of current play to cumulativeTime
-            if (cumulativeTime < 4500) {  // check if cumulativeTime is less than 3 seconds // 4.5 NOW
+            if (cumulativeTime < 4500) {  // check if cumulativeTime is less than 3 seconds // FIVE NOW
                 startTime = Date.now();  // reset startTime for the next play
                 videoPlayer.play();  // immediately replay video
             } else {
