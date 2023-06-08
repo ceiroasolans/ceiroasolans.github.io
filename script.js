@@ -391,12 +391,12 @@ function experimentalSet() {
         videoPlayer.play();
     
         videoPlayer.onended = videoPlayer.onpause = () => {
-            cumulativeTime += Date.now() - startTime;
-            if (cumulativeTime < 4500) {
-                startTime = Date.now();
-                videoPlayer.play();
+            cumulativeTime += Date.now() - startTime;  // add time of current play to cumulativeTime
+            if (cumulativeTime < 4500) {  // check if cumulativeTime is less than 3 seconds // FIVE NOW
+                startTime = Date.now();  // reset startTime for the next play
+                videoPlayer.play();  // immediately replay video
             } else {
-                videoPlayer.onended = videoPlayer.onpause = null;
+                videoPlayer.onended = videoPlayer.onpause = null;  // remove the listeners once done
                 onComplete();
             }
         };
@@ -407,16 +407,7 @@ function experimentalSet() {
         if (currentVideoIndex < shuffledVideos.length) {
             const video = shuffledVideos[currentVideoIndex];
             videoPlayer.src = video.src;
-            
-            videoPlayer.onloadedmetadata = () => {
-                videoPlayer.currentTime = videoPlayer.duration * 0.6;
-
-                videoPlayer.onseeked = () => {
-                    videoPlayer.onseeked = null;
-                    videoPlayer.pause();
-                };
-            };
-            
+            videoPlayer.load(); //force browser to re-buffer vid
             videoPlayer.style.display = "block";
 
             let watchButton;
@@ -425,14 +416,13 @@ function experimentalSet() {
             const buttonTimeout = setTimeout(() => {
                 const randomButton = Math.random() < 0.5 ? watchButton : skipButton;
                 randomButton.click();
-            }, 7000);
+            }, 7000); // 7 seconds
 
             watchButton = createButton("Choose", (reactionTime) => {
                 clearTimeout(buttonTimeout);
                 watchButton.style.display = "none";
                 skipButton.style.display = "none";
 
-                videoPlayer.currentTime = 0;
                 playVideoUntil3Seconds(() => {
                     videoPlayer.style.display = "none";
                     clearButtons();
@@ -464,7 +454,6 @@ function experimentalSet() {
                 const randomVideo = playRandomVideo(video.id, videos);
                 videoPlayer.src = randomVideo.src;
                 
-                videoPlayer.currentTime = 0;
                 playVideoUntil3Seconds(() => {
                     videoPlayer.style.display = "none";
                     clearButtons();
