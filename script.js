@@ -459,14 +459,17 @@ function createEmotionGraph(videoId, onSubmit) {
 }
 
 // Functionality of pressing keys
-function makeVideoFainter() {
-        var videoPlayer = document.getElementById('videoPlayer');
-        // "f" -> fainter; "f" again -> back to normal
-        if (videoPlayer.style.opacity === '0.5') {
-          videoPlayer.style.opacity = '1';
-        } else {
-          videoPlayer.style.opacity = '0.5';
-        }
+
+// starts at 0.5 opacity
+var videoOpacity = 0.5;
+
+function adjustVideoOpacity(delta) {
+    // "f" -> fainter by 0.15 each time pressed till 0.10
+    // "j" -> increase opacity by 0.15
+    var videoPlayer = document.getElementById('videoPlayer');
+    videoOpacity += delta;
+    videoOpacity = Math.max(0.1, Math.min(1, videoOpacity)); // Ensure opacity stays within the range of 0.1 to 1
+    videoPlayer.style.opacity = videoOpacity.toString();
 }
 
 function replayVideo() {
@@ -482,22 +485,64 @@ function practiceSet() {
     clearButtons();
     const shuffledVideos = shuffleArray([...videos]);
     let currentVideoIndex = 0;
+    let copyCurrentVideoIndex = currentVideoIndex;
+    let pPressed = false;
 
     // Register event listeners for keydown
     document.onkeydown = function(event) {
         // Check if the 'F' key is pressed
         if (event.key === 'f') {
-          makeVideoFainter();
+          adjustVideoOpacity(-0.15); // Reduce opacity by 0.15
+        }
+
+        // Check if the 'J' key is pressed
+        if (event.key === 'j') {
+          adjustVideoOpacity(0.15); // Increase opacity by 0.15
         }
 
         // Check if the 'R' key is pressed
         if (event.key === 'r') {
-          videoPlayer.style.opacity = '1'; // Reset opacity to 1 (not faint)
-          replayVideo();
+        replayVideo();
         }
+
+        // Check if the 'P' key is pressed
+        if (event.key === 'p') {
+            pPressed = true;
+            const currentVideo = shuffledVideos[copyCurrentVideoIndex];
+            shuffledVideos[copyCurrentVideoIndex + 1] = currentVideo
+            pPressed = false;
+            // If pressed P, replace the next video with the video when the "p" is pressed
+        }
+
     };
 
     function playNextVideo() {
+        // Register event listeners for keydown
+        document.onkeydown = function(event) {
+        // Check if the 'F' key is pressed
+        if (event.key === 'f') {
+          adjustVideoOpacity(-0.15); // Reduce opacity by 0.15
+        }
+
+        // Check if the 'J' key is pressed
+        if (event.key === 'j') {
+          adjustVideoOpacity(0.15); // Increase opacity by 0.15
+        }
+
+        // Check if the 'R' key is pressed
+        if (event.key === 'r') {
+          replayVideo();
+        }
+
+        // Check if the 'P' key is pressed
+        if (event.key === 'p') {
+            pPressed = true;
+            const currentVideo = shuffledVideos[copyCurrentVideoIndex];
+            shuffledVideos[copyCurrentVideoIndex + 1] = currentVideo
+            pPressed = false;
+            // If pressed P, replace the next video with the video when the "p" is pressed
+        }
+        };
         if (currentVideoIndex < shuffledVideos.length) {
             const video = shuffledVideos[currentVideoIndex];
             videoPlayer.src = video.src;
@@ -524,8 +569,10 @@ function practiceSet() {
                     });
                 });
             };
-
             currentVideoIndex++;
+            if (pPressed) {
+                copyCurrentVideoIndex = currentVideoIndex;
+            }
         } else {
             showMessage("");
             instructions2();
@@ -574,6 +621,8 @@ function playRandomVideo(excludeVideoId, videos) {
 function experimentalSet() {
     const shuffledVideos = shuffleArray([...videos]);
     let currentVideoIndex = 0;
+    let pPressed = false;
+    let copyCurrentVideoIndex = currentVideoIndex;
 
     function playVideoUntil3Seconds(onComplete) {
         let startTime = Date.now();
@@ -596,17 +645,56 @@ function experimentalSet() {
     document.onkeydown = function(event) {
         // Check if the 'F' key is pressed
         if (event.key === 'f') {
-          makeVideoFainter();
+          adjustVideoOpacity(-0.15); // Reduce opacity by 0.15
+        }
+
+        // Check if the 'J' key is pressed
+        if (event.key === 'j') {
+          adjustVideoOpacity(0.15); // Increase opacity by 0.15
         }
 
         // Check if the 'R' key is pressed
         if (event.key === 'r') {
-          videoPlayer.style.opacity = '1'; // Reset opacity to 1 (not faint)
           replayVideo();
+        }
+
+        // Check if the 'P' key is pressed
+        if (event.key === 'p') {
+            pPressed = true;
+            const currentVideo = shuffledVideos[copyCurrentVideoIndex];
+            shuffledVideos[copyCurrentVideoIndex + 1] = currentVideo
+            pPressed = false;
+            // If pressed P, replace the next video with the video when the "p" is pressed
         }
     };
 
     function playNextVideo() {
+        // Register event listeners for keydown
+        document.onkeydown = function(event) {
+        // Check if the 'F' key is pressed
+        if (event.key === 'f') {
+          adjustVideoOpacity(-0.15); // Reduce opacity by 0.15
+        }
+
+        // Check if the 'J' key is pressed
+        if (event.key === 'j') {
+          adjustVideoOpacity(0.15); // Increase opacity by 0.15
+        }
+
+        // Check if the 'R' key is pressed
+        if (event.key === 'r') {
+          replayVideo();
+        }
+
+        // Check if the 'P' key is pressed
+        if (event.key === 'p') {
+            pPressed = true;
+            const currentVideo = shuffledVideos[copyCurrentVideoIndex];
+            shuffledVideos[copyCurrentVideoIndex + 1] = currentVideo
+            pPressed = false;
+            // If pressed P, replace the next video with the video when the "p" is pressed
+        }
+        };
         if (currentVideoIndex < shuffledVideos.length) {
             const video = shuffledVideos[currentVideoIndex];
             videoPlayer.src = video.src;
@@ -648,6 +736,9 @@ function experimentalSet() {
                     });
                 });
                 currentVideoIndex++;
+                if (pPressed) {
+                    copyCurrentVideoIndex = currentVideoIndex;
+                }
             });
 
             skipButton = createButton("Avoid", (reactionTime) => {
@@ -680,6 +771,9 @@ function experimentalSet() {
                     });
                 });
                 currentVideoIndex++;
+                if (pPressed) {
+                    copyCurrentVideoIndex = currentVideoIndex;
+                }
             });
 
             clearButtons();
