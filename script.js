@@ -195,269 +195,269 @@ function createFeedbackForm(videoId, onSubmit) {
 }
 
 //REAL GRAPH FUNCTION
-// function createEmotionGraph(videoId, onSubmit) {
-//     const emotionGraphContainer = document.getElementById('emotionGraphContainer');
-//     const emotionSubmit = document.getElementById('emotionSubmit');
-//     const emotionGraph = document.getElementById('emotionGraph');
-
-//     emotionSubmit.disabled = true; // Disable the submit button initially
-
-//     // Clear any existing dots from the graph
-//     const existingDots = emotionGraph.getElementsByClassName('emotion-dot');
-//     while (existingDots[0]) {
-//         existingDots[0].parentNode.removeChild(existingDots[0]);
-//     }
-
-//     // Create the x-axis line and add it to the SVG
-//     const xAxisLine = document.createElementNS("http://www.w3.org/2000/svg", "line");
-//     xAxisLine.setAttribute("x1", 30);
-//     xAxisLine.setAttribute("y1", 200);
-//     xAxisLine.setAttribute("x2", 370);
-//     xAxisLine.setAttribute("y2", 200);
-//     xAxisLine.setAttribute("stroke", "black");
-//     xAxisLine.setAttribute("stroke-width", 1);
-//     emotionGraph.appendChild(xAxisLine);
-
-//     // Create the y-axis line and add it to the SVG
-//     const yAxisLine = document.createElementNS("http://www.w3.org/2000/svg", "line");
-//     yAxisLine.setAttribute("x1", 200);
-//     yAxisLine.setAttribute("y1", 30);
-//     yAxisLine.setAttribute("x2", 200);
-//     yAxisLine.setAttribute("y2", 370);
-//     yAxisLine.setAttribute("stroke", "black");
-//     yAxisLine.setAttribute("stroke-width", 1);
-//     emotionGraph.appendChild(yAxisLine);
-
-
-
-
-//     // Create a function for creating text elements
-//     function createText(x, y, text) {
-//         const textElement = document.createElementNS("http://www.w3.org/2000/svg", "text");
-//         textElement.setAttribute("x", x);
-//         textElement.setAttribute("y", y);
-//         textElement.textContent = text;
-//         textElement.style.fontSize = "12px";
-//         textElement.style.fontStyle = "italic";
-//         textElement.setAttribute("fill", "#808080");
-//         return textElement;
-//     }
-
-//     // Function to create line
-//     function createLine(x1, y1, x2, y2) {
-//         const lineElement = document.createElementNS("http://www.w3.org/2000/svg", "line");
-//         lineElement.setAttribute("x1", x1);
-//         lineElement.setAttribute("y1", y1);
-//         lineElement.setAttribute("x2", x2);
-//         lineElement.setAttribute("y2", y2);
-//         lineElement.setAttribute("stroke", "#D3D3D3"); // Light Grey Color
-//         lineElement.setAttribute("stroke-width", 1);
-//         return lineElement;
-//     }
-
-
-
-
-//     // Mapping of emotions to coordinates
-//     const emotions = {
-//         "Angry": [25, 90],
-//         "Fearful": [15, 83],
-//         //"Horrified": [10, 73],
-//         "Disgusted": [10, 65],
-//         "Sad": [10, 30],
-//         "Fatigued": [35, 10],
-//         "Calm": [60, 10],
-//         "Content": [75, 40],
-//         "Happy": [90, 60],
-//         //"Adoration": [90, 55],
-//         "Elated": [85, 80],
-//         //"Amused": [60, 90],
-//         "Excited": [65, 90]
-//     };
-
-//     // Add the emotions to the SVG
-//     for (let emotion in emotions) {
-//         const [xPercent, yPercent] = emotions[emotion];
-//         const x = 4 * xPercent;
-//         const y = 400 - (4 * yPercent);
-
-//         // Create and add the line to the SVG before the text
-//         const lineElement = createLine(x, y, 200, 200);
-//         emotionGraph.appendChild(lineElement);
-
-//         const textElement = createText(x, y, emotion);
-//         emotionGraph.appendChild(textElement);
-//     }
-
-//             // Add "neutral" label to the midpoint (200, 200)
-//             function createText2(x, y, text) {
-//                 const textElement = document.createElementNS("http://www.w3.org/2000/svg", "text");
-//                 textElement.setAttribute("x", x);
-//                 textElement.setAttribute("y", y);
-//                 textElement.textContent = text;
-//                 textElement.style.fontSize = "20px";
-//                 textElement.style.fontWeight = "bold";
-//                 textElement.setAttribute("fill", "#000000");
-//                 return textElement;
-//             }
-    
-    
-//             const neutralLabel = createText2(173, 205, "Neutral");
-//             emotionGraph.appendChild(neutralLabel);
-    
-
-//     let dot; // Declare the dot variable
-
-//     const createDot = (e) => {
-//         // Create the dot and add it to the SVG
-//         dot = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-//         dot.setAttribute("cx", e.offsetX);
-//         dot.setAttribute("cy", e.offsetY);
-//         dot.setAttribute("r", 10);
-//         dot.setAttribute("fill", "red");
-//         dot.setAttribute("class", "emotion-dot");
-//         emotionGraph.appendChild(dot);
-
-//         // Remove the click event listener after the first click
-//         emotionGraph.removeEventListener('click', createDot);
-//         emotionSubmit.disabled = false; // Enable the submit button as the dot has been created
-//     }
-
-//     emotionGraph.addEventListener('click', createDot);
-
-//     // Dragging state
-//     let dragging = false;
-//     let dotMoved = false;
-
-//     const startDragging = (e) => {
-//         // Ensure the drag only begins if the mouse is over the dot
-//         if (e.target === dot) {
-//             dragging = true;
-//         }
-//     };
-
-//     const stopDragging = (e) => {
-//         dragging = false;
-//     };
-
-//     const dragDot = (e) => {
-//         if (dragging && dot) {
-//             dotMoved = true;
-//             let x = e.offsetX;
-//             let y = e.offsetY;
-    
-//             // Boundaries for SVG (400 x 400)
-//             if (x < 30) x = 30;
-//             if (x > 370) x = 370;
-//             if (y < 30) y = 30;
-//             if (y > 370) y = 370;
-    
-//             dot.setAttribute("cx", x);
-//             dot.setAttribute("cy", y);
-//         }
-//     };
-    
-
-//     emotionGraph.addEventListener('mousedown', startDragging);
-//     emotionGraph.addEventListener('mousemove', dragDot);
-//     emotionGraph.addEventListener('mouseup', stopDragging);
-//     emotionGraph.addEventListener('mouseleave', stopDragging);
-
-//     // Handle submit button click
-//     emotionSubmit.onclick = () => {
-//         emotionGraphContainer.style.display = "none";
-//         const valence = dot.getAttribute("cx");
-//         const arousal = 400 - dot.getAttribute("cy");
-
-//         onSubmit(valence, arousal);
-//     };
-
-//     emotionGraphContainer.style.display = "block";
-// }
-
-//TEST FUNCTION (List of emotions)
 function createEmotionGraph(videoId, onSubmit) {
     const emotionGraphContainer = document.getElementById('emotionGraphContainer');
-    emotionGraphContainer.style.display = "flex";  // Change layout to Flexbox
-    emotionGraphContainer.style.flexDirection = "row";
-    emotionGraphContainer.style.justifyContent = "space-around";
+    const emotionSubmit = document.getElementById('emotionSubmit');
+    const emotionGraph = document.getElementById('emotionGraph');
 
-    const emotionSubmit = document.createElement("button");
-    emotionSubmit.id = 'emotionSubmit';
-    emotionSubmit.textContent = 'Submit';
     emotionSubmit.disabled = true; // Disable the submit button initially
 
-    // Mapping of emotions to valence categories
+    // Clear any existing dots from the graph
+    const existingDots = emotionGraph.getElementsByClassName('emotion-dot');
+    while (existingDots[0]) {
+        existingDots[0].parentNode.removeChild(existingDots[0]);
+    }
+
+    // Create the x-axis line and add it to the SVG
+    const xAxisLine = document.createElementNS("http://www.w3.org/2000/svg", "line");
+    xAxisLine.setAttribute("x1", 30);
+    xAxisLine.setAttribute("y1", 200);
+    xAxisLine.setAttribute("x2", 370);
+    xAxisLine.setAttribute("y2", 200);
+    xAxisLine.setAttribute("stroke", "black");
+    xAxisLine.setAttribute("stroke-width", 1);
+    emotionGraph.appendChild(xAxisLine);
+
+    // Create the y-axis line and add it to the SVG
+    const yAxisLine = document.createElementNS("http://www.w3.org/2000/svg", "line");
+    yAxisLine.setAttribute("x1", 200);
+    yAxisLine.setAttribute("y1", 30);
+    yAxisLine.setAttribute("x2", 200);
+    yAxisLine.setAttribute("y2", 370);
+    yAxisLine.setAttribute("stroke", "black");
+    yAxisLine.setAttribute("stroke-width", 1);
+    emotionGraph.appendChild(yAxisLine);
+
+
+
+
+    // Create a function for creating text elements
+    function createText(x, y, text) {
+        const textElement = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        textElement.setAttribute("x", x);
+        textElement.setAttribute("y", y);
+        textElement.textContent = text;
+        textElement.style.fontSize = "12px";
+        textElement.style.fontStyle = "italic";
+        textElement.setAttribute("fill", "#808080");
+        return textElement;
+    }
+
+    // Function to create line
+    function createLine(x1, y1, x2, y2) {
+        const lineElement = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        lineElement.setAttribute("x1", x1);
+        lineElement.setAttribute("y1", y1);
+        lineElement.setAttribute("x2", x2);
+        lineElement.setAttribute("y2", y2);
+        lineElement.setAttribute("stroke", "#D3D3D3"); // Light Grey Color
+        lineElement.setAttribute("stroke-width", 1);
+        return lineElement;
+    }
+
+
+
+
+    // Mapping of emotions to coordinates
     const emotions = {
-        "Positive": ["Adoration", "Amusement", "Excitement", "Joy", "Romance"],
-        "Other": ["Craving", "Calmness", "Awe", "Interest"],
-        "Negative": ["Anger", "Sadness", "Disgust", "Fear", "Horror"]
+        "Angry": [25, 90],
+        "Fearful": [15, 83],
+        //"Horrified": [10, 73],
+        "Disgusted": [10, 65],
+        "Sad": [10, 30],
+        "Fatigued": [35, 10],
+        "Calm": [60, 10],
+        "Content": [75, 40],
+        "Happy": [90, 60],
+        //"Adoration": [90, 55],
+        "Elated": [85, 80],
+        //"Amused": [60, 90],
+        "Excited": [65, 90]
     };
 
-    // Function to create an emotion item in the list
-    function createEmotionItem(emotion) {
-        const emotionItem = document.createElement("li");
-        emotionItem.textContent = emotion;
-        emotionItem.style.cursor = "pointer"; // Change cursor to pointer when hovering over the item
+    // Add the emotions to the SVG
+    for (let emotion in emotions) {
+        const [xPercent, yPercent] = emotions[emotion];
+        const x = 4 * xPercent;
+        const y = 400 - (4 * yPercent);
 
-        // Add a click event listener to the item
-        emotionItem.addEventListener("click", function() {
-            if (emotionItem.classList.contains("selected")) {
-                emotionItem.classList.remove("selected"); // Deselect the item if it was already selected
-            } else {
-                emotionItem.classList.add("selected"); // Select the item if it wasn't selected
+        // Create and add the line to the SVG before the text
+        const lineElement = createLine(x, y, 200, 200);
+        emotionGraph.appendChild(lineElement);
+
+        const textElement = createText(x, y, emotion);
+        emotionGraph.appendChild(textElement);
+    }
+
+            // Add "neutral" label to the midpoint (200, 200)
+            function createText2(x, y, text) {
+                const textElement = document.createElementNS("http://www.w3.org/2000/svg", "text");
+                textElement.setAttribute("x", x);
+                textElement.setAttribute("y", y);
+                textElement.textContent = text;
+                textElement.style.fontSize = "20px";
+                textElement.style.fontWeight = "bold";
+                textElement.setAttribute("fill", "#000000");
+                return textElement;
             }
+    
+    
+            const neutralLabel = createText2(173, 205, "Neutral");
+            emotionGraph.appendChild(neutralLabel);
+    
 
-            // Check if any emotions are selected and enable/disable the submit button accordingly
-            const selectedEmotions = document.getElementsByClassName('selected');
-            emotionSubmit.disabled = selectedEmotions.length === 0;
-        });
+    let dot; // Declare the dot variable
 
-        return emotionItem;
+    const createDot = (e) => {
+        // Create the dot and add it to the SVG
+        dot = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+        dot.setAttribute("cx", e.offsetX);
+        dot.setAttribute("cy", e.offsetY);
+        dot.setAttribute("r", 10);
+        dot.setAttribute("fill", "red");
+        dot.setAttribute("class", "emotion-dot");
+        emotionGraph.appendChild(dot);
+
+        // Remove the click event listener after the first click
+        emotionGraph.removeEventListener('click', createDot);
+        emotionSubmit.disabled = false; // Enable the submit button as the dot has been created
     }
 
-    // Clear any existing emotions from the container
-    while (emotionGraphContainer.firstChild) {
-        emotionGraphContainer.firstChild.remove();
-    }
+    emotionGraph.addEventListener('click', createDot);
 
-    // Create the list of emotions
-    for (let valence in emotions) {
-        const valenceContainer = document.createElement("div");  // Container for each valence category
-        valenceContainer.style.flex = "1";  // Distribute space equally between the categories
-        valenceContainer.style.margin = "10px";  // Add some margin around each category
-        valenceContainer.style.display = "flex";  // Use Flexbox for the layout
-        valenceContainer.style.flexDirection = "column";  // Stack the items vertically
-        valenceContainer.style.alignItems = "center";  // Center the items
+    // Dragging state
+    let dragging = false;
+    let dotMoved = false;
 
-        const valenceHeader = document.createElement("h3");
-        valenceHeader.textContent = valence;
-        valenceContainer.appendChild(valenceHeader);
-
-        const emotionList = document.createElement("ul");
-        for (let emotion of emotions[valence]) {
-            const emotionItem = createEmotionItem(emotion);
-            emotionList.appendChild(emotionItem);
+    const startDragging = (e) => {
+        // Ensure the drag only begins if the mouse is over the dot
+        if (e.target === dot) {
+            dragging = true;
         }
-        valenceContainer.appendChild(emotionList);
-        emotionGraphContainer.appendChild(valenceContainer);
-    }
+    };
 
-    emotionGraphContainer.appendChild(emotionSubmit); // Add submit button to container
+    const stopDragging = (e) => {
+        dragging = false;
+    };
+
+    const dragDot = (e) => {
+        if (dragging && dot) {
+            dotMoved = true;
+            let x = e.offsetX;
+            let y = e.offsetY;
+    
+            // Boundaries for SVG (400 x 400)
+            if (x < 30) x = 30;
+            if (x > 370) x = 370;
+            if (y < 30) y = 30;
+            if (y > 370) y = 370;
+    
+            dot.setAttribute("cx", x);
+            dot.setAttribute("cy", y);
+        }
+    };
+    
+
+    emotionGraph.addEventListener('mousedown', startDragging);
+    emotionGraph.addEventListener('mousemove', dragDot);
+    emotionGraph.addEventListener('mouseup', stopDragging);
+    emotionGraph.addEventListener('mouseleave', stopDragging);
 
     // Handle submit button click
     emotionSubmit.onclick = () => {
-        const selectedEmotions = document.getElementsByClassName('selected');
-        let emotionsArray = [];
-        for (let i = 0; i < selectedEmotions.length; i++) {
-            emotionsArray.push(selectedEmotions[i].textContent);
-        }
         emotionGraphContainer.style.display = "none";
-        onSubmit(emotionsArray);
+        const valence = dot.getAttribute("cx");
+        const arousal = 400 - dot.getAttribute("cy");
+
+        onSubmit(valence, arousal);
     };
 
     emotionGraphContainer.style.display = "block";
 }
+
+//TEST FUNCTION (List of emotions)
+// function createEmotionGraph(videoId, onSubmit) {
+//     const emotionGraphContainer = document.getElementById('emotionGraphContainer');
+//     emotionGraphContainer.style.display = "flex";  // Change layout to Flexbox
+//     emotionGraphContainer.style.flexDirection = "row";
+//     emotionGraphContainer.style.justifyContent = "space-around";
+
+//     const emotionSubmit = document.createElement("button");
+//     emotionSubmit.id = 'emotionSubmit';
+//     emotionSubmit.textContent = 'Submit';
+//     emotionSubmit.disabled = true; // Disable the submit button initially
+
+//     // Mapping of emotions to valence categories
+//     const emotions = {
+//         "Positive": ["Adoration", "Amusement", "Excitement", "Joy", "Romance"],
+//         "Other": ["Craving", "Calmness", "Awe", "Interest"],
+//         "Negative": ["Anger", "Sadness", "Disgust", "Fear", "Horror"]
+//     };
+
+//     // Function to create an emotion item in the list
+//     function createEmotionItem(emotion) {
+//         const emotionItem = document.createElement("li");
+//         emotionItem.textContent = emotion;
+//         emotionItem.style.cursor = "pointer"; // Change cursor to pointer when hovering over the item
+
+//         // Add a click event listener to the item
+//         emotionItem.addEventListener("click", function() {
+//             if (emotionItem.classList.contains("selected")) {
+//                 emotionItem.classList.remove("selected"); // Deselect the item if it was already selected
+//             } else {
+//                 emotionItem.classList.add("selected"); // Select the item if it wasn't selected
+//             }
+
+//             // Check if any emotions are selected and enable/disable the submit button accordingly
+//             const selectedEmotions = document.getElementsByClassName('selected');
+//             emotionSubmit.disabled = selectedEmotions.length === 0;
+//         });
+
+//         return emotionItem;
+//     }
+
+//     // Clear any existing emotions from the container
+//     while (emotionGraphContainer.firstChild) {
+//         emotionGraphContainer.firstChild.remove();
+//     }
+
+//     // Create the list of emotions
+//     for (let valence in emotions) {
+//         const valenceContainer = document.createElement("div");  // Container for each valence category
+//         valenceContainer.style.flex = "1";  // Distribute space equally between the categories
+//         valenceContainer.style.margin = "10px";  // Add some margin around each category
+//         valenceContainer.style.display = "flex";  // Use Flexbox for the layout
+//         valenceContainer.style.flexDirection = "column";  // Stack the items vertically
+//         valenceContainer.style.alignItems = "center";  // Center the items
+
+//         const valenceHeader = document.createElement("h3");
+//         valenceHeader.textContent = valence;
+//         valenceContainer.appendChild(valenceHeader);
+
+//         const emotionList = document.createElement("ul");
+//         for (let emotion of emotions[valence]) {
+//             const emotionItem = createEmotionItem(emotion);
+//             emotionList.appendChild(emotionItem);
+//         }
+//         valenceContainer.appendChild(emotionList);
+//         emotionGraphContainer.appendChild(valenceContainer);
+//     }
+
+//     emotionGraphContainer.appendChild(emotionSubmit); // Add submit button to container
+
+//     // Handle submit button click
+//     emotionSubmit.onclick = () => {
+//         const selectedEmotions = document.getElementsByClassName('selected');
+//         let emotionsArray = [];
+//         for (let i = 0; i < selectedEmotions.length; i++) {
+//             emotionsArray.push(selectedEmotions[i].textContent);
+//         }
+//         emotionGraphContainer.style.display = "none";
+//         onSubmit(emotionsArray);
+//     };
+
+//     emotionGraphContainer.style.display = "block";
+// }
 
 
 
@@ -483,6 +483,129 @@ function playRandomVideo(excludeVideoId, videos) {
 }
 
 
+//Working flow
+// function experimentalSet() {
+//     const shuffledVideos = shuffleArray([...videos]);
+//     let currentVideoIndex = 0;
+
+//     function playVideoUntil3Seconds(onComplete) {
+//         let startTime = Date.now();
+//         let cumulativeTime = 0;
+//         videoPlayer.play();
+    
+//         videoPlayer.onended = videoPlayer.onpause = () => {
+//             cumulativeTime += Date.now() - startTime;  // add time of current play to cumulativeTime
+//             if (cumulativeTime < 4500) {  // check if cumulativeTime is less than 3 seconds // FIVE NOW
+//                 startTime = Date.now();  // reset startTime for the next play
+//                 videoPlayer.play();  // immediately replay video
+//             } else {
+//                 videoPlayer.onended = videoPlayer.onpause = null;  // remove the listeners once done
+//                 onComplete();
+//             }
+//         };
+//     }
+
+//     function playNextVideo() {
+//         if (currentVideoIndex < shuffledVideos.length) {
+//             const video = shuffledVideos[currentVideoIndex];
+//             videoPlayer.src = video.src;
+//             videoPlayer.onloadedmetadata = () => {
+//                 videoPlayer.currentTime = videoPlayer.duration * 0.6; // Seek to 70% of the video's duration
+//                 videoPlayer.onseeked = () => {
+//                     videoPlayer.onseeked = null;
+//                     videoPlayer.pause();  // Pause the video after seeking
+//                 };
+//             };
+//             videoPlayer.style.display = "block";
+
+//             let watchButton;
+//             let skipButton;
+
+//             const buttonTimeout = setTimeout(() => {
+//                 const randomButton = Math.random() < 0.5 ? watchButton : skipButton;
+//                 randomButton.click();
+//             }, 7000);
+
+//             watchButton = createButton("Choose", (reactionTime) => {
+//                 clearTimeout(buttonTimeout);
+//                 watchButton.style.display = "none";
+//                 skipButton.style.display = "none";
+
+//                 videoPlayer.currentTime = 0; // Reset the video to the start
+//                 playVideoUntil3Seconds(() => {
+//                     videoPlayer.style.display = "none";
+//                     clearButtons();
+
+//                     createFeedbackForm(video.id, (rating) => {
+//                         feedbackContainer.style.display = "none";
+//                         createEmotionGraph(video.id, (valence, arousal) => {
+//                             showFixationCross(playNextVideo);
+
+//                             participantChoices.push({
+//                                 part: "Experimental_Choice",
+//                                 decision: "watch",
+//                                 videoId: video.id,
+//                                 reactionTime: reactionTime,
+//                                 rating: rating,
+//                                 valence: valence, 
+//                                 arousal: arousal
+//                             });
+//                         });
+//                     });
+//                 });
+//                 currentVideoIndex++;
+//             });
+
+//             skipButton = createButton("Avoid", (reactionTime) => {
+//                 clearTimeout(buttonTimeout);
+//                 watchButton.style.display = "none";
+//                 skipButton.style.display = "none";
+//                 const randomVideo = playRandomVideo(video.id, videos);
+                
+//                 videoPlayer.src = randomVideo.src;
+//                 videoPlayer.onloadedmetadata = () => {
+//                     videoPlayer.currentTime = 0; // Reset the video to the start
+//                     videoPlayer.oncanplay = () => {
+//                         videoPlayer.oncanplay = null;
+//                         playVideoUntil3Seconds(() => {
+//                             videoPlayer.style.display = "none";
+//                             clearButtons();
+
+//                             createFeedbackForm(video.id, (rating) => {
+//                                 feedbackContainer.style.display = "none";
+//                                 createEmotionGraph(video.id, (valence, arousal) => {
+//                                     showFixationCross(playNextVideo);
+
+//                                     participantChoices.push({
+//                                         part: "Experimental_Choice",
+//                                         decision: "skip",
+//                                         videoId: video.id,
+//                                         reactionTime: reactionTime,
+//                                         forcedVideoId: randomVideo.id,
+//                                         rating: rating,
+//                                         valence: valence, 
+//                                         arousal: arousal
+//                                     });
+//                                 });
+//                             });
+//                         });
+//                     };
+//                 };
+//                 currentVideoIndex++;
+//             });
+
+//             clearButtons();
+//             addButton(watchButton);
+//             addButton(skipButton);
+//         } else {
+//             instructions3();
+//         }
+//     }
+
+//     playNextVideo();
+// }
+
+//New Flow
 function experimentalSet() {
     const shuffledVideos = shuffleArray([...videos]);
     let currentVideoIndex = 0;
@@ -494,7 +617,7 @@ function experimentalSet() {
     
         videoPlayer.onended = videoPlayer.onpause = () => {
             cumulativeTime += Date.now() - startTime;  // add time of current play to cumulativeTime
-            if (cumulativeTime < 4500) {  // check if cumulativeTime is less than 3 seconds // FIVE NOW
+            if (cumulativeTime < 3000) {  // check if cumulativeTime is less than 3 seconds
                 startTime = Date.now();  // reset startTime for the next play
                 videoPlayer.play();  // immediately replay video
             } else {
@@ -513,89 +636,97 @@ function experimentalSet() {
                 videoPlayer.onseeked = () => {
                     videoPlayer.onseeked = null;
                     videoPlayer.pause();  // Pause the video after seeking
-                };
-            };
-            videoPlayer.style.display = "block";
 
-            let watchButton;
-            let skipButton;
+                    // New flow: First do emotion graph before deciding whether to watch or not
+                    createEmotionGraph(video.id, (initialValence, initialArousal) => {
+                        videoPlayer.style.display = "block";
 
-            const buttonTimeout = setTimeout(() => {
-                const randomButton = Math.random() < 0.5 ? watchButton : skipButton;
-                randomButton.click();
-            }, 7000);
+                        let watchButton;
+                        let skipButton;
 
-            watchButton = createButton("Choose", (reactionTime) => {
-                clearTimeout(buttonTimeout);
-                watchButton.style.display = "none";
-                skipButton.style.display = "none";
+                        const buttonTimeout = setTimeout(() => {
+                            const randomButton = Math.random() < 0.5 ? watchButton : skipButton;
+                            randomButton.click();
+                        }, 7000);
 
-                videoPlayer.currentTime = 0; // Reset the video to the start
-                playVideoUntil3Seconds(() => {
-                    videoPlayer.style.display = "none";
-                    clearButtons();
+                        watchButton = createButton("Choose", (reactionTime) => {
+                            clearTimeout(buttonTimeout);
+                            watchButton.style.display = "none";
+                            skipButton.style.display = "none";
 
-                    createFeedbackForm(video.id, (rating) => {
-                        feedbackContainer.style.display = "none";
-                        createEmotionGraph(video.id, (valence, arousal) => {
-                            showFixationCross(playNextVideo);
+                            videoPlayer.currentTime = 0; // Reset the video to the start
+                            playVideoUntil3Seconds(() => {
+                                videoPlayer.style.display = "none";
+                                clearButtons();
 
-                            participantChoices.push({
-                                part: "Experimental_Choice",
-                                decision: "watch",
-                                videoId: video.id,
-                                reactionTime: reactionTime,
-                                rating: rating,
-                                valence: valence, 
-                                arousal: arousal
-                            });
-                        });
-                    });
-                });
-                currentVideoIndex++;
-            });
+                                createFeedbackForm(video.id, (rating) => {
+                                    feedbackContainer.style.display = "none";
+                                    createEmotionGraph(video.id, (valence, arousal) => {
+                                        showFixationCross(playNextVideo);
 
-            skipButton = createButton("Avoid", (reactionTime) => {
-                clearTimeout(buttonTimeout);
-                watchButton.style.display = "none";
-                skipButton.style.display = "none";
-                const randomVideo = playRandomVideo(video.id, videos);
-                
-                videoPlayer.src = randomVideo.src;
-                videoPlayer.onloadedmetadata = () => {
-                    videoPlayer.currentTime = 0; // Reset the video to the start
-                    videoPlayer.oncanplay = () => {
-                        videoPlayer.oncanplay = null;
-                        playVideoUntil3Seconds(() => {
-                            videoPlayer.style.display = "none";
-                            clearButtons();
-
-                            createFeedbackForm(video.id, (rating) => {
-                                feedbackContainer.style.display = "none";
-                                createEmotionGraph(video.id, (valence, arousal) => {
-                                    showFixationCross(playNextVideo);
-
-                                    participantChoices.push({
-                                        part: "Experimental_Choice",
-                                        decision: "skip",
-                                        videoId: video.id,
-                                        reactionTime: reactionTime,
-                                        forcedVideoId: randomVideo.id,
-                                        rating: rating,
-                                        valence: valence, 
-                                        arousal: arousal
+                                        participantChoices.push({
+                                            part: "Experimental_Choice",
+                                            decision: "watch",
+                                            videoId: video.id,
+                                            reactionTime: reactionTime,
+                                            rating: rating,
+                                            initialValence: initialValence,
+                                            initialArousal: initialArousal,
+                                            valence: valence, 
+                                            arousal: arousal
+                                        });
                                     });
                                 });
                             });
+                            currentVideoIndex++;
                         });
-                    };
-                };
-                currentVideoIndex++;
-            });
 
-            clearButtons();
-            addButton(watchButton);
-            addButton(skipButton);
+                        skipButton = createButton("Avoid", (reactionTime) => {
+                            clearTimeout(buttonTimeout);
+                            watchButton.style.display = "none";
+                            skipButton.style.display = "none";
+                            const randomVideo = playRandomVideo(video.id, videos);
+                            
+                            videoPlayer.src = randomVideo.src;
+                            videoPlayer.onloadedmetadata = () => {
+                                videoPlayer.currentTime = 0; // Reset the video to the start
+                                videoPlayer.oncanplay = () => {
+                                    videoPlayer.oncanplay = null;
+                                    playVideoUntil3Seconds(() => {
+                                        videoPlayer.style.display = "none";
+                                        clearButtons();
+
+                                        createFeedbackForm(video.id, (rating) => {
+                                            feedbackContainer.style.display = "none";
+                                            createEmotionGraph(video.id, (valence, arousal) => {
+                                                showFixationCross(playNextVideo);
+
+                                                participantChoices.push({
+                                                    part: "Experimental_Choice",
+                                                    decision: "skip",
+                                                    videoId: video.id,
+                                                    reactionTime: reactionTime,
+                                                    forcedVideoId: randomVideo.id,
+                                                    rating: rating,
+                                                    initialValence: initialValence,
+                                                    initialArousal: initialArousal,
+                                                    valence: valence, 
+                                                    arousal: arousal
+                                                });
+                                            });
+                                        });
+                                    });
+                                };
+                            };
+                            currentVideoIndex++;
+                        });
+
+                        clearButtons();
+                        addButton(watchButton);
+                        addButton(skipButton);
+                    });
+                };
+            };
         } else {
             instructions3();
         }
@@ -603,7 +734,6 @@ function experimentalSet() {
 
     playNextVideo();
 }
-
 
 
 
@@ -662,7 +792,7 @@ function shuffleArray(array) {
 
 // Generate data 
 function generateAndUploadCSV(participantChoices) {
-    const header = ["part", "decision", "videoId", "reactionTime", "forcedVideoId", "rating", "valence", "arousal"];
+    const header = ["part", "decision", "videoId", "reactionTime", "forcedVideoId", "rating", "valence", "arousal", "initialValence", "initialArousal"]; //initialValence and initialArousal if new flow
     const csvRows = [header];
   
     for (const row of participantChoices) {

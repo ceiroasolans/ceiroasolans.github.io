@@ -43,9 +43,9 @@ button:disabled {
 
 
 
+/* erase the following if I go with the graph*/
 
-
-selected {
+.selected {
     background-color: #D3D3D3; /* Light grey */
     color: black;
 }
