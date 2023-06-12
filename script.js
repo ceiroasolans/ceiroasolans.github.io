@@ -251,6 +251,11 @@ function createEmotionGraph(videoId, onSubmit) {
         return lineElement;
     }
 
+    // Add "neutral" label to the midpoint (200, 200)
+    const neutralLabel = createText(200, 200, "Neutral");
+    emotionGraph.appendChild(neutralLabel);
+
+
     // Mapping of emotions to coordinates
     const emotions = {
         "Angry": [30, 90],
