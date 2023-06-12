@@ -6,12 +6,16 @@
     <title>Task</title>
     <link rel="stylesheet" href="styles.css">
     <style>
-       #emotionGraph {
-            -webkit-user-select: none; /* Chrome, Safari, Opera */
-            -moz-user-select: none; /* Firefox */
-            -ms-user-select: none; /* IE 10+ */
-            user-select: none; /* Standard syntax */
-        }
+        /* #emotionGraph {
+            -webkit-user-select: none;
+            -moz-user-select: none; 
+            -ms-user-select: none; 
+            user-select: none; 
+        } */
+        #emotionGraphContainer > div {
+    margin: 0 20px;  // Add some horizontal margin
+    flex-basis: 33%;  // Limit the width of each category to 1/3 of the container
+}
         .selected {
             background-color: #D3D3D3; /* Light grey */
             color: black;
