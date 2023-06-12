@@ -157,7 +157,18 @@ const videos = [
     { src: "2085.mp4", type: "positive" },
     { src: "2168.mp4", type: "positive" },
     { src: "2181.mp4", type: "positive" },
-    { src: "2183.mp4", type: "positive" }
+    { src: "2183.mp4", type: "positive" },
+    { src: "0723.mp4", type: "positive" }, //interest
+    { src: "0994.mp4", type: "positive" },
+    { src: "1066.mp4", type: "positive" },
+    { src: "1068.mp4", type: "positive" },
+    { src: "1301.mp4", type: "positive" },
+    { src: "1331.mp4", type: "positive" },
+    { src: "1344.mp4", type: "positive" },
+    { src: "1619.mp4", type: "positive" },
+    { src: "1945.mp4", type: "positive" },
+    { src: "1971.mp4", type: "positive" },
+    { src: "2070.mp4", type: "positive" }
   ];
   
   for(let i = 0; i < videos.length; i++) {
@@ -264,6 +275,7 @@ function createEmotionGraph(videoId, onSubmit) {
         "Excited": [60, 90]
     };
 
+    
     // Add the emotions to the SVG
     for (let emotion in emotions) {
         const [xPercent, yPercent] = emotions[emotion];
@@ -407,7 +419,7 @@ function experimentalSet() {
             const video = shuffledVideos[currentVideoIndex];
             videoPlayer.src = video.src;
             videoPlayer.onloadedmetadata = () => {
-                videoPlayer.currentTime = videoPlayer.duration * 6.5; // Seek to 70% of the video's duration
+                videoPlayer.currentTime = videoPlayer.duration * 0.6; // Seek to 70% of the video's duration
                 videoPlayer.onseeked = () => {
                     videoPlayer.onseeked = null;
                     videoPlayer.pause();  // Pause the video after seeking
