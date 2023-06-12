@@ -607,6 +607,7 @@ function playRandomVideo(excludeVideoId, videos) {
 
 //New Flow
 function experimentalSet() {
+    clearButtons();
     const shuffledVideos = shuffleArray([...videos]);
     let currentVideoIndex = 0;
 
@@ -638,7 +639,7 @@ function experimentalSet() {
                     videoPlayer.onseeked = null;
                     videoPlayer.pause(); // Pause the video after seeking
                     videoPlayer.style.display = "block"; // Show the video still for 3 seconds
-                    nextButton.style.display = "block";
+                    
 
                     setTimeout(() => {
                         videoPlayer.style.display = "none"; // Hide the video for emotion graph
