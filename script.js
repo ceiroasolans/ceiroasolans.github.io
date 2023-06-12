@@ -252,7 +252,17 @@ function createEmotionGraph(videoId, onSubmit) {
     }
 
     // Add "neutral" label to the midpoint (200, 200)
-    const neutralLabel = createText(200, 200, "Neutral");
+    function createText2(x, y, text) {
+        const textElement = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        textElement.setAttribute("x", x);
+        textElement.setAttribute("y", y);
+        textElement.textContent = text;
+        textElement.style.fontSize = "16px";
+        textElement.style.fontStyle = "italic";
+        textElement.setAttribute("fill", "#000000");
+        return textElement;
+    }
+    const neutralLabel = createText2(200, 205, "Neutral");
     emotionGraph.appendChild(neutralLabel);
 
 
