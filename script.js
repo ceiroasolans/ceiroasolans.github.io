@@ -397,8 +397,15 @@ function createEmotionGraph(videoId, onSubmit) {
 
         // Add a click event listener to the item
         emotionItem.addEventListener("click", function() {
-            emotionSubmit.disabled = false; // Enable the submit button when an emotion is selected
-            emotionItem.classList.add("selected"); // Add a "selected" class to the item
+            if (emotionItem.classList.contains("selected")) {
+                emotionItem.classList.remove("selected"); // Deselect the item if it was already selected
+            } else {
+                emotionItem.classList.add("selected"); // Select the item if it wasn't selected
+            }
+
+            // Check if any emotions are selected and enable/disable the submit button accordingly
+            const selectedEmotions = document.getElementsByClassName('selected');
+            emotionSubmit.disabled = selectedEmotions.length === 0;
         });
 
         return emotionItem;
@@ -436,6 +443,7 @@ function createEmotionGraph(videoId, onSubmit) {
 
     emotionGraphContainer.style.display = "block";
 }
+
 
 
 
