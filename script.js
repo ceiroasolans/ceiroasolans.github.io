@@ -416,18 +416,22 @@ function createEmotionGraph(videoId, onSubmit) {
         emotionGraphContainer.firstChild.remove();
     }
 
+    emotionGraphContainer.style.display = "flex";  // Change layout to Flexbox
+
     // Create the list of emotions
     for (let valence in emotions) {
+        const valenceContainer = document.createElement("div");  // Container for each valence category
         const valenceHeader = document.createElement("h3");
         valenceHeader.textContent = valence;
-        emotionGraphContainer.appendChild(valenceHeader);
+        valenceContainer.appendChild(valenceHeader);
 
         const emotionList = document.createElement("ul");
         for (let emotion of emotions[valence]) {
             const emotionItem = createEmotionItem(emotion);
             emotionList.appendChild(emotionItem);
         }
-        emotionGraphContainer.appendChild(emotionList);
+        valenceContainer.appendChild(emotionList);
+        emotionGraphContainer.appendChild(valenceContainer);
     }
 
     // Handle submit button click
@@ -443,6 +447,7 @@ function createEmotionGraph(videoId, onSubmit) {
 
     emotionGraphContainer.style.display = "block";
 }
+
 
 
 
