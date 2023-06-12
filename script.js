@@ -639,14 +639,17 @@ function experimentalSet() {
                 };
             };
 
+            //Affective forecasting 
             function waitForThreeSeconds(callback) {
-                // Set the desired delay in milliseconds (3 seconds = 3000 milliseconds)
                 const delay = 3000;
-              
-                // Use setTimeout to wait for the specified delay
                 setTimeout(callback, delay);
               }
 
+              //Hide all buttons
+              const buttons = document.querySelectorAll("button");
+                buttons.forEach(button => {
+                button.style.display = "none";
+              });
 
             videoPlayer.style.display = "block";
 
