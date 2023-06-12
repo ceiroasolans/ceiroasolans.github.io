@@ -261,7 +261,7 @@ function createEmotionGraph(videoId, onSubmit) {
     const emotions = {
         "Angry": [25, 90],
         "Fearful": [15, 83],
-        "Horrified": [10, 73]
+        "Horrified": [10, 73],
         "Disgusted": [10, 65],
         "Sad": [10, 30],
         "Fatigued": [35, 10],
