@@ -257,8 +257,8 @@ function createEmotionGraph(videoId, onSubmit) {
         textElement.setAttribute("x", x);
         textElement.setAttribute("y", y);
         textElement.textContent = text;
-        textElement.style.fontSize = "16px";
-        textElement.style.fontStyle = "italic";
+        textElement.style.fontSize = "25px";
+        textElement.style.fontStyle = "bold";
         textElement.setAttribute("fill", "#000000");
         return textElement;
     }
