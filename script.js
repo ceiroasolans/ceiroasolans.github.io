@@ -819,7 +819,7 @@ function experimentalSet() {
                                                 valence: valence,
                                                 arousal: arousal
                                             });
-                                        });
+                                        }, "How do you think this video will make you feel?");
                                     });
                                 });
                                 currentVideoIndex++;
