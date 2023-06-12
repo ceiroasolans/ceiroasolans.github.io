@@ -654,6 +654,7 @@ function experimentalSet() {
                 // This code will be executed after the 3-second delay
                 createEmotionGraph(video.id, (valence, arousal) => {
                   showFixationCross(() => {
+                    videoPlayer.style.display = "none";
                     playNextVideo();
                   });
               
