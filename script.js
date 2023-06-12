@@ -194,7 +194,7 @@ function createFeedbackForm(videoId, onSubmit) {
     feedbackContainer.style.display = "block";
 }
 
-//REAL FUNCTION
+//REAL GRAPH FUNCTION
 // function createEmotionGraph(videoId, onSubmit) {
 //     const emotionGraphContainer = document.getElementById('emotionGraphContainer');
 //     const emotionSubmit = document.getElementById('emotionSubmit');
@@ -375,7 +375,7 @@ function createFeedbackForm(videoId, onSubmit) {
 //     emotionGraphContainer.style.display = "block";
 // }
 
-//TEST FUNCTION
+//TEST FUNCTION (List of emotions)
 function createEmotionGraph(videoId, onSubmit) {
     const emotionGraphContainer = document.getElementById('emotionGraphContainer');
     emotionGraphContainer.style.display = "flex";  // Change layout to Flexbox
@@ -424,6 +424,12 @@ function createEmotionGraph(videoId, onSubmit) {
     // Create the list of emotions
     for (let valence in emotions) {
         const valenceContainer = document.createElement("div");  // Container for each valence category
+        valenceContainer.style.flex = "1";  // Distribute space equally between the categories
+        valenceContainer.style.margin = "10px";  // Add some margin around each category
+        valenceContainer.style.display = "flex";  // Use Flexbox for the layout
+        valenceContainer.style.flexDirection = "column";  // Stack the items vertically
+        valenceContainer.style.alignItems = "center";  // Center the items
+
         const valenceHeader = document.createElement("h3");
         valenceHeader.textContent = valence;
         valenceContainer.appendChild(valenceHeader);
@@ -452,6 +458,7 @@ function createEmotionGraph(videoId, onSubmit) {
 
     emotionGraphContainer.style.display = "block";
 }
+
 
 
 
