@@ -635,8 +635,10 @@ function experimentalSet() {
                 videoPlayer.onseeked = () => {
                     videoPlayer.onseeked = null;
                     videoPlayer.pause();  // Pause the video after seeking
+
+
                     setTimeout(() => {
-                        videoPlayer.style.display = "none";  // Hide the video for emotion graph
+                        //videoPlayer.style.display = "none";  // Hide the video for emotion graph
 
                         createEmotionGraph(video.id, (initialValence, initialArousal) => {
                             videoPlayer.style.display = "block";  // Show the video again for choices
