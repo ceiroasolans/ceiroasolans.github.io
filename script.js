@@ -805,6 +805,13 @@ function experimentalSet() {
 
                                     createFeedbackForm(video.id, (rating) => {
                                         feedbackContainer.style.display = "none";
+
+                                       // Change the text "How do you feel?" to "How do you think this video will make you feel?"
+                                        const emotionGraphContainer = document.getElementById("emotionGraphContainer");
+                                        const emotionGraphTitle = emotionGraphContainer.querySelector("h2");
+                                         emotionGraphTitle.textContent = "How do you think this video will make you feel?";
+
+
                                         createEmotionGraph(video.id, (valence, arousal) => {
                                             showFixationCross(playNextVideo);
 
@@ -819,7 +826,7 @@ function experimentalSet() {
                                                 valence: valence,
                                                 arousal: arousal
                                             });
-                                        }, "How do you think this video will make you feel?");
+                                        });
                                     });
                                 });
                                 currentVideoIndex++;
