@@ -259,19 +259,19 @@ function createEmotionGraph(videoId, onSubmit) {
 
     // Mapping of emotions to coordinates
     const emotions = {
-        "Angry": [25, 90],
-        "Fearful": [15, 83],
+        "Anger": [25, 90],
+        "Fear": [15, 83],
         //"Horrified": [10, 73],
-        "Disgusted": [10, 65],
-        "Sad": [10, 30],
-        "Fatigued": [35, 10],
-        "Calm": [60, 10],
-        "Content": [75, 40],
-        "Joy": [90, 60],
+        "Disgust": [10, 65],
+        "Sadness": [10, 30],
+        "Fatigue": [35, 10],
+        "Calmness": [60, 10],
+        "Contentness": [75, 40],
+        "Happines": [90, 60],
         //"Adoration": [90, 55],
-        "Elated": [85, 80],
+        "Elation": [85, 80],
         //"Amused": [60, 90],
-        "Excited": [65, 90]
+        "Excitement": [65, 90]
     };
 
     // Add the emotions to the SVG
