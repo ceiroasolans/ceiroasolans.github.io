@@ -239,6 +239,18 @@ function createEmotionGraph(videoId, onSubmit) {
         return textElement;
     }
 
+    // Function to create line
+    function createLine(x1, y1, x2, y2) {
+        const lineElement = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        lineElement.setAttribute("x1", x1);
+        lineElement.setAttribute("y1", y1);
+        lineElement.setAttribute("x2", x2);
+        lineElement.setAttribute("y2", y2);
+        lineElement.setAttribute("stroke", "#D3D3D3"); // Light Grey Color
+        lineElement.setAttribute("stroke-width", 1);
+        return lineElement;
+    }
+
     // Mapping of emotions to coordinates
     const emotions = {
         "Angry": [30, 90],
@@ -253,12 +265,16 @@ function createEmotionGraph(videoId, onSubmit) {
         "Excited": [60, 90]
     };
 
-    
     // Add the emotions to the SVG
     for (let emotion in emotions) {
         const [xPercent, yPercent] = emotions[emotion];
         const x = 4 * xPercent;
         const y = 400 - (4 * yPercent);
+
+        // Create and add the line to the SVG before the text
+        const lineElement = createLine(x, y, 200, 200);
+        emotionGraph.appendChild(lineElement);
+
         const textElement = createText(x, y, emotion);
         emotionGraph.appendChild(textElement);
     }
@@ -297,23 +313,6 @@ function createEmotionGraph(videoId, onSubmit) {
         dragging = false;
     };
 
-    // const dragDot = (e) => {
-    //     if (dragging && dot) {
-    //         dotMoved = true;
-    //         let x = Math.round(e.offsetX / 40) * 40;
-    //         let y = Math.round(e.offsetY / 40) * 40;
-
-    //         // Boundaries for SVG (400 x 400)
-    //         if (x < 30) x = 30;
-    //         if (x > 370) x = 370;
-    //         if (y < 30) y = 30;
-    //         if (y > 370) y = 370;
-
-    //         dot.setAttribute("cx", x);
-    //         dot.setAttribute("cy", y);
-    //     }
-    // };
-
     const dragDot = (e) => {
         if (dragging && dot) {
             dotMoved = true;
@@ -339,17 +338,16 @@ function createEmotionGraph(videoId, onSubmit) {
 
     // Handle submit button click
     emotionSubmit.onclick = () => {
-       
-            emotionGraphContainer.style.display = "none";
-            const valence = dot.getAttribute("cx");
-            const arousal = 400 - dot.getAttribute("cy");
+        emotionGraphContainer.style.display = "none";
+        const valence = dot.getAttribute("cx");
+        const arousal = 400 - dot.getAttribute("cy");
 
-            onSubmit(valence, arousal);
-        
+        onSubmit(valence, arousal);
     };
 
     emotionGraphContainer.style.display = "block";
 }
+
 
 
 
