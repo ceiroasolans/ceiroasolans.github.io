@@ -609,157 +609,110 @@ function playRandomVideo(excludeVideoId, videos) {
 function experimentalSet() {
     const shuffledVideos = shuffleArray([...videos]);
     let currentVideoIndex = 0;
-
+  
     function playVideoUntil3Seconds(onComplete) {
-        let startTime = Date.now();
-        let cumulativeTime = 0;
-        videoPlayer.play();
-    
-        videoPlayer.onended = videoPlayer.onpause = () => {
-            cumulativeTime += Date.now() - startTime;  // add time of current play to cumulativeTime
-            if (cumulativeTime < 4500) {  // check if cumulativeTime is less than 3 seconds // FIVE NOW
-                startTime = Date.now();  // reset startTime for the next play
-                videoPlayer.play();  // immediately replay video
-            } else {
-                videoPlayer.onended = videoPlayer.onpause = null;  // remove the listeners once done
-                onComplete();
-            }
-        };
-    }
-
-    function playNextVideo() {
-        if (currentVideoIndex < shuffledVideos.length) {
-            const video = shuffledVideos[currentVideoIndex];
-            videoPlayer.src = video.src;
-            videoPlayer.onloadedmetadata = () => {
-                videoPlayer.currentTime = videoPlayer.duration * 0.6; // Seek to 70% of the video's duration
-                videoPlayer.onseeked = () => {
-                    videoPlayer.onseeked = null;
-                    videoPlayer.pause();  // Pause the video after seeking
-                };
-            };
-
-            //Affective forecasting 
-            function waitForThreeSeconds(callback) {
-                const delay = 3000;
-                setTimeout(callback, delay);
-              }
-
-              //Hide all buttons
-              const buttons = document.querySelectorAll("button");
-                buttons.forEach(button => {
-                button.style.display = "none";
-              });
-
-            videoPlayer.style.display = "block";
-
-            waitForThreeSeconds(() => {
-                // This code will be executed after the 3-second delay
-                createEmotionGraph(video.id, (valence, arousal) => {
-                  showFixationCross(() => {
-                    videoPlayer.style.display = "none";
-                    playNextVideo();
-                  });
-              
-                  participantChoices.push({
-                    part: "Experimental_Choice",
-                    decision: "watch",
-                    videoId: video.id,
-                    reactionTime: reactionTime,
-                    rating: rating,
-                    initialValence: valence, 
-                    initialArousal: arousal
-                  });
-                });
-              });
-              
-
-            let watchButton;
-            let skipButton;
-
-            const buttonTimeout = setTimeout(() => {
-                const randomButton = Math.random() < 0.5 ? watchButton : skipButton;
-                randomButton.click();
-            }, 7000);
-
-            watchButton = createButton("Choose", (reactionTime) => {
-                clearTimeout(buttonTimeout);
-                watchButton.style.display = "none";
-                skipButton.style.display = "none";
-
-                videoPlayer.currentTime = 0; // Reset the video to the start
-                playVideoUntil3Seconds(() => {
-                    videoPlayer.style.display = "none";
-                    clearButtons();
-
-                    createFeedbackForm(video.id, (rating) => {
-                        feedbackContainer.style.display = "none";
-                        createEmotionGraph(video.id, (valence, arousal) => {
-                            showFixationCross(playNextVideo);
-
-                            participantChoices.push({
-                                part: "Experimental_Choice",
-                                decision: "watch",
-                                videoId: video.id,
-                                reactionTime: reactionTime,
-                                rating: rating,
-                                valence: valence, 
-                                arousal: arousal
-                            });
-                        });
-                    });
-                });
-                currentVideoIndex++;
-            });
-
-            skipButton = createButton("Avoid", (reactionTime) => {
-                clearTimeout(buttonTimeout);
-                watchButton.style.display = "none";
-                skipButton.style.display = "none";
-                const randomVideo = playRandomVideo(video.id, videos);
-                
-                videoPlayer.src = randomVideo.src;
-                videoPlayer.onloadedmetadata = () => {
-                    videoPlayer.currentTime = 0; // Reset the video to the start
-                    videoPlayer.oncanplay = () => {
-                        videoPlayer.oncanplay = null;
-                        playVideoUntil3Seconds(() => {
-                            videoPlayer.style.display = "none";
-                            clearButtons();
-
-                            createFeedbackForm(video.id, (rating) => {
-                                feedbackContainer.style.display = "none";
-                                createEmotionGraph(video.id, (valence, arousal) => {
-                                    showFixationCross(playNextVideo);
-
-                                    participantChoices.push({
-                                        part: "Experimental_Choice",
-                                        decision: "skip",
-                                        videoId: video.id,
-                                        reactionTime: reactionTime,
-                                        forcedVideoId: randomVideo.id,
-                                        rating: rating,
-                                        valence: valence, 
-                                        arousal: arousal
-                                    });
-                                });
-                            });
-                        });
-                    };
-                };
-                currentVideoIndex++;
-            });
-
-            clearButtons();
-            addButton(watchButton);
-            addButton(skipButton);
+      let startTime = Date.now();
+      let cumulativeTime = 0;
+      videoPlayer.play();
+  
+      videoPlayer.onended = videoPlayer.onpause = () => {
+        cumulativeTime += Date.now() - startTime; // add time of current play to cumulativeTime
+        if (cumulativeTime < 3000) {
+          // check if cumulativeTime is less than 3 seconds
+          startTime = Date.now(); // reset startTime for the next play
+          videoPlayer.play(); // immediately replay video
         } else {
-            instructions3();
+          videoPlayer.onended = videoPlayer.onpause = null; // remove the listeners once done
+          onComplete();
         }
+      };
     }
-
+  
+    function playNextVideo() {
+      if (currentVideoIndex < shuffledVideos.length) {
+        const video = shuffledVideos[currentVideoIndex];
+        videoPlayer.src = video.src;
+        videoPlayer.onloadedmetadata = () => {
+          videoPlayer.currentTime = videoPlayer.duration * 0.6; // Seek to 60% of the video's duration
+          videoPlayer.onseeked = () => {
+            videoPlayer.onseeked = null;
+            videoPlayer.pause(); // Pause the video after seeking
+          };
+        };
+  
+        // Hide all buttons
+        const buttons = document.querySelectorAll("button");
+        buttons.forEach((button) => {
+          button.style.display = "none";
+        });
+  
+        videoPlayer.style.display = "block";
+  
+        waitForThreeSeconds(() => {
+          // This code will be executed after the 3-second delay
+          videoPlayer.style.display = "none";
+          createEmotionGraph(video.id, (valence, arousal) => {
+            createEmotionGraph(video.id, (valence, arousal) => {
+              showFixationCross(() => {
+                const watchButton = createButton("Choose", (reactionTime) => {
+                  playVideoUntil3Seconds(() => {
+                    clearButtons();
+                    createFeedbackForm(video.id, (rating) => {
+                      feedbackContainer.style.display = "none";
+                      createEmotionGraph(video.id, (valence, arousal) => {
+                        showFixationCross(playNextVideo);
+  
+                        participantChoices.push({
+                          part: "Experimental_Choice",
+                          decision: "watch",
+                          videoId: video.id,
+                          reactionTime: reactionTime,
+                          rating: rating,
+                          initialValence: valence,
+                          initialArousal: arousal,
+                        });
+                      });
+                    });
+                  });
+                });
+  
+                const skipButton = createButton("Avoid", (reactionTime) => {
+                  clearButtons();
+                  createFeedbackForm(video.id, (rating) => {
+                    feedbackContainer.style.display = "none";
+                    createEmotionGraph(video.id, (valence, arousal) => {
+                      showFixationCross(playNextVideo);
+  
+                      participantChoices.push({
+                        part: "Experimental_Choice",
+                        decision: "skip",
+                        videoId: video.id,
+                        reactionTime: reactionTime,
+                        rating: rating,
+                        initialValence: valence,
+                        initialArousal: arousal,
+                      });
+                    });
+                  });
+                });
+  
+                clearButtons();
+                addButton(watchButton);
+                addButton(skipButton);
+              });
+            });
+          });
+        });
+  
+        currentVideoIndex++;
+      } else {
+        instructions3();
+      }
+    }
+  
     playNextVideo();
-}
+  }
+  
 
 
 
