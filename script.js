@@ -745,6 +745,7 @@ function playRandomVideo(excludeVideoId, videos) {
 
 //Test
 function experimentalSet() {
+    clearButtons();
     const shuffledVideos = shuffleArray([...videos]);
     let currentVideoIndex = 0;
 
