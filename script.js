@@ -264,13 +264,11 @@ function createEmotionGraph(videoId, onSubmit) {
         "Horrified": [10, 73]
         "Disgusted": [10, 65],
         "Sad": [10, 30],
-        
         "Fatigued": [35, 10],
         "Calm": [60, 10],
         "Content": [75, 40],
-
         "Joy": [90, 60],
-        "Adoration": [90, 55]
+        "Adoration": [90, 55],
         "Elated": [85, 80],
         "Amused": [60, 90],
         "Excited": [65, 90]
