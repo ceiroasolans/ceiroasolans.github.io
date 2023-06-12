@@ -626,7 +626,6 @@ function experimentalSet() {
             }
         };
     }
-
     function playNextVideo() {
         if (currentVideoIndex < shuffledVideos.length) {
             const video = shuffledVideos[currentVideoIndex];
@@ -636,113 +635,100 @@ function experimentalSet() {
                 videoPlayer.onseeked = () => {
                     videoPlayer.onseeked = null;
                     videoPlayer.pause();  // Pause the video after seeking
-                };
-            };
-            //videoPlayer.style.display = "block";
-//new begins
-            setTimeout(() => {
-                videoPlayer.style.display = "none";  // Hide the video for emotion graph
+                    setTimeout(() => {
+                        videoPlayer.style.display = "none";  // Hide the video for emotion graph
 
-                createEmotionGraph(video.id, (initialValence, initialArousal) => {
-                    videoPlayer.style.display = "block";  // Show the video again for choices
-                    
-                    let watchButton;
-                    let skipButton;
+                        createEmotionGraph(video.id, (initialValence, initialArousal) => {
+                            videoPlayer.style.display = "block";  // Show the video again for choices
 
-                    const buttonTimeout = setTimeout(() => {
-                        const randomButton = Math.random() < 0.5 ? watchButton : skipButton;
-                        randomButton.click();
-                    }, 7000);
-//new here
+                            let watchButton;
+                            let skipButton;
 
+                            const buttonTimeout = setTimeout(() => {
+                                const randomButton = Math.random() < 0.5 ? watchButton : skipButton;
+                                randomButton.click();
+                            }, 7000);
 
-            let watchButton;
-            let skipButton;
+                            watchButton = createButton("Choose", (reactionTime) => {
+                                clearTimeout(buttonTimeout);
+                                watchButton.style.display = "none";
+                                skipButton.style.display = "none";
 
-            const buttonTimeout = setTimeout(() => {
-                const randomButton = Math.random() < 0.5 ? watchButton : skipButton;
-                randomButton.click();
-            }, 7000);
+                                videoPlayer.currentTime = 0; // Reset the video to the start
+                                playVideoUntil3Seconds(() => {
+                                    videoPlayer.style.display = "none";
+                                    clearButtons();
 
-            watchButton = createButton("Choose", (reactionTime) => {
-                clearTimeout(buttonTimeout);
-                watchButton.style.display = "none";
-                skipButton.style.display = "none";
+                                    createFeedbackForm(video.id, (rating) => {
+                                        feedbackContainer.style.display = "none";
+                                        createEmotionGraph(video.id, (valence, arousal) => {
+                                            showFixationCross(playNextVideo);
 
-                videoPlayer.currentTime = 0; // Reset the video to the start
-                playVideoUntil3Seconds(() => {
-                    videoPlayer.style.display = "none";
-                    clearButtons();
+                                            participantChoices.push({
+                                                part: "Experimental_Choice",
+                                                decision: "watch",
+                                                videoId: video.id,
+                                                reactionTime: reactionTime,
+                                                rating: rating,
+                                                initialValence: initialValence,  // Capture initial valence
+                                                initialArousal: initialArousal,
+                                                valence: valence, 
+                                                arousal: arousal
 
-                    createFeedbackForm(video.id, (rating) => {
-                        feedbackContainer.style.display = "none";
-                        createEmotionGraph(video.id, (valence, arousal) => {
-                            showFixationCross(playNextVideo);
-
-                            participantChoices.push({
-                                part: "Experimental_Choice",
-                                decision: "watch",
-                                videoId: video.id,
-                                reactionTime: reactionTime,
-                                rating: rating,
-                                initialValence: initialValence,  // Capture initial valence
-                                initialArousal: initialArousal,
-                                valence: valence, 
-                                arousal: arousal
-                                
-                            });
-                        });
-                    });
-                });
-                currentVideoIndex++;
-            });
-
-            skipButton = createButton("Avoid", (reactionTime) => {
-                clearTimeout(buttonTimeout);
-                watchButton.style.display = "none";
-                skipButton.style.display = "none";
-                const randomVideo = playRandomVideo(video.id, videos);
-                
-                videoPlayer.src = randomVideo.src;
-                videoPlayer.onloadedmetadata = () => {
-                    videoPlayer.currentTime = 0; // Reset the video to the start
-                    videoPlayer.oncanplay = () => {
-                        videoPlayer.oncanplay = null;
-                        playVideoUntil3Seconds(() => {
-                            videoPlayer.style.display = "none";
-                            clearButtons();
-
-                            createFeedbackForm(video.id, (rating) => {
-                                feedbackContainer.style.display = "none";
-                                createEmotionGraph(video.id, (valence, arousal) => {
-                                    showFixationCross(playNextVideo);
-
-                                    participantChoices.push({
-                                        part: "Experimental_Choice",
-                                        decision: "skip",
-                                        videoId: video.id,
-                                        reactionTime: reactionTime,
-                                        forcedVideoId: randomVideo.id,
-                                        rating: rating,
-                                        initialValence: initialValence,  // Capture initial valence
-                                        initialArousal: initialArousal,
-                                        valence: valence, 
-                                        arousal: arousal
+                                            });
+                                        });
                                     });
                                 });
+                                currentVideoIndex++;
                             });
+
+                            skipButton = createButton("Avoid", (reactionTime) => {
+                                clearTimeout(buttonTimeout);
+                                watchButton.style.display = "none";
+                                skipButton.style.display = "none";
+                                const randomVideo = playRandomVideo(video.id, videos);
+
+                                videoPlayer.src = randomVideo.src;
+                                videoPlayer.onloadedmetadata = () => {
+                                    videoPlayer.currentTime = 0; // Reset the video to the start
+                                    videoPlayer.oncanplay = () => {
+                                        videoPlayer.oncanplay = null;
+                                        playVideoUntil3Seconds(() => {
+                                            videoPlayer.style.display = "none";
+                                            clearButtons();
+
+                                            createFeedbackForm(video.id, (rating) => {
+                                                feedbackContainer.style.display = "none";
+                                                createEmotionGraph(video.id, (valence, arousal) => {
+                                                    showFixationCross(playNextVideo);
+
+                                                    participantChoices.push({
+                                                        part: "Experimental_Choice",
+                                                        decision: "skip",
+                                                        videoId: video.id,
+                                                        reactionTime: reactionTime,
+                                                        forcedVideoId: randomVideo.id,
+                                                        rating: rating,
+                                                        initialValence: initialValence,  // Capture initial valence
+                                                        initialArousal: initialArousal,
+                                                        valence: valence, 
+                                                        arousal: arousal
+                                                    });
+                                                });
+                                            });
+                                        });
+                                    };
+                                };
+                                currentVideoIndex++;
+                            });
+
+                            clearButtons();
+                            addButton(watchButton);
+                            addButton(skipButton);
                         });
-                    };
+                    }, 3000);
                 };
-                currentVideoIndex++;
-            });
-
-            clearButtons();
-            addButton(watchButton);
-            addButton(skipButton);
-
-        });
-    }, 3000);
+            };
         } else {
             instructions3();
         }
