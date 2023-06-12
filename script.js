@@ -258,11 +258,11 @@ function createEmotionGraph(videoId, onSubmit) {
         textElement.setAttribute("y", y);
         textElement.textContent = text;
         textElement.style.fontSize = "25px";
-        textElement.style.fontStyle = "bold";
+        textElement.style.fontWeight = "bold";
         textElement.setAttribute("fill", "#000000");
         return textElement;
     }
-    const neutralLabel = createText2(200, 205, "Neutral");
+    const neutralLabel = createText2(200, 190, "Neutral");
     emotionGraph.appendChild(neutralLabel);
 
 
