@@ -15,8 +15,6 @@ const videos = [
     { src: "0080.mp4", type: "positive" },
     { src: "0087.mp4", type: "positive" },
     { src: "0089.mp4", type: "positive" },
-    { src: "0090.mp4", type: "positive" },
-    { src: "0096.mp4", type: "positive" },
     { src: "0098.mp4", type: "positive" },
     { src: "0107.mp4", type: "positive" },
     { src: "0110.mp4", type: "positive" },
@@ -29,7 +27,6 @@ const videos = [
     { src: "0228.mp4", type: "positive" },
     { src: "0235.mp4", type: "positive" },
     { src: "0252.mp4", type: "positive" },
-    { src: "0329.mp4", type: "positive" },
     { src: "0339.mp4", type: "positive" },
     { src: "0344.mp4", type: "positive" },
     { src: "0348.mp4", type: "positive" },
@@ -48,9 +45,7 @@ const videos = [
     { src: "0590.mp4", type: "positive" },
     { src: "0593.mp4", type: "positive" },
     { src: "0595.mp4", type: "positive" },
-    { src: "0598.mp4", type: "positive" },
     { src: "0611.mp4", type: "positive" },
-    { src: "0615.mp4", type: "positive" },
     { src: "0650.mp4", type: "positive" },
     { src: "0656.mp4", type: "positive" },
     { src: "0666.mp4", type: "positive" },
@@ -59,16 +54,12 @@ const videos = [
     { src: "0688.mp4", type: "positive" },
     { src: "0701.mp4", type: "positive" },
     { src: "0713.mp4", type: "positive" },
-    { src: "0722.mp4", type: "positive" },
-    { src: "0724.mp4", type: "positive" },
     { src: "0741.mp4", type: "positive" },
     { src: "0744.mp4", type: "positive" },
     { src: "0756.mp4", type: "positive" },
-    { src: "0767.mp4", type: "positive" },
     { src: "0780.mp4", type: "positive" },
     { src: "0795.mp4", type: "positive" },
     { src: "0803.mp4", type: "positive" },
-    { src: "0834.mp4", type: "positive" },
     { src: "0860.mp4", type: "positive" },
     { src: "0883.mp4", type: "positive" },
     { src: "0893.mp4", type: "positive" },
@@ -124,7 +115,6 @@ const videos = [
     { src: "1795.mp4", type: "positive" },
     { src: "1819.mp4", type: "positive" },
     { src: "1826.mp4", type: "positive" },
-    { src: "1828.mp4", type: "positive" },
     { src: "1830.mp4", type: "positive" },
     { src: "1832.mp4", type: "positive" },
     { src: "1835.mp4", type: "positive" },
@@ -133,7 +123,6 @@ const videos = [
     { src: "1911.mp4", type: "positive" },
     { src: "1924.mp4", type: "positive" },
     { src: "1935.mp4", type: "positive" },
-    { src: "1955.mp4", type: "positive" },
     { src: "1959.mp4", type: "positive" },
     { src: "2013.mp4", type: "positive" },
     { src: "2018.mp4", type: "positive" },
@@ -157,6 +146,7 @@ const videos = [
     { src: "1971.mp4", type: "positive" },
     { src: "2070.mp4", type: "positive" }
   ];
+  
   
   
   for(let i = 0; i < videos.length; i++) {
