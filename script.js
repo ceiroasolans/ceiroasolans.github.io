@@ -228,23 +228,8 @@ function createEmotionGraph(videoId, onSubmit) {
     emotionGraph.appendChild(yAxisLine);
 
 
-        // Add "neutral" label to the midpoint (200, 200)
-        function createText2(x, y, text) {
-            const textElement = document.createElementNS("http://www.w3.org/2000/svg", "text");
-            textElement.setAttribute("x", x);
-            textElement.setAttribute("y", y);
-            textElement.textContent = text;
-            textElement.style.fontSize = "20px";
-            textElement.style.fontWeight = "bold";
-            textElement.setAttribute("fill", "#000000");
-            return textElement;
-        }
 
 
-        const neutralLabel = createText2(200, 190, "Neutral");
-        emotionGraph.appendChild(neutralLabel);
-
-        
     // Create a function for creating text elements
     function createText(x, y, text) {
         const textElement = document.createElementNS("http://www.w3.org/2000/svg", "text");
@@ -299,6 +284,23 @@ function createEmotionGraph(videoId, onSubmit) {
         const textElement = createText(x, y, emotion);
         emotionGraph.appendChild(textElement);
     }
+
+            // Add "neutral" label to the midpoint (200, 200)
+            function createText2(x, y, text) {
+                const textElement = document.createElementNS("http://www.w3.org/2000/svg", "text");
+                textElement.setAttribute("x", x);
+                textElement.setAttribute("y", y);
+                textElement.textContent = text;
+                textElement.style.fontSize = "20px";
+                textElement.style.fontWeight = "bold";
+                textElement.setAttribute("fill", "#000000");
+                return textElement;
+            }
+    
+    
+            const neutralLabel = createText2(190, 210, "Neutral");
+            emotionGraph.appendChild(neutralLabel);
+    
 
     let dot; // Declare the dot variable
 
