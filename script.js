@@ -378,8 +378,13 @@ function createFeedbackForm(videoId, onSubmit) {
 //TEST FUNCTION
 function createEmotionGraph(videoId, onSubmit) {
     const emotionGraphContainer = document.getElementById('emotionGraphContainer');
-    const emotionSubmit = document.getElementById('emotionSubmit');
+    emotionGraphContainer.style.display = "flex";  // Change layout to Flexbox
+    emotionGraphContainer.style.flexDirection = "row";
+    emotionGraphContainer.style.justifyContent = "space-around";
 
+    const emotionSubmit = document.createElement("button");
+    emotionSubmit.id = 'emotionSubmit';
+    emotionSubmit.textContent = 'Submit';
     emotionSubmit.disabled = true; // Disable the submit button initially
 
     // Mapping of emotions to valence categories
@@ -416,8 +421,6 @@ function createEmotionGraph(videoId, onSubmit) {
         emotionGraphContainer.firstChild.remove();
     }
 
-    emotionGraphContainer.style.display = "flex";  // Change layout to Flexbox
-
     // Create the list of emotions
     for (let valence in emotions) {
         const valenceContainer = document.createElement("div");  // Container for each valence category
@@ -433,6 +436,8 @@ function createEmotionGraph(videoId, onSubmit) {
         valenceContainer.appendChild(emotionList);
         emotionGraphContainer.appendChild(valenceContainer);
     }
+
+    emotionGraphContainer.appendChild(emotionSubmit); // Add submit button to container
 
     // Handle submit button click
     emotionSubmit.onclick = () => {
