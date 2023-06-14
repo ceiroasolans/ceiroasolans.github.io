@@ -74,11 +74,10 @@
 </div>
 </div>
 
-
+<!-- Define the configuration object -->
 <script>
-    // Configuration object
     const config = {
-      experiment: "SitSel", // Set this to "SitSel" or "StratSel" to select the experiment
+        experiment: "SitSel", // Set this to "SitSel" or "StratSel" to select the experiment
     };
 
     if (config.experiment === "SitSel") {
@@ -88,10 +87,12 @@
     }
 </script>
 
+<!-- Include the JavaScript file after the configuration object -->
+<script src="script.js"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.5.0/nouislider.min.js"></script> <!--for StratSel -->
-    <script src="script.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<!-- Include other scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.5.0/nouislider.min.js"></script> <!--for StratSel -->
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
 </body>
 
