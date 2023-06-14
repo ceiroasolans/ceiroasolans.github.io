@@ -5,12 +5,13 @@ const experiment = "SitSel";
 if (experiment === "SitSel") {
     document.getElementById('elementForSitSel').style.display = "block";
     document.getElementById('messageSitSel').style.display = "block";
-    const buttonsContainerSitSel = document.getElementById('buttonsContainerSitSel');
+    const message = document.getElementById('messageSitSel');
+    const buttonsContainer = document.getElementById('buttonsContainerSitSel');
 
 // Situation Selection Task 
 
 //Constants
-const mainContainer = document.getElementById("mainContainer");
+const mainContainer = document.getElementById("mainContainerSitSel");
 const videoPlayer = document.getElementById("videoPlayer");
 const fixationCross = document.getElementById("fixationCross");
 const message = document.getElementById('message');
@@ -756,11 +757,14 @@ function generateAndUploadCSV(participantChoices) {
 } else if (experiment === "StratSel") {
     document.getElementById('elementForStratSel').style.display = "block";
     document.getElementById('messageStratSel').style.display = "block";
-    const buttonsContainerSitSel = document.getElementById('buttonsContainerStratSel');
+    const message = document.getElementById('messageStratSel');
+    const buttonsContainer = document.getElementById('buttonsContainerStratSel');
+
+
 //Full Strategy Selection
 
 //Constants
-const mainContainer = document.getElementById("mainContainer");
+const mainContainer = document.getElementById("mainContainerStratSel");
 const videoPlayer = document.getElementById("videoPlayer");
 const fixationCross = document.getElementById("fixationCross");
 const message = document.getElementById("message");
