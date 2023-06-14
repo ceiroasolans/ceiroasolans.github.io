@@ -1,9 +1,3 @@
-//Task selector
-const config = {
-    experiment: "SitSel", // Set this to "Experiment1" or "Experiment2" to select the experiment
-  };
-  
-
 
 // Based on the configuration, define the behavior of the experiment
   if (config.experiment === "SitSel") {
@@ -25,7 +19,7 @@ if (message) {
     console.error('The message element is not found in the DOM.');
   }
 
-  
+
 // Other
 const videos = [
     { src: "0036.mp4", type: "positive" },

@@ -77,6 +77,14 @@
 <script src="script.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
+<script>
+    if (config.experiment === "SitSel") {
+      document.getElementById('elementForSitSel').style.display = "block";
+    } else if (config.experiment === "StratSel") {
+      document.getElementById('elementForStratSel').style.display = "block";
+    }
+  </script>
+
 </body>
 
 </html>
