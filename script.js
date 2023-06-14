@@ -2,20 +2,18 @@ const experiment = "SitSel";
 
 
 // Based on the configuration, define the behavior of the experiment
-if (experiment === "SitSel") {
+if (config.experiment === "SitSel") {
     document.getElementById('elementForSitSel').style.display = "block";
     document.getElementById('messageSitSel').style.display = "block";
-    const message = document.getElementById('messageSitSel');
-    const buttonsContainer = document.getElementById('buttonsContainerSitSel');
-
+  
 // Situation Selection Task 
 
 //Constants
 const mainContainer = document.getElementById("mainContainerSitSel");
 const videoPlayer = document.getElementById("videoPlayer");
 const fixationCross = document.getElementById("fixationCross");
-const message = document.getElementById('message');
-const buttonsContainer = document.getElementById("buttonsContainer");
+const message = document.getElementById('messageSitSel');
+const buttonsContainer = document.getElementById('buttonsContainerSitSel');
 
 if (message) {
     message.style.display = 'block';
@@ -754,11 +752,9 @@ function generateAndUploadCSV(participantChoices) {
 
 
 
-} else if (experiment === "StratSel") {
+} else if (config.experiment === "StratSel") {
     document.getElementById('elementForStratSel').style.display = "block";
     document.getElementById('messageStratSel').style.display = "block";
-    const message = document.getElementById('messageStratSel');
-    const buttonsContainer = document.getElementById('buttonsContainerStratSel');
 
 
 //Full Strategy Selection
@@ -767,8 +763,8 @@ function generateAndUploadCSV(participantChoices) {
 const mainContainer = document.getElementById("mainContainerStratSel");
 const videoPlayer = document.getElementById("videoPlayer");
 const fixationCross = document.getElementById("fixationCross");
-const message = document.getElementById("message");
-const buttonsContainer = document.getElementById("buttonsContainer");
+const message = document.getElementById('messageStratSel');
+const buttonsContainer = document.getElementById('buttonsContainerStratSel');
 
  
 // Other
