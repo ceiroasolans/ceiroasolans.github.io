@@ -2,7 +2,7 @@ const experiment = "SitSel";
 
 
 // Based on the configuration, define the behavior of the experiment
-if (config.experiment === "SitSel") {
+if (experiment === "SitSel") {
     document.getElementById('elementForSitSel').style.display = "block";
     document.getElementById('messageSitSel').style.display = "block";
   
@@ -752,7 +752,7 @@ function generateAndUploadCSV(participantChoices) {
 
 
 
-} else if (config.experiment === "StratSel") {
+} else if (experiment === "StratSel") {
     document.getElementById('elementForStratSel').style.display = "block";
     document.getElementById('messageStratSel').style.display = "block";
 
