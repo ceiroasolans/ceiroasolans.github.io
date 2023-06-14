@@ -1,19 +1,23 @@
 const experiment = "SitSel";
 
 
+// Declare variables outside the if-else blocks
+let mainContainer, videoPlayer, fixationCross, message, buttonsContainer;
+
+
 // Based on the configuration, define the behavior of the experiment
 if (experiment === "SitSel") {
     document.getElementById('elementForSitSel').style.display = "block";
     document.getElementById('messageSitSel').style.display = "block";
+    
+    // Situation Selection Task 
   
-// Situation Selection Task 
-
-//Constants
-const mainContainer = document.getElementById("mainContainerSitSel");
-const videoPlayer = document.getElementById("videoPlayer");
-const fixationCross = document.getElementById("fixationCross");
-const message = document.getElementById('messageSitSel');
-const buttonsContainer = document.getElementById('buttonsContainerSitSel');
+    // Constants specific to SitSel
+    mainContainer = document.getElementById("mainContainerSitSel");
+    videoPlayer = document.getElementById("videoPlayer");
+    fixationCross = document.getElementById("fixationCross");
+    message = document.getElementById('messageSitSel');
+    buttonsContainer = document.getElementById('buttonsContainerSitSel');
 
 if (message) {
     message.style.display = 'block';
@@ -755,17 +759,15 @@ function generateAndUploadCSV(participantChoices) {
 } else if (experiment === "StratSel") {
     document.getElementById('elementForStratSel').style.display = "block";
     document.getElementById('messageStratSel').style.display = "block";
-
-
-//Full Strategy Selection
-
-//Constants
-const mainContainer = document.getElementById("mainContainerStratSel");
-const videoPlayer = document.getElementById("videoPlayer");
-const fixationCross = document.getElementById("fixationCross");
-const message = document.getElementById('messageStratSel');
-const buttonsContainer = document.getElementById('buttonsContainerStratSel');
-
+  
+    // Full Strategy Selection
+  
+    // Constants specific to StratSel
+    mainContainer = document.getElementById("mainContainerStratSel");
+    videoPlayer = document.getElementById("videoPlayer");
+    fixationCross = document.getElementById("fixationCross");
+    message = document.getElementById('messageStratSel');
+    buttonsContainer = document.getElementById('buttonsContainerStratSel');
  
 // Other
 const videos = [
