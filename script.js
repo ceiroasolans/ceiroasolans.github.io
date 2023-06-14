@@ -2,7 +2,7 @@ const experiment = "SitSel";
 
 
 // Declare variables outside the if-else blocks
-let mainContainer, videoPlayer, fixationCross, message, buttonsContainer;
+let mainContainer, videoPlayer, fixationCross, message, buttonsContainer, videos;
 
 
 // Based on the configuration, define the behavior of the experiment
@@ -28,7 +28,7 @@ if (message) {
 
 
 // Other
-const videos = [
+ videos = [
     { src: "0036.mp4", type: "positive" },
     { src: "0055.mp4", type: "positive" },
     { src: "0060.mp4", type: "positive" },
@@ -770,7 +770,7 @@ function generateAndUploadCSV(participantChoices) {
     buttonsContainer = document.getElementById('buttonsContainerStratSel');
  
 // Other
-const videos = [
+ videos = [
     { src: "0036.mp4", type: "positive" },
     { src: "0055.mp4", type: "positive" },
     { src: "0060.mp4", type: "positive" },
