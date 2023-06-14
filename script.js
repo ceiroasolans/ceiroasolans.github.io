@@ -1,7 +1,9 @@
+const experiment = "SitSel";
+
 
 // Based on the configuration, define the behavior of the experiment
 if (experiment === "SitSel") {
-   
+    document.getElementById('elementForSitSel').style.display = "block";
 
 // Situation Selection Task 
 
@@ -748,7 +750,9 @@ function generateAndUploadCSV(participantChoices) {
 
 
 
+
 } else if (experiment === "StratSel") {
+    document.getElementById('elementForStratSel').style.display = "block";
 
 //Full Strategy Selection
 
