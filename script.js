@@ -1,3 +1,5 @@
+// Situation Selection Task 
+
 //Constants
 const mainContainer = document.getElementById("mainContainer");
 const videoPlayer = document.getElementById("videoPlayer");
@@ -375,7 +377,7 @@ function createEmotionGraph(videoId, onSubmit) {
     emotionGraphContainer.style.display = "block";
 }
 
-//TEST FUNCTION (List of emotions)
+// List of emotions
 // function createEmotionGraph(videoId, onSubmit) {
 //     const emotionGraphContainer = document.getElementById('emotionGraphContainer');
 //     emotionGraphContainer.style.display = "flex";  // Change layout to Flexbox
@@ -482,130 +484,7 @@ function playRandomVideo(excludeVideoId, videos) {
     return remainingVideos[randomVideoIndex];
 }
 
-
-//Working flow
-// function experimentalSet() {
-//     const shuffledVideos = shuffleArray([...videos]);
-//     let currentVideoIndex = 0;
-
-//     function playVideoUntil3Seconds(onComplete) {
-//         let startTime = Date.now();
-//         let cumulativeTime = 0;
-//         videoPlayer.play();
-    
-//         videoPlayer.onended = videoPlayer.onpause = () => {
-//             cumulativeTime += Date.now() - startTime;  // add time of current play to cumulativeTime
-//             if (cumulativeTime < 4500) {  // check if cumulativeTime is less than 3 seconds // FIVE NOW
-//                 startTime = Date.now();  // reset startTime for the next play
-//                 videoPlayer.play();  // immediately replay video
-//             } else {
-//                 videoPlayer.onended = videoPlayer.onpause = null;  // remove the listeners once done
-//                 onComplete();
-//             }
-//         };
-//     }
-
-//     function playNextVideo() {
-//         if (currentVideoIndex < shuffledVideos.length) {
-//             const video = shuffledVideos[currentVideoIndex];
-//             videoPlayer.src = video.src;
-//             videoPlayer.onloadedmetadata = () => {
-//                 videoPlayer.currentTime = videoPlayer.duration * 0.6; // Seek to 70% of the video's duration
-//                 videoPlayer.onseeked = () => {
-//                     videoPlayer.onseeked = null;
-//                     videoPlayer.pause();  // Pause the video after seeking
-//                 };
-//             };
-//             videoPlayer.style.display = "block";
-
-//             let watchButton;
-//             let skipButton;
-
-//             const buttonTimeout = setTimeout(() => {
-//                 const randomButton = Math.random() < 0.5 ? watchButton : skipButton;
-//                 randomButton.click();
-//             }, 7000);
-
-//             watchButton = createButton("Choose", (reactionTime) => {
-//                 clearTimeout(buttonTimeout);
-//                 watchButton.style.display = "none";
-//                 skipButton.style.display = "none";
-
-//                 videoPlayer.currentTime = 0; // Reset the video to the start
-//                 playVideoUntil3Seconds(() => {
-//                     videoPlayer.style.display = "none";
-//                     clearButtons();
-
-//                     createFeedbackForm(video.id, (rating) => {
-//                         feedbackContainer.style.display = "none";
-//                         createEmotionGraph(video.id, (valence, arousal) => {
-//                             showFixationCross(playNextVideo);
-
-//                             participantChoices.push({
-//                                 part: "Experimental_Choice",
-//                                 decision: "watch",
-//                                 videoId: video.id,
-//                                 reactionTime: reactionTime,
-//                                 rating: rating,
-//                                 valence: valence, 
-//                                 arousal: arousal
-//                             });
-//                         });
-//                     });
-//                 });
-//                 currentVideoIndex++;
-//             });
-
-//             skipButton = createButton("Avoid", (reactionTime) => {
-//                 clearTimeout(buttonTimeout);
-//                 watchButton.style.display = "none";
-//                 skipButton.style.display = "none";
-//                 const randomVideo = playRandomVideo(video.id, videos);
-                
-//                 videoPlayer.src = randomVideo.src;
-//                 videoPlayer.onloadedmetadata = () => {
-//                     videoPlayer.currentTime = 0; // Reset the video to the start
-//                     videoPlayer.oncanplay = () => {
-//                         videoPlayer.oncanplay = null;
-//                         playVideoUntil3Seconds(() => {
-//                             videoPlayer.style.display = "none";
-//                             clearButtons();
-
-//                             createFeedbackForm(video.id, (rating) => {
-//                                 feedbackContainer.style.display = "none";
-//                                 createEmotionGraph(video.id, (valence, arousal) => {
-//                                     showFixationCross(playNextVideo);
-
-//                                     participantChoices.push({
-//                                         part: "Experimental_Choice",
-//                                         decision: "skip",
-//                                         videoId: video.id,
-//                                         reactionTime: reactionTime,
-//                                         forcedVideoId: randomVideo.id,
-//                                         rating: rating,
-//                                         valence: valence, 
-//                                         arousal: arousal
-//                                     });
-//                                 });
-//                             });
-//                         });
-//                     };
-//                 };
-//                 currentVideoIndex++;
-//             });
-
-//             clearButtons();
-//             addButton(watchButton);
-//             addButton(skipButton);
-//         } else {
-//             instructions3();
-//         }
-//     }
-
-//     playNextVideo();
-// }
-
-//New Flow Developing
+//Works
 // function experimentalSet() {
 //     clearButtons();
 //     const shuffledVideos = shuffleArray([...videos]);
@@ -639,97 +518,115 @@ function playRandomVideo(excludeVideoId, videos) {
 //                     videoPlayer.onseeked = null;
 //                     videoPlayer.pause(); // Pause the video after seeking
 //                     videoPlayer.style.display = "block"; // Show the video still for 3 seconds
-                    
 
 //                     setTimeout(() => {
-//                         videoPlayer.style.display = "none"; // Hide the video for 3 seconds
-//                         setTimeout(() => {
-//                             createEmotionGraph(video.id, (initialValence, initialArousal) => {
-//                                 // Your code for the emotion graph callback
-//                                 showFixationCross(playNextVideo);
+//                         videoPlayer.style.display = "none"; // Hide the video for emotion graph
 
-                                
-//                                 // Create the choice buttons after the emotion graph
-//                                 let watchButton;
-//                                 let skipButton;
+//                           // Change the text "How do you feel?" to "How do you think this video will make you feel?"
+//                           const emotionGraphContainer = document.getElementById("emotionGraphContainer");
+//                          const emotionGraphTitle = emotionGraphContainer.querySelector("h2");
+//                          emotionGraphTitle.textContent = "How do you think this video will make you feel?";
 
-//                                 const buttonTimeout = setTimeout(() => {
-//                                     const randomButton = Math.random() < 0.5 ? watchButton : skipButton;
-//                                     randomButton.click();
-//                                 }, 7000);
+//                         createEmotionGraph(video.id, (initialValence, initialArousal) => {
+//                             // Show the video again for choice
+//                             videoPlayer.style.display = "block";
 
-//                                 watchButton = createButton("Choose", (reactionTime) => {
-//                                     clearTimeout(buttonTimeout);
-//                                     watchButton.style.display = "none";
-//                                     skipButton.style.display = "none";
+//                             let watchButton;
+//                             let skipButton;
 
-//                                     videoPlayer.currentTime = 0; // Reset the video to the start
-//                                     playVideoUntil3Seconds(() => {
-//                                         videoPlayer.style.display = "none";
-//                                         clearButtons();
+//                             const buttonTimeout = setTimeout(() => {
+//                                 const randomButton = Math.random() < 0.5 ? watchButton : skipButton;
+//                                 randomButton.click();
+//                             }, 7000);
 
-//                                         createFeedbackForm(video.id, (rating) => {
-//                                             feedbackContainer.style.display = "none";
-//                                             createEmotionGraph(video.id, (valence, arousal) => {
-//                                                 showFixationCross(playNextVideo);
+//                             watchButton = createButton("Choose", (reactionTime) => {
+//                                 clearTimeout(buttonTimeout);
+//                                 watchButton.style.display = "none";
+//                                 skipButton.style.display = "none";
 
-//                                                 participantChoices.push({
-//                                                     part: "Experimental_Choice",
-//                                                     decision: "watch",
-//                                                     videoId: video.id,
-//                                                     reactionTime: reactionTime,
-//                                                     rating: rating,
-//                                                     valence: valence,
-//                                                     arousal: arousal
-//                                                 });
+//                                 videoPlayer.currentTime = 0; // Reset the video to the start
+//                                 playVideoUntil3Seconds(() => {
+//                                     videoPlayer.style.display = "none";
+//                                     clearButtons();
+
+//                                     createFeedbackForm(video.id, (rating) => {
+//                                         feedbackContainer.style.display = "none";
+
+//                                         // Change the text "How do you feel?" to "How do you think this video will make you feel?"
+//                                          const emotionGraphContainer = document.getElementById("emotionGraphContainer");
+//                                         const emotionGraphTitle = emotionGraphContainer.querySelector("h2");
+//                                          emotionGraphTitle.textContent = "How do you feel?";
+
+//                                         createEmotionGraph(video.id, (valence, arousal) => {
+//                                             showFixationCross(playNextVideo);
+
+//                                             participantChoices.push({
+//                                                 part: "Experimental_Choice",
+//                                                 decision: "watch",
+//                                                 videoId: video.id,
+//                                                 reactionTime: reactionTime,
+//                                                 rating: rating,
+//                                                 initialValence: initialValence,
+//                                                 initialArousal: initialArousal,
+//                                                 valence: valence,
+//                                                 arousal: arousal
 //                                             });
 //                                         });
 //                                     });
-//                                     currentVideoIndex++;
 //                                 });
+//                                 currentVideoIndex++;
+//                             });
 
-//                                 skipButton = createButton("Avoid", (reactionTime) => {
-//                                     clearTimeout(buttonTimeout);
-//                                     watchButton.style.display = "none";
-//                                     skipButton.style.display = "none";
-//                                     const randomVideo = playRandomVideo(video.id, videos);
+//                             skipButton = createButton("Avoid", (reactionTime) => {
+//                                 clearTimeout(buttonTimeout);
+//                                 watchButton.style.display = "none";
+//                                 skipButton.style.display = "none";
+//                                 const randomVideo = playRandomVideo(video.id, videos);
 
-//                                     videoPlayer.src = randomVideo.src;
-//                                     videoPlayer.onloadedmetadata = () => {
-//                                         videoPlayer.currentTime = 0; // Reset the video to the start
-//                                         videoPlayer.oncanplay = () => {
-//                                             videoPlayer.oncanplay = null;
-//                                             playVideoUntil3Seconds(() => {
-//                                                 videoPlayer.style.display = "none";
-//                                                 clearButtons();
+//                                 videoPlayer.src = randomVideo.src;
+//                                 videoPlayer.onloadedmetadata = () => {
+//                                     videoPlayer.currentTime = 0; // Reset the video to the start
+//                                     videoPlayer.oncanplay = () => {
+//                                         videoPlayer.oncanplay = null;
+//                                         playVideoUntil3Seconds(() => {
+//                                             videoPlayer.style.display = "none";
+//                                             clearButtons();
 
-//                                                 createFeedbackForm(video.id, (rating) => {
-//                                                     feedbackContainer.style.display = "none";
-//                                                     createEmotionGraph(video.id, (valence, arousal) => {
-//                                                         showFixationCross(playNextVideo);
+//                                             createFeedbackForm(video.id, (rating) => {
+//                                                 feedbackContainer.style.display = "none";
 
-//                                                         participantChoices.push({
-//                                                             part: "Experimental_Choice",
-//                                                             decision: "skip",
-//                                                             videoId: video.id,
-//                                                             reactionTime: reactionTime,
-//                                                             forcedVideoId: randomVideo.id,
-//                                                             rating: rating,
-//                                                             valence: valence,
-//                                                             arousal: arousal
-//                                                         });
+//                                                  // Change the text "How do you feel?" to "How do you think this video will make you feel?"
+//                                                 const emotionGraphContainer = document.getElementById("emotionGraphContainer");
+//                                                 const emotionGraphTitle = emotionGraphContainer.querySelector("h2");
+//                                                  emotionGraphTitle.textContent = "How do you feel?";
+
+
+//                                                 createEmotionGraph(video.id, (valence, arousal) => {
+//                                                     showFixationCross(playNextVideo);
+
+//                                                     participantChoices.push({
+//                                                         part: "Experimental_Choice",
+//                                                         decision: "skip",
+//                                                         videoId: video.id,
+//                                                         reactionTime: reactionTime,
+//                                                         forcedVideoId: randomVideo.id,
+//                                                         rating: rating,
+//                                                         initialValence: initialValence,
+//                                                         initialArousal: initialArousal,
+//                                                         valence: valence,
+//                                                         arousal: arousal
 //                                                     });
 //                                                 });
 //                                             });
-//                                         };
+//                                         });
 //                                     };
-//                                     currentVideoIndex++;
-//                                 });
+//                                 };
+//                                 currentVideoIndex++;
+//                             });
 
-//                                 clearButtons();
-//                                 addButton(watchButton);
-//                                 addButton(skipButton);
-//                             }, 3000); // Wait for 3 seconds before showing the buttons
+//                             clearButtons();
+//                             addButton(watchButton);
+//                             addButton(skipButton);
 //                         });
 //                     }, 3000); // Wait for 3 seconds before showing the emotion graph
 //                 };
@@ -742,8 +639,7 @@ function playRandomVideo(excludeVideoId, videos) {
 //     playNextVideo();
 // }
 
-
-//Test
+//Testing
 function experimentalSet() {
     clearButtons();
     const shuffledVideos = shuffleArray([...videos]);
@@ -777,48 +673,48 @@ function experimentalSet() {
                     videoPlayer.onseeked = null;
                     videoPlayer.pause(); // Pause the video after seeking
                     videoPlayer.style.display = "block"; // Show the video still for 3 seconds
-
+    
                     setTimeout(() => {
                         videoPlayer.style.display = "none"; // Hide the video for emotion graph
-
-                          // Change the text "How do you feel?" to "How do you think this video will make you feel?"
-                          const emotionGraphContainer = document.getElementById("emotionGraphContainer");
-                         const emotionGraphTitle = emotionGraphContainer.querySelector("h2");
-                         emotionGraphTitle.textContent = "How do you think this video will make you feel?";
-
+    
+                        // Change the text "How do you feel?" to "How do you think this video will make you feel?"
+                        const emotionGraphContainer = document.getElementById("emotionGraphContainer");
+                        const emotionGraphTitle = emotionGraphContainer.querySelector("h2");
+                        emotionGraphTitle.textContent = "How do you think this video will make you feel?";
+    
                         createEmotionGraph(video.id, (initialValence, initialArousal) => {
-                            // Show the video again for choice
-                            videoPlayer.style.display = "block";
-
-                            let watchButton;
-                            let skipButton;
-
-                            const buttonTimeout = setTimeout(() => {
-                                const randomButton = Math.random() < 0.5 ? watchButton : skipButton;
-                                randomButton.click();
-                            }, 7000);
-
-                            watchButton = createButton("Choose", (reactionTime) => {
-                                clearTimeout(buttonTimeout);
-                                watchButton.style.display = "none";
-                                skipButton.style.display = "none";
-
-                                videoPlayer.currentTime = 0; // Reset the video to the start
-                                playVideoUntil3Seconds(() => {
-                                    videoPlayer.style.display = "none";
-                                    clearButtons();
-
-                                    createFeedbackForm(video.id, (rating) => {
-                                        feedbackContainer.style.display = "none";
-
+                            // After initial emotion graph, create feedback form
+                            createFeedbackForm(video.id, (rating) => {
+                                feedbackContainer.style.display = "none";
+    
+                                // Show the video again for choice
+                                videoPlayer.style.display = "block";
+    
+                                let watchButton;
+                                let skipButton;
+    
+                                const buttonTimeout = setTimeout(() => {
+                                    const randomButton = Math.random() < 0.5 ? watchButton : skipButton;
+                                    randomButton.click();
+                                }, 7000);
+    
+                                watchButton = createButton("Choose", (reactionTime) => {
+                                    clearTimeout(buttonTimeout);
+                                    watchButton.style.display = "none";
+                                    skipButton.style.display = "none";
+    
+                                    videoPlayer.currentTime = 0; // Reset the video to the start
+                                    playVideoUntil3Seconds(() => {
+                                        videoPlayer.style.display = "none";
+                                        clearButtons();
+    
                                         // Change the text "How do you feel?" to "How do you think this video will make you feel?"
-                                         const emotionGraphContainer = document.getElementById("emotionGraphContainer");
                                         const emotionGraphTitle = emotionGraphContainer.querySelector("h2");
-                                         emotionGraphTitle.textContent = "How do you feel?";
-
+                                        emotionGraphTitle.textContent = "How do you feel?";
+    
                                         createEmotionGraph(video.id, (valence, arousal) => {
                                             showFixationCross(playNextVideo);
-
+    
                                             participantChoices.push({
                                                 part: "Experimental_Choice",
                                                 decision: "watch",
@@ -832,37 +728,31 @@ function experimentalSet() {
                                             });
                                         });
                                     });
+                                    currentVideoIndex++;
                                 });
-                                currentVideoIndex++;
-                            });
-
-                            skipButton = createButton("Avoid", (reactionTime) => {
-                                clearTimeout(buttonTimeout);
-                                watchButton.style.display = "none";
-                                skipButton.style.display = "none";
-                                const randomVideo = playRandomVideo(video.id, videos);
-
-                                videoPlayer.src = randomVideo.src;
-                                videoPlayer.onloadedmetadata = () => {
-                                    videoPlayer.currentTime = 0; // Reset the video to the start
-                                    videoPlayer.oncanplay = () => {
-                                        videoPlayer.oncanplay = null;
-                                        playVideoUntil3Seconds(() => {
-                                            videoPlayer.style.display = "none";
-                                            clearButtons();
-
-                                            createFeedbackForm(video.id, (rating) => {
-                                                feedbackContainer.style.display = "none";
-
-                                                 // Change the text "How do you feel?" to "How do you think this video will make you feel?"
-                                                const emotionGraphContainer = document.getElementById("emotionGraphContainer");
+    
+                                skipButton = createButton("Avoid", (reactionTime) => {
+                                    clearTimeout(buttonTimeout);
+                                    watchButton.style.display = "none";
+                                    skipButton.style.display = "none";
+                                    const randomVideo = playRandomVideo(video.id, videos);
+    
+                                    videoPlayer.src = randomVideo.src;
+                                    videoPlayer.onloadedmetadata = () => {
+                                        videoPlayer.currentTime = 0; // Reset the video to the start
+                                        videoPlayer.oncanplay = () => {
+                                            videoPlayer.oncanplay = null;
+                                            playVideoUntil3Seconds(() => {
+                                                videoPlayer.style.display = "none";
+                                                clearButtons();
+    
+                                                // Change the text "How do you feel?" to "How do you think this video will make you feel?"
                                                 const emotionGraphTitle = emotionGraphContainer.querySelector("h2");
-                                                 emotionGraphTitle.textContent = "How do you feel?";
-
-
+                                                emotionGraphTitle.textContent = "How do you feel?";
+    
                                                 createEmotionGraph(video.id, (valence, arousal) => {
                                                     showFixationCross(playNextVideo);
-
+    
                                                     participantChoices.push({
                                                         part: "Experimental_Choice",
                                                         decision: "skip",
@@ -877,15 +767,15 @@ function experimentalSet() {
                                                     });
                                                 });
                                             });
-                                        });
+                                        };
                                     };
-                                };
-                                currentVideoIndex++;
+                                    currentVideoIndex++;
+                                });
+    
+                                clearButtons();
+                                addButton(watchButton);
+                                addButton(skipButton);
                             });
-
-                            clearButtons();
-                            addButton(watchButton);
-                            addButton(skipButton);
                         });
                     }, 3000); // Wait for 3 seconds before showing the emotion graph
                 };
@@ -894,11 +784,10 @@ function experimentalSet() {
             instructions3();
         }
     }
+    
 
     playNextVideo();
 }
-
-
 
 
 
