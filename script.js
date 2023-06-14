@@ -1,6 +1,6 @@
 
 // Based on the configuration, define the behavior of the experiment
-  if (config.experiment === "SitSel") {
+if (experiment === "SitSel") {
    
 
 // Situation Selection Task 
@@ -748,7 +748,7 @@ function generateAndUploadCSV(participantChoices) {
 
 
 
-  } else if (config.experiment === "StratSel") {
+} else if (experiment === "StratSel") {
 
 //Full Strategy Selection
 
@@ -1580,9 +1580,7 @@ function shuffleArray(array) {
   //START
   instructions();       
 
-  } else {
-    console.error(`Invalid experiment configuration: ${config.experiment}`);
-  }
+  } 
   
 
 
