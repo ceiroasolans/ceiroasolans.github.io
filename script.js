@@ -15,10 +15,17 @@ const config = {
 const mainContainer = document.getElementById("mainContainer");
 const videoPlayer = document.getElementById("videoPlayer");
 const fixationCross = document.getElementById("fixationCross");
-const message = document.getElementById("message");
+const message = document.getElementById('message');
 const buttonsContainer = document.getElementById("buttonsContainer");
 
- 
+if (message) {
+    message.style.display = 'block';
+    // Other operations on the message element
+  } else {
+    console.error('The message element is not found in the DOM.');
+  }
+
+  
 // Other
 const videos = [
     { src: "0036.mp4", type: "positive" },
