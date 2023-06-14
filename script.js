@@ -5,6 +5,7 @@ const experiment = "SitSel";
 if (experiment === "SitSel") {
     document.getElementById('elementForSitSel').style.display = "block";
     document.getElementById('messageSitSel').style.display = "block";
+    const buttonsContainerSitSel = document.getElementById('buttonsContainerSitSel');
 
 // Situation Selection Task 
 
@@ -755,7 +756,7 @@ function generateAndUploadCSV(participantChoices) {
 } else if (experiment === "StratSel") {
     document.getElementById('elementForStratSel').style.display = "block";
     document.getElementById('messageStratSel').style.display = "block";
-
+    const buttonsContainerSitSel = document.getElementById('buttonsContainerStratSel');
 //Full Strategy Selection
 
 //Constants
