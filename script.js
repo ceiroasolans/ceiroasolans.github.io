@@ -170,7 +170,7 @@ function createFeedbackForm(videoId, onSubmit) {
     feedbackContainer.innerHTML = '';
 
     const question = document.createElement("p");
-    question.textContent = "How interested are you in this video?";
+    question.textContent = "How interesting is this video?";
 
     feedbackContainer.slider = document.createElement("input");
     feedbackContainer.slider.type = "range";
@@ -195,6 +195,9 @@ function createFeedbackForm(videoId, onSubmit) {
     feedbackContainer.appendChild(feedbackContainer.button);
     feedbackContainer.style.display = "block";
 }
+
+
+
 
 //REAL GRAPH FUNCTION
 function createEmotionGraph(videoId, onSubmit) {
