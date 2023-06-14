@@ -75,13 +75,19 @@
 </div>
 
 
-    <script>
-        if (config.experiment === "SitSel") {
-          document.getElementById('elementForSitSel').style.display = "block";
-        } else if (config.experiment === "StratSel") {
-          document.getElementById('elementForStratSel').style.display = "block";
-        }
-      </script>
+<script>
+    // Configuration object
+    const config = {
+      experiment: "SitSel", // Set this to "SitSel" or "StratSel" to select the experiment
+    };
+
+    if (config.experiment === "SitSel") {
+      document.getElementById('elementForSitSel').style.display = "block";
+    } else if (config.experiment === "StratSel") {
+      document.getElementById('elementForStratSel').style.display = "block";
+    }
+</script>
+
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.5.0/nouislider.min.js"></script> <!--for StratSel -->
     <script src="script.js"></script>
