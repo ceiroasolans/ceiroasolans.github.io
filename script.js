@@ -16,152 +16,152 @@ const videos = [
     { src: "0055.mp4", type: "positive" },
     { src: "0060.mp4", type: "positive" },
     { src: "0074.mp4", type: "positive" },
-    { src: "0080.mp4", type: "positive" },
-    { src: "0087.mp4", type: "positive" },
-    { src: "0089.mp4", type: "positive" },
-    { src: "0090.mp4", type: "positive" },
-    { src: "0096.mp4", type: "positive" },
-    { src: "0098.mp4", type: "positive" },
-    { src: "0107.mp4", type: "positive" },
-    { src: "0110.mp4", type: "positive" },
-    { src: "0116.mp4", type: "positive" },
-    { src: "0124.mp4", type: "positive" },
-    { src: "0174.mp4", type: "positive" },
-    { src: "0187.mp4", type: "positive" },
-    { src: "0195.mp4", type: "positive" },
-    { src: "0202.mp4", type: "positive" },
-    { src: "0204.mp4", type: "positive" },
-    { src: "0228.mp4", type: "positive" },
-    { src: "0235.mp4", type: "positive" },
-    { src: "0252.mp4", type: "positive" },
-    { src: "0329.mp4", type: "positive" },
-    { src: "0339.mp4", type: "positive" },
-    { src: "0344.mp4", type: "positive" },
-    { src: "0348.mp4", type: "positive" },
-    { src: "0360.mp4", type: "positive" },
-    { src: "0369.mp4", type: "positive" },
-    { src: "0402.mp4", type: "positive" },
-    { src: "0414.mp4", type: "positive" },
-    { src: "0458.mp4", type: "positive" },
-    { src: "0479.mp4", type: "positive" },
-    { src: "0492.mp4", type: "positive" },
-    { src: "0519.mp4", type: "positive" },
-    { src: "0550.mp4", type: "positive" },
-    { src: "0551.mp4", type: "positive" },
-    { src: "0560.mp4", type: "positive" },
-    { src: "0573.mp4", type: "positive" },
-    { src: "0574.mp4", type: "positive" },
-    { src: "0590.mp4", type: "positive" },
-    { src: "0593.mp4", type: "positive" },
-    { src: "0595.mp4", type: "positive" },
-    { src: "0598.mp4", type: "positive" },
-    { src: "0611.mp4", type: "positive" },
-    { src: "0615.mp4", type: "positive" },
-    { src: "0650.mp4", type: "positive" },
-    { src: "0656.mp4", type: "positive" },
-    { src: "0666.mp4", type: "positive" },
-    { src: "0681.mp4", type: "positive" },
-    { src: "0684.mp4", type: "positive" },
-    { src: "0688.mp4", type: "positive" },
-    { src: "0701.mp4", type: "positive" },
-    { src: "0713.mp4", type: "positive" },
-    { src: "0722.mp4", type: "positive" },
-    { src: "0724.mp4", type: "positive" },
-    { src: "0741.mp4", type: "positive" },
-    { src: "0744.mp4", type: "positive" },
-    { src: "0756.mp4", type: "positive" },
-    { src: "0767.mp4", type: "positive" },
-    { src: "0780.mp4", type: "positive" },
-    { src: "0795.mp4", type: "positive" },
-    { src: "0803.mp4", type: "positive" },
-    { src: "0817.mp4", type: "positive" },
-    { src: "0834.mp4", type: "positive" },
-    { src: "0860.mp4", type: "positive" },
-    { src: "0876.mp4", type: "positive" },
-    { src: "0883.mp4", type: "positive" },
-    { src: "0893.mp4", type: "positive" },
-    { src: "0898.mp4", type: "positive" },
-    { src: "0921.mp4", type: "positive" },
-    { src: "0929.mp4", type: "positive" },
-    { src: "0940.mp4", type: "positive" },
-    { src: "0975.mp4", type: "positive" },
-    { src: "0986.mp4", type: "positive" },
-    { src: "0996.mp4", type: "positive" },
-    { src: "1009.mp4", type: "positive" },
-    { src: "1012.mp4", type: "positive" },
-    { src: "1056.mp4", type: "positive" },
-    { src: "1145.mp4", type: "positive" },
-    { src: "1164.mp4", type: "positive" },
-    { src: "1165.mp4", type: "positive" },
-    { src: "1191.mp4", type: "positive" },
-    { src: "1194.mp4", type: "positive" },
-    { src: "1197.mp4", type: "positive" },
-    { src: "1202.mp4", type: "positive" },
-    { src: "1216.mp4", type: "positive" },
-    { src: "1229.mp4", type: "positive" },
-    { src: "1232.mp4", type: "positive" },
-    { src: "1261.mp4", type: "positive" },
-    { src: "1267.mp4", type: "positive" },
-    { src: "1282.mp4", type: "positive" },
-    { src: "1311.mp4", type: "positive" },
-    { src: "1323.mp4", type: "positive" },
-    { src: "1349.mp4", type: "positive" },
-    { src: "1358.mp4", type: "positive" },
-    { src: "1374.mp4", type: "positive" },
-    { src: "1400.mp4", type: "positive" },
-    { src: "1411.mp4", type: "positive" },
-    { src: "1423.mp4", type: "positive" },
-    { src: "1424.mp4", type: "positive" },
-    { src: "1432.mp4", type: "positive" },
-    { src: "1440.mp4", type: "positive" },
-    { src: "1449.mp4", type: "positive" },
-    { src: "1468.mp4", type: "positive" },
-    { src: "1471.mp4", type: "positive" },
-    { src: "1498.mp4", type: "positive" },
-    { src: "1518.mp4", type: "positive" },
-    { src: "1560.mp4", type: "positive" },
-    { src: "1592.mp4", type: "positive" },
-    { src: "1606.mp4", type: "positive" },
-    { src: "1623.mp4", type: "positive" },
-    { src: "1647.mp4", type: "positive" },
-    { src: "1666.mp4", type: "positive" },
-    { src: "1667.mp4", type: "positive" },
-    { src: "1687.mp4", type: "positive" },
-    { src: "1717.mp4", type: "positive" },
-    { src: "1740.mp4", type: "positive" },
-    { src: "1745.mp4", type: "positive" },
-    { src: "1755.mp4", type: "positive" },
-    { src: "1760.mp4", type: "positive" },
-    { src: "1780.mp4", type: "positive" },
-    { src: "1786.mp4", type: "positive" },
-    { src: "1795.mp4", type: "positive" },
-    { src: "1798.mp4", type: "positive" },
-    { src: "1819.mp4", type: "positive" },
-    { src: "1826.mp4", type: "positive" },
-    { src: "1828.mp4", type: "positive" },
-    { src: "1830.mp4", type: "positive" },
-    { src: "1832.mp4", type: "positive" },
-    { src: "1835.mp4", type: "positive" },
-    { src: "1844.mp4", type: "positive" },
-    { src: "1868.mp4", type: "positive" },
-    { src: "1876.mp4", type: "positive" },
-    { src: "1911.mp4", type: "positive" },
-    { src: "1924.mp4", type: "positive" },
-    { src: "1935.mp4", type: "positive" },
-    { src: "1955.mp4", type: "positive" },
-    { src: "1959.mp4", type: "positive" },
-    { src: "2013.mp4", type: "positive" },
-    { src: "2018.mp4", type: "positive" },
-    { src: "2021.mp4", type: "positive" },
-    { src: "2025.mp4", type: "positive" },
-    { src: "2049.mp4", type: "positive" },
-    { src: "2058.mp4", type: "positive" },
-    { src: "2066.mp4", type: "positive" },
-    { src: "2083.mp4", type: "positive" },
-    { src: "2085.mp4", type: "positive" },
-    { src: "2168.mp4", type: "positive" },
-    { src: "2181.mp4", type: "positive" },
-    { src: "2183.mp4", type: "positive" }
+//    { src: "0080.mp4", type: "positive" },
+//    { src: "0087.mp4", type: "positive" },
+//    { src: "0089.mp4", type: "positive" },
+//    { src: "0090.mp4", type: "positive" },
+//    { src: "0096.mp4", type: "positive" },
+//    { src: "0098.mp4", type: "positive" },
+//    { src: "0107.mp4", type: "positive" },
+//    { src: "0110.mp4", type: "positive" },
+//    { src: "0116.mp4", type: "positive" },
+//    { src: "0124.mp4", type: "positive" },
+//    { src: "0174.mp4", type: "positive" },
+//    { src: "0187.mp4", type: "positive" },
+//    { src: "0195.mp4", type: "positive" },
+//    { src: "0202.mp4", type: "positive" },
+//    { src: "0204.mp4", type: "positive" },
+//    { src: "0228.mp4", type: "positive" },
+//    { src: "0235.mp4", type: "positive" },
+//    { src: "0252.mp4", type: "positive" },
+//    { src: "0329.mp4", type: "positive" },
+//    { src: "0339.mp4", type: "positive" },
+//    { src: "0344.mp4", type: "positive" },
+//    { src: "0348.mp4", type: "positive" },
+//    { src: "0360.mp4", type: "positive" },
+//    { src: "0369.mp4", type: "positive" },
+//    { src: "0402.mp4", type: "positive" },
+//    { src: "0414.mp4", type: "positive" },
+//    { src: "0458.mp4", type: "positive" },
+//    { src: "0479.mp4", type: "positive" },
+//    { src: "0492.mp4", type: "positive" },
+//    { src: "0519.mp4", type: "positive" },
+//    { src: "0550.mp4", type: "positive" },
+//    { src: "0551.mp4", type: "positive" },
+//    { src: "0560.mp4", type: "positive" },
+//    { src: "0573.mp4", type: "positive" },
+//    { src: "0574.mp4", type: "positive" },
+//    { src: "0590.mp4", type: "positive" },
+//    { src: "0593.mp4", type: "positive" },
+//    { src: "0595.mp4", type: "positive" },
+//    { src: "0598.mp4", type: "positive" },
+//    { src: "0611.mp4", type: "positive" },
+//    { src: "0615.mp4", type: "positive" },
+//    { src: "0650.mp4", type: "positive" },
+//    { src: "0656.mp4", type: "positive" },
+//    { src: "0666.mp4", type: "positive" },
+//    { src: "0681.mp4", type: "positive" },
+//    { src: "0684.mp4", type: "positive" },
+//    { src: "0688.mp4", type: "positive" },
+//    { src: "0701.mp4", type: "positive" },
+//    { src: "0713.mp4", type: "positive" },
+//    { src: "0722.mp4", type: "positive" },
+//    { src: "0724.mp4", type: "positive" },
+//    { src: "0741.mp4", type: "positive" },
+//    { src: "0744.mp4", type: "positive" },
+//    { src: "0756.mp4", type: "positive" },
+//    { src: "0767.mp4", type: "positive" },
+//    { src: "0780.mp4", type: "positive" },
+//    { src: "0795.mp4", type: "positive" },
+//    { src: "0803.mp4", type: "positive" },
+//    { src: "0817.mp4", type: "positive" },
+//    { src: "0834.mp4", type: "positive" },
+//    { src: "0860.mp4", type: "positive" },
+//    { src: "0876.mp4", type: "positive" },
+//    { src: "0883.mp4", type: "positive" },
+//    { src: "0893.mp4", type: "positive" },
+//    { src: "0898.mp4", type: "positive" },
+//    { src: "0921.mp4", type: "positive" },
+//    { src: "0929.mp4", type: "positive" },
+//    { src: "0940.mp4", type: "positive" },
+//    { src: "0975.mp4", type: "positive" },
+//    { src: "0986.mp4", type: "positive" },
+//    { src: "0996.mp4", type: "positive" },
+//    { src: "1009.mp4", type: "positive" },
+//    { src: "1012.mp4", type: "positive" },
+//    { src: "1056.mp4", type: "positive" },
+//    { src: "1145.mp4", type: "positive" },
+//    { src: "1164.mp4", type: "positive" },
+//    { src: "1165.mp4", type: "positive" },
+//    { src: "1191.mp4", type: "positive" },
+//    { src: "1194.mp4", type: "positive" },
+//    { src: "1197.mp4", type: "positive" },
+//    { src: "1202.mp4", type: "positive" },
+//    { src: "1216.mp4", type: "positive" },
+//    { src: "1229.mp4", type: "positive" },
+//    { src: "1232.mp4", type: "positive" },
+//    { src: "1261.mp4", type: "positive" },
+//    { src: "1267.mp4", type: "positive" },
+//    { src: "1282.mp4", type: "positive" },
+//    { src: "1311.mp4", type: "positive" },
+//    { src: "1323.mp4", type: "positive" },
+//    { src: "1349.mp4", type: "positive" },
+//    { src: "1358.mp4", type: "positive" },
+//    { src: "1374.mp4", type: "positive" },
+//    { src: "1400.mp4", type: "positive" },
+//    { src: "1411.mp4", type: "positive" },
+//    { src: "1423.mp4", type: "positive" },
+//    { src: "1424.mp4", type: "positive" },
+//    { src: "1432.mp4", type: "positive" },
+//    { src: "1440.mp4", type: "positive" },
+//    { src: "1449.mp4", type: "positive" },
+//    { src: "1468.mp4", type: "positive" },
+//    { src: "1471.mp4", type: "positive" },
+//    { src: "1498.mp4", type: "positive" },
+//    { src: "1518.mp4", type: "positive" },
+//    { src: "1560.mp4", type: "positive" },
+//    { src: "1592.mp4", type: "positive" },
+//    { src: "1606.mp4", type: "positive" },
+//    { src: "1623.mp4", type: "positive" },
+//    { src: "1647.mp4", type: "positive" },
+//    { src: "1666.mp4", type: "positive" },
+//    { src: "1667.mp4", type: "positive" },
+//    { src: "1687.mp4", type: "positive" },
+//    { src: "1717.mp4", type: "positive" },
+//    { src: "1740.mp4", type: "positive" },
+//    { src: "1745.mp4", type: "positive" },
+//    { src: "1755.mp4", type: "positive" },
+//    { src: "1760.mp4", type: "positive" },
+//    { src: "1780.mp4", type: "positive" },
+//    { src: "1786.mp4", type: "positive" },
+//    { src: "1795.mp4", type: "positive" },
+//    { src: "1798.mp4", type: "positive" },
+//    { src: "1819.mp4", type: "positive" },
+//    { src: "1826.mp4", type: "positive" },
+//    { src: "1828.mp4", type: "positive" },
+//    { src: "1830.mp4", type: "positive" },
+//    { src: "1832.mp4", type: "positive" },
+//    { src: "1835.mp4", type: "positive" },
+//    { src: "1844.mp4", type: "positive" },
+//    { src: "1868.mp4", type: "positive" },
+//    { src: "1876.mp4", type: "positive" },
+//    { src: "1911.mp4", type: "positive" },
+//    { src: "1924.mp4", type: "positive" },
+//    { src: "1935.mp4", type: "positive" },
+//    { src: "1955.mp4", type: "positive" },
+//    { src: "1959.mp4", type: "positive" },
+//    { src: "2013.mp4", type: "positive" },
+//    { src: "2018.mp4", type: "positive" },
+//    { src: "2021.mp4", type: "positive" },
+//    { src: "2025.mp4", type: "positive" },
+//    { src: "2049.mp4", type: "positive" },
+//    { src: "2058.mp4", type: "positive" },
+//    { src: "2066.mp4", type: "positive" },
+//    { src: "2083.mp4", type: "positive" },
+//    { src: "2085.mp4", type: "positive" },
+//    { src: "2168.mp4", type: "positive" },
+//    { src: "2181.mp4", type: "positive" },
+//    { src: "2183.mp4", type: "positive" }
   ];
   
   for(let i = 0; i < videos.length; i++) {
@@ -480,73 +480,66 @@ function replayVideo() {
 
 
 // Experimental flow
+var pPressed = false;
+var currentVideoIndex = 0;
+var fPressed = 0;
+var jPressed = 0;
+var rPressed = 0;
+var pPressed = 0;
 
 function practiceSet() {
     clearButtons();
     const shuffledVideos = shuffleArray([...videos]);
-    let currentVideoIndex = 0;
-    let copyCurrentVideoIndex = currentVideoIndex;
-    let pPressed = false;
+
 
     // Register event listeners for keydown
     document.onkeydown = function(event) {
         // Check if the 'F' key is pressed
         if (event.key === 'f') {
+          fPressed ++;
           adjustVideoOpacity(-0.15); // Reduce opacity by 0.15
         }
 
         // Check if the 'J' key is pressed
         if (event.key === 'j') {
+          jPressed ++;
           adjustVideoOpacity(0.15); // Increase opacity by 0.15
         }
 
         // Check if the 'R' key is pressed
         if (event.key === 'r') {
-        replayVideo();
+            rPressed ++;
+            replayVideo();
         }
 
         // Check if the 'P' key is pressed
         if (event.key === 'p') {
+            pPressed ++;
+            if (!pPressed) {
             pPressed = true;
-            const currentVideo = shuffledVideos[copyCurrentVideoIndex];
-            shuffledVideos[copyCurrentVideoIndex + 1] = currentVideo
-            pPressed = false;
-            // If pressed P, replace the next video with the video when the "p" is pressed
+            }
         }
 
     };
 
     function playNextVideo() {
-        // Register event listeners for keydown
-        document.onkeydown = function(event) {
-        // Check if the 'F' key is pressed
-        if (event.key === 'f') {
-          adjustVideoOpacity(-0.15); // Reduce opacity by 0.15
-        }
-
-        // Check if the 'J' key is pressed
-        if (event.key === 'j') {
-          adjustVideoOpacity(0.15); // Increase opacity by 0.15
-        }
-
-        // Check if the 'R' key is pressed
-        if (event.key === 'r') {
-          replayVideo();
-        }
-
-        // Check if the 'P' key is pressed
-        if (event.key === 'p') {
-            pPressed = true;
-            const currentVideo = shuffledVideos[copyCurrentVideoIndex];
-            shuffledVideos[copyCurrentVideoIndex + 1] = currentVideo
-            pPressed = false;
-            // If pressed P, replace the next video with the video when the "p" is pressed
-        }
-        };
         if (currentVideoIndex < shuffledVideos.length) {
+            // Check if 'P' was pressed and replace the next video
+            if (pPressed) {
+                if (currentVideoIndex < shuffledVideos.length - 1) {
+                    const currentVideo = shuffledVideos[currentVideoIndex];
+                    shuffledVideos[currentVideoIndex + 1] = currentVideo
+                    // If pressed P, replace the next video with the video when the "p" is pressed
+                }
+                pPressed = false;
+            }
+
+            currentVideoIndex++;
+
             const video = shuffledVideos[currentVideoIndex];
             videoPlayer.src = video.src;
             videoPlayer.style.display = "block";
+            videoPlayer.style.opacity = "0.5";
             videoPlayer.play();
 
             videoPlayer.onended = () => {
@@ -563,16 +556,17 @@ function practiceSet() {
                             part: "Practice",
                             videoId: video.id,
                             rating: rating,
-                            valence: valence, 
-                            arousal: arousal
+                            valence: valence,
+                            arousal: arousal,
+                            // "fPressed", "jPressed", "rPressed", "pPressed"
+                            fPressed: fPressed,
+                            jPressed: jPressed,
+                            rPressed: rPressed,
+                            pPressed: pPressed
                         });
                     });
                 });
             };
-            currentVideoIndex++;
-            if (pPressed) {
-                copyCurrentVideoIndex = currentVideoIndex;
-            }
         } else {
             showMessage("");
             instructions2();
@@ -619,14 +613,13 @@ function playRandomVideo(excludeVideoId, videos) {
 
 
 function experimentalSet() {
+    console.log('experi');
     const shuffledVideos = shuffleArray([...videos]);
-    let currentVideoIndex = 0;
-    let pPressed = false;
-    let copyCurrentVideoIndex = currentVideoIndex;
 
     function playVideoUntil3Seconds(onComplete) {
         let startTime = Date.now();
         let cumulativeTime = 0;
+        videoPlayer.style.opacity = "0.5";
         videoPlayer.play();
     
         videoPlayer.onended = videoPlayer.onpause = () => {
@@ -645,57 +638,46 @@ function experimentalSet() {
     document.onkeydown = function(event) {
         // Check if the 'F' key is pressed
         if (event.key === 'f') {
+          fPressed ++;
           adjustVideoOpacity(-0.15); // Reduce opacity by 0.15
         }
 
         // Check if the 'J' key is pressed
         if (event.key === 'j') {
+          jPressed ++;
           adjustVideoOpacity(0.15); // Increase opacity by 0.15
         }
 
         // Check if the 'R' key is pressed
         if (event.key === 'r') {
-          replayVideo();
+            rPressed ++;
+            replayVideo();
         }
 
         // Check if the 'P' key is pressed
         if (event.key === 'p') {
+            pPressed ++;
+            if (!pPressed) {
             pPressed = true;
-            const currentVideo = shuffledVideos[copyCurrentVideoIndex];
-            shuffledVideos[copyCurrentVideoIndex + 1] = currentVideo
-            pPressed = false;
-            // If pressed P, replace the next video with the video when the "p" is pressed
+            }
         }
     };
 
     function playNextVideo() {
-        // Register event listeners for keydown
-        document.onkeydown = function(event) {
-        // Check if the 'F' key is pressed
-        if (event.key === 'f') {
-          adjustVideoOpacity(-0.15); // Reduce opacity by 0.15
-        }
-
-        // Check if the 'J' key is pressed
-        if (event.key === 'j') {
-          adjustVideoOpacity(0.15); // Increase opacity by 0.15
-        }
-
-        // Check if the 'R' key is pressed
-        if (event.key === 'r') {
-          replayVideo();
-        }
-
-        // Check if the 'P' key is pressed
-        if (event.key === 'p') {
-            pPressed = true;
-            const currentVideo = shuffledVideos[copyCurrentVideoIndex];
-            shuffledVideos[copyCurrentVideoIndex + 1] = currentVideo
-            pPressed = false;
-            // If pressed P, replace the next video with the video when the "p" is pressed
-        }
-        };
         if (currentVideoIndex < shuffledVideos.length) {
+
+            // Check if 'P' was pressed and replace the next video
+            if (pPressed) {
+                if (currentVideoIndex < shuffledVideos.length - 1) {
+                    const currentVideo = shuffledVideos[currentVideoIndex];
+                    shuffledVideos[currentVideoIndex + 1] = currentVideo
+                    // If pressed P, replace the next video with the video when the "p" is pressed
+                }
+                pPressed = false;
+            }
+
+            currentVideoIndex++;
+
             const video = shuffledVideos[currentVideoIndex];
             videoPlayer.src = video.src;
             videoPlayer.load(); //force browser to re-buffer vid
@@ -730,15 +712,16 @@ function experimentalSet() {
                                 reactionTime: reactionTime,
                                 rating: rating,
                                 valence: valence, 
-                                arousal: arousal
+                                arousal: arousal,
+                                // "fPressed", "jPressed", "rPressed", "pPressed"
+                                fPressed: fPressed,
+                                jPressed: jPressed,
+                                rPressed: rPressed,
+                                pPressed: pPressed
                             });
                         });
                     });
                 });
-                currentVideoIndex++;
-                if (pPressed) {
-                    copyCurrentVideoIndex = currentVideoIndex;
-                }
             });
 
             skipButton = createButton("Avoid", (reactionTime) => {
@@ -765,15 +748,16 @@ function experimentalSet() {
                                 forcedVideoId: randomVideo.id,
                                 rating: rating,
                                 valence: valence, 
-                                arousal: arousal
+                                arousal: arousal,
+                                // "fPressed", "jPressed", "rPressed", "pPressed"
+                                fPressed: fPressed,
+                                jPressed: jPressed,
+                                rPressed: rPressed,
+                                pPressed: pPressed
                             });
                         });
                     });
                 });
-                currentVideoIndex++;
-                if (pPressed) {
-                    copyCurrentVideoIndex = currentVideoIndex;
-                }
             });
 
             clearButtons();
@@ -843,7 +827,8 @@ function shuffleArray(array) {
 
 // Generate data 
 function generateAndUploadCSV(participantChoices) {
-    const header = ["part", "decision", "videoId", "reactionTime", "forcedVideoId", "rating", "valence", "arousal"];
+    const header = ["part", "decision", "videoId", "reactionTime", "forcedVideoId", "rating", "valence", "arousal",
+    "fPressed", "jPressed", "rPressed", "pPressed"];
     const csvRows = [header];
   
     for (const row of participantChoices) {
@@ -856,6 +841,10 @@ function generateAndUploadCSV(participantChoices) {
         row.rating || "",
         row.valence || "",
         row.arousal || "",
+        row.fPressed,
+        row.jPressed,
+        row.rPressed,
+        row.pPressed
       ];
       csvRows.push(rowData);
     }
