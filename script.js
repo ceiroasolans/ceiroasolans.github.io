@@ -561,6 +561,7 @@ function strategies(callback) {
     });
 
     strategiesContainer.appendChild(strategiesSubmitButton);
+    strategiesContainer.style.visibility = "visible";
     strategiesContainer.style.display = "block";
 }
 
