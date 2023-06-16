@@ -61,7 +61,10 @@ button:disabled {
 }
 
 
-
+#mainContainer {
+    min-height: 360px; /* adjust as needed */
+    position: relative;
+}
 
 /* erase the following if I go with the graph*/
 
