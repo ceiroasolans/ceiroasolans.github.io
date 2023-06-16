@@ -572,26 +572,26 @@ function strategies(callback) {
 // //Experimental flow
 function instructions() {
     let message = document.getElementById("message");
-    message.style.display = 'block';  // 'inline' or 'inline-block', whatever suits your needs
-    
     message.innerHTML = `
-        <strong>Welcome!</strong>
-        <p>In this experiment you will be watching a series of videos and reporting how you feel. Please regulate your emotions in whatever way you see fit. Every trial, you will:</p>
-        <ol>
-            <li>Watch a screenshot from a video for 3 seconds</li>
-            <li>Rate how you expect to feel if you watch it, and how interested you are in watching it.</li>
-            <li>Decide whether you want to watch the video. If you decide to skip it, you will be shown another video at random. If you don't decide within 7 seconds, something will be decided for you at random.</li>
-            <li>Watch the video. You may regulate your emotions by changing the intensity of the video (press "f" to dim it, or "j" to make it more vivid), or by using internal strategies (i.e. reappraisal, distraction, acceptance, suppression).</li>
-            <li>Report how you feel as well as the strategies you used.</li>
-        </ol>
+        <div style="max-width: 600px; margin: auto;">
+            <strong>Welcome!</strong>
+            <p>In this experiment you will be watching a series of videos and reporting how you feel. Please regulate your emotions in whatever way you see fit. Every trial, you will:</p>
+            <ol style="text-indent: 20px;">
+                <li>Watch a screenshot from a video for 3 seconds</li>
+                <li>Rate how you expect to feel if you watch it, and how interested you are in watching it.</li>
+                <li>Decide whether you want to watch the video. If you decide to skip it, you will be shown another video at random. If you don't decide within 7 seconds, something will be decided for you at random.</li>
+                <li>Watch the video. You may regulate your emotions by changing the intensity of the video (press "f" to dim it, or "j" to make it more vivid), or by using internal strategies (i.e. reappraisal, distraction, acceptance, suppression).</li>
+                <li>Report how you feel as well as the strategies you used.</li>
+            </ol>
+        </div>
     `;
 
     clearButtons();
     addButton(createButton("Next", () => {
-       // showMessage("");
         experimentalSet();
     }));
 }
+
 
 
 
