@@ -1063,27 +1063,25 @@ function experimentalSet() {
                                                 console.log("Before showFixationCross call");
                                                 showFixationCross(() => {
                                                     console.log("Inside showFixationCross callback");
+
+                                                    participantChoices.push({
+                                                        part: "Experimental_Choice",
+                                                        decision: "watch",
+                                                        videoId: video.id,
+                                                        reactionTime: reactionTime,
+                                                        initialValence: initialValence,
+                                                        initialArousal: initialArousal,
+                                                        valence: valence, 
+                                                        arousal: arousal,
+                                                        strategies: selectedStrategies
+                                                    });
+
+                                                    currentVideoIndex++;
+
                                                     playNextVideo();
                                                 });
-                                            
-                                                participantChoices.push({
-                                                    part: "Experimental_Choice",
-                                                    decision: "watch",
-                                                    videoId: video.id,
-                                                    reactionTime: reactionTime,
-                                                    initialValence: initialValence,
-                                                    initialArousal: initialArousal,
-                                                    valence: valence, 
-                                                    arousal: arousal,
-                                                    strategies: selectedStrategies
-                                                });
-                                                console.log("After showFixationCross call");
                                             });                                            
                                         });
-                                        console.log("About to increment currentVideoIndex");
-                                        currentVideoIndex++;
-                                         console.log(`currentVideoIndex incremented, new value: ${currentVideoIndex}`);
-                                        console.log("Inside strategies callback function - end");
                                     });
                                 });
 
@@ -1114,24 +1112,26 @@ function experimentalSet() {
                                                         console.log("Before showFixationCross call");
                                                         showFixationCross(() => {
                                                             console.log("Inside showFixationCross callback");
+
+                                                            participantChoices.push({
+                                                                part: "Experimental_Choice",
+                                                                decision: "skip",
+                                                                videoId: video.id,
+                                                                reactionTime: reactionTime,
+                                                                forcedVideoId: randomVideo.id,
+                                                                initialValence: initialValence,
+                                                                initialArousal: initialArousal,
+                                                                valence: valence, 
+                                                                arousal: arousal,
+                                                                strategies: selectedStrategies
+                                                            });
+                                                            currentVideoIndex++;
+
                                                             playNextVideo();
                                                         });
                                                     
-                                                        participantChoices.push({
-                                                            part: "Experimental_Choice",
-                                                            decision: "skip",
-                                                            videoId: video.id,
-                                                            reactionTime: reactionTime,
-                                                            forcedVideoId: randomVideo.id,
-                                                            initialValence: initialValence,
-                                                            initialArousal: initialArousal,
-                                                            valence: valence, 
-                                                            arousal: arousal,
-                                                            strategies: selectedStrategies
-                                                        });
-                                                        console.log("After showFixationCross call");
-                                                    });
-                                                    
+
+                                                    });                                                    
                                                 });
                                             });
                                         };
@@ -1141,7 +1141,7 @@ function experimentalSet() {
                                             setDimness(dimnessLevel);  // Set initial dimness
                                         }, 100);
                                     };
-                                    currentVideoIndex++;
+
                                 });
     
                                 clearButtons();
