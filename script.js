@@ -571,17 +571,9 @@ function strategies(callback) {
 
 // //Experimental flow
 function instructions() {
-    showMessage("Welcome! Please press 'Next' to begin.");
-    clearButtons();
-    addButton(createButton("Next", () => {
-        showMessage("");
-        experimentalSet();
-    }));
-}
-
-function instructions() {
     let message = document.getElementById("message");
     message.style.display = 'block';  // 'inline' or 'inline-block', whatever suits your needs
+    
     message.innerHTML = `
         <strong>Welcome!</strong>
         <p>In this experiment you will be watching a series of videos and reporting how you feel. Please regulate your emotions in whatever way you see fit. Every trial, you will:</p>
