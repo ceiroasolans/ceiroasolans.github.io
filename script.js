@@ -1062,6 +1062,7 @@ function experimentalSet() {
                                             strategies((selectedStrategies) => {
                                                 console.log("Inside strategies callback function - start");
                                                 showFixationCross(playNextVideo);
+                                                playNextVideo();
 
                                                 participantChoices.push({
                                                     part: "Experimental_Choice",
@@ -1109,6 +1110,7 @@ function experimentalSet() {
                                                     strategies((selectedStrategies) => {
                                                         console.log("Inside strategies callback function - start");
                                                         showFixationCross(playNextVideo);
+                                                        playNextVideo();
     
                                                         participantChoices.push({
                                                             part: "Experimental_Choice",
