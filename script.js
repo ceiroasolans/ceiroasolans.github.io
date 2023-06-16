@@ -593,6 +593,19 @@ function strategies(callback) {
         optionContainer.style.cursor = "pointer";
         optionContainer.style.margin = "20px 0"; // Increase space around each option
 
+        optionContainer.addEventListener('click', function() {
+            try {
+                let checkbox = this.querySelector('input[type="checkbox"]');
+                let customCheckbox = this.querySelector('span');
+                strategiesData[option] = !checkbox.checked;
+                checkbox.checked = !checkbox.checked;
+                // Update the color of the checkbox when checked
+                customCheckbox.style.background = checkbox.checked ? "#000" : "#fff";
+            } catch (error) {
+                console.error('Error handling option click:', error);
+            }
+        });
+
         let checkboxContainer = document.createElement("div");
         checkboxContainer.style.display = "flex";
         checkboxContainer.style.alignItems = "center";
@@ -658,6 +671,7 @@ function strategies(callback) {
     strategiesContainer.style.visibility = "visible";
     strategiesContainer.style.display = "block";
 }
+
 
 
 
