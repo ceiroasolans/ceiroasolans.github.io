@@ -265,22 +265,20 @@ function createEmotionGraph(videoId, onSubmit) {
 
     // Mapping of emotions to coordinates
     const emotions = {
-        "Angry": [25, 90],
-        "Afraid": [10, 83],
+        "Anger": [25, 90],
+        "Fear": [10, 83],
        // "Horrified": [10, 73], //don't include?? 
-        "Disgusted": [10, 62],
-        "Sad": [10, 30],
+        "Disgust": [10, 62],
+        "Sadness": [10, 30],
         //"Fatigued": [35, 10],
-        "Calm": [63, 10],
+        "Calmness": [63, 10],
         //"Content": [75, 40],
-        "Joyous": [90, 65],
-       // "Adoration": [85, 55], //don't include?
-        "Awed": [70, 30],
-        "Excited": [85, 80],
+        "Joy": [90, 65],
+        "Affection": [85, 55], // Love and affection? or just Affection? 
+        "Awe": [70, 30],
+        "Excitement": [85, 80],
         //"Elated": [85, 80],
-        "Amused": [60, 90],
-
-        //"Excited": [65, 90]
+        "Amusement": [60, 90]
     };
 
 
