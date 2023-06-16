@@ -163,7 +163,7 @@ function startTimer() {  // Function to start the timer when buttons appear
 }
 
 
-//Function for Strategy Selection task only (SM)
+//Function for Stimulus Modification
 window.addEventListener('resize', function() {
     // Set the size and position of dimOverlay to match videoPlayer
     dimOverlay.style.width = videoPlayer.offsetWidth + 'px';
@@ -174,7 +174,6 @@ window.addEventListener('resize', function() {
 
 
 // Response variable 1: Interest
-
 function createFeedbackForm(videoId, onSubmit) {
     feedbackContainer.innerHTML = '';
 
@@ -390,7 +389,7 @@ function createEmotionGraph(videoId, onSubmit) {
     };
 
     emotionGraphContainer.style.display = "block";
-} //emotion circumplex
+} 
 
 // Response variable 2: List of emotions (erase "2" in name and mute previous to work)
 function createEmotionGraph2(videoId, onSubmit) {
@@ -477,94 +476,6 @@ function createEmotionGraph2(videoId, onSubmit) {
 }
 
 // Response variable 3: Strategies
-// function strategies(callback) {
-//     let strategiesContainer = document.getElementById('strategiesContainer');
-//     if (!strategiesContainer) {
-//         console.error('strategiesContainer is not defined');
-//         return;
-//     }
-
-//     strategiesContainer.innerHTML = '';
-//     strategiesContainer.style.padding = "20px"; // Add more space around the container
-
-//     const strategiesTitle = document.createElement("h2");
-//     strategiesTitle.textContent = "Which strategies did you use?";
-//     strategiesTitle.style.fontWeight = "bold";
-//     strategiesTitle.style.textAlign = "center";
-//     strategiesTitle.style.marginBottom = "20px"; // Add more space below the title
-
-//     strategiesContainer.appendChild(strategiesTitle);
-
-//     const strategiesOptions = ["Stimulus selection", "Stimulus modification", "Reappraisal", "Distraction", "Acceptance", "Suppression"];
-//     let strategiesData = {};
-
-//     for (let option of strategiesOptions) {
-//         let optionContainer = document.createElement("div");
-//         optionContainer.style.display = "flex";
-//         optionContainer.style.alignItems = "center";
-//         optionContainer.style.cursor = "pointer";
-//         optionContainer.style.margin = "20px 0"; // Increase space around each option
-
-//         let checkbox = document.createElement("input");
-//         checkbox.type = "checkbox";
-//         checkbox.id = option;
-//         checkbox.style.display = "none"; // Hide the original checkbox
-
-//         let label = document.createElement("label");
-//         label.htmlFor = option;
-//         label.innerText = option;
-//         label.style.fontSize = "20px"; // Increase font size
-//         label.style.fontWeight = "500"; // Increase font weight
-//         label.style.marginLeft = "10px"; // Add space between the checkbox and the text
-
-//         // Create a new checkbox using a span element
-//         let customCheckbox = document.createElement("span");
-//         customCheckbox.style.display = "inline-block";
-//         customCheckbox.style.width = "20px"; // Width of the custom checkbox
-//         customCheckbox.style.height = "20px"; // Height of the custom checkbox
-//         customCheckbox.style.background = "#fff"; // Color of the checkbox when not checked
-//         customCheckbox.style.border = "2px solid #000"; // Border of the checkbox
-//         customCheckbox.style.boxSizing = "border-box"; // Make sure the border is included in the checkbox size
-//         customCheckbox.style.marginRight = "10px"; // Add space between the checkbox and the text
-
-//         checkbox.addEventListener('change', function() {
-//             try {
-//                 strategiesData[option] = this.checked;
-//                 // Update the color of the checkbox when checked
-//                 customCheckbox.style.background = this.checked ? "#000" : "#fff";
-//             } catch (error) {
-//                 console.error('Error handling checkbox state change:', error);
-//             }
-//         });
-
-//         optionContainer.appendChild(checkbox);
-//         optionContainer.appendChild(customCheckbox);
-//         optionContainer.appendChild(label);
-
-//         strategiesContainer.appendChild(optionContainer);
-//     }
-
-//     const strategiesSubmitButton = document.createElement("button");
-//     strategiesSubmitButton.innerText = "Submit";
-//     strategiesSubmitButton.disabled = false;
-//     strategiesSubmitButton.style.display = "block";
-//     strategiesSubmitButton.style.margin = "20px auto";
-
-//     strategiesSubmitButton.addEventListener('click', () => {
-//         if (typeof callback === 'function') {
-//             callback(strategiesData);
-//         } else {
-//             console.error('callback is not a function');
-//         }
-//         strategiesSubmitButton.disabled = true;
-//         strategiesContainer.style.display = "none";
-//     });
-
-//     strategiesContainer.appendChild(strategiesSubmitButton);
-//     strategiesContainer.style.visibility = "visible";
-//     strategiesContainer.style.display = "block";
-// }
-
 function strategies(callback) {
     let strategiesContainer = document.getElementById('strategiesContainer');
     if (!strategiesContainer) {
@@ -678,7 +589,7 @@ function strategies(callback) {
 
 
 
-// //Experimental flow
+// Instructions
 function instructions() {
     let message = document.getElementById("message");
     message.innerHTML = `
@@ -703,24 +614,14 @@ function instructions() {
     }));
 }
 
-
-
-
-
-
-
+//Draw random video
 function playRandomVideo(excludeVideoId, videos) {
     let remainingVideos = videos.filter(video => video.id !== excludeVideoId);
     let randomVideoIndex = Math.floor(Math.random() * remainingVideos.length);
     return remainingVideos[randomVideoIndex];
 }
 
-
-
-
-
-
-
+//Situation Selection task
 // function experimentalSet() {
 //     clearButtons();
 //     const shuffledVideos = shuffleArray([...videos]);
@@ -870,8 +771,7 @@ function playRandomVideo(excludeVideoId, videos) {
 //     playNextVideo();
 // } // Situation Selection Task
 
-
-
+//Strategy Selection task
 function experimentalSet() {
     clearButtons();
     const shuffledVideos = shuffleArray([...videos]);
@@ -1061,21 +961,17 @@ function experimentalSet() {
 
 setDimness(dimnessLevel);  // Set initial dimness
 playNextVideo();
-} // Strategy Selection Task
+} 
 
 
-
-
-
-
-
-
+// Byebye
 function instructions3() {
     showMessage("Congratulations! You have completed this study :)");
     clearButtons();
 	generateAndUploadCSV(participantChoices);
 	
 }
+
 
 
 
