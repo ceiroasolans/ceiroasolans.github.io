@@ -578,8 +578,8 @@ function instructions() {
             <p style="margin-top: 20px;">In this experiment you will be watching a series of videos and reporting how you feel. Please regulate your emotions in whatever way you see fit. Every trial, you will:</p>
             <ol style="padding-left: 30px; margin-top: 20px;">
                 <li style="margin-bottom: 10px;"><u>Watch a screenshot</u> from a video for 3 seconds</li>
-                <li style="margin-bottom: 10px;"><u>Rate</u> how you <u>expect to feel</u> if you watch it, and <u>how interested</u> you are in watching it.</li>
-                <li style="margin-bottom: 10px;"><u>Decide whether you want to watch the video</u>. If you decide to skip it, you will be shown another video at random. If you don't decide within 7 seconds, something will be decided for you at random.</li>
+                <li style="margin-bottom: 10px;"><u>Rate how </u>you <u>expect to feel</u> if you watch it, and <u>how interested</u> you are in watching it.</li>
+                <li style="margin-bottom: 10px;"><u>Decide whether to watch the video</u>. If you decide to skip it, you will be shown another video at random. If you don't decide within 7 seconds, something will be decided for you at random.</li>
                 <li style="margin-bottom: 10px;"><u>Watch the video</u>. You may <u>regulate your emotions</u> by changing the intensity of the video (press "f" to dim it, or "j" to make it more vivid), or by using internal strategies (i.e. reappraisal, distraction, acceptance, suppression).</li>
                 <li style="margin-bottom: 10px;"><u>Report the strategies you used</u> and how you feel.</li>
             </ol>
