@@ -24,15 +24,15 @@
 <body>
     <div id="mainContainer">
         <video id="videoPlayer" width="640" height="360" style="display:none;"></video>
+        <div id="dimOverlay" style="display:none;"></div>  <!-- Strategy Selection -->
         <img id="videoImg" src="" alt="Video Thumbnail" width="640" height="360" style="display: none;">
         <div id="fixationCross" style="display:none;">+</div>
         <p id="message" style="display:none;"></p>
         <div id="buttonsContainer"></div>
         <div id="feedbackContainer" style="display:none;"></div> 
-        <div id="dimOverlay" style="display:none;"></div>  <!-- Strategy Selection -->
-        <div id="strategiesContainer" style="display:none;"></div> <!-- Strategy Selection -->
 
 <div id="emotionGraphContainer" style="display: none;">
+    <div id="strategiesContainer" style="display:none;"></div> <!-- Strategy Selection -->
     <h2>How do you feel?</h2>
     <svg id="emotionGraph" width="400" height="400" style="background: #eee; display: block; margin: auto;">
         <text x="20" y="225" transform="rotate(-90 20,225)" style="font-weight: bold;">Negative</text>
