@@ -12,7 +12,7 @@ body {
     text-align: center;
 }
 
-/* Comment this out when not running strategy selection task  
+/* Comment this out when not running strategy selection task  */
 #dimOverlay {
     position: absolute;
     width: 100%;
@@ -24,7 +24,7 @@ body {
     z-index: 2;
     pointer-events: none;  
 } 
-*/
+
 
 
 #videoPlayer {
