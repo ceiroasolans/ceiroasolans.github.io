@@ -1191,6 +1191,7 @@ function clearButtons() {
 }
 
 function showFixationCross(callback) {
+    console.log("showFixationCross called, calling callback function");
     fixationCross.style.display = "block";
     setTimeout(() => {
         fixationCross.style.display = "none";
