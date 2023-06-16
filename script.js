@@ -661,7 +661,7 @@ function playRandomVideo(excludeVideoId, videos) {
     
 //                                         // Change the text "How do you feel?" to "How do you think this video will make you feel?"
 //                                         const emotionGraphTitle = emotionGraphContainer.querySelector("h2");
-//                                         emotionGraphTitle.textContent = "How do you feel?";
+//                                         emotionGraphTitle.textContent = "What do you feel?";
     
 //                                         createEmotionGraph(video.id, (valence, arousal) => {
 //                                             showFixationCross(playNextVideo);
@@ -699,7 +699,7 @@ function playRandomVideo(excludeVideoId, videos) {
     
 //                                                 // Change the text "How do you feel?" to "How do you think this video will make you feel?"
 //                                                 const emotionGraphTitle = emotionGraphContainer.querySelector("h2");
-//                                                 emotionGraphTitle.textContent = "How do you feel?";
+//                                                 emotionGraphTitle.textContent = "What do you feel?";
     
 //                                                 createEmotionGraph(video.id, (valence, arousal) => {
 //                                                     showFixationCross(playNextVideo);
@@ -812,7 +812,7 @@ function experimentalSet() {
                         // Change the text "How do you feel?" to "How do you think this video will make you feel?"
                         const emotionGraphContainer = document.getElementById("emotionGraphContainer");
                         const emotionGraphTitle = emotionGraphContainer.querySelector("h2");
-                        emotionGraphTitle.textContent = "How do you think this video will make you feel?";
+                        emotionGraphTitle.textContent = "What do you think this video will make you feel?";
 
                         createEmotionGraph(video.id, (initialValence, initialArousal) => {
                             createFeedbackForm(video.id, (rating) => {
@@ -843,7 +843,7 @@ function experimentalSet() {
                                     // Change the text "How do you feel?" to "How do you feel now?"
                                     const emotionGraphContainer = document.getElementById("emotionGraphContainer");
                                     const emotionGraphTitle = emotionGraphContainer.querySelector("h2");
-                                    emotionGraphTitle.textContent = "How do you feel now?";
+                                    emotionGraphTitle.textContent = "What do you feel now?";
 
                                     createEmotionGraph(video.id, (valence, arousal) => {
                                         strategies((selectedStrategies) => {
@@ -885,7 +885,7 @@ function experimentalSet() {
                                             // Change the text "How do you feel?" to "How do you feel now?"
                                             const emotionGraphContainer = document.getElementById("emotionGraphContainer");
                                             const emotionGraphTitle = emotionGraphContainer.querySelector("h2");
-                                            emotionGraphTitle.textContent = "How do you feel now?";
+                                            emotionGraphTitle.textContent = "What do you feel now?";
 
                                             createEmotionGraph(video.id, (valence, arousal) => {
                                                 strategies((selectedStrategies) => {
