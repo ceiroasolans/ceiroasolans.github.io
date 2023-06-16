@@ -1060,6 +1060,7 @@ function experimentalSet() {
 
                                         createEmotionGraph(video.id, (valence, arousal) => {
                                             strategies((selectedStrategies) => {
+                                                console.log("Inside strategies callback function - start");
                                                 showFixationCross(playNextVideo);
 
                                                 participantChoices.push({
@@ -1075,7 +1076,10 @@ function experimentalSet() {
                                                 });
                                             });
                                         });
+                                        console.log("About to increment currentVideoIndex");
                                         currentVideoIndex++;
+                                         console.log(`currentVideoIndex incremented, new value: ${currentVideoIndex}`);
+                                        console.log("Inside strategies callback function - end");
                                     });
                                 });
 
@@ -1103,6 +1107,7 @@ function experimentalSet() {
 
                                                 createEmotionGraph(video.id, (valence, arousal) => {
                                                     strategies((selectedStrategies) => {
+                                                        console.log("Inside strategies callback function - start");
                                                         showFixationCross(playNextVideo);
     
                                                         participantChoices.push({
