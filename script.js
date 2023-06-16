@@ -570,6 +570,7 @@ function strategies(callback) {
 
 
 // //Experimental flow
+
 function instructions() {
     let message = document.getElementById("message");
     message.innerHTML = `
@@ -585,6 +586,7 @@ function instructions() {
             </ol>
         </div>
     `;
+    message.style.display = 'block';  // Make sure the message is visible
 
     clearButtons();
     addButton(createButton("Next", () => {
