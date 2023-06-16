@@ -594,6 +594,12 @@ function instructions() {
     }));
 }
 
+
+
+
+
+
+
 function playRandomVideo(excludeVideoId, videos) {
     let remainingVideos = videos.filter(video => video.id !== excludeVideoId);
     let randomVideoIndex = Math.floor(Math.random() * remainingVideos.length);
@@ -950,9 +956,6 @@ function playRandomVideo(excludeVideoId, videos) {
 
 
 //Test
-
-
-
 function experimentalSet() {
     clearButtons();
     const shuffledVideos = shuffleArray([...videos]);
@@ -985,8 +988,8 @@ function experimentalSet() {
 
         videoPlayer.onended = videoPlayer.onpause = () => {
             cumulativeTime += Date.now() - startTime; // add time of current play to cumulativeTime
-            if (cumulativeTime < 4000) {
-                // check if cumulativeTime is less than 4 seconds
+            if (cumulativeTime < 3000) {
+                // check if cumulativeTime is less than 3 seconds
                 startTime = Date.now(); // reset startTime for the next play
                 videoPlayer.play(); // immediately replay video
             } else {
