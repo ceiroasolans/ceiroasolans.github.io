@@ -8,7 +8,7 @@ const message = document.getElementById("message");
 const buttonsContainer = document.getElementById("buttonsContainer");
 
  
-// Other
+// Videos
 const videos = [
     { src: "0036.mp4", type: "positive" },
     { src: "0055.mp4", type: "positive" },
@@ -149,8 +149,6 @@ const videos = [
     { src: "2070.mp4", type: "positive" }
   ];
   
-  
-  
   for(let i = 0; i < videos.length; i++) {
     videos[i].id = i.toString();
 }
@@ -165,7 +163,18 @@ function startTimer() {  // Function to start the timer when buttons appear
 }
 
 
-// Create response variables
+//Function for Strategy Selection task only (SM)
+window.addEventListener('resize', function() {
+    // Set the size and position of dimOverlay to match videoPlayer
+    dimOverlay.style.width = videoPlayer.offsetWidth + 'px';
+    dimOverlay.style.height = videoPlayer.offsetHeight + 'px';
+});
+
+
+
+
+// Response variable 1: Interest
+
 function createFeedbackForm(videoId, onSubmit) {
     feedbackContainer.innerHTML = '';
 
@@ -194,12 +203,9 @@ function createFeedbackForm(videoId, onSubmit) {
     feedbackContainer.appendChild(feedbackContainer.slider);
     feedbackContainer.appendChild(feedbackContainer.button);
     feedbackContainer.style.display = "block";
-}
+} 
 
-
-
-
-//REAL GRAPH FUNCTION
+//  Response variable 2: Emotion circumplex
 function createEmotionGraph(videoId, onSubmit) {
     const emotionGraphContainer = document.getElementById('emotionGraphContainer');
     const emotionSubmit = document.getElementById('emotionSubmit');
@@ -384,93 +390,179 @@ function createEmotionGraph(videoId, onSubmit) {
     };
 
     emotionGraphContainer.style.display = "block";
+} //emotion circumplex
+
+// Response variable 2: List of emotions (erase "2" in name and mute previous to work)
+function createEmotionGraph2(videoId, onSubmit) {
+    const emotionGraphContainer = document.getElementById('emotionGraphContainer');
+    emotionGraphContainer.style.display = "flex";  // Change layout to Flexbox
+    emotionGraphContainer.style.flexDirection = "row";
+    emotionGraphContainer.style.justifyContent = "space-around";
+
+    const emotionSubmit = document.createElement("button");
+    emotionSubmit.id = 'emotionSubmit';
+    emotionSubmit.textContent = 'Submit';
+    emotionSubmit.disabled = true; // Disable the submit button initially
+
+    // Mapping of emotions to valence categories
+    const emotions = {
+        "Positive": ["Adoration", "Amusement", "Excitement", "Joy", "Romance"],
+        "Other": ["Craving", "Calmness", "Awe", "Interest"],
+        "Negative": ["Anger", "Sadness", "Disgust", "Fear", "Horror"]
+    };
+
+    // Function to create an emotion item in the list
+    function createEmotionItem(emotion) {
+        const emotionItem = document.createElement("li");
+        emotionItem.textContent = emotion;
+        emotionItem.style.cursor = "pointer"; // Change cursor to pointer when hovering over the item
+
+        // Add a click event listener to the item
+        emotionItem.addEventListener("click", function() {
+            if (emotionItem.classList.contains("selected")) {
+                emotionItem.classList.remove("selected"); // Deselect the item if it was already selected
+            } else {
+                emotionItem.classList.add("selected"); // Select the item if it wasn't selected
+            }
+
+            // Check if any emotions are selected and enable/disable the submit button accordingly
+            const selectedEmotions = document.getElementsByClassName('selected');
+            emotionSubmit.disabled = selectedEmotions.length === 0;
+        });
+
+        return emotionItem;
+    }
+
+    // Clear any existing emotions from the container
+    while (emotionGraphContainer.firstChild) {
+        emotionGraphContainer.firstChild.remove();
+    }
+
+    // Create the list of emotions
+    for (let valence in emotions) {
+        const valenceContainer = document.createElement("div");  // Container for each valence category
+        valenceContainer.style.flex = "1";  // Distribute space equally between the categories
+        valenceContainer.style.margin = "10px";  // Add some margin around each category
+        valenceContainer.style.display = "flex";  // Use Flexbox for the layout
+        valenceContainer.style.flexDirection = "column";  // Stack the items vertically
+        valenceContainer.style.alignItems = "center";  // Center the items
+
+        const valenceHeader = document.createElement("h3");
+        valenceHeader.textContent = valence;
+        valenceContainer.appendChild(valenceHeader);
+
+        const emotionList = document.createElement("ul");
+        for (let emotion of emotions[valence]) {
+            const emotionItem = createEmotionItem(emotion);
+            emotionList.appendChild(emotionItem);
+        }
+        valenceContainer.appendChild(emotionList);
+        emotionGraphContainer.appendChild(valenceContainer);
+    }
+
+    emotionGraphContainer.appendChild(emotionSubmit); // Add submit button to container
+
+    // Handle submit button click
+    emotionSubmit.onclick = () => {
+        const selectedEmotions = document.getElementsByClassName('selected');
+        let emotionsArray = [];
+        for (let i = 0; i < selectedEmotions.length; i++) {
+            emotionsArray.push(selectedEmotions[i].textContent);
+        }
+        emotionGraphContainer.style.display = "none";
+        onSubmit(emotionsArray);
+    };
+
+    emotionGraphContainer.style.display = "block";
 }
 
-// List of emotions
-// function createEmotionGraph(videoId, onSubmit) {
-//     const emotionGraphContainer = document.getElementById('emotionGraphContainer');
-//     emotionGraphContainer.style.display = "flex";  // Change layout to Flexbox
-//     emotionGraphContainer.style.flexDirection = "row";
-//     emotionGraphContainer.style.justifyContent = "space-around";
+// Response variable 3: Strategies
+function strategies(callback) {
+    let strategiesContainer = document.getElementById('strategiesContainer');
+    if (!strategiesContainer) {
+        console.error('strategiesContainer is not defined');
+        return;
+    }
 
-//     const emotionSubmit = document.createElement("button");
-//     emotionSubmit.id = 'emotionSubmit';
-//     emotionSubmit.textContent = 'Submit';
-//     emotionSubmit.disabled = true; // Disable the submit button initially
+    strategiesContainer.innerHTML = '';
+    strategiesContainer.style.padding = "20px"; // Add more space around the container
 
-//     // Mapping of emotions to valence categories
-//     const emotions = {
-//         "Positive": ["Adoration", "Amusement", "Excitement", "Joy", "Romance"],
-//         "Other": ["Craving", "Calmness", "Awe", "Interest"],
-//         "Negative": ["Anger", "Sadness", "Disgust", "Fear", "Horror"]
-//     };
+    const strategiesTitle = document.createElement("h2");
+    strategiesTitle.textContent = "Which strategies did you use?";
+    strategiesTitle.style.fontWeight = "bold";
+    strategiesTitle.style.textAlign = "center";
+    strategiesTitle.style.marginBottom = "20px"; // Add more space below the title
 
-//     // Function to create an emotion item in the list
-//     function createEmotionItem(emotion) {
-//         const emotionItem = document.createElement("li");
-//         emotionItem.textContent = emotion;
-//         emotionItem.style.cursor = "pointer"; // Change cursor to pointer when hovering over the item
+    strategiesContainer.appendChild(strategiesTitle);
 
-//         // Add a click event listener to the item
-//         emotionItem.addEventListener("click", function() {
-//             if (emotionItem.classList.contains("selected")) {
-//                 emotionItem.classList.remove("selected"); // Deselect the item if it was already selected
-//             } else {
-//                 emotionItem.classList.add("selected"); // Select the item if it wasn't selected
-//             }
+    const strategiesOptions = ["Stimulus selection", "Stimulus modification", "Reappraisal", "Distraction", "Acceptance", "Suppression"];
+    let strategiesData = {};
 
-//             // Check if any emotions are selected and enable/disable the submit button accordingly
-//             const selectedEmotions = document.getElementsByClassName('selected');
-//             emotionSubmit.disabled = selectedEmotions.length === 0;
-//         });
+    for (let option of strategiesOptions) {
+        let optionContainer = document.createElement("div");
+        optionContainer.style.display = "flex";
+        optionContainer.style.alignItems = "center";
+        optionContainer.style.cursor = "pointer";
+        optionContainer.style.margin = "20px 0"; // Increase space around each option
 
-//         return emotionItem;
-//     }
+        let checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.id = option;
+        checkbox.style.display = "none"; // Hide the original checkbox
 
-//     // Clear any existing emotions from the container
-//     while (emotionGraphContainer.firstChild) {
-//         emotionGraphContainer.firstChild.remove();
-//     }
+        let label = document.createElement("label");
+        label.htmlFor = option;
+        label.innerText = option;
+        label.style.fontSize = "20px"; // Increase font size
+        label.style.fontWeight = "500"; // Increase font weight
+        label.style.marginLeft = "10px"; // Add space between the checkbox and the text
 
-//     // Create the list of emotions
-//     for (let valence in emotions) {
-//         const valenceContainer = document.createElement("div");  // Container for each valence category
-//         valenceContainer.style.flex = "1";  // Distribute space equally between the categories
-//         valenceContainer.style.margin = "10px";  // Add some margin around each category
-//         valenceContainer.style.display = "flex";  // Use Flexbox for the layout
-//         valenceContainer.style.flexDirection = "column";  // Stack the items vertically
-//         valenceContainer.style.alignItems = "center";  // Center the items
+        // Create a new checkbox using a span element
+        let customCheckbox = document.createElement("span");
+        customCheckbox.style.display = "inline-block";
+        customCheckbox.style.width = "20px"; // Width of the custom checkbox
+        customCheckbox.style.height = "20px"; // Height of the custom checkbox
+        customCheckbox.style.background = "#fff"; // Color of the checkbox when not checked
+        customCheckbox.style.border = "2px solid #000"; // Border of the checkbox
+        customCheckbox.style.boxSizing = "border-box"; // Make sure the border is included in the checkbox size
+        customCheckbox.style.marginRight = "10px"; // Add space between the checkbox and the text
 
-//         const valenceHeader = document.createElement("h3");
-//         valenceHeader.textContent = valence;
-//         valenceContainer.appendChild(valenceHeader);
+        checkbox.addEventListener('change', function() {
+            try {
+                strategiesData[option] = this.checked;
+                // Update the color of the checkbox when checked
+                customCheckbox.style.background = this.checked ? "#000" : "#fff";
+            } catch (error) {
+                console.error('Error handling checkbox state change:', error);
+            }
+        });
 
-//         const emotionList = document.createElement("ul");
-//         for (let emotion of emotions[valence]) {
-//             const emotionItem = createEmotionItem(emotion);
-//             emotionList.appendChild(emotionItem);
-//         }
-//         valenceContainer.appendChild(emotionList);
-//         emotionGraphContainer.appendChild(valenceContainer);
-//     }
+        optionContainer.appendChild(checkbox);
+        optionContainer.appendChild(customCheckbox);
+        optionContainer.appendChild(label);
 
-//     emotionGraphContainer.appendChild(emotionSubmit); // Add submit button to container
+        strategiesContainer.appendChild(optionContainer);
+    }
 
-//     // Handle submit button click
-//     emotionSubmit.onclick = () => {
-//         const selectedEmotions = document.getElementsByClassName('selected');
-//         let emotionsArray = [];
-//         for (let i = 0; i < selectedEmotions.length; i++) {
-//             emotionsArray.push(selectedEmotions[i].textContent);
-//         }
-//         emotionGraphContainer.style.display = "none";
-//         onSubmit(emotionsArray);
-//     };
+    const strategiesSubmitButton = document.createElement("button");
+    strategiesSubmitButton.innerText = "Submit";
+    strategiesSubmitButton.disabled = false;
+    strategiesSubmitButton.style.display = "block";
+    strategiesSubmitButton.style.margin = "20px auto";
 
-//     emotionGraphContainer.style.display = "block";
-// }
+    strategiesSubmitButton.addEventListener('click', () => {
+        if (typeof callback === 'function') {
+            callback(strategiesData);
+        } else {
+            console.error('callback is not a function');
+        }
+        strategiesSubmitButton.disabled = true;
+        strategiesContainer.style.display = "none";
+    });
 
-
+    strategiesContainer.appendChild(strategiesSubmitButton);
+    strategiesContainer.style.display = "block";
+}
 
 
 
@@ -534,7 +626,7 @@ function experimentalSet() {
                         // Change the text "How do you feel?" to "How do you think this video will make you feel?"
                         const emotionGraphContainer = document.getElementById("emotionGraphContainer");
                         const emotionGraphTitle = emotionGraphContainer.querySelector("h2");
-                        emotionGraphTitle.textContent = "How do you think this video will make you feel?";
+                        emotionGraphTitle.textContent = "What do you think this video will make you feel?";
     
                         createEmotionGraph(video.id, (initialValence, initialArousal) => {
                             // After initial emotion graph, create feedback form
@@ -641,7 +733,198 @@ function experimentalSet() {
     
 
     playNextVideo();
-}
+} // Situation Selection Task
+
+// function experimentalSet() {
+//     clearButtons();
+//     const shuffledVideos = shuffleArray([...videos]);
+//     let currentVideoIndex = 0;
+//     const dimOverlay = document.getElementById('dimOverlay');
+//     let dimnessLevel = 0.5;  // initial dimness level
+
+//     function setDimness(level) {
+//         dimOverlay.style.backgroundColor = `rgba(0, 0, 0, ${level})`;
+//     }
+
+//     function playVideoUntil3Seconds(onComplete) {
+//         let startTime = Date.now();
+//         let cumulativeTime = 0;
+//         videoPlayer.play();
+
+//         const adjustDimness = (event) => {
+//             if (event.key === 'f') {
+//                 dimnessLevel = Math.min(1, dimnessLevel + 0.15);
+//             } else if (event.key === 'j') {
+//                 dimnessLevel = Math.max(0, dimnessLevel - 0.15);
+//             }
+//             setDimness(dimnessLevel);
+//         };
+
+//         document.body.focus();
+
+//         // Attach the event listener
+//         document.addEventListener('keyup', adjustDimness);
+
+//         videoPlayer.onended = videoPlayer.onpause = () => {
+//             cumulativeTime += Date.now() - startTime; // add time of current play to cumulativeTime
+//             if (cumulativeTime < 3000) {
+//                 // check if cumulativeTime is less than 3 seconds
+//                 startTime = Date.now(); // reset startTime for the next play
+//                 videoPlayer.play(); // immediately replay video
+//             } else {
+//                 videoPlayer.onended = videoPlayer.onpause = null; // remove the listeners once done
+//                 document.removeEventListener('keyup', adjustDimness); // Remove the event listener when done
+//                 dimOverlay.style.display = 'none'; // hide dimOverlay when video stops
+//                 onComplete();
+//             }
+//         };
+//     }
+
+//     function playNextVideo() {
+//         if (currentVideoIndex < shuffledVideos.length) {
+//             dimnessLevel = 0.5;  // Reset dimness level
+//             setDimness(dimnessLevel);  // Set initial dimness
+//             const video = shuffledVideos[currentVideoIndex];
+//             videoPlayer.src = video.src;
+//             videoPlayer.onloadedmetadata = () => {
+//                 videoPlayer.currentTime = videoPlayer.duration * 0.6; // Seek to 60% of the video's duration
+//                 videoPlayer.onseeked = () => {
+//                     videoPlayer.onseeked = null;
+//                     videoPlayer.pause(); // Pause the video after seeking
+//                     videoPlayer.style.display = "block"; // Show the video still for 3 seconds
+
+//                     dimOverlay.style.width = videoPlayer.offsetWidth + 'px';
+//                     dimOverlay.style.height = videoPlayer.offsetHeight + 'px';
+//                     dimOverlay.style.display = 'block'; // Display dimOverlay
+//                     setDimness(dimnessLevel);  // Set initial dimness
+
+//                     setTimeout(() => {
+//                         videoPlayer.style.display = "none"; // Hide the video for emotion graph
+//                         dimOverlay.style.display = 'none';
+
+//                         // Change the text "How do you feel?" to "How do you think this video will make you feel?"
+//                         const emotionGraphContainer = document.getElementById("emotionGraphContainer");
+//                         const emotionGraphTitle = emotionGraphContainer.querySelector("h2");
+//                         emotionGraphTitle.textContent = "How do you think this video will make you feel?";
+
+//                         createEmotionGraph(video.id, (initialValence, initialArousal) => {
+//                             createFeedbackForm(video.id, (rating) => {
+//                                 feedbackContainer.style.display = "none";
+//                                 // Show the video again for choice
+//                                 videoPlayer.style.display = "block";
+//                                 dimOverlay.style.display = 'block';
+//                                 let watchButton;
+//                                 let skipButton;
+
+    
+//                             const buttonTimeout = setTimeout(() => {
+//                                 const randomButton = Math.random() < 0.5 ? watchButton : skipButton;
+//                                 randomButton.click();
+//                             }, 7000);
+
+//                             watchButton = createButton("Choose", (reactionTime) => {
+//                                 clearTimeout(buttonTimeout);
+//                                 watchButton.style.display = "none";
+//                                 skipButton.style.display = "none";
+
+//                                 videoPlayer.currentTime = 0; // Reset the video to the start
+
+//                                 playVideoUntil3Seconds(() => {
+//                                     videoPlayer.style.display = "none";
+//                                     clearButtons();
+
+//                                     // Change the text "How do you feel?" to "How do you feel now?"
+//                                     const emotionGraphContainer = document.getElementById("emotionGraphContainer");
+//                                     const emotionGraphTitle = emotionGraphContainer.querySelector("h2");
+//                                     emotionGraphTitle.textContent = "How do you feel now?";
+
+//                                     createEmotionGraph(video.id, (valence, arousal) => {
+//                                         strategies((selectedStrategies) => {
+//                                             showFixationCross(playNextVideo);
+
+//                                             participantChoices.push({
+//                                                 part: "Experimental_Choice",
+//                                                 decision: "watch",
+//                                                 videoId: video.id,
+//                                                 reactionTime: reactionTime,
+//                                                 initialValence: initialValence,
+//                                                 initialArousal: initialArousal,
+//                                                 valence: valence, 
+//                                                 arousal: arousal,
+//                                                 strategies: selectedStrategies
+//                                             });
+//                                         });
+//                                     });
+//                                     currentVideoIndex++;
+//                                 });
+//                             });
+
+//                             skipButton = createButton("Avoid", (reactionTime) => {
+//                                 clearTimeout(buttonTimeout);
+//                                 watchButton.style.display = "none";
+//                                 skipButton.style.display = "none";
+
+//                                 const randomVideo = playRandomVideo(video.id, videos);
+        
+//                                 videoPlayer.src = randomVideo.src;
+//                                 videoPlayer.onloadedmetadata = () => {
+//                                     videoPlayer.currentTime = 0; // Reset the video to the start
+//                                     videoPlayer.oncanplay = () => {
+//                                         videoPlayer.oncanplay = null;
+//                                         playVideoUntil3Seconds(() => {
+//                                             videoPlayer.style.display = "none";
+//                                             clearButtons();
+        
+//                                             // Change the text "How do you feel?" to "How do you feel now?"
+//                                             const emotionGraphContainer = document.getElementById("emotionGraphContainer");
+//                                             const emotionGraphTitle = emotionGraphContainer.querySelector("h2");
+//                                             emotionGraphTitle.textContent = "How do you feel now?";
+
+//                                             createEmotionGraph(video.id, (valence, arousal) => {
+//                                                 strategies((selectedStrategies) => {
+//                                                     showFixationCross(playNextVideo);
+        
+//                                                     participantChoices.push({
+//                                                         part: "Experimental_Choice",
+//                                                         decision: "skip",
+//                                                         videoId: video.id,
+//                                                         reactionTime: reactionTime,
+//                                                         forcedVideoId: randomVideo.id,
+//                                                         initialValence: initialValence,
+//                                                         initialArousal: initialArousal,
+//                                                         valence: valence, 
+//                                                         arousal: arousal,
+//                                                         strategies: selectedStrategies
+//                                                     });
+//                                                 });
+//                                             });
+//                                         });
+//                                     };
+//                                     setTimeout(() => {
+//                                         dimOverlay.style.width = videoPlayer.offsetWidth + 'px';
+//                                         dimOverlay.style.height = videoPlayer.offsetHeight + 'px';
+//                                         setDimness(dimnessLevel);  // Set initial dimness
+//                                     }, 100);
+//                                 };
+//                                 currentVideoIndex++;
+//                             });
+        
+//                             clearButtons();
+//                             addButton(watchButton);
+//                             addButton(skipButton);
+//                         });
+//                     });
+//                 }, 3000);
+//             };
+//         };
+//     } else {
+//         instructions3();
+//     }
+// }
+
+// setDimness(dimnessLevel);  // Set initial dimness
+// playNextVideo();
+// } // Strategy Selection Task
 
 
 
