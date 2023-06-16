@@ -1060,10 +1060,12 @@ function experimentalSet() {
 
                                         createEmotionGraph(video.id, (valence, arousal) => {
                                             strategies((selectedStrategies) => {
-                                                console.log("Inside strategies callback function - start");
-                                                showFixationCross(playNextVideo);
-                                                playNextVideo();
-
+                                                console.log("Before showFixationCross call");
+                                                showFixationCross(() => {
+                                                    console.log("Inside showFixationCross callback");
+                                                    playNextVideo();
+                                                });
+                                            
                                                 participantChoices.push({
                                                     part: "Experimental_Choice",
                                                     decision: "watch",
@@ -1075,7 +1077,8 @@ function experimentalSet() {
                                                     arousal: arousal,
                                                     strategies: selectedStrategies
                                                 });
-                                            });
+                                                console.log("After showFixationCross call");
+                                            });                                            
                                         });
                                         console.log("About to increment currentVideoIndex");
                                         currentVideoIndex++;
@@ -1108,10 +1111,12 @@ function experimentalSet() {
 
                                                 createEmotionGraph(video.id, (valence, arousal) => {
                                                     strategies((selectedStrategies) => {
-                                                        console.log("Inside strategies callback function - start");
-                                                        showFixationCross(playNextVideo);
-                                                        playNextVideo();
-    
+                                                        console.log("Before showFixationCross call");
+                                                        showFixationCross(() => {
+                                                            console.log("Inside showFixationCross callback");
+                                                            playNextVideo();
+                                                        });
+                                                    
                                                         participantChoices.push({
                                                             part: "Experimental_Choice",
                                                             decision: "skip",
@@ -1124,7 +1129,9 @@ function experimentalSet() {
                                                             arousal: arousal,
                                                             strategies: selectedStrategies
                                                         });
+                                                        console.log("After showFixationCross call");
                                                     });
+                                                    
                                                 });
                                             });
                                         };
