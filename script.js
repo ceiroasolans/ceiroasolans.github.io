@@ -574,7 +574,7 @@ function strategies(callback) {
 function instructions() {
     let message = document.getElementById("message");
     message.innerHTML = `
-        <div style="max-width: 600px; margin: auto;">
+        <div style="max-width: 600px; margin: auto; padding: 20px; font-family: 'Times New Roman', Times, serif; line-height: 1.5;">
             <strong>Welcome!</strong>
             <p>In this experiment you will be watching a series of videos and reporting how you feel. Please regulate your emotions in whatever way you see fit. Every trial, you will:</p>
             <ol style="text-indent: 20px;">
@@ -593,6 +593,7 @@ function instructions() {
         experimentalSet();
     }));
 }
+
 
 
 
