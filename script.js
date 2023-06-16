@@ -574,14 +574,14 @@ function instructions() {
     let message = document.getElementById("message");
     message.innerHTML = `
         <div style="max-width: 600px; margin: auto; padding: 20px; font-family: 'Helvetica Neue', Arial, sans-serif; line-height: 1.6; text-align: left; color: #333;">
-            <strong style="font-size: 1.3em;">Welcome!</strong>
+            <strong style="font-size: 1.3em; display: block; text-align: center; margin-bottom: 20px;">Welcome!</strong>
             <p style="margin-top: 20px;">In this experiment you will be watching a series of videos and reporting how you feel. Please regulate your emotions in whatever way you see fit. Every trial, you will:</p>
             <ol style="padding-left: 30px; margin-top: 20px;">
-                <li>Watch a screenshot from a video for 3 seconds</li>
-                <li>Rate how you expect to feel if you watch it, and how interested you are in watching it.</li>
-                <li>Decide whether you want to watch the video. If you decide to skip it, you will be shown another video at random. If you don't decide within 7 seconds, something will be decided for you at random.</li>
-                <li>Watch the video. You may regulate your emotions by changing the intensity of the video (press "f" to dim it, or "j" to make it more vivid), or by using internal strategies (i.e. reappraisal, distraction, acceptance, suppression).</li>
-                <li>Report how you feel as well as the strategies you used.</li>
+                <li style="margin-bottom: 10px;"><u>Watch a screenshot</u> from a video for 3 seconds</li>
+                <li style="margin-bottom: 10px;"><u>Rate</u> i) how you expect to feel if you watch it, and ii) how interested you are in watching it.</li>
+                <li style="margin-bottom: 10px;"><u>Decide</u> whether you want to watch the video. If you decide to skip it, you will be shown another video at random. If you don't decide within 7 seconds, something will be decided for you at random.</li>
+                <li style="margin-bottom: 10px;"><u>Watch</u> the video. You may <u>regulate your emotions</u> by changing the intensity of the video (press "f" to dim it, or "j" to make it more vivid), or by using internal strategies (i.e. reappraisal, distraction, acceptance, suppression).</li>
+                <li style="margin-bottom: 10px;"><u>Report</u> how you feel as well as the strategies you used.</li>
             </ol>
         </div>
     `;
@@ -592,6 +592,7 @@ function instructions() {
         experimentalSet();
     }));
 }
+
 
 
 
