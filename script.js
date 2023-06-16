@@ -1200,6 +1200,7 @@ function showFixationCross(callback) {
     fixationCross.style.display = "block";
     setTimeout(() => {
         fixationCross.style.display = "none";
+        console.log('showFixationCross completed, calling callback');
         callback();
     }, 1500);
 }
