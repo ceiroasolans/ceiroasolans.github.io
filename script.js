@@ -179,7 +179,7 @@ function createFeedbackForm(videoId, onSubmit) {
     feedbackContainer.innerHTML = '';
 
     const question = document.createElement("p");
-    question.textContent = "How interesting is this video?";
+    question.textContent = "How interesting is this?";
 
     feedbackContainer.slider = document.createElement("input");
     feedbackContainer.slider.type = "range";
