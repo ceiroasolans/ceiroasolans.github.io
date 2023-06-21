@@ -571,8 +571,8 @@ function instructions() {
             <strong style="font-size: 1.3em; display: block; text-align: center; margin-bottom: 20px;">Welcome!</strong>
             <p style="margin-top: 20px;">You're about to watch a series of videos.  </p>
             <ol style="padding-left: 30px; margin-top: 20px;">
-                <li style="margin-bottom: 10px;"> Please sit back and immerse yourself in them!</li>
-                <li style="margin-bottom: 10px;">After every video, you will be asked to rate how you feel and how interesting you found the video.</li>
+                <li style="margin-bottom: 10px;"> Please sit back and immerse yourself!</li>
+                <li style="margin-bottom: 10px;">After every video, you will be asked complete two simple ratings.</li>
             </ol>
         </div>
     `;
@@ -645,7 +645,10 @@ function experimentalSet() {
                             createFeedbackForm(video.id, (rating) => {
                                 feedbackContainer.style.display = "none";
                                 createEmotionGraph(video.id, (valence, arousal) => {
-                                    showFixationCross(playNextVideo);
+                                    showFixationCross(() => {
+                                        playNextVideo();
+                                        currentVideoIndex++; // Increment the index here
+                                    });
     
                                     participantChoices.push({
                                         part: "Experimental_Choice",
@@ -663,9 +666,6 @@ function experimentalSet() {
     
                     clearButtons();
                     addButton(watchButton);
-    
-                    // Increment the video index after initializing this video
-                    currentVideoIndex++;
                 };
             };
         } else {
@@ -674,8 +674,8 @@ function experimentalSet() {
     }
     
     playNextVideo();
-    
 }
+
 
 
 
