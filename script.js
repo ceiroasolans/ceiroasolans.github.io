@@ -11,7 +11,7 @@ const buttonsContainer = document.getElementById("buttonsContainer");
 // Videos
 const videos = [
     { src: "0074.mp4", type: "Amusement" },
-    // { src: "0574.mp4", type: "Amusement" },
+    { src: "0574.mp4", type: "Amusement" },
     // { src: "0656.mp4", type: "Amusement" },
     // { src: "1043.mp4", type: "Amusement" },
     // { src: "1145.mp4", type: "Amusement" },
@@ -21,7 +21,7 @@ const videos = [
     // { src: "2072.mp4", type: "Amusement" },
     // { src: "2083.mp4", type: "Amusement" },
     { src: "0124.mp4", type: "Anger" },
-    // { src: "0252.mp4", type: "Anger" },
+    { src: "0252.mp4", type: "Anger" },
     // { src: "0414.mp4", type: "Anger" },
     // { src: "0595.mp4", type: "Anger" },
     // { src: "0681.mp4", type: "Anger" },
@@ -31,7 +31,7 @@ const videos = [
     // { src: "2049.mp4", type: "Anger" },
     // { src: "2066.mp4", type: "Anger" },
     { src: "0090.mp4", type: "Calmness" },
-    // { src: "0339.mp4", type: "Calmness" },
+    { src: "0339.mp4", type: "Calmness" },
     // { src: "0493.mp4", type: "Calmness" },
     // { src: "0553.mp4", type: "Calmness" },
     // { src: "0580.mp4", type: "Calmness" },
@@ -41,7 +41,7 @@ const videos = [
     // { src: "1760.mp4", type: "Calmness" },
     // { src: "1835.mp4", type: "Calmness" },
     { src: "0110.mp4", type: "Craving" },
-    // { src: "0458.mp4", type: "Craving" },
+    { src: "0458.mp4", type: "Craving" },
     // { src: "0780.mp4", type: "Craving" },
     // { src: "0883.mp4", type: "Craving" },
     // { src: "0898.mp4", type: "Craving" },
@@ -51,7 +51,7 @@ const videos = [
     // { src: "1740.mp4", type: "Craving" },
     // { src: "1826.mp4", type: "Craving" },
     { src: "0187.mp4", type: "Disgust" },
-    // { src: "0235.mp4", type: "Disgust" },
+    { src: "0235.mp4", type: "Disgust" },
     // { src: "0355.mp4", type: "Disgust" },
     // { src: "0713.mp4", type: "Disgust" },
     // { src: "0876.mp4", type: "Disgust" },
@@ -61,7 +61,7 @@ const videos = [
     // { src: "1907.mp4", type: "Disgust" },
     // { src: "2018.mp4", type: "Disgust" },
     { src: "0041.mp4", type: "Excitement" },
-    // { src: "0202.mp4", type: "Excitement" },
+    { src: "0202.mp4", type: "Excitement" },
     // { src: "0402.mp4", type: "Excitement" },
     // { src: "0546.mp4", type: "Excitement" },
     // { src: "0550.mp4", type: "Excitement" },
@@ -72,7 +72,7 @@ const videos = [
     // { src: "1717.mp4", type: "Excitement" },
     // { src: "2021.mp4", type: "Excitement" },
     { src: "0379.mp4", type: "Fear" },
-    // { src: "0489.mp4", type: "Fear" },
+    { src: "0489.mp4", type: "Fear" },
     // { src: "0706.mp4", type: "Fear" },
     // { src: "1202.mp4", type: "Fear" },
     // { src: "1361.mp4", type: "Fear" },
@@ -83,7 +83,7 @@ const videos = [
     // { src: "1964.mp4", type: "Fear" },
     // { src: "2091.mp4", type: "Fear" },
     { src: "0723.mp4", type: "Interest" },
-    // { src: "0735.mp4", type: "Interest" },
+    { src: "0735.mp4", type: "Interest" },
     // { src: "1066.mp4", type: "Interest" },
     // { src: "1068.mp4", type: "Interest" },
     // { src: "1265.mp4", type: "Interest" },
@@ -94,7 +94,7 @@ const videos = [
     // { src: "1664.mp4", type: "Interest" },
     // { src: "1945.mp4", type: "Interest" },
     { src: "0035.mp4", type: "Joy" },
-    // { src: "0087.mp4", type: "Joy" },
+    { src: "0087.mp4", type: "Joy" },
     // { src: "0126.mp4", type: "Joy" },
     // { src: "0597.mp4", type: "Joy" },
     // { src: "0605.mp4", type: "Joy" },
@@ -106,7 +106,7 @@ const videos = [
     // { src: "1245.mp4", type: "Joy" },
     // { src: "2013.mp4", type: "Joy" },
     { src: "0204.mp4", type: "Romance" },
-    // { src: "0369.mp4", type: "Romance" },
+    { src: "0369.mp4", type: "Romance" },
     // { src: "0773.mp4", type: "Romance" },
     // { src: "1074.mp4", type: "Romance" },
     // { src: "1295.mp4", type: "Romance" },
@@ -115,8 +115,8 @@ const videos = [
     // { src: "1551.mp4", type: "Romance" },
     // { src: "1911.mp4", type: "Romance" },
     // { src: "1978.mp4", type: "Romance" },
-    { src: "0226.mp4", type: "Sadness" } //,
-//     { src: "0299.mp4", type: "Sadness" },
+    { src: "0226.mp4", type: "Sadness" },
+    { src: "0299.mp4", type: "Sadness" }//,
 //     { src: "0611.mp4", type: "Sadness" },
 //     { src: "0756.mp4", type: "Sadness" },
 //     { src: "0803.mp4", type: "Sadness" },
@@ -569,22 +569,41 @@ function shuffleArray(array) {
     }
   }
   
-  function generateVideoSequence(videos, order) {
-    let videosByType = {};
+//   function generateVideoSequence(videos, order) {
+//     let videosByType = {};
   
-    // Group the videos by type
-    for (let video of videos) {
-      if (!videosByType[video.type]) {
-        videosByType[video.type] = [];
-      }
-      videosByType[video.type].push(video);
-    }
+//     // Group the videos by type
+//     for (let video of videos) {
+//       if (!videosByType[video.type]) {
+//         videosByType[video.type] = [];
+//       }
+//       videosByType[video.type].push(video);
+//     }
   
-    // Shuffle videos in each category
-    for (let type in videosByType) {
-      shuffleArray(videosByType[type]);
-    }
+//     // Shuffle videos in each category
+//     for (let type in videosByType) {
+//       shuffleArray(videosByType[type]);
+//     }
   
+//     // Generate the sequence based on the specified order
+//     let sequence = [];
+//     for (let type of order) {
+//       if (videosByType[type] && videosByType[type].length > 0) {
+//         sequence.push(videosByType[type].shift());  // Select and remove the first video from the shuffled array
+//       } else {
+//         console.warn(`No more videos available for type: ${type}`);
+//       }
+//     }
+  
+//     return sequence;
+//   }
+  
+
+
+// Instructions
+
+
+function generateVideoSequence(videosByType, order) {
     // Generate the sequence based on the specified order
     let sequence = [];
     for (let type of order) {
@@ -595,12 +614,17 @@ function shuffleArray(array) {
       }
     }
   
-    return sequence;
+    return { sequence, videosByType };
   }
   
 
 
-// Instructions
+
+
+
+
+
+
 function instructions() {
     let message = document.getElementById("message");
     message.innerHTML = `
@@ -623,13 +647,38 @@ function instructions() {
 }
 
 
-const order = ["Calmness", "Fear", "Interest", "Craving", "Anger", "Romance", "Sadness", "Excitement", "Amusement", "Disgust", "Joy"];
+const order1 = ["Calmness", "Fear", "Interest", "Craving", "Anger", "Romance", "Sadness", "Excitement", "Amusement", "Disgust", "Joy"];
+const order2 = ["Romance", "Sadness", "Craving", "Fear", "Calmness", "Amusement", "Anger", "Interest", "Excitement", "Disgust", "Joy"];
+
+
 
 //Video Pilot
 function experimentalSet() {
     clearButtons();
-    const shuffledVideos = generateVideoSequence([...videos], order);
+
     let currentVideoIndex = 0;
+    let videosByType = {};
+
+    // Group the videos by type
+    for (let video of videos) {
+        if (!videosByType[video.type]) {
+          videosByType[video.type] = [];
+        }
+        videosByType[video.type].push(video);
+      }
+
+          // Shuffle videos in each category
+    for (let type in videosByType) {
+        shuffleArray(videosByType[type]);
+      }
+  
+      let sequenceData = generateVideoSequence(videosByType, order1);
+      let shuffledVideos = sequenceData.sequence;
+      videosByType = sequenceData.videosByType;
+      
+      let roundNumber = 1; //
+
+    
 
     function playVideoUntil3Seconds(onComplete) {
         let startTime = Date.now();
@@ -701,9 +750,24 @@ function experimentalSet() {
                 };
             };
         } else {
-            instructions3();
+            // When all videos in the current sequence have been watched
+            // Alternate between the two orders and generate a new sequence
+            roundNumber++;
+            let nextOrder = roundNumber % 2 === 0 ? order2 : order1;
+            sequenceData = generateVideoSequence(videosByType, nextOrder);
+            shuffledVideos = sequenceData.sequence;
+            videosByType = sequenceData.videosByType;
+    
+            currentVideoIndex = 0;
+    
+            if (shuffledVideos.length > 0) {
+                playNextVideo();
+            } else {
+                instructions3();
+            }
         }
     }
+    
     
     playNextVideo();
     
