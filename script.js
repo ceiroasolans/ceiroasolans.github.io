@@ -174,34 +174,29 @@ function startTimer() {  // Function to start the timer when buttons appear
 function createFeedbackForm(videoId, onSubmit) {
     feedbackContainer.innerHTML = '';
 
-    const likertScale = ["Strongly disagree", "Disagree", "Somewhat disagree", "Neutral", "Somewhat agree", "Agree", "Strongly agree"];
-    
     const questions = [
-        "How interesting is this?",
-        "Placeholder Question 1",
-        "Placeholder Question 2",
-        "Placeholder Question 3",
-        "Placeholder Question 4",
-        "Placeholder Question 5",
-        "Placeholder Question 6"
+        { text: "How do you feel?", scale: ["Quiet, still, inactive", " ", " ", "Neutral", " ", " ", "Activated, intense, aroused"] },
+        { text: " ", scale: ["Negative, dissatisfied, unhappy ", " ", " ", "Neutral", " ", " ","Positive, satisfied, pleased"] }
     ];
 
     const responses = {};
 
-    questions.forEach(questionText => {
+    questions.forEach(questionObj => {
         const question = document.createElement("p");
-        question.textContent = questionText;
+        question.textContent = questionObj.text;
 
         const responseContainer = document.createElement("div");
         responseContainer.style.display = "flex";
         responseContainer.style.justifyContent = "space-between";
+        responseContainer.style.marginBottom = "20px";  // Add some vertical separation between questions
 
-        likertScale.forEach((label, index) => {
+        questionObj.scale.forEach((label, index) => {
             const button = document.createElement("button");
             button.textContent = label;
             button.style.flexGrow = "1";
+            button.style.backgroundColor = "#f0f0f0";  // A light shade of grey
             button.onclick = function() {
-                responses[questionText] = index;
+                responses[questionObj.text] = index;
                 button.style.backgroundColor = "lightblue";  // Change color to indicate selection
             };
             responseContainer.appendChild(button);
