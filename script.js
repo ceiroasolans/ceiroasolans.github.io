@@ -498,112 +498,81 @@ function createEmotionGraph(videoId, onSubmit) {
 // }
 
 // Response variable 3: Strategies
-function strategies(callback) {
-    let strategiesContainer = document.getElementById('strategiesContainer');
-    if (!strategiesContainer) {
-        console.error('strategiesContainer is not defined');
-        return;
-    }
+function createFeedbackForm(videoId, onSubmit) {
+    feedbackContainer.innerHTML = '';
 
-    strategiesContainer.innerHTML = '';
-    strategiesContainer.style.padding = "20px"; // Add more space around the container
+    const questions = [
+        { text: "How do you feel?", scale: ["Quiet, still, inactive", " ", " ", "Neutral", " ", " ", "Activated, intense, aroused"] },
+        { text: " ", scale: ["Negative, dissatisfied, unhappy ", " ", " ", "Neutral", " ", " ","Positive, satisfied, pleased"] }
+    ];
 
-    const strategiesTitle = document.createElement("h2");
-    strategiesTitle.textContent = "Which strategies did you use?";
-    strategiesTitle.style.fontWeight = "bold";
-    strategiesTitle.style.textAlign = "center";
-    strategiesTitle.style.marginBottom = "20px"; // Add more space below the title
+    const responses = {};
+    let buttons = [];
 
-    strategiesContainer.appendChild(strategiesTitle);
+    questions.forEach(questionObj => {
+        const question = document.createElement("p");
+        question.textContent = questionObj.text;
 
-    const strategiesOptions = ["Stimulus selection", "Stimulus modification", "Reappraisal", "Distraction", "Acceptance", "Suppression"];
-    let strategiesData = {};
+        const responseContainer = document.createElement("div");
+        responseContainer.style.display = "flex";
+        responseContainer.style.justifyContent = "space-between";
+        responseContainer.style.marginBottom = "20px";
 
-    for (let option of strategiesOptions) {
-        let optionContainer = document.createElement("div");
-        optionContainer.style.display = "flex";
-        optionContainer.style.alignItems = "center";
-        optionContainer.style.cursor = "pointer";
-        optionContainer.style.margin = "20px 0"; // Increase space around each option
-
-        optionContainer.addEventListener('click', function() {
-            try {
-                let checkbox = this.querySelector('input[type="checkbox"]');
-                let customCheckbox = this.querySelector('span');
-                strategiesData[option] = !checkbox.checked;
-                checkbox.checked = !checkbox.checked;
-                // Update the color of the checkbox when checked
-                customCheckbox.style.background = checkbox.checked ? "#000" : "#fff";
-            } catch (error) {
-                console.error('Error handling option click:', error);
-            }
+        let localButtons = [];
+        questionObj.scale.forEach((label, index) => {
+            const button = document.createElement("button");
+            button.textContent = label;
+            button.style.flexGrow = "1";
+            button.style.backgroundColor = "#f0f0f0";
+            button.style.color = "black";  // Make text color always black
+            button.onclick = function() {
+                if (responses[questionObj.text] === index) {
+                    // Unclick action
+                    delete responses[questionObj.text];
+                    button.style.backgroundColor = "#f0f0f0";
+                } else {
+                    // Deselect all other buttons in the same question
+                    localButtons.forEach((b, i) => {
+                        b.style.backgroundColor = i === index ? "#d3d3d3" : "#f0f0f0";
+                    });
+                    // Select this button
+                    responses[questionObj.text] = index;
+                    button.style.backgroundColor = "#d3d3d3";
+                }
+            };
+            responseContainer.appendChild(button);
+            localButtons.push(button);
         });
 
-        let checkboxContainer = document.createElement("div");
-        checkboxContainer.style.display = "flex";
-        checkboxContainer.style.alignItems = "center";
-
-        let checkbox = document.createElement("input");
-        checkbox.type = "checkbox";
-        checkbox.id = option;
-        checkbox.style.display = "none"; // Hide the original checkbox
-
-        let label = document.createElement("label");
-        label.htmlFor = option;
-        label.innerText = option;
-        label.style.fontSize = "20px"; // Increase font size
-        label.style.fontWeight = "500"; // Increase font weight
-        label.style.marginLeft = "10px"; // Add space between the checkbox and the text
-
-        // Create a new checkbox using a span element
-        let customCheckbox = document.createElement("span");
-        customCheckbox.style.display = "inline-block";
-        customCheckbox.style.width = "20px"; // Width of the custom checkbox
-        customCheckbox.style.height = "20px"; // Height of the custom checkbox
-        customCheckbox.style.background = "#fff"; // Color of the checkbox when not checked
-        customCheckbox.style.border = "2px solid #000"; // Border of the checkbox
-        customCheckbox.style.boxSizing = "border-box"; // Make sure the border is included in the checkbox size
-        customCheckbox.style.marginRight = "10px"; // Add space between the checkbox and the text
-
-        checkbox.addEventListener('change', function() {
-            try {
-                strategiesData[option] = this.checked;
-                // Update the color of the checkbox when checked
-                customCheckbox.style.background = this.checked ? "#000" : "#fff";
-            } catch (error) {
-                console.error('Error handling checkbox state change:', error);
-            }
-        });
-
-        checkboxContainer.appendChild(checkbox);
-        checkboxContainer.appendChild(customCheckbox);
-
-        optionContainer.appendChild(checkboxContainer);
-        optionContainer.appendChild(label);
-
-        strategiesContainer.appendChild(optionContainer);
-    }
-
-    const strategiesSubmitButton = document.createElement("button");
-    strategiesSubmitButton.innerText = "Submit";
-    strategiesSubmitButton.disabled = false;
-    strategiesSubmitButton.style.display = "block";
-    strategiesSubmitButton.style.margin = "20px auto";
-
-    strategiesSubmitButton.addEventListener('click', () => {
-        if (typeof callback === 'function') {
-            callback(strategiesData);
-        } else {
-            console.error('callback is not a function');
-        }
-        strategiesSubmitButton.disabled = true;
-        strategiesContainer.style.display = "none";
+        buttons = buttons.concat(localButtons);
+        feedbackContainer.appendChild(question);
+        feedbackContainer.appendChild(responseContainer);
     });
 
-    strategiesContainer.appendChild(strategiesSubmitButton);
-    strategiesContainer.style.visibility = "visible";
-    strategiesContainer.style.display = "block";
+    const submitButton = document.createElement("button");
+    submitButton.innerText = "Submit";
+    submitButton.disabled = true;
+    submitButton.onclick = () => {
+        if (Object.keys(responses).length === questions.length) {
+            onSubmit(responses);
+        } else {
+            alert("Please answer all questions.");
+        }
+    };
+
+    // Enable submit button only when all questions have been answered
+    buttons.forEach(button => {
+        button.onclick = (...args) => {
+            button.__onclick(...args);
+            submitButton.disabled = Object.keys(responses).length < questions.length;
+        };
+        button.__onclick = button.onclick;
+    });
+
+    feedbackContainer.appendChild(submitButton);
+    feedbackContainer.style.display = "block";
 }
+
 
 
 
