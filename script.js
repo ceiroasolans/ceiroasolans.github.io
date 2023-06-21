@@ -174,44 +174,59 @@ function startTimer() {  // Function to start the timer when buttons appear
 function createFeedbackForm(videoId, onSubmit) {
     feedbackContainer.innerHTML = '';
 
-    const question = document.createElement("p");
-    question.textContent = "How interesting is this?";
-
-    feedbackContainer.appendChild(question);
-
     const likertScale = ["Strongly disagree", "Disagree", "Somewhat disagree", "Neutral", "Somewhat agree", "Agree", "Strongly agree"];
-    let selectedRating = null;
     
-    likertScale.forEach((label, index) => {
-        const optionContainer = document.createElement("div");
-        const option = document.createElement("input");
-        option.type = "radio";
-        option.name = "rating";
-        option.value = index;
-        option.onchange = function() {
-            selectedRating = this.value;
-            feedbackContainer.button.disabled = false;
-        };
-        
-        const optionLabel = document.createElement("label");
-        optionLabel.textContent = label;
-        
-        optionContainer.appendChild(option);
-        optionContainer.appendChild(optionLabel);
-        feedbackContainer.appendChild(optionContainer);
+    const questions = [
+        "How interesting is this?",
+        "Placeholder Question 1",
+        "Placeholder Question 2",
+        "Placeholder Question 3",
+        "Placeholder Question 4",
+        "Placeholder Question 5",
+        "Placeholder Question 6"
+    ];
+
+    const responses = {};
+
+    questions.forEach(questionText => {
+        const question = document.createElement("p");
+        question.textContent = questionText;
+
+        const responseContainer = document.createElement("div");
+        responseContainer.style.display = "flex";
+        responseContainer.style.justifyContent = "space-between";
+
+        likertScale.forEach((label, index) => {
+            const button = document.createElement("button");
+            button.textContent = label;
+            button.style.flexGrow = "1";
+            button.onclick = function() {
+                responses[questionText] = index;
+                button.style.backgroundColor = "lightblue";  // Change color to indicate selection
+            };
+            responseContainer.appendChild(button);
+        });
+
+        feedbackContainer.appendChild(question);
+        feedbackContainer.appendChild(responseContainer);
     });
 
-    feedbackContainer.button = document.createElement("button");
-    feedbackContainer.button.innerText = "Submit";
-    feedbackContainer.button.disabled = true;
-    feedbackContainer.button.onclick = () => {
-        feedbackContainer.button.disabled = true;
-        onSubmit(selectedRating);
+    const submitButton = document.createElement("button");
+    submitButton.innerText = "Submit";
+    submitButton.disabled = false;
+    submitButton.onclick = () => {
+        if (Object.keys(responses).length === questions.length) {
+            // Only submit if all questions have been answered
+            onSubmit(responses);
+        } else {
+            alert("Please answer all questions.");
+        }
     };
 
-    feedbackContainer.appendChild(feedbackContainer.button);
+    feedbackContainer.appendChild(submitButton);
     feedbackContainer.style.display = "block";
 }
+
 
 
 //  Response variable 2: Emotion circumplex
