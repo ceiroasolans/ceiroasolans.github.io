@@ -607,46 +607,67 @@ function experimentalSet() {
     const shuffledVideos = shuffleArray([...videos]);
     let currentVideoIndex = 0;
 
+    function playVideoUntil3Seconds(onComplete) {
+        let startTime = Date.now();
+        let cumulativeTime = 0;
+        videoPlayer.play();
+
+        videoPlayer.onended = videoPlayer.onpause = () => {
+            cumulativeTime += Date.now() - startTime; // add time of current play to cumulativeTime
+            if (cumulativeTime < 3000) {
+                // check if cumulativeTime is less than 3 seconds
+                startTime = Date.now(); // reset startTime for the next play
+                videoPlayer.play(); // immediately replay video
+            } else {
+                videoPlayer.onended = videoPlayer.onpause = null; // remove the listeners once done
+                onComplete();
+            }
+        };
+    }
+
     function playNextVideo() {
         if (currentVideoIndex < shuffledVideos.length) {
             const video = shuffledVideos[currentVideoIndex];
             videoPlayer.src = video.src;
             videoPlayer.onloadedmetadata = () => {
-                videoPlayer.currentTime = 0; // Reset the video to the start
+                videoPlayer.currentTime = videoPlayer.duration * 0.6; // Seek to 60% of the video's duration
+                videoPlayer.onseeked = () => {
+                    videoPlayer.onseeked = null;
+                    videoPlayer.pause(); // Pause the video after seeking
+                    videoPlayer.style.display = "block"; // Show the video still for 3 seconds
 
-                const playButton = createButton("Play", () => {
-                    videoPlayer.play();
-                    playButton.style.display = "none"; // Hide the play button
-                });
+                    let watchButton = createButton("Play", (reactionTime) => {
+                        watchButton.style.display = "none";
 
-                videoPlayer.onended = () => {
-                    // After the video ends, create feedback form
-                    createFeedbackForm(video.id, (rating) => {
-                        feedbackContainer.style.display = "none";
+                        videoPlayer.currentTime = 0; // Reset the video to the start
+                        playVideoUntil3Seconds(() => {
+                            videoPlayer.style.display = "none";
+                            clearButtons();
 
-                        // Change the text "How do you feel?" to "How do you think this video made you feel?"
-                        const emotionGraphContainer = document.getElementById("emotionGraphContainer");
-                        const emotionGraphTitle = emotionGraphContainer.querySelector("h2");
-                        emotionGraphTitle.textContent = "What do you feel now?";
+                            // Change the text "How do you feel?" to "How do you think this video will make you feel?"
+                            const emotionGraphContainer = document.getElementById("emotionGraphContainer");
+                            const emotionGraphTitle = emotionGraphContainer.querySelector("h2");
+                            emotionGraphTitle.textContent = "What do you feel?";
 
-                        createEmotionGraph(video.id, (valence, arousal) => {
-                            showFixationCross(playNextVideo);
+                            createEmotionGraph(video.id, (valence, arousal) => {
+                                showFixationCross(playNextVideo);
 
-                            participantChoices.push({
-                                part: "Experimental_Choice",
-                                videoId: video.id,
-                                rating: rating,
-                                valence: valence,
-                                arousal: arousal
+                                participantChoices.push({
+                                    part: "Experimental_Choice",
+                                    decision: "watch",
+                                    videoId: video.id,
+                                    reactionTime: reactionTime,
+                                    valence: valence,
+                                    arousal: arousal
+                                });
                             });
                         });
+                        currentVideoIndex++;
                     });
 
-                    currentVideoIndex++;
+                    clearButtons();
+                    addButton(watchButton);
                 };
-
-                clearButtons();
-                addButton(playButton);
             };
         } else {
             instructions3();
@@ -655,7 +676,6 @@ function experimentalSet() {
 
     playNextVideo();
 }
- 
 
 
 
