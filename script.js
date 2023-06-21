@@ -569,14 +569,7 @@ function instructions() {
     message.innerHTML = `
         <div style="max-width: 600px; margin: auto; padding: 20px; font-family: 'Helvetica Neue', Arial, sans-serif; line-height: 1.6; text-align: left; color: #333;">
             <strong style="font-size: 1.3em; display: block; text-align: center; margin-bottom: 20px;">Welcome!</strong>
-            <p style="margin-top: 20px;">In this experiment you will be watching a series of videos and reporting how you feel. Please regulate your emotions in whatever way you see fit. Every trial, you will:</p>
-            <ol style="padding-left: 30px; margin-top: 20px;">
-                <li style="margin-bottom: 10px;"><u>Watch a screenshot</u> from a video for 3 seconds</li>
-                <li style="margin-bottom: 10px;"><u>Rate how </u>you <u>expect to feel</u> if you watch it, and <u>how interested</u> you are in watching it.</li>
-                <li style="margin-bottom: 10px;"><u>Decide whether to watch the video</u>. If you decide to skip it, you will be shown another video at random. If you don't decide within 7 seconds, something will be decided for you at random.</li>
-                <li style="margin-bottom: 10px;"><u>Watch the video</u>. You may <u>regulate your emotions</u> by changing the intensity of the video (press "f" to dim it, or "j" to make it more vivid), or by using internal strategies (i.e. reappraisal, distraction, acceptance, suppression).</li>
-                <li style="margin-bottom: 10px;"><u>Report the strategies you used</u> and how you feel.</li>
-            </ol>
+            <p style="margin-top: 20px;">You're about to watch a series of videos. Please sit back and immerse yourself in them. After every video, you will be asked to rate how you feel as well as how interesting you thought it was. </p>
         </div>
     `;
     message.style.display = 'block';  // Make sure the message is visible
