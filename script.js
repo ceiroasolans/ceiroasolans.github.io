@@ -20,16 +20,16 @@ const videos = [
     // { src: "1606.mp4", type: "Amusement" },
     // { src: "2072.mp4", type: "Amusement" },
     // { src: "2083.mp4", type: "Amusement" },
-    { src: "0124.mp4", type: "Anger" },
-    { src: "0252.mp4", type: "Anger" },
+    // { src: "0124.mp4", type: "Anger" },
+    // { src: "0252.mp4", type: "Anger" },
     // { src: "0414.mp4", type: "Anger" },
     // { src: "0595.mp4", type: "Anger" },
     // { src: "0681.mp4", type: "Anger" },
     // { src: "0948.mp4", type: "Anger" },
     // { src: "1229.mp4", type: "Anger" },
-    // { src: "1844.mp4", type: "Anger" },
-    // { src: "2049.mp4", type: "Anger" },
-    // { src: "2066.mp4", type: "Anger" },
+    { src: "1844.mp4", type: "Anger" },
+    { src: "2049.mp4", type: "Anger" },
+    { src: "2066.mp4", type: "Anger" },
     { src: "0090.mp4", type: "Calmness" },
     { src: "0339.mp4", type: "Calmness" },
     // { src: "0493.mp4", type: "Calmness" },
@@ -40,16 +40,16 @@ const videos = [
     // { src: "1216.mp4", type: "Calmness" },
     // { src: "1760.mp4", type: "Calmness" },
     // { src: "1835.mp4", type: "Calmness" },
-    { src: "0110.mp4", type: "Craving" },
-    { src: "0458.mp4", type: "Craving" },
+    // { src: "0110.mp4", type: "Craving" },
+    // { src: "0458.mp4", type: "Craving" },
     // { src: "0780.mp4", type: "Craving" },
     // { src: "0883.mp4", type: "Craving" },
     // { src: "0898.mp4", type: "Craving" },
     // { src: "0919.mp4", type: "Craving" },
     // { src: "1449.mp4", type: "Craving" },
     // { src: "1498.mp4", type: "Craving" },
-    // { src: "1740.mp4", type: "Craving" },
-    // { src: "1826.mp4", type: "Craving" },
+    { src: "1740.mp4", type: "Craving" },
+    { src: "1826.mp4", type: "Craving" },
     { src: "0187.mp4", type: "Disgust" },
     { src: "0235.mp4", type: "Disgust" },
     // { src: "0355.mp4", type: "Disgust" },
@@ -60,8 +60,8 @@ const videos = [
     // { src: "1423.mp4", type: "Disgust" },
     // { src: "1907.mp4", type: "Disgust" },
     // { src: "2018.mp4", type: "Disgust" },
-    { src: "0041.mp4", type: "Excitement" },
-    { src: "0202.mp4", type: "Excitement" },
+    // { src: "0041.mp4", type: "Excitement" },
+    // { src: "0202.mp4", type: "Excitement" },
     // { src: "0402.mp4", type: "Excitement" },
     // { src: "0546.mp4", type: "Excitement" },
     // { src: "0550.mp4", type: "Excitement" },
@@ -69,64 +69,59 @@ const videos = [
     // { src: "0970.mp4", type: "Excitement" },
     // { src: "1297.mp4", type: "Excitement" },
     // { src: "1537.mp4", type: "Excitement" },
-    // { src: "1717.mp4", type: "Excitement" },
-    // { src: "2021.mp4", type: "Excitement" },
+    { src: "1717.mp4", type: "Excitement" },
+    { src: "2021.mp4", type: "Excitement" },
     { src: "0379.mp4", type: "Fear" },
     { src: "0489.mp4", type: "Fear" },
     // { src: "0706.mp4", type: "Fear" },
     // { src: "1202.mp4", type: "Fear" },
-    // { src: "1361.mp4", type: "Fear" },
     // { src: "1375.mp4", type: "Fear" },
     // { src: "1726.mp4", type: "Fear" },
     // { src: "1780.mp4", type: "Fear" },
     // { src: "1832.mp4", type: "Fear" },
     // { src: "1964.mp4", type: "Fear" },
     // { src: "2091.mp4", type: "Fear" },
-    { src: "0723.mp4", type: "Interest" },
-    { src: "0735.mp4", type: "Interest" },
+    // { src: "0723.mp4", type: "Interest" },
+    // { src: "0735.mp4", type: "Interest" },
     // { src: "1066.mp4", type: "Interest" },
     // { src: "1068.mp4", type: "Interest" },
-    // { src: "1265.mp4", type: "Interest" },
     // { src: "1301.mp4", type: "Interest" },
     // { src: "1619.mp4", type: "Interest" },
     // { src: "1624.mp4", type: "Interest" },
     // { src: "1641.mp4", type: "Interest" },
-    // { src: "1664.mp4", type: "Interest" },
-    // { src: "1945.mp4", type: "Interest" },
+    { src: "1664.mp4", type: "Interest" },
+    { src: "1945.mp4", type: "Interest" },
     { src: "0035.mp4", type: "Joy" },
     { src: "0087.mp4", type: "Joy" },
     // { src: "0126.mp4", type: "Joy" },
     // { src: "0597.mp4", type: "Joy" },
     // { src: "0605.mp4", type: "Joy" },
     // { src: "0666.mp4", type: "Joy" },
-    // { src: "0915.mp4", type: "Joy" },
     // { src: "1032.mp4", type: "Joy" },
     // { src: "1034.mp4", type: "Joy" },
     // { src: "1093.mp4", type: "Joy" },
-    // { src: "1245.mp4", type: "Joy" },
     // { src: "2013.mp4", type: "Joy" },
-    { src: "0204.mp4", type: "Romance" },
-    { src: "0369.mp4", type: "Romance" },
+    // { src: "0204.mp4", type: "Romance" },
+    // { src: "0369.mp4", type: "Romance" },
     // { src: "0773.mp4", type: "Romance" },
     // { src: "1074.mp4", type: "Romance" },
     // { src: "1295.mp4", type: "Romance" },
     // { src: "1407.mp4", type: "Romance" },
     // { src: "1424.mp4", type: "Romance" },
     // { src: "1551.mp4", type: "Romance" },
-    // { src: "1911.mp4", type: "Romance" },
-    // { src: "1978.mp4", type: "Romance" },
+    { src: "1911.mp4", type: "Romance" },
+    { src: "1978.mp4", type: "Romance" },
     { src: "0226.mp4", type: "Sadness" },
     { src: "0299.mp4", type: "Sadness" }//,
-//     { src: "0611.mp4", type: "Sadness" },
-//     { src: "0756.mp4", type: "Sadness" },
-//     { src: "0803.mp4", type: "Sadness" },
-//     { src: "0860.mp4", type: "Sadness" },
-//     { src: "0975.mp4", type: "Sadness" },
-//     { src: "1164.mp4", type: "Sadness" },
-//     { src: "1485.mp4", type: "Sadness" },
-//     { src: "1959.mp4", type: "Sadness" },
+    // { src: "0611.mp4", type: "Sadness" },
+    // { src: "0756.mp4", type: "Sadness" },
+    // { src: "0803.mp4", type: "Sadness" },
+    // { src: "0860.mp4", type: "Sadness" },
+    // { src: "0975.mp4", type: "Sadness" },
+    // { src: "1164.mp4", type: "Sadness" },
+    // { src: "1485.mp4", type: "Sadness" },
+    // { src: "1959.mp4", type: "Sadness" },
 ];
-
   
   for(let i = 0; i < videos.length; i++) {
     videos[i].id = i.toString();
@@ -146,35 +141,78 @@ function startTimer() {  // Function to start the timer when buttons appear
 
 
 // Response variable 1: Interest
+// function createFeedbackForm(videoId, onSubmit) {
+//     feedbackContainer.innerHTML = '';
+
+//     const question = document.createElement("p");
+//     question.textContent = "How interesting is this?";
+
+//     feedbackContainer.slider = document.createElement("input");
+//     feedbackContainer.slider.type = "range";
+//     feedbackContainer.slider.min = 0;
+//     feedbackContainer.slider.max = 7;
+//     feedbackContainer.slider.value = 3;
+//     feedbackContainer.slider.addEventListener('change', function(){
+//         feedbackContainer.button.disabled = false;
+//     });
+
+//     feedbackContainer.button = document.createElement("button");
+//     feedbackContainer.button.innerText = "Submit";
+//     feedbackContainer.button.disabled = true;
+//     feedbackContainer.button.onclick = () => {
+//         const rating = feedbackContainer.slider.value;
+//         feedbackContainer.button.disabled = true;
+//         onSubmit(rating);
+//     };
+
+//     feedbackContainer.appendChild(question);
+//     feedbackContainer.appendChild(feedbackContainer.slider);
+//     feedbackContainer.appendChild(feedbackContainer.button);
+//     feedbackContainer.style.display = "block";
+// } 
+
 function createFeedbackForm(videoId, onSubmit) {
     feedbackContainer.innerHTML = '';
 
     const question = document.createElement("p");
     question.textContent = "How interesting is this?";
 
-    feedbackContainer.slider = document.createElement("input");
-    feedbackContainer.slider.type = "range";
-    feedbackContainer.slider.min = 0;
-    feedbackContainer.slider.max = 7;
-    feedbackContainer.slider.value = 3;
-    feedbackContainer.slider.addEventListener('change', function(){
-        feedbackContainer.button.disabled = false;
+    feedbackContainer.appendChild(question);
+
+    const likertScale = ["Strongly disagree", "Disagree", "Somewhat disagree", "Neutral", "Somewhat agree", "Agree", "Strongly agree"];
+    let selectedRating = null;
+    
+    likertScale.forEach((label, index) => {
+        const optionContainer = document.createElement("div");
+        const option = document.createElement("input");
+        option.type = "radio";
+        option.name = "rating";
+        option.value = index;
+        option.onchange = function() {
+            selectedRating = this.value;
+            feedbackContainer.button.disabled = false;
+        };
+        
+        const optionLabel = document.createElement("label");
+        optionLabel.textContent = label;
+        
+        optionContainer.appendChild(option);
+        optionContainer.appendChild(optionLabel);
+        feedbackContainer.appendChild(optionContainer);
     });
 
     feedbackContainer.button = document.createElement("button");
     feedbackContainer.button.innerText = "Submit";
     feedbackContainer.button.disabled = true;
     feedbackContainer.button.onclick = () => {
-        const rating = feedbackContainer.slider.value;
         feedbackContainer.button.disabled = true;
-        onSubmit(rating);
+        onSubmit(selectedRating);
     };
 
-    feedbackContainer.appendChild(question);
-    feedbackContainer.appendChild(feedbackContainer.slider);
     feedbackContainer.appendChild(feedbackContainer.button);
     feedbackContainer.style.display = "block";
-} 
+}
+
 
 //  Response variable 2: Emotion circumplex
 function createEmotionGraph(videoId, onSubmit) {
