@@ -569,7 +569,11 @@ function instructions() {
     message.innerHTML = `
         <div style="max-width: 600px; margin: auto; padding: 20px; font-family: 'Helvetica Neue', Arial, sans-serif; line-height: 1.6; text-align: left; color: #333;">
             <strong style="font-size: 1.3em; display: block; text-align: center; margin-bottom: 20px;">Welcome!</strong>
-            <p style="margin-top: 20px;">You're about to watch a series of videos. Please sit back and immerse yourself in them. After every video, you will be asked to rate how you feel as well as how interesting you thought it was. </p>
+            <p style="margin-top: 20px;">You're about to watch a series of videos.  </p>
+            <ol style="padding-left: 30px; margin-top: 20px;">
+                <li style="margin-bottom: 10px;"> Please sit back and immerse yourself in them!</li>
+                <li style="margin-bottom: 10px;">After every video, you will be asked to rate how you feel and how interesting you found the video.</li>
+            </ol>
         </div>
     `;
     message.style.display = 'block';  // Make sure the message is visible
