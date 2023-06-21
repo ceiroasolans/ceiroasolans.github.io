@@ -561,6 +561,43 @@ function strategies(callback) {
 
 
 
+// Function to shuffle an array
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      let j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+  }
+  
+  function generateVideoSequence(videos, order) {
+    let videosByType = {};
+  
+    // Group the videos by type
+    for (let video of videos) {
+      if (!videosByType[video.type]) {
+        videosByType[video.type] = [];
+      }
+      videosByType[video.type].push(video);
+    }
+  
+    // Shuffle videos in each category
+    for (let type in videosByType) {
+      shuffleArray(videosByType[type]);
+    }
+  
+    // Generate the sequence based on the specified order
+    let sequence = [];
+    for (let type of order) {
+      if (videosByType[type] && videosByType[type].length > 0) {
+        sequence.push(videosByType[type].shift());  // Select and remove the first video from the shuffled array
+      } else {
+        console.warn(`No more videos available for type: ${type}`);
+      }
+    }
+  
+    return sequence;
+  }
+  
 
 
 // Instructions
@@ -586,11 +623,12 @@ function instructions() {
 }
 
 
+const order = ["Calmness", "Fear", "Interest", "Craving", "Anger", "Romance", "Sadness", "Excitement", "Amusement", "Disgust", "Joy"];
 
 //Video Pilot
 function experimentalSet() {
     clearButtons();
-    const shuffledVideos = shuffleArray([...videos]);
+    const shuffledVideos = generateVideoSequence([...videos], order);
     let currentVideoIndex = 0;
 
     function playVideoUntil3Seconds(onComplete) {
