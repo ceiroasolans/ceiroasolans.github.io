@@ -585,12 +585,7 @@ function instructions() {
     }));
 }
 
-//Draw random video
-function playRandomVideo(excludeVideoId, videos) {
-    let remainingVideos = videos.filter(video => video.id !== excludeVideoId);
-    let randomVideoIndex = Math.floor(Math.random() * remainingVideos.length);
-    return remainingVideos[randomVideoIndex];
-}
+
 
 //Video Pilot
 function experimentalSet() {
