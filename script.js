@@ -680,11 +680,31 @@ function experimentalSet() {
     clearButtons();
     const shuffledVideos = shuffleArray([...videos]);
     let currentVideoIndex = 0;
+    const dimOverlay = document.getElementById('dimOverlay');
+    let dimnessLevel = 0.5;  // initial dimness level
+
+    function setDimness(level) {
+        dimOverlay.style.backgroundColor = `rgba(0, 0, 0, ${level})`;
+    }
 
     function playVideoUntil3Seconds(onComplete) {
         let startTime = Date.now();
         let cumulativeTime = 0;
         videoPlayer.play();
+
+        const adjustDimness = (event) => {
+            if (event.key === 'f') {
+                dimnessLevel = Math.min(1, dimnessLevel + 0.15);
+            } else if (event.key === 'j') {
+                dimnessLevel = Math.max(0, dimnessLevel - 0.15);
+            }
+            setDimness(dimnessLevel);
+        };
+
+        document.body.focus();
+
+        // Attach the event listener
+        document.addEventListener('keyup', adjustDimness);
 
         videoPlayer.onended = videoPlayer.onpause = () => {
             cumulativeTime += Date.now() - startTime; // add time of current play to cumulativeTime
@@ -694,6 +714,8 @@ function experimentalSet() {
                 videoPlayer.play(); // immediately replay video
             } else {
                 videoPlayer.onended = videoPlayer.onpause = null; // remove the listeners once done
+                document.removeEventListener('keyup', adjustDimness); // Remove the event listener when done
+                dimOverlay.style.display = 'none'; // hide dimOverlay when video stops
                 onComplete();
             }
         };
@@ -701,6 +723,8 @@ function experimentalSet() {
 
     function playNextVideo() {
         if (currentVideoIndex < shuffledVideos.length) {
+            dimnessLevel = 0.5;  // Reset dimness level
+            setDimness(dimnessLevel);  // Set initial dimness
             const video = shuffledVideos[currentVideoIndex];
             videoPlayer.src = video.src;
             videoPlayer.onloadedmetadata = () => {
@@ -709,120 +733,138 @@ function experimentalSet() {
                     videoPlayer.onseeked = null;
                     videoPlayer.pause(); // Pause the video after seeking
                     videoPlayer.style.display = "block"; // Show the video still for 3 seconds
-    
+
+                    dimOverlay.style.width = videoPlayer.offsetWidth + 'px';
+                    dimOverlay.style.height = videoPlayer.offsetHeight + 'px';
+                    dimOverlay.style.display = 'block'; // Display dimOverlay
+                    setDimness(dimnessLevel);  // Set initial dimness
+
                     setTimeout(() => {
                         videoPlayer.style.display = "none"; // Hide the video for emotion graph
-    
+                        dimOverlay.style.display = 'none';
+
                         // Change the text "How do you feel?" to "How do you think this video will make you feel?"
                         const emotionGraphContainer = document.getElementById("emotionGraphContainer");
                         const emotionGraphTitle = emotionGraphContainer.querySelector("h2");
                         emotionGraphTitle.textContent = "What do you think this video will make you feel?";
-    
+
                         createEmotionGraph(video.id, (initialValence, initialArousal) => {
-                            // After initial emotion graph, create feedback form
                             createFeedbackForm(video.id, (rating) => {
                                 feedbackContainer.style.display = "none";
-    
                                 // Show the video again for choice
                                 videoPlayer.style.display = "block";
-    
+                                dimOverlay.style.display = 'block';
                                 let watchButton;
                                 let skipButton;
+
     
-                                const buttonTimeout = setTimeout(() => {
-                                    const randomButton = Math.random() < 0.5 ? watchButton : skipButton;
-                                    randomButton.click();
-                                }, 7000);
-    
-                                watchButton = createButton("Choose", (reactionTime) => {
-                                    clearTimeout(buttonTimeout);
-                                    watchButton.style.display = "none";
-                                    skipButton.style.display = "none";
-    
-                                    videoPlayer.currentTime = 0; // Reset the video to the start
-                                    playVideoUntil3Seconds(() => {
-                                        videoPlayer.style.display = "none";
-                                        clearButtons();
-    
-                                        // Change the text "How do you feel?" to "How do you think this video will make you feel?"
-                                        const emotionGraphTitle = emotionGraphContainer.querySelector("h2");
-                                        emotionGraphTitle.textContent = "What do you feel?";
-    
-                                        createEmotionGraph(video.id, (valence, arousal) => {
+                            const buttonTimeout = setTimeout(() => {
+                                const randomButton = Math.random() < 0.5 ? watchButton : skipButton;
+                                randomButton.click();
+                            }, 7000);
+
+                            watchButton = createButton("Choose", (reactionTime) => {
+                                clearTimeout(buttonTimeout);
+                                watchButton.style.display = "none";
+                                skipButton.style.display = "none";
+
+                                videoPlayer.currentTime = 0; // Reset the video to the start
+
+                                playVideoUntil3Seconds(() => {
+                                    videoPlayer.style.display = "none";
+                                    clearButtons();
+
+                                    // Change the text "How do you feel?" to "How do you feel now?"
+                                    const emotionGraphContainer = document.getElementById("emotionGraphContainer");
+                                    const emotionGraphTitle = emotionGraphContainer.querySelector("h2");
+                                    emotionGraphTitle.textContent = "What do you feel now?";
+
+                                    createEmotionGraph(video.id, (valence, arousal) => {
+                                        strategies((selectedStrategies) => {
                                             showFixationCross(playNextVideo);
-    
+
                                             participantChoices.push({
                                                 part: "Experimental_Choice",
                                                 decision: "watch",
                                                 videoId: video.id,
                                                 reactionTime: reactionTime,
-                                                rating: rating,
                                                 initialValence: initialValence,
                                                 initialArousal: initialArousal,
-                                                valence: valence,
-                                                arousal: arousal
+                                                valence: valence, 
+                                                arousal: arousal,
+                                                strategies: selectedStrategies
                                             });
                                         });
                                     });
                                     currentVideoIndex++;
                                 });
-    
-                                skipButton = createButton("Avoid", (reactionTime) => {
-                                    clearTimeout(buttonTimeout);
-                                    watchButton.style.display = "none";
-                                    skipButton.style.display = "none";
-                                    const randomVideo = playRandomVideo(video.id, videos);
-    
-                                    videoPlayer.src = randomVideo.src;
-                                    videoPlayer.onloadedmetadata = () => {
-                                        videoPlayer.currentTime = 0; // Reset the video to the start
-                                        videoPlayer.oncanplay = () => {
-                                            videoPlayer.oncanplay = null;
-                                            playVideoUntil3Seconds(() => {
-                                                videoPlayer.style.display = "none";
-                                                clearButtons();
-    
-                                                // Change the text "How do you feel?" to "How do you think this video will make you feel?"
-                                                const emotionGraphTitle = emotionGraphContainer.querySelector("h2");
-                                                emotionGraphTitle.textContent = "What do you feel?";
-    
-                                                createEmotionGraph(video.id, (valence, arousal) => {
+                            });
+
+                            skipButton = createButton("Avoid", (reactionTime) => {
+                                clearTimeout(buttonTimeout);
+                                watchButton.style.display = "none";
+                                skipButton.style.display = "none";
+
+                                const randomVideo = playRandomVideo(video.id, videos);
+        
+                                videoPlayer.src = randomVideo.src;
+                                videoPlayer.onloadedmetadata = () => {
+                                    videoPlayer.currentTime = 0; // Reset the video to the start
+                                    videoPlayer.oncanplay = () => {
+                                        videoPlayer.oncanplay = null;
+                                        playVideoUntil3Seconds(() => {
+                                            videoPlayer.style.display = "none";
+                                            clearButtons();
+        
+                                            // Change the text "How do you feel?" to "How do you feel now?"
+                                            const emotionGraphContainer = document.getElementById("emotionGraphContainer");
+                                            const emotionGraphTitle = emotionGraphContainer.querySelector("h2");
+                                            emotionGraphTitle.textContent = "What do you feel now?";
+
+                                            createEmotionGraph(video.id, (valence, arousal) => {
+                                                strategies((selectedStrategies) => {
                                                     showFixationCross(playNextVideo);
-    
+        
                                                     participantChoices.push({
                                                         part: "Experimental_Choice",
                                                         decision: "skip",
                                                         videoId: video.id,
                                                         reactionTime: reactionTime,
                                                         forcedVideoId: randomVideo.id,
-                                                        rating: rating,
                                                         initialValence: initialValence,
                                                         initialArousal: initialArousal,
-                                                        valence: valence,
-                                                        arousal: arousal
+                                                        valence: valence, 
+                                                        arousal: arousal,
+                                                        strategies: selectedStrategies
                                                     });
                                                 });
                                             });
-                                        };
+                                        });
                                     };
-                                    currentVideoIndex++;
-                                });
-    
-                                clearButtons();
-                                addButton(watchButton);
-                                addButton(skipButton);
+                                    setTimeout(() => {
+                                        dimOverlay.style.width = videoPlayer.offsetWidth + 'px';
+                                        dimOverlay.style.height = videoPlayer.offsetHeight + 'px';
+                                        setDimness(dimnessLevel);  // Set initial dimness
+                                    }, 100);
+                                };
+                                currentVideoIndex++;
                             });
+        
+                            clearButtons();
+                            addButton(watchButton);
+                            addButton(skipButton);
                         });
-                    }, 3000); // Wait for 3 seconds before showing the emotion graph
-                };
+                    });
+                }, 3000);
             };
-        } else {
-            instructions3();
-        }
+        };
+    } else {
+        instructions3();
     }
-    
+}
 
-    playNextVideo();
+setDimness(dimnessLevel);  // Set initial dimness
+playNextVideo();
 } 
 
 
