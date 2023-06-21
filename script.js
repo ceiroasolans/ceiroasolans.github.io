@@ -444,7 +444,7 @@ function createEmotionGraph(videoId, onSubmit) {
         onSubmit(emotionsArray);
     };
 
-    emotionGraphContainer.style.display = "block";
+    emotionGraphContainer.style.display = "none";
 }
 
 // Response variable 3: Strategies
