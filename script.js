@@ -629,26 +629,26 @@ function experimentalSet() {
                     videoPlayer.onseeked = null;
                     videoPlayer.pause(); // Pause the video after seeking
                     videoPlayer.style.display = "block"; // Show the video still for 3 seconds
-
+    
                     let watchButton = createButton("Play", (reactionTime) => {
                         watchButton.style.display = "none";
-
+    
                         videoPlayer.currentTime = 0; // Reset the video to the start
                         playVideoUntil3Seconds(() => {
                             videoPlayer.style.display = "none";
                             clearButtons();
-
+    
                             // Change the text "How do you feel?" to "How do you think this video will make you feel?"
                             const emotionGraphContainer = document.getElementById("emotionGraphContainer");
                             const emotionGraphTitle = emotionGraphContainer.querySelector("h2");
                             emotionGraphTitle.textContent = "What do you feel?";
-
+    
                             // Create the feedback form
                             createFeedbackForm(video.id, (rating) => {
                                 feedbackContainer.style.display = "none";
                                 createEmotionGraph(video.id, (valence, arousal) => {
                                     showFixationCross(playNextVideo);
-
+    
                                     participantChoices.push({
                                         part: "Experimental_Choice",
                                         decision: "watch",
@@ -661,19 +661,22 @@ function experimentalSet() {
                                 });
                             });
                         });
-                        currentVideoIndex++;
                     });
-
+    
                     clearButtons();
                     addButton(watchButton);
+    
+                    // Increment the video index after initializing this video
+                    currentVideoIndex++;
                 };
             };
         } else {
             instructions3();
         }
     }
-
+    
     playNextVideo();
+    
 }
 
 
