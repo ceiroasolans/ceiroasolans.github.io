@@ -645,6 +645,7 @@ function experimentalSet() {
 
                             // Create the feedback form
                             createFeedbackForm(video.id, (rating) => {
+                                feedbackContainer.style.display = "none";
                                 createEmotionGraph(video.id, (valence, arousal) => {
                                     showFixationCross(playNextVideo);
 
