@@ -10,137 +10,121 @@ const buttonsContainer = document.getElementById("buttonsContainer");
  
 // Videos
 const videos = [
-    { src: "0016.mp4", type: "positive" },
-    { src: "0025.mp4", type: "positive" }//,
-    // { src: "0035.mp4", type: "positive" },
-    // { src: "0041.mp4", type: "positive" },
-    // { src: "0055.mp4", type: "positive" },
-    // { src: "0074.mp4", type: "positive" },
-    // { src: "0087.mp4", type: "positive" },
-    // { src: "0090.mp4", type: "positive" },
-    // { src: "0110.mp4", type: "positive" },
-    // { src: "0124.mp4", type: "positive" },
-    // { src: "0126.mp4", type: "positive" },
-    // { src: "0146.mp4", type: "positive" },
-    // { src: "0187.mp4", type: "positive" },
-    // { src: "0202.mp4", type: "positive" },
-    // { src: "0204.mp4", type: "positive" },
-    // { src: "0226.mp4", type: "positive" },
-    // { src: "0235.mp4", type: "positive" },
-    // { src: "0252.mp4", type: "positive" },
-    // { src: "0299.mp4", type: "positive" },
-    // { src: "0339.mp4", type: "positive" },
-    // { src: "0348.mp4", type: "positive" },
-    // { src: "0355.mp4", type: "positive" },
-    // { src: "0369.mp4", type: "positive" },
-    // { src: "0379.mp4", type: "positive" },
-    // { src: "0400.mp4", type: "positive" },
-    // { src: "0402.mp4", type: "positive" },
-    // { src: "0414.mp4", type: "positive" },
-    // { src: "0458.mp4", type: "positive" },
-    // { src: "0489.mp4", type: "positive" },
-    // { src: "0550.mp4", type: "positive" },
-    // { src: "0551.mp4", type: "positive" },
-    // { src: "0574.mp4", type: "positive" },
-    // { src: "0580.mp4", type: "positive" },
-    // { src: "0590.mp4", type: "positive" },
-    // { src: "0593.mp4", type: "positive" },
-    // { src: "0595.mp4", type: "positive" },
-    // { src: "0597.mp4", type: "positive" },
-    // { src: "0605.mp4", type: "positive" },
-    // { src: "0611.mp4", type: "positive" },
-    // { src: "0656.mp4", type: "positive" },
-    // { src: "0666.mp4", type: "positive" },
-    // { src: "0681.mp4", type: "positive" },
-    // { src: "0701.mp4", type: "positive" },
-    // { src: "0706.mp4", type: "positive" },
-    // { src: "0713.mp4", type: "positive" },
-    // { src: "0723.mp4", type: "positive" },
-    // { src: "0735.mp4", type: "positive" },
-    // { src: "0745.mp4", type: "positive" },
-    // { src: "0756.mp4", type: "positive" },
-    // { src: "0773.mp4", type: "positive" },
-    // { src: "0780.mp4", type: "positive" },
-    // { src: "0803.mp4", type: "positive" },
-    // { src: "0820.mp4", type: "positive" },
-    // { src: "0860.mp4", type: "positive" },
-    // { src: "0876.mp4", type: "positive" },
-    // { src: "0881.mp4", type: "positive" },
-    // { src: "0883.mp4", type: "positive" },
-    // { src: "0898.mp4", type: "positive" },
-    // { src: "0919.mp4", type: "positive" },
-    // { src: "0929.mp4", type: "positive" },
-    // { src: "0948.mp4", type: "positive" },
-    // { src: "0961.mp4", type: "positive" },
-    // { src: "0970.mp4", type: "positive" },
-    // { src: "0975.mp4", type: "positive" },
-    // { src: "1020.mp4", type: "positive" },
-    // { src: "1032.mp4", type: "positive" },
-    // { src: "1034.mp4", type: "positive" },
-    // { src: "1043.mp4", type: "positive" },
-    // { src: "1066.mp4", type: "positive" },
-    // { src: "1068.mp4", type: "positive" },
-    // { src: "1074.mp4", type: "positive" },
-    // { src: "1145.mp4", type: "positive" },
-    // { src: "1164.mp4", type: "positive" },
-    // { src: "1194.mp4", type: "positive" },
-    // { src: "1202.mp4", type: "positive" },
-    // { src: "1212.mp4", type: "positive" },
-    // { src: "1216.mp4", type: "positive" },
-    // { src: "1229.mp4", type: "positive" },
-    // { src: "1232.mp4", type: "positive" },
-    // { src: "1265.mp4", type: "positive" },
-    // { src: "1295.mp4", type: "positive" },
-    // { src: "1297.mp4", type: "positive" },
-    // { src: "1301.mp4", type: "positive" },
-    // { src: "1361.mp4", type: "positive" },
-    // { src: "1375.mp4", type: "positive" },
-    // { src: "1400.mp4", type: "positive" },
-    // { src: "1407.mp4", type: "positive" },
-    // { src: "1411.mp4", type: "positive" },
-    // { src: "1423.mp4", type: "positive" },
-    // { src: "1424.mp4", type: "positive" },
-    // { src: "1449.mp4", type: "positive" },
-    // { src: "1468.mp4", type: "positive" },
-    // { src: "1485.mp4", type: "positive" },
-    // { src: "1498.mp4", type: "positive" },
-    // { src: "1537.mp4", type: "positive" },
-    // { src: "1551.mp4", type: "positive" },
-    // { src: "1564.mp4", type: "positive" },
-    // { src: "1592.mp4", type: "positive" },
-    // { src: "1606.mp4", type: "positive" },
-    // { src: "1619.mp4", type: "positive" },
-    // { src: "1624.mp4", type: "positive" },
-    // { src: "1641.mp4", type: "positive" },
-    // { src: "1647.mp4", type: "positive" },
-    // { src: "1664.mp4", type: "positive" },
-    // { src: "1714.mp4", type: "positive" },
-    // { src: "1717.mp4", type: "positive" },
-    // { src: "1726.mp4", type: "positive" },
-    // { src: "1740.mp4", type: "positive" },
-    // { src: "1760.mp4", type: "positive" },
-    // { src: "1780.mp4", type: "positive" },
-    // { src: "1826.mp4", type: "positive" },
-    // { src: "1832.mp4", type: "positive" },
-    // { src: "1835.mp4", type: "positive" },
-    // { src: "1844.mp4", type: "positive" },
-    // { src: "1891.mp4", type: "positive" },
-    // { src: "1907.mp4", type: "positive" },
-    // { src: "1911.mp4", type: "positive" },
-    // { src: "1945.mp4", type: "positive" },
-    // { src: "1959.mp4", type: "positive" },
-    // { src: "1964.mp4", type: "positive" },
-    // { src: "1978.mp4", type: "positive" },
-    // { src: "2013.mp4", type: "positive" },
-    // { src: "2018.mp4", type: "positive" },
-    // { src: "2021.mp4", type: "positive" },
-    // { src: "2025.mp4", type: "positive" },
-    // { src: "2049.mp4", type: "positive" },
-    // { src: "2066.mp4", type: "positive" },
-    // { src: "2072.mp4", type: "positive" },
-    // { src: "2083.mp4", type: "positive" },
-    // { src: "2091.mp4", type: "positive" },
-    // { src: "2181.mp4", type: "positive" },
+    { src: "0074.mp4", type: "Amusement" },
+    // { src: "0574.mp4", type: "Amusement" },
+    // { src: "0656.mp4", type: "Amusement" },
+    // { src: "1043.mp4", type: "Amusement" },
+    // { src: "1145.mp4", type: "Amusement" },
+    // { src: "1411.mp4", type: "Amusement" },
+    // { src: "1564.mp4", type: "Amusement" },
+    // { src: "1606.mp4", type: "Amusement" },
+    // { src: "2072.mp4", type: "Amusement" },
+    // { src: "2083.mp4", type: "Amusement" },
+    { src: "0124.mp4", type: "Anger" },
+    // { src: "0252.mp4", type: "Anger" },
+    // { src: "0414.mp4", type: "Anger" },
+    // { src: "0595.mp4", type: "Anger" },
+    // { src: "0681.mp4", type: "Anger" },
+    // { src: "0948.mp4", type: "Anger" },
+    // { src: "1229.mp4", type: "Anger" },
+    // { src: "1844.mp4", type: "Anger" },
+    // { src: "2049.mp4", type: "Anger" },
+    // { src: "2066.mp4", type: "Anger" },
+    { src: "0090.mp4", type: "Calmness" },
+    // { src: "0339.mp4", type: "Calmness" },
+    // { src: "0493.mp4", type: "Calmness" },
+    // { src: "0553.mp4", type: "Calmness" },
+    // { src: "0580.mp4", type: "Calmness" },
+    // { src: "0645.mp4", type: "Calmness" },
+    // { src: "0671.mp4", type: "Calmness" },
+    // { src: "1216.mp4", type: "Calmness" },
+    // { src: "1760.mp4", type: "Calmness" },
+    // { src: "1835.mp4", type: "Calmness" },
+    { src: "0110.mp4", type: "Craving" },
+    // { src: "0458.mp4", type: "Craving" },
+    // { src: "0780.mp4", type: "Craving" },
+    // { src: "0883.mp4", type: "Craving" },
+    // { src: "0898.mp4", type: "Craving" },
+    // { src: "0919.mp4", type: "Craving" },
+    // { src: "1449.mp4", type: "Craving" },
+    // { src: "1498.mp4", type: "Craving" },
+    // { src: "1740.mp4", type: "Craving" },
+    // { src: "1826.mp4", type: "Craving" },
+    { src: "0187.mp4", type: "Disgust" },
+    // { src: "0235.mp4", type: "Disgust" },
+    // { src: "0355.mp4", type: "Disgust" },
+    // { src: "0713.mp4", type: "Disgust" },
+    // { src: "0876.mp4", type: "Disgust" },
+    // { src: "0929.mp4", type: "Disgust" },
+    // { src: "1194.mp4", type: "Disgust" },
+    // { src: "1423.mp4", type: "Disgust" },
+    // { src: "1907.mp4", type: "Disgust" },
+    // { src: "2018.mp4", type: "Disgust" },
+    { src: "0041.mp4", type: "Excitement" },
+    // { src: "0202.mp4", type: "Excitement" },
+    // { src: "0402.mp4", type: "Excitement" },
+    // { src: "0546.mp4", type: "Excitement" },
+    // { src: "0550.mp4", type: "Excitement" },
+    // { src: "0701.mp4", type: "Excitement" },
+    // { src: "0970.mp4", type: "Excitement" },
+    // { src: "1297.mp4", type: "Excitement" },
+    // { src: "1537.mp4", type: "Excitement" },
+    // { src: "1717.mp4", type: "Excitement" },
+    // { src: "2021.mp4", type: "Excitement" },
+    { src: "0379.mp4", type: "Fear" },
+    // { src: "0489.mp4", type: "Fear" },
+    // { src: "0706.mp4", type: "Fear" },
+    // { src: "1202.mp4", type: "Fear" },
+    // { src: "1361.mp4", type: "Fear" },
+    // { src: "1375.mp4", type: "Fear" },
+    // { src: "1726.mp4", type: "Fear" },
+    // { src: "1780.mp4", type: "Fear" },
+    // { src: "1832.mp4", type: "Fear" },
+    // { src: "1964.mp4", type: "Fear" },
+    // { src: "2091.mp4", type: "Fear" },
+    { src: "0723.mp4", type: "Interest" },
+    // { src: "0735.mp4", type: "Interest" },
+    // { src: "1066.mp4", type: "Interest" },
+    // { src: "1068.mp4", type: "Interest" },
+    // { src: "1265.mp4", type: "Interest" },
+    // { src: "1301.mp4", type: "Interest" },
+    // { src: "1619.mp4", type: "Interest" },
+    // { src: "1624.mp4", type: "Interest" },
+    // { src: "1641.mp4", type: "Interest" },
+    // { src: "1664.mp4", type: "Interest" },
+    // { src: "1945.mp4", type: "Interest" },
+    { src: "0035.mp4", type: "Joy" },
+    // { src: "0087.mp4", type: "Joy" },
+    // { src: "0126.mp4", type: "Joy" },
+    // { src: "0597.mp4", type: "Joy" },
+    // { src: "0605.mp4", type: "Joy" },
+    // { src: "0666.mp4", type: "Joy" },
+    // { src: "0915.mp4", type: "Joy" },
+    // { src: "1032.mp4", type: "Joy" },
+    // { src: "1034.mp4", type: "Joy" },
+    // { src: "1093.mp4", type: "Joy" },
+    // { src: "1245.mp4", type: "Joy" },
+    // { src: "2013.mp4", type: "Joy" },
+    { src: "0204.mp4", type: "Romance" },
+    // { src: "0369.mp4", type: "Romance" },
+    // { src: "0773.mp4", type: "Romance" },
+    // { src: "1074.mp4", type: "Romance" },
+    // { src: "1295.mp4", type: "Romance" },
+    // { src: "1407.mp4", type: "Romance" },
+    // { src: "1424.mp4", type: "Romance" },
+    // { src: "1551.mp4", type: "Romance" },
+    // { src: "1911.mp4", type: "Romance" },
+    // { src: "1978.mp4", type: "Romance" },
+    { src: "0226.mp4", type: "Sadness" } //,
+//     { src: "0299.mp4", type: "Sadness" },
+//     { src: "0611.mp4", type: "Sadness" },
+//     { src: "0756.mp4", type: "Sadness" },
+//     { src: "0803.mp4", type: "Sadness" },
+//     { src: "0860.mp4", type: "Sadness" },
+//     { src: "0975.mp4", type: "Sadness" },
+//     { src: "1164.mp4", type: "Sadness" },
+//     { src: "1485.mp4", type: "Sadness" },
+//     { src: "1959.mp4", type: "Sadness" },
 ];
 
   
@@ -616,349 +600,65 @@ function playRandomVideo(excludeVideoId, videos) {
     return remainingVideos[randomVideoIndex];
 }
 
-// Situation Selection task
+//Video Pilot
 
-// function experimentalSet() {
-//     clearButtons();
-//     const shuffledVideos = shuffleArray([...videos]);
-//     let currentVideoIndex = 0;
-
-//     function playVideoUntil3Seconds(onComplete) {
-//         let startTime = Date.now();
-//         let cumulativeTime = 0;
-//         videoPlayer.play();
-
-//         videoPlayer.onended = videoPlayer.onpause = () => {
-//             cumulativeTime += Date.now() - startTime; // add time of current play to cumulativeTime
-//             if (cumulativeTime < 3000) {
-//                 // check if cumulativeTime is less than 3 seconds
-//                 startTime = Date.now(); // reset startTime for the next play
-//                 videoPlayer.play(); // immediately replay video
-//             } else {
-//                 videoPlayer.onended = videoPlayer.onpause = null; // remove the listeners once done
-//                 onComplete();
-//             }
-//         };
-//     }
-
-//     function playNextVideo() {
-//         if (currentVideoIndex < shuffledVideos.length) {
-//             const video = shuffledVideos[currentVideoIndex];
-//             videoPlayer.src = video.src;
-//             videoPlayer.onloadedmetadata = () => {
-//                 videoPlayer.currentTime = videoPlayer.duration * 0.6; // Seek to 60% of the video's duration
-//                 videoPlayer.onseeked = () => {
-//                     videoPlayer.onseeked = null;
-//                     videoPlayer.pause(); // Pause the video after seeking
-//                     videoPlayer.style.display = "block"; // Show the video still for 3 seconds
-    
-//                     setTimeout(() => {
-//                         videoPlayer.style.display = "none"; // Hide the video for emotion graph
-    
-//                         // Change the text "How do you feel?" to "How do you think this video will make you feel?"
-//                         const emotionGraphContainer = document.getElementById("emotionGraphContainer");
-//                         const emotionGraphTitle = emotionGraphContainer.querySelector("h2");
-//                         emotionGraphTitle.textContent = "What do you think this video will make you feel?";
-    
-//                         createEmotionGraph(video.id, (initialValence, initialArousal) => {
-//                             // After initial emotion graph, create feedback form
-//                             createFeedbackForm(video.id, (rating) => {
-//                                 feedbackContainer.style.display = "none";
-    
-//                                 // Show the video again for choice
-//                                 videoPlayer.style.display = "block";
-    
-//                                 let watchButton;
-//                                 let skipButton;
-    
-//                                 const buttonTimeout = setTimeout(() => {
-//                                     const randomButton = Math.random() < 0.5 ? watchButton : skipButton;
-//                                     randomButton.click();
-//                                 }, 7000);
-    
-//                                 watchButton = createButton("Choose", (reactionTime) => {
-//                                     clearTimeout(buttonTimeout);
-//                                     watchButton.style.display = "none";
-//                                     skipButton.style.display = "none";
-    
-//                                     videoPlayer.currentTime = 0; // Reset the video to the start
-//                                     playVideoUntil3Seconds(() => {
-//                                         videoPlayer.style.display = "none";
-//                                         clearButtons();
-    
-//                                         // Change the text "How do you feel?" to "How do you think this video will make you feel?"
-//                                         const emotionGraphTitle = emotionGraphContainer.querySelector("h2");
-//                                         emotionGraphTitle.textContent = "What do you feel?";
-    
-//                                         createEmotionGraph(video.id, (valence, arousal) => {
-//                                             showFixationCross(playNextVideo);
-    
-//                                             participantChoices.push({
-//                                                 part: "Experimental_Choice",
-//                                                 decision: "watch",
-//                                                 videoId: video.id,
-//                                                 reactionTime: reactionTime,
-//                                                 rating: rating,
-//                                                 initialValence: initialValence,
-//                                                 initialArousal: initialArousal,
-//                                                 valence: valence,
-//                                                 arousal: arousal
-//                                             });
-//                                         });
-//                                     });
-//                                     currentVideoIndex++;
-//                                 });
-    
-//                                 skipButton = createButton("Avoid", (reactionTime) => {
-//                                     clearTimeout(buttonTimeout);
-//                                     watchButton.style.display = "none";
-//                                     skipButton.style.display = "none";
-//                                     const randomVideo = playRandomVideo(video.id, videos);
-    
-//                                     videoPlayer.src = randomVideo.src;
-//                                     videoPlayer.onloadedmetadata = () => {
-//                                         videoPlayer.currentTime = 0; // Reset the video to the start
-//                                         videoPlayer.oncanplay = () => {
-//                                             videoPlayer.oncanplay = null;
-//                                             playVideoUntil3Seconds(() => {
-//                                                 videoPlayer.style.display = "none";
-//                                                 clearButtons();
-    
-//                                                 // Change the text "How do you feel?" to "How do you think this video will make you feel?"
-//                                                 const emotionGraphTitle = emotionGraphContainer.querySelector("h2");
-//                                                 emotionGraphTitle.textContent = "What do you feel?";
-    
-//                                                 createEmotionGraph(video.id, (valence, arousal) => {
-//                                                     showFixationCross(playNextVideo);
-    
-//                                                     participantChoices.push({
-//                                                         part: "Experimental_Choice",
-//                                                         decision: "skip",
-//                                                         videoId: video.id,
-//                                                         reactionTime: reactionTime,
-//                                                         forcedVideoId: randomVideo.id,
-//                                                         rating: rating,
-//                                                         initialValence: initialValence,
-//                                                         initialArousal: initialArousal,
-//                                                         valence: valence,
-//                                                         arousal: arousal
-//                                                     });
-//                                                 });
-//                                             });
-//                                         };
-//                                     };
-//                                     currentVideoIndex++;
-//                                 });
-    
-//                                 clearButtons();
-//                                 addButton(watchButton);
-//                                 addButton(skipButton);
-//                             });
-//                         });
-//                     }, 3000); // Wait for 3 seconds before showing the emotion graph
-//                 };
-//             };
-//         } else {
-//             instructions3();
-//         }
-//     }
-    
-
-//     playNextVideo();
-// } // Situation Selection Task
-
-
-//Strategy Selection task
 function experimentalSet() {
     clearButtons();
     const shuffledVideos = shuffleArray([...videos]);
     let currentVideoIndex = 0;
-    const dimOverlay = document.getElementById('dimOverlay');
-    let dimnessLevel = 0.5;  // initial dimness level
-
-    function setDimness(level) {
-        dimOverlay.style.backgroundColor = `rgba(0, 0, 0, ${level})`;
-    }
-
-    function playVideoUntil3Seconds(onComplete) {
-        let startTime = Date.now();
-        let cumulativeTime = 0;
-        videoPlayer.play();
-
-        const adjustDimness = (event) => {
-            if (event.key === 'f') {
-                dimnessLevel = Math.min(1, dimnessLevel + 0.15);
-            } else if (event.key === 'j') {
-                dimnessLevel = Math.max(0, dimnessLevel - 0.15);
-            }
-            setDimness(dimnessLevel);
-        };
-
-        document.body.focus();
-
-        // Attach the event listener
-        document.addEventListener('keyup', adjustDimness);
-
-        videoPlayer.onended = videoPlayer.onpause = () => {
-            cumulativeTime += Date.now() - startTime; // add time of current play to cumulativeTime
-            if (cumulativeTime < 3000) {
-                // check if cumulativeTime is less than 3 seconds
-                startTime = Date.now(); // reset startTime for the next play
-                videoPlayer.play(); // immediately replay video
-            } else {
-                videoPlayer.onended = videoPlayer.onpause = null; // remove the listeners once done
-                document.removeEventListener('keyup', adjustDimness); // Remove the event listener when done
-                dimOverlay.style.display = 'none'; // hide dimOverlay when video stops
-                onComplete();
-            }
-        };
-    }
 
     function playNextVideo() {
         if (currentVideoIndex < shuffledVideos.length) {
-            dimnessLevel = 0.5;  // Reset dimness level
-            setDimness(dimnessLevel);  // Set initial dimness
             const video = shuffledVideos[currentVideoIndex];
             videoPlayer.src = video.src;
             videoPlayer.onloadedmetadata = () => {
-                videoPlayer.currentTime = videoPlayer.duration * 0.6; // Seek to 60% of the video's duration
-                videoPlayer.onseeked = () => {
-                    videoPlayer.onseeked = null;
-                    videoPlayer.pause(); // Pause the video after seeking
-                    videoPlayer.style.display = "block"; // Show the video still for 3 seconds
+                videoPlayer.currentTime = 0; // Reset the video to the start
 
-                    dimOverlay.style.width = videoPlayer.offsetWidth + 'px';
-                    dimOverlay.style.height = videoPlayer.offsetHeight + 'px';
-                    dimOverlay.style.display = 'block'; // Display dimOverlay
-                    setDimness(dimnessLevel);  // Set initial dimness
+                const playButton = createButton("Play", () => {
+                    videoPlayer.play();
+                    playButton.style.display = "none"; // Hide the play button
+                });
 
-                    setTimeout(() => {
-                        videoPlayer.style.display = "none"; // Hide the video for emotion graph
-                        dimOverlay.style.display = 'none';
+                videoPlayer.onended = () => {
+                    // After the video ends, create feedback form
+                    createFeedbackForm(video.id, (rating) => {
+                        feedbackContainer.style.display = "none";
 
-                        // Change the text "How do you feel?" to "How do you think this video will make you feel?"
+                        // Change the text "How do you feel?" to "How do you think this video made you feel?"
                         const emotionGraphContainer = document.getElementById("emotionGraphContainer");
                         const emotionGraphTitle = emotionGraphContainer.querySelector("h2");
-                        emotionGraphTitle.textContent = "What do you think this video will make you feel?";
+                        emotionGraphTitle.textContent = "What do you feel now?";
 
-                        createEmotionGraph(video.id, (initialValence, initialArousal) => {
-                            createFeedbackForm(video.id, (rating) => {
-                                feedbackContainer.style.display = "none";
-                                // Show the video again for choice
-                                videoPlayer.style.display = "block";
-                                dimOverlay.style.display = 'block';
-                                let watchButton;
-                                let skipButton;
+                        createEmotionGraph(video.id, (valence, arousal) => {
+                            showFixationCross(playNextVideo);
 
-    
-                            const buttonTimeout = setTimeout(() => {
-                                const randomButton = Math.random() < 0.5 ? watchButton : skipButton;
-                                randomButton.click();
-                            }, 7000);
-
-                            watchButton = createButton("Choose", (reactionTime) => {
-                                clearTimeout(buttonTimeout);
-                                watchButton.style.display = "none";
-                                skipButton.style.display = "none";
-
-                                videoPlayer.currentTime = 0; // Reset the video to the start
-
-                                playVideoUntil3Seconds(() => {
-                                    videoPlayer.style.display = "none";
-                                    clearButtons();
-
-                                    // Change the text "How do you feel?" to "How do you feel now?"
-                                    const emotionGraphContainer = document.getElementById("emotionGraphContainer");
-                                    const emotionGraphTitle = emotionGraphContainer.querySelector("h2");
-                                    emotionGraphTitle.textContent = "What do you feel now?";
-
-                                    createEmotionGraph(video.id, (valence, arousal) => {
-                                        strategies((selectedStrategies) => {
-                                            showFixationCross(playNextVideo);
-
-                                            participantChoices.push({
-                                                part: "Experimental_Choice",
-                                                decision: "watch",
-                                                videoId: video.id,
-                                                reactionTime: reactionTime,
-                                                initialValence: initialValence,
-                                                initialArousal: initialArousal,
-                                                valence: valence, 
-                                                arousal: arousal,
-                                                strategies: selectedStrategies
-                                            });
-                                        });
-                                    });
-                                    currentVideoIndex++;
-                                });
+                            participantChoices.push({
+                                part: "Experimental_Choice",
+                                videoId: video.id,
+                                rating: rating,
+                                valence: valence,
+                                arousal: arousal
                             });
-
-                            skipButton = createButton("Avoid", (reactionTime) => {
-                                clearTimeout(buttonTimeout);
-                                watchButton.style.display = "none";
-                                skipButton.style.display = "none";
-
-                                const randomVideo = playRandomVideo(video.id, videos);
-        
-                                videoPlayer.src = randomVideo.src;
-                                videoPlayer.onloadedmetadata = () => {
-                                    videoPlayer.currentTime = 0; // Reset the video to the start
-                                    videoPlayer.oncanplay = () => {
-                                        videoPlayer.oncanplay = null;
-                                        playVideoUntil3Seconds(() => {
-                                            videoPlayer.style.display = "none";
-                                            clearButtons();
-        
-                                            // Change the text "How do you feel?" to "How do you feel now?"
-                                            const emotionGraphContainer = document.getElementById("emotionGraphContainer");
-                                            const emotionGraphTitle = emotionGraphContainer.querySelector("h2");
-                                            emotionGraphTitle.textContent = "What do you feel now?";
-
-                                            createEmotionGraph(video.id, (valence, arousal) => {
-                                                strategies((selectedStrategies) => {
-                                                    showFixationCross(playNextVideo);
-        
-                                                    participantChoices.push({
-                                                        part: "Experimental_Choice",
-                                                        decision: "skip",
-                                                        videoId: video.id,
-                                                        reactionTime: reactionTime,
-                                                        forcedVideoId: randomVideo.id,
-                                                        initialValence: initialValence,
-                                                        initialArousal: initialArousal,
-                                                        valence: valence, 
-                                                        arousal: arousal,
-                                                        strategies: selectedStrategies
-                                                    });
-                                                });
-                                            });
-                                        });
-                                    };
-                                    setTimeout(() => {
-                                        dimOverlay.style.width = videoPlayer.offsetWidth + 'px';
-                                        dimOverlay.style.height = videoPlayer.offsetHeight + 'px';
-                                        setDimness(dimnessLevel);  // Set initial dimness
-                                    }, 100);
-                                };
-                                currentVideoIndex++;
-                            });
-        
-                            clearButtons();
-                            addButton(watchButton);
-                            addButton(skipButton);
                         });
                     });
-                }, 3000);
-            };
-        };
-    } else {
-        instructions3();
-    }
-}
 
-setDimness(dimnessLevel);  // Set initial dimness
-playNextVideo();
-} //Strategy Selection task
+                    currentVideoIndex++;
+                };
+
+                clearButtons();
+                addButton(playButton);
+            };
+        } else {
+            instructions3();
+        }
+    }
+
+    playNextVideo();
+}
+ 
+
+
+
 
 
 // Byebye
