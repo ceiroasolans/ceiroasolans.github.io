@@ -369,6 +369,7 @@ function createEmotionGraph(videoId, onSubmit) {
     emotionGraphContainer.style.display = "flex";  // Change layout to Flexbox
     emotionGraphContainer.style.flexDirection = "row";
     emotionGraphContainer.style.justifyContent = "space-around";
+    
 
     const emotionSubmit = document.createElement("button");
     emotionSubmit.id = 'emotionSubmit';
@@ -377,9 +378,9 @@ function createEmotionGraph(videoId, onSubmit) {
 
     // Mapping of emotions to valence categories
     const emotions = {
-        "Positive": ["Adoration", "Amusement", "Excitement", "Joy", "Romance"],
-        "Other": ["Craving", "Calmness", "Awe", "Interest"],
-        "Negative": ["Anger", "Sadness", "Disgust", "Fear", "Horror"]
+        "Positive": ["Amusement", "Excitement", "Joy", "Heartwarming", "Love"],
+        "Other": ["Craving", "Peacefulness", "Interest"],
+        "Negative": ["Anger", "Sadness", "Disgust", "Fear"]
     };
 
     // Function to create an emotion item in the list
@@ -444,7 +445,7 @@ function createEmotionGraph(videoId, onSubmit) {
         onSubmit(emotionsArray);
     };
 
-    emotionGraphContainer.style.display = "none";
+    emotionGraphContainer.style.display = "block";
 }
 
 // Response variable 3: Strategies
