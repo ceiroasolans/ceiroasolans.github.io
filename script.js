@@ -233,7 +233,7 @@ function createLikertContainer(min, max, minLabel, maxLabel, midLabel) {
             label.textContent = minLabel;
         } else if (i === max) {
             label.textContent = maxLabel;
-        } else if (i === Math.ceil((min + max) / 2)) {
+        } else if (i === 4) {
             label.textContent = midLabel;
         }
 
