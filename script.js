@@ -280,7 +280,7 @@ function createEmotionGraph(videoId, onSubmit) {
         lineElement.setAttribute("y1", y1);
         lineElement.setAttribute("x2", x2);
         lineElement.setAttribute("y2", y2);
-        lineElement.setAttribute("stroke", "#D3D3D3"); // Light Grey Color
+        lineElement.setAttribute("stroke", "#D4D4D4"); // Light Grey Color
         lineElement.setAttribute("stroke-width", 1);
         return lineElement;
     }
