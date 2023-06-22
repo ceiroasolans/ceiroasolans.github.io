@@ -556,10 +556,10 @@ function experimentalSet() {
                             // Create the feedback form
                             createFeedbackForm(video.id, (responses) => {
                                 feedbackContainer.style.display = "none";
-                                createRatingForm(video.id, (ratings) => {
+                                createRatingForm(video.id, (userRatings) => {
                                     console.log('Ratings submitted:', ratings);
                                     feedbackContainer.style.display = "none";
-                                    createWatchAgainForm(onSubmit  => {
+                                    createWatchAgainForm(WatchAgain  => {
                                         feedbackContainer.style.display = "none";                                    
                                 showFixationCross(playNextVideo);
     
@@ -571,6 +571,7 @@ function experimentalSet() {
                                     videoType: userRatings.videoType,
                                     EmoRated: userRatings.EmoRated,
                                     EmoScore: userRatings.EmoScore,
+                                    watchAgain: WatchAgain
                                 });
                               });
                             });
