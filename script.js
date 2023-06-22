@@ -180,55 +180,50 @@ function createFeedbackForm(videoId, onSubmit) {
 
     const responses = {};
 
-    const form = document.createElement("form");
-    form.action = "";
-
     questions.forEach((questionObj, questionIndex) => {
-        const statement = document.createElement("label");
-        statement.classList.add("statement");
-        statement.textContent = questionObj.text;
-        form.appendChild(statement);
+        const question = document.createElement("p");
+        question.textContent = questionObj.text;
+        feedbackContainer.appendChild(question);
 
-        const sliderContainer = document.createElement("div");
-        sliderContainer.style.display = "flex";
-        sliderContainer.style.justifyContent = "space-between";
+        const likertContainer = document.createElement("div");
+        likertContainer.style.display = "flex";
+        likertContainer.style.justifyContent = "space-between";
+        likertContainer.style.marginBottom = "20px";  // Add some vertical separation between questions
+        feedbackContainer.appendChild(likertContainer);
 
-        const minLabel = document.createElement("span");
-        minLabel.textContent = questionObj.scale[0];
-        sliderContainer.appendChild(minLabel);
+        for (let i = 1; i <= 7; i++) {
+            const likertBox = document.createElement("div");
+            likertBox.classList.add("likert-box");
+            likertBox.textContent = i;
+            likertBox.onclick = function() {
+                responses[questionObj.text] = i;
+                likertBox.style.backgroundColor = "#f0f0f0";  // Change color to indicate selection
+            };
+            likertContainer.appendChild(likertBox);
 
-        const slider = document.createElement("input");
-        slider.type = "range";
-        slider.min = "1";
-        slider.max = "7";
-        slider.name = `slider${questionIndex}`;
-        slider.onchange = function() {
-            responses[questionObj.text] = slider.value;
-        };
-        sliderContainer.appendChild(slider);
-
-        const maxLabel = document.createElement("span");
-        maxLabel.textContent = questionObj.scale[2];
-        sliderContainer.appendChild(maxLabel);
-
-        form.appendChild(sliderContainer);
+            // Add labels on the edges and in the middle
+            if (i === 1) likertBox.textContent += "\n" + questionObj.scale[0];
+            else if (i === 4) likertBox.textContent += "\n" + questionObj.scale[1];
+            else if (i === 7) likertBox.textContent += "\n" + questionObj.scale[2];
+        }
     });
 
     const submitButton = document.createElement("button");
-    submitButton.textContent = "Submit";
-    submitButton.onclick = (event) => {
-        event.preventDefault();  // Prevent form from submitting normally
+    submitButton.innerText = "Submit";
+    submitButton.disabled = false;
+    submitButton.onclick = () => {
         if (Object.keys(responses).length === questions.length) {
+            // Only submit if all questions have been answered
             onSubmit(responses);
         } else {
             alert("Please answer all questions.");
         }
     };
-    form.appendChild(submitButton);
 
-    feedbackContainer.appendChild(form);
+    feedbackContainer.appendChild(submitButton);
     feedbackContainer.style.display = "block";
 }
+
 
 
 
