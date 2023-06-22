@@ -176,90 +176,78 @@ function createFeedbackForm(videoId, onSubmit) {
 
     const questions = [
         { text: "How do you feel?", scale: ["Quiet, still, inactive", "Neutral", "Activated, intense, aroused"] },
-        { text: "", scale: ["Negative, dissatisfied, unhappy", "Neutral", "Positive, satisfied, pleased"] }
+        { text: " ", scale: ["Negative, dissatisfied, unhappy ", "Neutral", "Positive, satisfied, pleased"] }
     ];
 
     const responses = {};
-    let buttons = [];
+
+    const form = document.createElement("form");
+    form.action = "";
 
     questions.forEach((questionObj, questionIndex) => {
-        const question = document.createElement("p");
-        question.textContent = questionObj.text;
+        const statement = document.createElement("label");
+        statement.classList.add("statement");
+        statement.textContent = questionObj.text;
+        form.appendChild(statement);
 
-        const scaleContainer = document.createElement("div");
-        scaleContainer.style.display = "flex";
-        scaleContainer.style.justifyContent = "space-between";
-        scaleContainer.style.marginBottom = "20px";  // Add some vertical separation between questions
+        const likert = document.createElement("ul");
+        likert.classList.add("likert");
 
         questionObj.scale.forEach((label, index) => {
-            const labelElement = document.createElement("div");
-            labelElement.textContent = label;
-            scaleContainer.appendChild(labelElement);
+            const li = document.createElement("li");
+
+            const input = document.createElement("input");
+            input.type = "radio";
+            input.name = `likert${questionIndex}`;
+            input.value = index + 1;  // We can use index as value for simplicity
+            li.appendChild(input);
+
+            const labelText = document.createElement("label");
+            labelText.textContent = label;
+            li.appendChild(labelText);
+
+            input.onchange = function() {
+                responses[questionObj.text] = input.value;
+            };
+
+            likert.appendChild(li);
         });
 
-        feedbackContainer.appendChild(question);
-        feedbackContainer.appendChild(scaleContainer);
-
-        const responseContainer = document.createElement("div");
-        responseContainer.style.display = "flex";
-        responseContainer.style.justifyContent = "space-between";
-
-        let localButtons = [];
-        for (let i = 1; i <= 7; i++) {
-            const button = document.createElement("button");
-            button.textContent = i;
-            button.style.flexGrow = "1";
-            button.style.backgroundColor = "#f0f0f0";
-            button.style.borderRadius = "50%";  // Make the buttons circular
-            button.style.width = "30px";
-            button.style.height = "30px";
-            button.style.color = "black";  // Make text color always black
-            button.onclick = function() {
-                if (responses[questionIndex] === i) {
-                    // Unclick action
-                    delete responses[questionIndex];
-                    button.style.backgroundColor = "#f0f0f0";
-                } else {
-                    // Deselect all other buttons in the same question
-                    localButtons.forEach((b, j) => {
-                        b.style.backgroundColor = j === i - 1 ? "#d3d3d3" : "#f0f0f0";
-                    });
-                    // Select this button
-                    responses[questionIndex] = i;
-                    button.style.backgroundColor = "#d3d3d3";
-                }
-            };
-            responseContainer.appendChild(button);
-            localButtons.push(button);
-        }
-
-        buttons = buttons.concat(localButtons);
-        feedbackContainer.appendChild(responseContainer);
+        form.appendChild(likert);
     });
 
+    const buttonsDiv = document.createElement("div");
+    buttonsDiv.classList.add("buttons");
+
+    const clearButton = document.createElement("button");
+    clearButton.classList.add("clear");
+    clearButton.textContent = "Clear";
+    clearButton.type = "button";
+    clearButton.onclick = () => {
+        form.reset();
+        Object.keys(responses).forEach(key => delete responses[key]);
+    };
+    buttonsDiv.appendChild(clearButton);
+
     const submitButton = document.createElement("button");
-    submitButton.innerText = "Submit";
-    submitButton.disabled = true;
-    submitButton.onclick = () => {
+    submitButton.classList.add("submit");
+    submitButton.textContent = "Submit";
+    submitButton.type = "submit";
+    submitButton.onclick = (event) => {
+        event.preventDefault();  // Prevent form from submitting normally
         if (Object.keys(responses).length === questions.length) {
             onSubmit(responses);
         } else {
             alert("Please answer all questions.");
         }
     };
+    buttonsDiv.appendChild(submitButton);
 
-    // Enable submit button only when all questions have been answered
-    buttons.forEach(button => {
-        button.onclick = (...args) => {
-            button.__onclick(...args);
-            submitButton.disabled = Object.keys(responses).length < questions.length;
-        };
-        button.__onclick = button.onclick;
-    });
-
-    feedbackContainer.appendChild(submitButton);
+    form.appendChild(buttonsDiv);
+    feedbackContainer.appendChild(form);
     feedbackContainer.style.display = "block";
 }
+
 
 
 
