@@ -316,7 +316,8 @@ function createRatingForm(videoId, onSubmit) {
             userRatings.push({
                 videoType: video.type,
                 EmoRated: ratings[i - 1], // get the rating type from the ratings array
-                EmoScore: parseInt(selectedBox.textContent)
+                EmoScore: parseInt(selectedBox.textContent),
+                vID: videoId
             });
                 
         }
@@ -564,7 +565,7 @@ function experimentalSet() {
                                 showFixationCross(playNextVideo);
     
                                 participantChoices.push({
-                                    videoId: video.id,
+                                    vID: userRatings.vID,
                                     reactionTime: reactionTime,
                                     valence: responses['valence'],
                                     arousal: responses['arousal'],
@@ -677,7 +678,7 @@ function shuffleArray(array) {
 
 // Generate data 
 function generateAndUploadCSV(participantChoices) {
-    const header = ["videoId", "reactionTime",  "valence", "arousal", "videoType", "EmoRated", "EmoScore"]; //initialValence and initialArousal if new flow
+    const header = ["videoId", "reactionTime",  "valence", "arousal", "videoType", "EmoRated", "EmoScore", WatchAgain]; //initialValence and initialArousal if new flow
     const csvRows = [header];
   
     for (const row of participantChoices) {
@@ -688,7 +689,8 @@ function generateAndUploadCSV(participantChoices) {
         row.arousal || "",
         row.videoType || "",
         row.EmoRated || "",
-        row.EmoScore || ""
+        row.EmoScore || "",
+        row.WatchAgain || ""
       ];
       csvRows.push(rowData);
     }
