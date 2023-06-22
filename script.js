@@ -565,7 +565,7 @@ function experimentalSet() {
                                     reactionTime: reactionTime,
                                     valence: responses['valence'],
                                     arousal: responses['arousal'],
-                                    video.Type: ratings['video.Type'],
+                                    videoType: ratings['video.Type'],
                                     EmoRated: ratings['ratingType'],
                                     EmoScore: ratings['EmoScore']
                                 });
