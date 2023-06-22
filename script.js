@@ -170,35 +170,27 @@ function startTimer() {  // Function to start the timer when buttons appear
 //     feedbackContainer.appendChild(feedbackContainer.button);
 //     feedbackContainer.style.display = "block";
 // } 
-function createFeedbackForm(videoId, callback) {
-    const form = document.createElement("form");
-    const questions = [
-        {
-            text: "This is a Likert Scale survey",
-            scale: ["Strongly Disagree", "Neutral", "Strongly Agree"]
-        },
-        {
-            text: "It's clear that this is a responsive design.",
-            scale: ["Strongly Disagree", "Neutral", "Strongly Agree"]
-        },
-        {
-            text: "Codepen.io is an excellent tool for prototyping.",
-            scale: ["Strongly Disagree", "Neutral", "Strongly Agree"]
-        },
-        {
-            text: "Pete Fecteau is incredibly smart and handsome.",
-            scale: ["Strongly Disagree", "Neutral", "Strongly Agree"]
-        }
-    ];
-    let responses = {};
+function createFeedbackForm(videoId, onSubmit) {
+    feedbackContainer.innerHTML = '';
 
-    function createLikert(questionObj) {
+    const questions = [
+        { text: "How do you feel?", scale: ["Quiet, still, inactive", "Neutral", "Activated, intense, aroused"] },
+        { text: " ", scale: ["Negative, dissatisfied, unhappy", "Neutral", "Positive, satisfied, pleased"] }
+    ];
+
+    const responses = {};
+
+    questions.forEach(questionObj => {
+        const question = document.createElement("p");
+        question.textContent = questionObj.text;
+
         const likertContainer = document.createElement("div");
         likertContainer.classList.add("likert-container");
 
-        for (let i = 1; i <= 7; i++) {
+        for(let i = 1; i <= 7; i++){
             const likertBox = document.createElement("div");
             likertBox.classList.add("likert-box");
+
             const number = document.createElement("div");
             number.textContent = i;
             number.classList.add("likert-number");
@@ -216,35 +208,30 @@ function createFeedbackForm(videoId, callback) {
             likertBox.onclick = function() {
                 likertContainer.querySelectorAll(".likert-box").forEach(box => box.style.backgroundColor = "");
                 responses[questionObj.text] = i;
-                likertBox.style.backgroundColor = "#d8d8d8";
+                likertBox.style.backgroundColor = "#d8d8d8";  // Change color to indicate selection
             };
 
             likertContainer.appendChild(likertBox);
         }
 
-        return likertContainer;
-    }
+        feedbackContainer.appendChild(question);
+        feedbackContainer.appendChild(likertContainer);
+    });
 
-    for (let questionObj of questions) {
-        const question = document.createElement("h3");
-        question.textContent = questionObj.text;
-        form.appendChild(question);
-
-        const likert = createLikert(questionObj);
-        form.appendChild(likert);
-    }
-
-    const submitButton = document.createElement("input");
-    submitButton.type = "submit";
-    submitButton.value = "Submit";
-    form.onsubmit = function(e) {
-        e.preventDefault();
-        callback(responses);
+    const submitButton = document.createElement("button");
+    submitButton.innerText = "Submit";
+    submitButton.onclick = () => {
+        if (Object.keys(responses).length === questions.length) {
+            onSubmit(responses);
+        } else {
+            alert("Please answer all questions.");
+        }
     };
-    form.appendChild(submitButton);
 
-    feedbackContainer.appendChild(form);
+    feedbackContainer.appendChild(submitButton);
+    feedbackContainer.style.display = "block";
 }
+
 
 
 
