@@ -175,8 +175,8 @@ function createFeedbackForm(videoId, onSubmit) {
     feedbackContainer.innerHTML = '';
 
     const questions = [
-        { text: "How do you feel?", scale: ["Quiet, still, inactive", "Neutral", "Activated, intense, aroused"] },
-        { text: " ", scale: ["Negative, dissatisfied, unhappy ", "Neutral", "Positive, satisfied, pleased"] }
+        { text: "How do you feel?", scale: ["Quiet, still, inactive", " ", "Neutral"," ", "Activated, intense, aroused"] },
+        { text: " ", scale: ["Negative, dissatisfied, unhappy "," ", "Neutral", " ","Positive, satisfied, pleased"] }
     ];
 
     const responses = {};
