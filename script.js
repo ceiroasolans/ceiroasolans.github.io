@@ -562,8 +562,13 @@ function experimentalSet() {
     
                                 participantChoices.push({
                                     videoId: video.id,
-                                    reactionTime: reactionTime
-     
+                                    reactionTime: reactionTime,
+                                    valence: responses['valence'],
+                                    arousal: responses['arousal'],
+                                    video.Type: ratings['video.Type'],
+                                    EmoRated: ratings['ratingType'],
+                                    EmoScore: ratings['EmoScore']
+                                });
                               });
                             });
                         });
