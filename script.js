@@ -11,11 +11,13 @@ const selectedMovieIdList = Array.from({ length: 5 });
 
 
 // Other
+const strategies = ["Stimulus selection", "Stimulus modification", "Reappraisal", "Distraction", "Acceptance", "Suppression"]
+
 const videos = [
     { src: "0036.mp4", type: "positive" },
     { src: "0055.mp4", type: "positive" },
-    { src: "0060.mp4", type: "positive" },
-    { src: "0074.mp4", type: "positive" },
+//    { src: "0060.mp4", type: "positive" },
+//    { src: "0074.mp4", type: "positive" },
 //    { src: "0080.mp4", type: "positive" },
 //    { src: "0087.mp4", type: "positive" },
 //    { src: "0089.mp4", type: "positive" },
@@ -490,6 +492,7 @@ var pPressed = 0;
 function practiceSet() {
     clearButtons();
     const shuffledVideos = shuffleArray([...videos]);
+//    let isStrategyDisplayed = false;
 
 
     // Register event listeners for keydown
@@ -523,54 +526,76 @@ function practiceSet() {
     };
 
     function playNextVideo() {
-        if (currentVideoIndex < shuffledVideos.length) {
-            // Check if 'P' was pressed and replace the next video
-            if (pPressed) {
-                if (currentVideoIndex < shuffledVideos.length - 1) {
-                    const currentVideo = shuffledVideos[currentVideoIndex];
-                    shuffledVideos[currentVideoIndex + 1] = currentVideo
-                    // If pressed P, replace the next video with the video when the "p" is pressed
+//        if (currentVideoIndex < shuffledVideos.length) {
+            const strategy = getRandomStrategy();
+            showStrategyMessage(strategy);
+
+            console.log(shuffledVideos)
+
+            setTimeout(() => {
+            if (currentVideoIndex < shuffledVideos.length) {
+                // Check if 'P' was pressed and replace the next video
+                if (pPressed) {
+                    if (currentVideoIndex < shuffledVideos.length - 1) {
+                        const currentVideo = shuffledVideos[currentVideoIndex];
+                        shuffledVideos[currentVideoIndex + 1] = currentVideo
+                        // If pressed P, replace the next video with the video when the "p" is pressed
+                    }
+                    pPressed = false;
                 }
-                pPressed = false;
-            }
 
-            currentVideoIndex++;
+//                currentVideoIndex++;
 
-            const video = shuffledVideos[currentVideoIndex];
-            videoPlayer.src = video.src;
-            videoPlayer.style.display = "block";
-            videoPlayer.style.opacity = "0.5";
-            videoPlayer.play();
+                const video = shuffledVideos[currentVideoIndex];
+                console.log(videoPlayer)
+                console.log(video)
+                console.log(currentVideoIndex)
+                console.log(shuffledVideos.length)
 
-            videoPlayer.onended = () => {
-                videoPlayer.style.display = "none";
-                clearButtons();
+                videoPlayer.src = video.src;
+                videoPlayer.style.display = "block";
+                videoPlayer.style.opacity = "0.5";
+                videoPlayer.play();
 
-                createFeedbackForm(video.id, (rating) => {
-                    feedbackContainer.style.display = "none";
-                    createEmotionGraph(video.id, (valence, arousal) => {
-                        showFixationCross(playNextVideo);
+                currentVideoIndex++;
 
-                        // Consolidate data into one object and add it to the participantChoices array
-                        participantChoices.push({
-                            part: "Practice",
-                            videoId: video.id,
-                            rating: rating,
-                            valence: valence,
-                            arousal: arousal,
-                            // "fPressed", "jPressed", "rPressed", "pPressed"
-                            fPressed: fPressed,
-                            jPressed: jPressed,
-                            rPressed: rPressed,
-                            pPressed: pPressed
+                videoPlayer.onended = () => {
+                    videoPlayer.style.display = "none";
+                    clearButtons();
+
+                    createFeedbackForm(video.id, (rating) => {
+                        feedbackContainer.style.display = "none";
+                        createEmotionGraph(video.id, (valence, arousal) => {
+                            showFixationCross(playNextVideo);
+
+                            // Consolidate data into one object and add it to the participantChoices array
+                            participantChoices.push({
+                                part: "Practice",
+                                videoId: video.id,
+                                rating: rating,
+                                valence: valence,
+                                arousal: arousal,
+                                // "fPressed", "jPressed", "rPressed", "pPressed"
+                                fPressed: fPressed,
+                                jPressed: jPressed,
+                                rPressed: rPressed,
+                                pPressed: pPressed
+                            });
                         });
                     });
-                });
-            };
-        } else {
-            showMessage("");
-            instructions2();
-        }
+                };
+                }
+                else {
+                    console.log("finished practice")
+                    showMessage("");
+                    instructions2();
+                }
+            }, 3000);
+//         else {
+//            console.log("finished practice")
+//            showMessage("");
+//            instructions2();
+//        }
     }
 
     playNextVideo();
@@ -609,6 +634,11 @@ function playRandomVideo(excludeVideoId, videos) {
     let remainingVideos = videos.filter(video => video.id !== excludeVideoId);
     let randomVideoIndex = Math.floor(Math.random() * remainingVideos.length);
     return remainingVideos[randomVideoIndex];
+}
+
+function getRandomStrategy() {
+  const randomIndex = Math.floor(Math.random() * strategies.length);
+  return strategies[randomIndex];
 }
 
 
@@ -664,8 +694,13 @@ function experimentalSet() {
     };
 
     function playNextVideo() {
-        if (currentVideoIndex < shuffledVideos.length) {
+//        if (currentVideoIndex < shuffledVideos.length) {
+            const strategy = getRandomStrategy();
+            showStrategyMessage(strategy);
 
+            setTimeout(() => {
+            console.log(shuffledVideos)
+            if (currentVideoIndex < shuffledVideos.length) {
             // Check if 'P' was pressed and replace the next video
             if (pPressed) {
                 if (currentVideoIndex < shuffledVideos.length - 1) {
@@ -676,12 +711,14 @@ function experimentalSet() {
                 pPressed = false;
             }
 
-            currentVideoIndex++;
+//            currentVideoIndex++;
 
             const video = shuffledVideos[currentVideoIndex];
             videoPlayer.src = video.src;
             videoPlayer.load(); //force browser to re-buffer vid
             videoPlayer.style.display = "block";
+
+            currentVideoIndex++;
 
             let watchButton;
             let skipButton;
@@ -766,6 +803,10 @@ function experimentalSet() {
         } else {
             instructions3();
         }
+        }, 3000);
+//        } else {
+//            instructions3();
+//        }
     }
 
     playNextVideo();
@@ -781,6 +822,19 @@ function instructions3() {
 	
 }
 
+
+function showStrategyMessage(strategy) {
+//        isStrategyDisplayed = true;
+        const strategyContainer = document.getElementById("strategyContainer");
+        strategyContainer.textContent = "Strategy: " + strategy;
+        strategyContainer.style.display = "block";
+
+        setTimeout(() => {
+          strategyContainer.style.display = "none";
+//          isStrategyDisplayed = false;
+//          playNextVideo();
+        }, 3000);
+}
 
 // Auxiliary functions
 function showMessage(text) {
