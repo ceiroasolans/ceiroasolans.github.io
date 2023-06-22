@@ -215,10 +215,12 @@ function createLikertContainer(min, max, minLabel, maxLabel) {
             let boxes = container.getElementsByClassName('likert-box');
             for (let j = 0; j < boxes.length; j++) {
                 boxes[j].classList.remove('selected');
+                boxes[j].style.backgroundColor = ""; // Remove previous background color
             }
 
             // Add 'selected' class to the clicked box
             this.classList.add('selected');
+            this.style.backgroundColor = "#ccc"; // Set background color to darker shade
         });
 
         let number = document.createElement('div');
@@ -240,6 +242,7 @@ function createLikertContainer(min, max, minLabel, maxLabel) {
 
     return container;
 }
+
 
 
 
