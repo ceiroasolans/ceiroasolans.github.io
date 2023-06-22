@@ -366,7 +366,7 @@ function createFeedbackForm(videoId, onSubmit) {
     feedbackContainer.appendChild(header);
 
     ratings.forEach((rating, index) => {
-        let likertContainer = createLikertContainer(1, 4, 7, `not ${rating}`, 'neutral', `very ${rating}`);
+        let likertContainer = createLikertContainer(1, 7, `not ${rating}`, `very ${rating}`);
         likertContainer.id = `likert-${index + 1}`;
         likertContainer.style.marginBottom = '20px'; // Add spacing between the ratings
         feedbackContainer.appendChild(likertContainer);
