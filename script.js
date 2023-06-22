@@ -570,13 +570,13 @@ function experimentalSet() {
                                     arousal: responses['arousal'],
                                     videoType: userRatings['videoType'],
                                     EmoRated: userRatings['EmoRated'],
-                                    EmoScore: userRatings['EmoScore']
+                                    EmoScore: userRatings['EmoScore'],
                                 });
                               });
                             });
                         });
                         });
-                    });
+                    });            
     
                     clearButtons();
                     addButton(watchButton);
