@@ -347,20 +347,18 @@ function experimentalSet() {
           videosByType[video.type] = [];
         }
         videosByType[video.type].push(video);
-      }
+    }
 
-          // Shuffle videos in each category
+    // Shuffle videos in each category
     for (let type in videosByType) {
         shuffleArray(videosByType[type]);
-      }
+    }
   
-      let sequenceData = generateVideoSequence(videosByType, order1);
-      let shuffledVideos = sequenceData.sequence;
-      videosByType = sequenceData.videosByType;
+    let sequenceData = generateVideoSequence(videosByType, order1);
+    let shuffledVideos = sequenceData.sequence;
+    videosByType = sequenceData.videosByType;
       
-      let roundNumber = 1; //
-
-    
+    let roundNumber = 1;
 
     function playVideoUntil3Seconds(onComplete) {
         let startTime = Date.now();
@@ -407,18 +405,14 @@ function experimentalSet() {
                             // Create the feedback form
                             createFeedbackForm(video.id, (rating) => {
                                 feedbackContainer.style.display = "none";
-                                createEmotionGraph(video.id, (valence, arousal) => {
-                                    showFixationCross(playNextVideo);
+                                showFixationCross(playNextVideo);
     
-                                    participantChoices.push({
-                                        part: "Experimental_Choice",
-                                        decision: "watch",
-                                        videoId: video.id,
-                                        reactionTime: reactionTime,
-                                        rating: rating,
-                                        valence: valence,
-                                        arousal: arousal
-                                    });
+                                participantChoices.push({
+                                    part: "Experimental_Choice",
+                                    decision: "watch",
+                                    videoId: video.id,
+                                    reactionTime: reactionTime,
+                                    rating: rating,
                                 });
                             });
                         });
@@ -450,10 +444,9 @@ function experimentalSet() {
         }
     }
     
-    
     playNextVideo();
-    
 }
+
 
 
 
