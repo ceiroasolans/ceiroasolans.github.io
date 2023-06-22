@@ -302,7 +302,7 @@ function createRatingForm(videoId, onSubmit) {
     });
 
     let submitButton = createButton("Submit", () => {
-        let ratings = [];
+        let userRatings = [];
 
         for (let i = 1; i <= 4; i++) {
             let likertContainer = document.getElementById(`likert-${i}`);
@@ -313,7 +313,7 @@ function createRatingForm(videoId, onSubmit) {
                 return;
             }
 
-            ratings.push({
+            userRatings.push({
                 videoType: video.type,
                 EmoRated: ratings[i - 1], // get the rating type from the ratings array
                 EmoScore: parseInt(selectedBox.textContent)
@@ -322,7 +322,7 @@ function createRatingForm(videoId, onSubmit) {
         }
 
         feedbackContainer.innerHTML = ''; // Clear the feedback container after successful submission
-        onSubmit(ratings);
+        onSubmit(userRatings);
     });
 
     feedbackContainer.appendChild(submitButton); // Append the button directly to the feedbackContainer
@@ -565,9 +565,9 @@ function experimentalSet() {
                                     reactionTime: reactionTime,
                                     valence: responses['valence'],
                                     arousal: responses['arousal'],
-                                    videoType: ratings['video.Type'],
-                                    EmoRated: ratings['ratingType'],
-                                    EmoScore: ratings['EmoScore']
+                                    videoType: userRatings['video.Type'],
+                                    EmoRated: userRatings['ratingType'],
+                                    EmoScore: userRatings['EmoScore']
                                 });
                               });
                             });
