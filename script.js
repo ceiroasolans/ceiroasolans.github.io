@@ -282,6 +282,7 @@ function createFeedbackForm(videoId, onSubmit) {
     ratings.forEach((rating, index) => {
         let likertContainer = createLikertContainer(1, 7, `not at all ${rating}`, `very ${rating}`);
         likertContainer.id = `likert-${index + 1}`;
+        likertContainer.style.marginBottom = '20px'; // Add spacing between the ratings
         feedbackContainer.appendChild(likertContainer);
     });
 
@@ -300,13 +301,15 @@ function createFeedbackForm(videoId, onSubmit) {
             ratings.push(parseInt(selectedBox.textContent));
         }
 
+        feedbackContainer.innerHTML = ''; // Clear the feedback container after successful submission
         onSubmit(...ratings);
     });
 
-    addButton(submitButton);
+    feedbackContainer.appendChild(submitButton); // Append the button directly to the feedbackContainer
 
     feedbackContainer.style.display = 'block';
 }
+
 
 
 

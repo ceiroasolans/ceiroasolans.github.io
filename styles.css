@@ -94,6 +94,7 @@ button:disabled {
 .likert-container {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 1rem; 
 }
 
 .likert-box {
@@ -122,3 +123,4 @@ button:disabled {
     color: #666;
     margin-top: 10px;
 }
+
