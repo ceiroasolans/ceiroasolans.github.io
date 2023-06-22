@@ -244,7 +244,7 @@ function createLikertContainer(min, max, minLabel, maxLabel, midLabel) {
     }
 
     return container;
-} // necessary for next function
+} 
 
 function createRatingForm(videoId, onSubmit) {
     // An object to store the rating types for each video type
@@ -482,7 +482,9 @@ function experimentalSet() {
                             // Create the feedback form
                             createFeedbackForm(video.id, (rating) => {
                                 feedbackContainer.style.display = "none";
-                                createRatingForm();
+                                createRatingForm(video.id, (ratings) => {
+                                    console.log('Ratings submitted:', ratings);
+                                    feedbackContainer.style.display = "none";
                                 showFixationCross(playNextVideo);
     
                                 participantChoices.push({
@@ -492,6 +494,7 @@ function experimentalSet() {
                                     reactionTime: reactionTime,
                                     rating: rating,
                                 });
+                              });
                             });
                         });
                     });
