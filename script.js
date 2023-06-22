@@ -348,7 +348,7 @@ function createWatchAgainForm(onSubmit) {
     const likertContainer = document.createElement("div");
     likertContainer.classList.add("likert-container");
 
-    for(let i = 1; i <= 7; i++){
+    for (let i = 1; i <= 7; i++) {
         const likertBox = document.createElement("div");
         likertBox.classList.add("likert-box");
 
@@ -366,7 +366,7 @@ function createWatchAgainForm(onSubmit) {
         else if (i === 4) label.textContent += questionObj.scale[1];
         else if (i === 7) label.textContent += questionObj.scale[2];
 
-        likertBox.onclick = function() {
+        likertBox.onclick = function () {
             likertContainer.querySelectorAll(".likert-box").forEach(box => box.style.backgroundColor = "");
             WatchAgain[questionObj.text] = i;
             likertBox.style.backgroundColor = "#d8d8d8";  // Change color to indicate selection
@@ -390,7 +390,10 @@ function createWatchAgainForm(onSubmit) {
 
     feedbackContainer.appendChild(submitButton);
     feedbackContainer.style.display = "block";
+
+    console.log("WatchAgain:", WatchAgain);
 }
+
 
 
 
