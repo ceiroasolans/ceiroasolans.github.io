@@ -557,7 +557,7 @@ function experimentalSet() {
                             createFeedbackForm(video.id, (responses) => {
                                 feedbackContainer.style.display = "none";
                                 createRatingForm(video.id, (userRatings) => {
-                                    console.log('Ratings submitted:', ratings);
+                                    console.log('Ratings submitted:', userRatings);
                                     feedbackContainer.style.display = "none";
                                     createWatchAgainForm(WatchAgain  => {
                                         feedbackContainer.style.display = "none";                                    
