@@ -237,7 +237,7 @@ function createFeedbackForm(videoId, onSubmit) {
     feedbackContainer.innerHTML = '';
 
     ratings.forEach((rating, index) => {
-        let likertContainer = likertContainer(1, 7, `not at all ${rating}`, `very ${rating}`);
+        let likertContainer = createLikertContainer(1, 7, `not at all ${rating}`, `very ${rating}`);
         likertContainer.id = `likert-${index + 1}`;
         feedbackContainer.appendChild(likertContainer);
     });
