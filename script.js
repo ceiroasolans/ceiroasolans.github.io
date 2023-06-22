@@ -246,6 +246,86 @@ function createLikertContainer(min, max, minLabel, maxLabel) {
 
 
 
+// function createFeedbackForm(videoId, onSubmit) {
+//     // An object to store the rating types for each video type
+//     const videoTypeRatings = {
+//         "Excitement": ["excited", "interested", "amused", "joyful"],
+//         "Amusement": ["joyful", "amused", "excited", "interested"],
+//         "Joy": ["amused", "calm", "joyful", "excited"],
+//         "Romance": ["joyful", "excited", "joyful", "love"],
+//         "Craving": ["hungry", "interested", "joyful", "excited"],
+//         "Calmness": ["interested", "peaceful", "sad", "joyous"],
+//         "Interest": ["joyful", "excited", "peaceful", "interested"],
+//         "Disgust": ["disgusted", "angry", "afraid", "sad"],
+//         "Anger": ["sad", "angry", "afraid", "disgusted"],
+//         "Sadness": ["disgusted", "angry", "sad", "afraid"],
+//         "Fear": ["angry", "sad", "disgusted", "afraid"]
+//     };
+
+//     const video = videos.find(v => v.id === videoId);
+
+//     if (!video) {
+//         console.error(`Video with id ${videoId} not found.`);
+//         return;
+//     }
+
+//     // Get the appropriate ratings for this video type
+//     const ratings = videoTypeRatings[video.type];
+
+//     if (!ratings) {
+//         console.error(`No ratings found for video type ${video.type}`);
+//         return;
+//     }
+
+//     feedbackContainer.innerHTML = '';
+
+//     ratings.forEach((rating, index) => {
+//         let likertContainer = createLikertContainer(1, 7, `not ${rating}`, `very ${rating}`);
+//         likertContainer.id = `likert-${index + 1}`;
+//         likertContainer.style.marginBottom = '20px'; // Add spacing between the ratings
+//         feedbackContainer.appendChild(likertContainer);
+//     });
+
+//     let submitButton = createButton("Submit", () => {
+//         let ratings = [];
+
+//         for (let i = 1; i <= 4; i++) {
+//             let likertContainer = document.getElementById(`likert-${i}`);
+//             let selectedBox = likertContainer.querySelector('.likert-box.selected');
+
+//             if (!selectedBox) {
+//                 alert('Please answer all the questions before submitting.');
+//                 return;
+//             }
+
+//             ratings.push(parseInt(selectedBox.textContent));
+//         }
+
+//         feedbackContainer.innerHTML = ''; // Clear the feedback container after successful submission
+//         onSubmit(...ratings);
+//     });
+
+//     feedbackContainer.appendChild(submitButton); // Append the button directly to the feedbackContainer
+
+//     feedbackContainer.style.display = 'block';
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+// Function to shuffle an array
+
+
+
+
 function createFeedbackForm(videoId, onSubmit) {
     // An object to store the rating types for each video type
     const videoTypeRatings = {
@@ -279,8 +359,14 @@ function createFeedbackForm(videoId, onSubmit) {
 
     feedbackContainer.innerHTML = '';
 
+    // Add the header "How do you feel?"
+    let header = document.createElement('h3');
+    header.style.fontWeight = 'bold';
+    header.innerText = 'How do you feel?';
+    feedbackContainer.appendChild(header);
+
     ratings.forEach((rating, index) => {
-        let likertContainer = createLikertContainer(1, 7, `not at all ${rating}`, `very ${rating}`);
+        let likertContainer = createLikertContainer(1, 7, `not ${rating}`, `very ${rating}`);
         likertContainer.id = `likert-${index + 1}`;
         likertContainer.style.marginBottom = '20px'; // Add spacing between the ratings
         feedbackContainer.appendChild(likertContainer);
@@ -314,14 +400,6 @@ function createFeedbackForm(videoId, onSubmit) {
 
 
 
-
-
-
-
-
-
-
-// Function to shuffle an array
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
       let j = Math.floor(Math.random() * (i + 1));
