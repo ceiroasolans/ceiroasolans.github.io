@@ -186,9 +186,7 @@ function createFeedbackForm(videoId, onSubmit) {
         feedbackContainer.appendChild(question);
 
         const likertContainer = document.createElement("div");
-        likertContainer.style.display = "flex";
-        likertContainer.style.justifyContent = "space-between";
-        likertContainer.style.marginBottom = "20px";  // Add some vertical separation between questions
+        likertContainer.classList.add("likert-container");
         feedbackContainer.appendChild(likertContainer);
 
         for (let i = 1; i <= 7; i++) {
@@ -196,8 +194,13 @@ function createFeedbackForm(videoId, onSubmit) {
             likertBox.classList.add("likert-box");
             likertBox.textContent = i;
             likertBox.onclick = function() {
-                responses[questionObj.text] = i;
-                likertBox.style.backgroundColor = "#f0f0f0";  // Change color to indicate selection
+                if (responses[questionObj.text] === i) {
+                    responses[questionObj.text] = undefined;
+                    likertBox.style.backgroundColor = "";  // Reset color to default
+                } else {
+                    responses[questionObj.text] = i;
+                    likertBox.style.backgroundColor = "#f0f0f0";  // Change color to indicate selection
+                }
             };
             likertContainer.appendChild(likertBox);
 
@@ -223,6 +226,7 @@ function createFeedbackForm(videoId, onSubmit) {
     feedbackContainer.appendChild(submitButton);
     feedbackContainer.style.display = "block";
 }
+
 
 
 

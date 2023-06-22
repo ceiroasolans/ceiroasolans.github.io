@@ -85,8 +85,20 @@ button:disabled {
     justify-content: space-around;
 }
 
+
+
+
+
+
+
+
+.likert-container {
+    display: flex;
+    justify-content: space-between;
+}
+
 .likert-box {
-    flex-grow: 1;
+    flex-basis: calc(100% / 7);
     padding: 10px;
     border: 1px solid #ccc;
     text-align: center;
@@ -98,6 +110,6 @@ button:disabled {
     background-color: #eee;
 }
 
-.likert-box:active {
-    background-color: #f0f0f0;
+.likert-box:active, .likert-box[style*="background-color: #f0f0f0"] {
+    background-color: #d8d8d8;
 }
