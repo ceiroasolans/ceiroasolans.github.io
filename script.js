@@ -207,16 +207,13 @@ function createFeedbackForm(videoId, onSubmit) {
     feedbackContainer.innerHTML = '';
 
     const questions = [
-        { text: "Valence: ", scale: ["Negative, dissatisfied, unhappy", "Neutral", "Positive, satisfied, pleased"] },
-        { text: "Arousal: ", scale: ["Quiet, still, inactive", "Neutral", "Activated, intense, aroused"] }
+        { text: "How do you feel?", scale: ["Quiet, still, inactive", "Neutral", "Activated, intense, aroused"] },
+        { text: " ", scale: ["Negative, dissatisfied, unhappy", "Neutral", "Positive, satisfied, pleased"] }
     ];
 
-    const responses = {
-        "Valence": null,
-        "Arousal": null
-    };
+    const responses = {};
 
-    questions.forEach(questionObj => {
+    questions.forEach((questionObj, index) => {
         const question = document.createElement("p");
         question.textContent = questionObj.text;
 
@@ -243,7 +240,14 @@ function createFeedbackForm(videoId, onSubmit) {
 
             likertBox.onclick = function() {
                 likertContainer.querySelectorAll(".likert-box").forEach(box => box.style.backgroundColor = "");
-                responses[questionObj.text.trim()] = i; // store response by question name
+
+                // Depending on the index, save to valence or arousal
+                if(index === 0) {
+                    responses['valence'] = i;
+                } else if(index === 1) {
+                    responses['arousal'] = i;
+                }
+                
                 likertBox.style.backgroundColor = "#d8d8d8";  // Change color to indicate selection
             };
 
@@ -257,8 +261,8 @@ function createFeedbackForm(videoId, onSubmit) {
     const submitButton = document.createElement("button");
     submitButton.innerText = "Submit";
     submitButton.onclick = () => {
-        if (responses.Valence !== null && responses.Arousal !== null) {
-            onSubmit(responses.Valence, responses.Arousal); // pass the two variables to the callback
+        if (Object.keys(responses).length === questions.length) {
+            onSubmit(responses);
         } else {
             alert("Please answer all questions.");
         }
@@ -267,6 +271,7 @@ function createFeedbackForm(videoId, onSubmit) {
     feedbackContainer.appendChild(submitButton);
     feedbackContainer.style.display = "block";
 }
+
 
 
 // Relevant emotions 
@@ -603,7 +608,7 @@ function experimentalSet() {
                             emotionGraphTitle.textContent = "How do you feel?";
     
                             // Create the feedback form
-                            createFeedbackForm(video.id, (rating) => {
+                            createFeedbackForm(video.id, (responses) => {
                                 feedbackContainer.style.display = "none";
                                 createRatingForm(video.id, (ratings) => {
                                     console.log('Ratings submitted:', ratings);
@@ -613,11 +618,10 @@ function experimentalSet() {
                                 showFixationCross(playNextVideo);
     
                                 participantChoices.push({
-                                    part: "Experimental_Choice",
-                                    decision: "watch",
                                     videoId: video.id,
                                     reactionTime: reactionTime,
-                                    rating: rating,
+                                    valence: responses['valence'],
+                                    arousal: responses['arousal'],
                                 });
                               });
                             });
