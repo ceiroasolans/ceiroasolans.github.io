@@ -340,7 +340,7 @@ function createWatchAgainForm(onSubmit) {
         scale: ["No, never!", "Maybe", "Yes, anytime!"]
     };
 
-    const responses = {};
+    const WatchAgain = {};
 
     const question = document.createElement("p");
     question.textContent = questionObj.text;
@@ -368,7 +368,7 @@ function createWatchAgainForm(onSubmit) {
 
         likertBox.onclick = function() {
             likertContainer.querySelectorAll(".likert-box").forEach(box => box.style.backgroundColor = "");
-            responses[questionObj.text] = i;
+            WatchAgain[questionObj.text] = i;
             likertBox.style.backgroundColor = "#d8d8d8";  // Change color to indicate selection
         };
 
@@ -381,8 +381,8 @@ function createWatchAgainForm(onSubmit) {
     const submitButton = document.createElement("button");
     submitButton.innerText = "Submit";
     submitButton.onclick = () => {
-        if (responses[questionObj.text]) {
-            onSubmit(responses);
+        if (WatchAgain[questionObj.text]) {
+            onSubmit(WatchAgain);
         } else {
             alert("Please answer the question.");
         }
@@ -562,13 +562,8 @@ function experimentalSet() {
     
                                 participantChoices.push({
                                     videoId: video.id,
-                                    reactionTime: reactionTime,
-                                    valence: responses['valence'],
-                                    arousal: responses['arousal'],
-                                    video.Type: ratings['video.Type'],
-                                    EmoRated: ratings['ratingType'],
-                                    EmoScore: ratings['EmoScore']
-                                });
+                                    reactionTime: reactionTime
+     
                               });
                             });
                         });
