@@ -261,7 +261,7 @@ function createRatingForm(videoId, onSubmit) {
         "Excitement": ["excited", "interested", "amused", "joyful"],
         "Amusement": ["joyful", "amused", "excited", "interested"],
         "Joy": ["amused", "calm", "joyful", "excited"],
-        "Romance": ["joyful", "excited", "joyful", "love"],
+        "Romance": ["excited", "calm", "joyful", "love"],
         "Craving": ["hungry", "interested", "joyful", "excited"],
         "Calmness": ["interested", "peaceful", "sad", "joyous"],
         "Interest": ["joyful", "excited", "peaceful", "interested"],
@@ -568,7 +568,7 @@ function experimentalSet() {
                                     reactionTime: reactionTime,
                                     valence: responses['valence'],
                                     arousal: responses['arousal'],
-                                    videoType: userRatings['video.Type'],
+                                    videoType: userRatings['videoType'],
                                     EmoRated: userRatings['ratingType'],
                                     EmoScore: userRatings['EmoScore']
                                 });
