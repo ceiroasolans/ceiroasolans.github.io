@@ -568,9 +568,9 @@ function experimentalSet() {
                                     reactionTime: reactionTime,
                                     valence: responses['valence'],
                                     arousal: responses['arousal'],
-                                    videoType: userRatings['videoType'],
-                                    EmoRated: userRatings['EmoRated'],
-                                    EmoScore: userRatings['EmoScore'],
+                                    videoType: userRatings.videoType,
+                                    EmoRated: userRatings.EmoRated,
+                                    EmoScore: userRatings.EmoScore,
                                 });
                               });
                             });
