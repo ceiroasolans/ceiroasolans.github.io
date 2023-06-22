@@ -203,6 +203,46 @@ function startTimer() {  // Function to start the timer when buttons appear
 //     feedbackContainer.style.display = "block";
 // } // works
 
+function createLikertContainer(min, max, minLabel, maxLabel) {
+    let container = document.createElement('div');
+    container.className = 'likert-container';
+
+    for (let i = min; i <= max; i++) {
+        let box = document.createElement('div');
+        box.className = 'likert-box';
+        box.addEventListener('click', function () {
+            // Remove 'selected' class from all boxes in the container
+            let boxes = container.getElementsByClassName('likert-box');
+            for (let j = 0; j < boxes.length; j++) {
+                boxes[j].classList.remove('selected');
+            }
+
+            // Add 'selected' class to the clicked box
+            this.classList.add('selected');
+        });
+
+        let number = document.createElement('div');
+        number.className = 'likert-number';
+        number.textContent = i;
+
+        let label = document.createElement('div');
+        label.className = 'likert-label';
+        if (i === min) {
+            label.textContent = minLabel;
+        } else if (i === max) {
+            label.textContent = maxLabel;
+        }
+
+        box.appendChild(number);
+        box.appendChild(label);
+        container.appendChild(box);
+    }
+
+    return container;
+}
+
+
+
 function createFeedbackForm(videoId, onSubmit) {
     // An object to store the rating types for each video type
     const videoTypeRatings = {
