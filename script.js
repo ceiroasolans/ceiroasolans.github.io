@@ -233,7 +233,7 @@ function createLikertContainer(min, max, minLabel, maxLabel, midLabel) {
             label.textContent = minLabel;
         } else if (i === max) {
             label.textContent = maxLabel;
-        } else if (i === "4") {
+        } else if (i === 4) {
             label.textContent = midLabel;
         }
 
@@ -288,7 +288,7 @@ function createFeedbackForm(videoId, onSubmit) {
     feedbackContainer.appendChild(header);
 
     ratings.forEach((rating, index) => {
-        let likertContainer = createLikertContainer(1, 7, `not ${rating}`, `very ${rating}`);
+        let likertContainer = createLikertContainer(1, 7, `not ${rating}`, `very ${rating}`,`slightly ${rating}` );
         likertContainer.id = `likert-${index + 1}`;
         likertContainer.style.marginBottom = '20px'; // Add spacing between the ratings
         feedbackContainer.appendChild(likertContainer);
