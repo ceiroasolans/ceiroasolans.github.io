@@ -170,62 +170,82 @@ function startTimer() {  // Function to start the timer when buttons appear
 //     feedbackContainer.appendChild(feedbackContainer.button);
 //     feedbackContainer.style.display = "block";
 // } 
-function createFeedbackForm(videoId, onSubmit) {
-    feedbackContainer.innerHTML = '';
-
+function createFeedbackForm(videoId, callback) {
+    const form = document.createElement("form");
     const questions = [
-        { text: "How do you feel?", scale: ["Quiet, still, inactive", "Neutral", "Activated, intense, aroused"] },
-        { text: " ", scale: ["Negative, dissatisfied, unhappy ", "Neutral", "Positive, satisfied, pleased"] }
+        {
+            text: "This is a Likert Scale survey",
+            scale: ["Strongly Disagree", "Neutral", "Strongly Agree"]
+        },
+        {
+            text: "It's clear that this is a responsive design.",
+            scale: ["Strongly Disagree", "Neutral", "Strongly Agree"]
+        },
+        {
+            text: "Codepen.io is an excellent tool for prototyping.",
+            scale: ["Strongly Disagree", "Neutral", "Strongly Agree"]
+        },
+        {
+            text: "Pete Fecteau is incredibly smart and handsome.",
+            scale: ["Strongly Disagree", "Neutral", "Strongly Agree"]
+        }
     ];
+    let responses = {};
 
-    const responses = {};
-
-    questions.forEach((questionObj, questionIndex) => {
-        const question = document.createElement("p");
-        question.textContent = questionObj.text;
-        feedbackContainer.appendChild(question);
-
+    function createLikert(questionObj) {
         const likertContainer = document.createElement("div");
         likertContainer.classList.add("likert-container");
-        feedbackContainer.appendChild(likertContainer);
 
         for (let i = 1; i <= 7; i++) {
             const likertBox = document.createElement("div");
             likertBox.classList.add("likert-box");
-            likertBox.textContent = i;
-            likertBox.onclick = function() {
-                if (responses[questionObj.text] === i) {
-                    responses[questionObj.text] = undefined;
-                    likertBox.style.backgroundColor = "";  // Reset color to default
-                } else {
-                    responses[questionObj.text] = i;
-                    likertBox.style.backgroundColor = "#f0f0f0";  // Change color to indicate selection
-                }
-            };
-            likertContainer.appendChild(likertBox);
+            const number = document.createElement("div");
+            number.textContent = i;
+            number.classList.add("likert-number");
+            likertBox.appendChild(number);
+
+            const label = document.createElement("div");
+            label.classList.add("likert-label");
+            likertBox.appendChild(label);
 
             // Add labels on the edges and in the middle
-            if (i === 1) likertBox.textContent += "\n" + questionObj.scale[0];
-            else if (i === 4) likertBox.textContent += "\n" + questionObj.scale[1];
-            else if (i === 7) likertBox.textContent += "\n" + questionObj.scale[2];
-        }
-    });
+            if (i === 1) label.textContent += questionObj.scale[0];
+            else if (i === 4) label.textContent += questionObj.scale[1];
+            else if (i === 7) label.textContent += questionObj.scale[2];
 
-    const submitButton = document.createElement("button");
-    submitButton.innerText = "Submit";
-    submitButton.disabled = false;
-    submitButton.onclick = () => {
-        if (Object.keys(responses).length === questions.length) {
-            // Only submit if all questions have been answered
-            onSubmit(responses);
-        } else {
-            alert("Please answer all questions.");
+            likertBox.onclick = function() {
+                likertContainer.querySelectorAll(".likert-box").forEach(box => box.style.backgroundColor = "");
+                responses[questionObj.text] = i;
+                likertBox.style.backgroundColor = "#d8d8d8";
+            };
+
+            likertContainer.appendChild(likertBox);
         }
+
+        return likertContainer;
+    }
+
+    for (let questionObj of questions) {
+        const question = document.createElement("h3");
+        question.textContent = questionObj.text;
+        form.appendChild(question);
+
+        const likert = createLikert(questionObj);
+        form.appendChild(likert);
+    }
+
+    const submitButton = document.createElement("input");
+    submitButton.type = "submit";
+    submitButton.value = "Submit";
+    form.onsubmit = function(e) {
+        e.preventDefault();
+        callback(responses);
     };
+    form.appendChild(submitButton);
 
-    feedbackContainer.appendChild(submitButton);
-    feedbackContainer.style.display = "block";
+    feedbackContainer.appendChild(form);
 }
+
 
 
 
