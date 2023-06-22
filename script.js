@@ -569,7 +569,7 @@ function experimentalSet() {
                                     valence: responses['valence'],
                                     arousal: responses['arousal'],
                                     videoType: userRatings['videoType'],
-                                    EmoRated: userRatings['ratingType'],
+                                    EmoRated: userRatings['EmoType'],
                                     EmoScore: userRatings['EmoScore']
                                 });
                               });
