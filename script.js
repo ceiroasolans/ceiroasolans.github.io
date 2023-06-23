@@ -564,21 +564,23 @@ function experimentalSet() {
                                         feedbackContainer.style.display = "none";                                    
                                 showFixationCross(playNextVideo);
     
-                                participantChoices.push({
-                                    vID: userRatings.vID,
-                                    reactionTime: reactionTime,
-                                    valence: responses['valence'],
-                                    arousal: responses['arousal'],
-                                    videoType: userRatings['videoType'],
-                                    EmoRated: userRatings['EmoRated'],
-                                    EmoScore: userRatings['EmoScore'],
-                                    watchAgain: WatchAgain
+                                userRatings.forEach((rating) => {
+                                    participantChoices.push({
+                                        vID: rating.vID,
+                                        reactionTime: reactionTime,
+                                        valence: responses['valence'],
+                                        arousal: responses['arousal'],
+                                        videoType: rating['videoType'],
+                                        EmoRated: rating['EmoRated'],
+                                        EmoScore: rating['EmoScore'],
+                                        watchAgain: WatchAgain
                                 });
                               });
                             });
                         });
                         });
-                    });            
+                    });   
+                });         
     
                     clearButtons();
                     addButton(watchButton);
@@ -678,12 +680,12 @@ function shuffleArray(array) {
 
 // Generate data 
 function generateAndUploadCSV(participantChoices) {
-    const header = ["videoId", "reactionTime",  "valence", "arousal", "videoType", "EmoRated", "EmoScore", "WatchAgain"]; //initialValence and initialArousal if new flow
+    const header = ["vID", "reactionTime",  "valence", "arousal", "videoType", "EmoRated", "EmoScore", "WatchAgain"]; //initialValence and initialArousal if new flow
     const csvRows = [header];
   
     for (const row of participantChoices) {
       const rowData = [
-        row.videoId,
+        row.vID,
         row.reactionTime,
         row.valence || "",
         row.arousal || "",
@@ -692,6 +694,7 @@ function generateAndUploadCSV(participantChoices) {
         row.EmoScore || "",
         row.WatchAgain || ""
       ];
+
       csvRows.push(rowData);
     }
   
