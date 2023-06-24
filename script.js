@@ -560,7 +560,7 @@ function experimentalSet() {
                                 createRatingForm(video.id, (userRatings) => {
                                     console.log('Ratings submitted:', userRatings);
                                     feedbackContainer.style.display = "none";
-                                    createWatchAgainForm(WatchAgain  => {
+                                    createWatchAgainForm(WatchAgainResponse  => {
                                         feedbackContainer.style.display = "none";                                    
                                 showFixationCross(playNextVideo);
     
@@ -573,7 +573,7 @@ function experimentalSet() {
                                         videoType: rating['videoType'],
                                         EmoRated: rating['EmoRated'],
                                         EmoScore: rating['EmoScore'],
-                                        watchAgain: WatchAgain["Would you watch this video again?"]
+                                        watchAgain: WatchAgainResponse["Would you watch this video again?"]
                                 });
                               });
                             });
