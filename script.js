@@ -271,7 +271,7 @@ function createRatingForm(videoId, onSubmit) {
         "Fear": ["angry", "sad", "disgusted", "afraid"]
     };
 
-    const video = videos.find(v => v.src === videoId);
+    const video = videos.find(v => v.src === videoId); //change to v.id
 
     if (!video) {
         console.error(`Video with id ${videoId} not found.`);
@@ -573,7 +573,7 @@ function experimentalSet() {
                                         videoType: rating['videoType'],
                                         EmoRated: rating['EmoRated'],
                                         EmoScore: rating['EmoScore'],
-                                        watchAgain: WatchAgain
+                                        watchAgain: WatchAgain["Would you watch this video again?"]
                                 });
                               });
                             });
