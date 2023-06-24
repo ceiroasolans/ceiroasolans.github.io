@@ -271,7 +271,7 @@ function createRatingForm(videoId, onSubmit) {
         "Fear": ["angry", "sad", "disgusted", "afraid"]
     };
 
-    const video = videos.find(v => v.id === videoId);
+    const video = videos.find(v => v.src === videoId);
 
     if (!video) {
         console.error(`Video with id ${videoId} not found.`);
