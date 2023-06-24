@@ -554,33 +554,50 @@ function experimentalSet() {
                             const emotionGraphTitle = emotionGraphContainer.querySelector("h2");
                             emotionGraphTitle.textContent = "How do you feel?";
     
+                            let ratingData = {};
+
                             // Create the feedback form
                             createFeedbackForm(video.id, (responses) => {
-                                feedbackContainer.style.display = "none";
-                                createRatingForm(video.id, (userRatings) => {
+                                ratingData[video.id] = {
+                                valence: responses['valence'],
+                                arousal: responses['arousal']
+                            };
+                            feedbackContainer.style.display = "none";
+                            });
+
+                            createRatingForm(video.id, (userRatings) => {
+                                ratingData[video.id] = {
+                                    ...ratingData[video.id],
+                                    ratings: userRatings
+                                };
                                     console.log('Ratings submitted:', userRatings);
                                     feedbackContainer.style.display = "none";
-                                    createWatchAgainForm(WatchAgainResponse  => {
-                                        feedbackContainer.style.display = "none";                                    
-                                showFixationCross(playNextVideo);
-    
-                                userRatings.forEach((rating) => {
-                                    participantChoices.push({
-                                        vID: rating.vID,
-                                        reactionTime: reactionTime,
-                                        valence: responses['valence'],
-                                        arousal: responses['arousal'],
-                                        videoType: rating['videoType'],
-                                        EmoRated: rating['EmoRated'],
-                                        EmoScore: rating['EmoScore'],
+                            });
+                                
+                            createWatchAgainForm(WatchAgainResponse  => {
+                                    ratingData[video.id] = {
+                                        ...ratingData[video.id],
                                         watchAgain: WatchAgainResponse["Would you watch this video again?"]
+                                    };
+                                feedbackContainer.style.display = "none";                                    
+                                showFixationCross(playNextVideo);
+                            });
+    
+                            Object.values(ratingData).forEach((data) => {
+                                participantChoices.push({
+                                    vID: data.vID,
+                                    reactionTime: reactionTime,
+                                    valence: data.valence,
+                                    arousal: data.arousal,
+                                    videoType: data.ratings['videoType'],
+                                    EmoRated: data.ratings['EmoRated'],
+                                    EmoScore: data.ratings['EmoScore'],
+                                    watchAgain: data.watchAgain
                                 });
-                              });
                             });
                         });
                         });
-                    });   
-                });         
+      
     
                     clearButtons();
                     addButton(watchButton);
