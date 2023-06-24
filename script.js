@@ -317,7 +317,7 @@ function createRatingForm(videoId, onSubmit) {
                 videoType: video.type,
                 EmoRated: ratings[i - 1], // get the rating type from the ratings array
                 EmoScore: parseInt(selectedBox.textContent),
-                vID: videoId
+                vID: video.src
             });
                 
         }
