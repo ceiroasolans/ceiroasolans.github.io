@@ -481,8 +481,8 @@ function instructions() {
 }
 
 
-const order1 = ["Joy", "Fear", "Interest", "Craving", "Anger", "Romance", "Sadness", "Excitement", "Amusement", "Disgust", "Calm"];
-const order2 = ["Romance", "Fear", "Craving", "Sadness", "Calm", "Amusement", "Anger", "Interest", "Excitement", "Disgust", "Joy"];
+const order1 = ["Joy", "Fear", "Interest", "Craving", "Anger", "Romance", "Sadness", "Excitement", "Amusement", "Disgust", "Calmness"];
+const order2 = ["Romance", "Fear", "Craving", "Sadness", "Calmness", "Amusement", "Anger", "Interest", "Excitement", "Disgust", "Joy"];
 
 
 
