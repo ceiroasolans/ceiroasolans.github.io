@@ -88,6 +88,7 @@ button:disabled {
 
 
 .likert-container {
+    flex-grow: 1; 
     display: flex;
     justify-content: space-between;
     margin-bottom: 1rem; 
@@ -130,7 +131,7 @@ button:disabled {
 
 .main-container {
     display: flex;
-    flex-direction: row;
+    flex-direction: column; /* row here for labels on the side
     align-items: center; /* align items vertically */
     justify-content: space-between; /* add space between the label and likert scale */
     width: 100%;
