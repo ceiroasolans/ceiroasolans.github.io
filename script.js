@@ -9,8 +9,8 @@ const buttonsContainer = document.getElementById("buttonsContainer");
 
  
 // Videos
-const videos = [
-    { src: "0074.mp4", type: "Amusement" },
+const allVideos = [
+    { id: 1, src: "0074.mp4", type: "Amusement" },
     // { src: "0574.mp4", type: "Amusement" },
     // { src: "0656.mp4", type: "Amusement" },
     // { src: "1043.mp4", type: "Amusement" },
@@ -123,7 +123,34 @@ const videos = [
     // { src: "1959.mp4", type: "Sadness" },
 ];
   
-  for(let i = 0; i < videos.length; i++) {
+
+
+
+let userGroup;
+
+if (localStorage.getItem('userGroup')) {
+    // If user group already exists in local storage, retrieve it
+    userGroup = localStorage.getItem('userGroup');
+} else {
+    // If not, randomly assign user to groupA or groupB
+    userGroup = Math.random() < 0.5 ? 'groupA' : 'groupB';
+    // Then store it in local storage for future visits
+    localStorage.setItem('userGroup', userGroup);
+}
+
+let videos;
+
+if(userGroup === 'groupA') {
+    // Filter the videos to show only those with IDs between 1 and 55
+    videos = allVideos.filter(video => video.id >= 1 && video.id <= 55);
+} else {
+    // Filter the videos to show only those with IDs between 56 and 110
+    videos = allVideos.filter(video => video.id >= 56 && video.id <= 110);
+}
+
+
+
+for(let i = 0; i < videos.length; i++) {
     videos[i].id = i.toString();
 }
 
@@ -312,7 +339,7 @@ function createRatingForm(videoId, onSubmit) {
     feedbackContainer.appendChild(header);
 
     ratings.forEach((rating, index) => {
-        let likertContainer = createLikertContainer(1, 7, `not ${rating} at all`, `very ${rating}`,`somewhat ${rating}`, rating);
+        let likertContainer = createLikertContainer(1, 7, `not ${rating}`, `very ${rating}`,`somewhat ${rating}`, rating);
         likertContainer.id = `likert-${index + 1}`;
         likertContainer.style.marginBottom = '20px'; // Add spacing between the ratings
         feedbackContainer.appendChild(likertContainer);
