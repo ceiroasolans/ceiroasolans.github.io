@@ -647,15 +647,23 @@ function experimentalSet() {
     playNextVideo();
 }
 
+const populationMeans = {
+    "Amusement": {valence: 5.50, arousal: 4.83},
+    "Anger": {valence: 1.97, arousal: 4.36},
+    "Calmness": {valence: 5.29, arousal: 4.10},
+    "Craving": {valence: 5.74, arousal: 4.75},
+    "Disgust": {valence: 1.34, arousal: 3.87},
+    "Excitement": {valence: 4.71, arousal: 5.35},
+    "Fear": {valence: 2.18, arousal: 5.12},
+    "Interest": {valence: 4.23, arousal: 4.45},
+    "Joy": {valence: 6.04, arousal: 4.65}
+};
 
-// Calculate means 
-// A helper function to calculate the mean of an array of numbers
 function calculateMean(numbers) {
     let sum = numbers.reduce((a, b) => a + b, 0);
     return sum / numbers.length;
 }
 
-// A helper function to calculate the mean valence and arousal for each video type
 function calculateMeanRatings(participantChoices) {
     let videoTypes = ["Joy", "Fear", "Interest", "Craving", "Anger", "Romance", "Sadness", "Excitement", "Disgust", "Calmness", "Amusement"];
     let meanRatings = {};
@@ -672,24 +680,8 @@ function calculateMeanRatings(participantChoices) {
     return meanRatings;
 }
 
-
-//Fun 3
-// function instructions3() {
-//     let meanRatings = calculateMeanRatings(participantChoices);
-//     let message = "Congratulations! You have completed this study :)\n\nHere are your average valence and arousal ratings for each video type:\n";
-
-//     for (let type in meanRatings) {
-//         message += `${type}: Valence - ${meanRatings[type].meanValence.toFixed(2)}, Arousal - ${meanRatings[type].meanArousal.toFixed(2)}\n`;
-//     }
-
-//     showMessage(message);
-//     clearButtons();
-//     generateAndUploadCSV(participantChoices);
-// }
-
 function instructions3() {
     let meanRatings = calculateMeanRatings(participantChoices);
-
     let resultTableContainer = document.getElementById("resultTableContainer");
 
     let tableHtml = `
@@ -697,19 +689,25 @@ function instructions3() {
         <thead>
             <tr>
                 <th>Video Type</th>
-                <th>Average Valence</th>
-                <th>Average Arousal</th>
+                <th>Your Average Valence</th>
+                <th>Your Average Arousal</th>
+                <th>Population Average Valence</th>
+                <th>Population Average Arousal</th>
             </tr>
         </thead>
         <tbody>
     `;
 
     for (let type in meanRatings) {
+        let populationMeanValence = populationMeans[type] ? populationMeans[type].valence.toFixed(2) : "N/A";
+        let populationMeanArousal = populationMeans[type] ? populationMeans[type].arousal.toFixed(2) : "N/A";
         tableHtml += `
         <tr>
             <td>${type}</td>
             <td>${meanRatings[type].meanValence.toFixed(2)}</td>
             <td>${meanRatings[type].meanArousal.toFixed(2)}</td>
+            <td>${populationMeanValence}</td>
+            <td>${populationMeanArousal}</td>
         </tr>
         `;
     }
