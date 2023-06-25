@@ -145,8 +145,8 @@ function createFeedbackForm(videoId, onSubmit) {
     feedbackContainer.innerHTML = '';
 
     const questions = [
-        { text: "How do you feel?", scale: ["Quiet, still, inactive", "Neutral", "Activated, intense, aroused"] },
-        { text: " ", scale: ["Negative, dissatisfied, unhappy", "Neutral", "Positive, satisfied, pleased"] }
+        { text: "How do you feel?", scale: ["Still, inactive", "Neutral", "Activated, aroused"] },
+        { text: " ", scale: ["Unpleasant, negative", "Neutral", "Pleasant, positive"] }
     ];
 
     const responses = {};
@@ -272,11 +272,6 @@ function createLikertContainer(min, max, minLabel, maxLabel, midLabel, emotion) 
     return mainContainer;
 }
 
-
-
-
-
-
 function createRatingForm(videoId, onSubmit) {
     // An object to store the rating types for each video type
     const videoTypeRatings = {
@@ -317,7 +312,7 @@ function createRatingForm(videoId, onSubmit) {
     feedbackContainer.appendChild(header);
 
     ratings.forEach((rating, index) => {
-        let likertContainer = createLikertContainer(1, 7, `not ${rating}`, `very ${rating}`,`moderately ${rating}`, rating);
+        let likertContainer = createLikertContainer(1, 7, `not ${rating} at all`, `very ${rating}`,`somewhat ${rating}`, rating);
         likertContainer.id = `likert-${index + 1}`;
         likertContainer.style.marginBottom = '20px'; // Add spacing between the ratings
         feedbackContainer.appendChild(likertContainer);
