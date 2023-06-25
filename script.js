@@ -226,13 +226,20 @@ function createLikertContainer(min, max, minLabel, maxLabel, midLabel, emotion) 
     let container = document.createElement('div');
     container.className = 'likert-container';
 
-
-
     for (let i = min; i <= max; i++) {
+        let boxContainer = document.createElement('div');
+        boxContainer.className = 'likert-box-container';
+
         let box = document.createElement('div');
         box.className = 'likert-box';
-        
         box.addEventListener('click', function () {
+            // If this box was already selected, deselect it
+            if (this.classList.contains('selected')) {
+                this.classList.remove('selected');
+                this.style.backgroundColor = ""; // Remove background color
+                return;
+            }
+
             // Remove 'selected' class from all boxes in the container
             let boxes = container.getElementsByClassName('likert-box');
             for (let j = 0; j < boxes.length; j++) {
@@ -244,6 +251,7 @@ function createLikertContainer(min, max, minLabel, maxLabel, midLabel, emotion) 
             this.classList.add('selected');
             this.style.backgroundColor = "#ccc"; // Set background color to darker shade
         });
+
 
         let number = document.createElement('div');
         number.className = 'likert-number';
@@ -261,9 +269,12 @@ function createLikertContainer(min, max, minLabel, maxLabel, midLabel, emotion) 
 
         box.appendChild(number);
         box.appendChild(label);
-        mainContainer.appendChild(box);
+
+        boxContainer.appendChild(box);
+        container.appendChild(boxContainer);
     }
 
+    mainContainer.appendChild(container);
     return mainContainer;
 } 
 
