@@ -227,9 +227,6 @@ function createLikertContainer(min, max, minLabel, maxLabel, midLabel, emotion) 
     container.className = 'likert-container';
 
     for (let i = min; i <= max; i++) {
-        let boxContainer = document.createElement('div');
-        boxContainer.className = 'likert-box-container';
-
         let box = document.createElement('div');
         box.className = 'likert-box';
         box.addEventListener('click', function () {
@@ -239,23 +236,23 @@ function createLikertContainer(min, max, minLabel, maxLabel, midLabel, emotion) 
                 this.style.backgroundColor = ""; // Remove background color
                 return;
             }
-
+            
             // Remove 'selected' class from all boxes in the container
             let boxes = container.getElementsByClassName('likert-box');
             for (let j = 0; j < boxes.length; j++) {
                 boxes[j].classList.remove('selected');
                 boxes[j].style.backgroundColor = ""; // Remove previous background color
             }
-
+            
             // Add 'selected' class to the clicked box
             this.classList.add('selected');
             this.style.backgroundColor = "#ccc"; // Set background color to darker shade
         });
-
-
+        
         let number = document.createElement('div');
         number.className = 'likert-number';
         number.textContent = i;
+        box.appendChild(number);
 
         let label = document.createElement('div');
         label.className = 'likert-label';
@@ -266,17 +263,15 @@ function createLikertContainer(min, max, minLabel, maxLabel, midLabel, emotion) 
         } else if (i === 4) {
             label.textContent = midLabel;
         }
-
-        box.appendChild(number);
         box.appendChild(label);
-
-        boxContainer.appendChild(box);
-        container.appendChild(boxContainer);
+        
+        container.appendChild(box);
     }
 
     mainContainer.appendChild(container);
     return mainContainer;
-} 
+}
+
 
 function createRatingForm(videoId, onSubmit) {
     // An object to store the rating types for each video type
