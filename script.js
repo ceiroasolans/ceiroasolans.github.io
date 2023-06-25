@@ -154,9 +154,15 @@ function createFeedbackForm(videoId, onSubmit) {
     questions.forEach((questionObj, index) => {
         const question = document.createElement("p");
         question.textContent = questionObj.text;
+        feedbackContainer.appendChild(question);
 
         const likertContainer = document.createElement("div");
         likertContainer.classList.add("likert-container");
+
+        const likertLabels = document.createElement("div");
+        likertLabels.classList.add("likert-labels");
+        likertLabels.textContent = `${questionObj.scale[0]} (1) --- ${questionObj.scale[1]} (4) --- ${questionObj.scale[2]} (7)`;
+        feedbackContainer.appendChild(likertLabels);
 
         for(let i = 1; i <= 7; i++){
             const likertBox = document.createElement("div");
@@ -167,32 +173,21 @@ function createFeedbackForm(videoId, onSubmit) {
             number.classList.add("likert-number");
             likertBox.appendChild(number);
 
-            const label = document.createElement("div");
-            label.classList.add("likert-label");
-            likertBox.appendChild(label);
-            
-            // Add labels on the edges and in the middle
-            if (i === 1) label.textContent = questionObj.scale[0];
-            else if (i === 4) label.textContent = questionObj.scale[1];
-            else if (i === 7) label.textContent = questionObj.scale[2];
-
             likertBox.onclick = function() {
                 likertContainer.querySelectorAll(".likert-box").forEach(box => box.style.backgroundColor = "");
 
-                // Depending on the index, save to valence or arousal
                 if(index === 0) {
                     responses['valence'] = i;
                 } else if(index === 1) {
                     responses['arousal'] = i;
                 }
-                
-                likertBox.style.backgroundColor = "#d8d8d8";  // Change color to indicate selection
+
+                likertBox.style.backgroundColor = "#d8d8d8";
             };
 
             likertContainer.appendChild(likertBox);
         }
 
-        feedbackContainer.appendChild(question);
         feedbackContainer.appendChild(likertContainer);
     });
 
@@ -209,6 +204,7 @@ function createFeedbackForm(videoId, onSubmit) {
     feedbackContainer.appendChild(submitButton);
     feedbackContainer.style.display = "block";
 }
+
 
 
 
