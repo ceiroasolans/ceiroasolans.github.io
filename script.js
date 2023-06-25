@@ -725,7 +725,7 @@ function instructions3() {
 
     resultTableContainer.innerHTML = tableHtml;
 
-    showMessage("Congratulations! You have completed this study :)  )\n\n Here is your reported valence and arousal, averaged across emotions, compared to others.");
+    showMessage("Congratulations! You have completed this study :)  )\n\n\n Here is some feedback!");
     clearButtons();
     generateAndUploadCSV(participantChoices);
 }
