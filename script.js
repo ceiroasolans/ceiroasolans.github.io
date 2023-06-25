@@ -217,6 +217,13 @@ function createLikertContainer(min, max, minLabel, maxLabel, midLabel) {
     let container = document.createElement('div');
     container.className = 'likert-container';
 
+    let emotionLabel = document.createElement('div');  // new stuff
+    emotionLabel.textContent = emotion;
+    emotionLabel.style.fontWeight = 'bold';
+    container.appendChild(emotionLabel);
+
+
+
     for (let i = min; i <= max; i++) {
         let box = document.createElement('div');
         box.className = 'likert-box';
@@ -295,7 +302,7 @@ function createRatingForm(videoId, onSubmit) {
     feedbackContainer.appendChild(header);
 
     ratings.forEach((rating, index) => {
-        let likertContainer = createLikertContainer(1, 7, `not ${rating}`, `very ${rating}`,`moderately ${rating}` );
+        let likertContainer = createLikertContainer(1, 7, `not ${rating}`, `very ${rating}`,`moderately ${rating}`, rating);
         likertContainer.id = `likert-${index + 1}`;
         likertContainer.style.marginBottom = '20px'; // Add spacing between the ratings
         feedbackContainer.appendChild(likertContainer);
@@ -549,36 +556,40 @@ function experimentalSet() {
                             videoPlayer.style.display = "none";
                             clearButtons();
     
-                            let currentRating = {
-                                vID: video.id,
-                                reactionTime: reactionTime
-                            };
+                            // Change the text "How do you feel?" to "How do you think this video will make you feel?"
+                            const emotionGraphContainer = document.getElementById("emotionGraphContainer");
+                            const emotionGraphTitle = emotionGraphContainer.querySelector("h2");
+                            emotionGraphTitle.textContent = "How do you feel?";
     
+                            let ratingData = {};
+                            
+                            // Create the feedback form
                             createFeedbackForm(video.id, (responses) => {
                                 feedbackContainer.style.display = "none";
-    
-                                currentRating.valence = responses['valence'];
-                                currentRating.arousal = responses['arousal'];
-    
                                 createRatingForm(video.id, (userRatings) => {
                                     console.log('Ratings submitted:', userRatings);
                                     feedbackContainer.style.display = "none";
-                                    
-                                    currentRating.videoType = userRatings['videoType'];
-                                    currentRating.EmoRated = userRatings['EmoRated'];
-                                    currentRating.EmoScore = userRatings['EmoScore'];
-    
                                     createWatchAgainForm(WatchAgainResponse  => {
                                         feedbackContainer.style.display = "none";                                    
-                                        showFixationCross(playNextVideo);
+                                showFixationCross(playNextVideo);
     
-                                        currentRating.watchAgain = WatchAgainResponse["Would you watch this video again?"];
-                                        participantChoices.push(currentRating);
-                                    });
+                                userRatings.forEach((rating) => {
+                                    participantChoices.push({
+                                        vID: rating.vID,
+                                        reactionTime: reactionTime,
+                                        valence: responses['valence'],
+                                        arousal: responses['arousal'],
+                                        videoType: rating['videoType'],
+                                        EmoRated: rating['EmoRated'],
+                                        EmoScore: rating['EmoScore'],
+                                        watchAgain: WatchAgainResponse["Would you watch this video again?"]
                                 });
+                              });
                             });
                         });
+                        });
                     });   
+                });         
     
                     clearButtons();
                     addButton(watchButton);
@@ -622,8 +633,8 @@ function experimentalSet() {
 function instructions3() {
     showMessage("Congratulations! You have completed this study :)");
     clearButtons();
-	generateAndUploadCSV(participantChoices);
-	
+    generateAndUploadCSV(participantChoices);
+    
 }
 
 
