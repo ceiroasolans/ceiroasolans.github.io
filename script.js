@@ -686,13 +686,22 @@ function instructions3() {
 
     let tableHtml = `
     <table class="result-table">
+        <colgroup>
+            <col span="1" style="width: 20%;">
+            <col span="2" style="width: 40%;">
+            <col span="2" style="width: 40%;">
+        </colgroup>
         <thead>
             <tr>
-                <th>Video Type</th>
-                <th>Your Average Valence</th>
-                <th>Your Average Arousal</th>
-                <th>Population Average Valence</th>
-                <th>Population Average Arousal</th>
+                <th rowspan="2">Video Type</th>
+                <th colspan="2">You</th>
+                <th colspan="2">Population</th>
+            </tr>
+            <tr>
+                <th>Valence</th>
+                <th>Arousal</th>
+                <th>Valence</th>
+                <th>Arousal</th>
             </tr>
         </thead>
         <tbody>
@@ -720,6 +729,7 @@ function instructions3() {
     clearButtons();
     generateAndUploadCSV(participantChoices);
 }
+
 
 
 
