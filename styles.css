@@ -89,14 +89,20 @@ button:disabled {
 
 
 
+.main-container {
+    display: flex;
+    align-items: center; /* align items vertically */
+    justify-content: space-between; /* add space between the label and likert scale */
+    width: 100%;
+    padding: 10px 0; /* add vertical padding */
+}
 
-/*
 .likert-container {
     display: flex;
     justify-content: space-between;
     margin-bottom: 1rem; 
 }
-*/
+
 
 .likert-box {
     flex-basis: calc(100% / 7);
@@ -125,20 +131,10 @@ button:disabled {
     margin-top: 10px;
 }
 
-.main-container {
-    display: flex;
-    align-items: center; /* align items vertically */
-    justify-content: space-between; /* add space between the label and likert scale */
-    width: 100%;
-    padding: 10px 0; /* add vertical padding */
-}
+
 
 .emotion-label {
     flex-basis: 20%; /* adjust as needed */
     text-align: center; /* center text horizontally */
 }
 
-.likert-container {
-    flex-grow: 1; /* let the likert scale take the remaining width */
-    /* other styles ... */
-}
