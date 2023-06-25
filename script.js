@@ -170,11 +170,11 @@ function createFeedbackForm(videoId, onSubmit) {
             const label = document.createElement("div");
             label.classList.add("likert-label");
             likertBox.appendChild(label);
-
+            
             // Add labels on the edges and in the middle
-            if (i === 1) label.textContent += questionObj.scale[0];
-            else if (i === 4) label.textContent += questionObj.scale[1];
-            else if (i === 7) label.textContent += questionObj.scale[2];
+            if (i === 1) label.textContent = questionObj.scale[0];
+            else if (i === 4) label.textContent = questionObj.scale[1];
+            else if (i === 7) label.textContent = questionObj.scale[2];
 
             likertBox.onclick = function() {
                 likertContainer.querySelectorAll(".likert-box").forEach(box => box.style.backgroundColor = "");

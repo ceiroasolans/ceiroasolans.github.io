@@ -92,16 +92,25 @@ button:disabled {
     display: flex;
     justify-content: space-between;
     margin-bottom: 1rem; 
+    width: 80%; /* adjust this to your preferred width */
+}
+
+.likert-box-container {
+    flex-basis: calc(100% / 7);
+    position: relative;
 }
 
 .likert-box {
-    flex-basis: calc(100% / 7);
     border: 1px solid #ccc;
     text-align: center;
     cursor: pointer;
     transition: background-color 0.3s;
     padding: 10px;
+    position: absolute;
+    width: 80%; /* adjust this to your preferred width */
+    height: 100%;
 }
+
 
 .likert-box:active {
     background-color: #ccc;
@@ -116,11 +125,12 @@ button:disabled {
 }
 
 .likert-label {
-    font-size: 12px;
-    color: #666;
-    margin-top: 10px;
-    text-align: center;
-    height: 20px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: left; /* change this from center to left */
+    word-break: break-word;
 }
 
 .emotion-label {
