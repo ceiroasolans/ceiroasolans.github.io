@@ -214,13 +214,17 @@ function createFeedbackForm(videoId, onSubmit) {
 
 // Relevant emotions 
 function createLikertContainer(min, max, minLabel, maxLabel, midLabel, emotion) {
-    let container = document.createElement('div');
-    container.className = 'likert-container';
+    let mainContainer = document.createElement('div');
+    mainContainer.className = 'main-container';
 
-    let emotionLabel = document.createElement('div');  // new stuff
+    let emotionLabel = document.createElement('div');
     emotionLabel.textContent = emotion;
     emotionLabel.style.fontWeight = 'bold';
-    container.appendChild(emotionLabel);
+    emotionLabel.className = 'emotion-label';
+    mainContainer.appendChild(emotionLabel);
+
+    let container = document.createElement('div');
+    container.className = 'likert-container';
 
 
 
@@ -256,10 +260,10 @@ function createLikertContainer(min, max, minLabel, maxLabel, midLabel, emotion) 
 
         box.appendChild(number);
         box.appendChild(label);
-        container.appendChild(box);
+        mainContainer.appendChild(box);
     }
 
-    return container;
+    return mainContainer;
 } 
 
 function createRatingForm(videoId, onSubmit) {
