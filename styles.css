@@ -94,8 +94,9 @@ button:disabled {
     align-items: center; /* align items vertically */
     justify-content: space-between; /* add space between the label and likert scale */
     width: 100%;
-    padding: 10px 0; /* add vertical padding */
+    padding: 10px 20px; /* add vertical padding */
 }
+
 
 .likert-container {
     display: flex;
@@ -105,6 +106,9 @@ button:disabled {
 
 
 .likert-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     flex-basis: calc(100% / 7);
     border: 1px solid #ccc;
     text-align: center;
@@ -138,3 +142,7 @@ button:disabled {
     text-align: center; /* center text horizontally */
 }
 
+.likert-content {
+    text-align: center; /* center text horizontally */
+    width: 100%; /* make the content take the full width */
+}
