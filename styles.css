@@ -137,5 +137,6 @@ button:disabled {
 .emotion-label {
     flex-basis: 20%; /* adjust as needed */
     text-align: center; /* center text horizontally */
+    padding: 10px;
 }
 
