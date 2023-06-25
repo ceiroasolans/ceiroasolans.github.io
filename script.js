@@ -7,7 +7,8 @@ const fixationCross = document.getElementById("fixationCross");
 const message = document.getElementById("message");
 const buttonsContainer = document.getElementById("buttonsContainer");
 
- 
+ //                                             PREP 
+
 // Videos
 const allVideos = [
     {id: 1, src: "0074.mp4", type: "Amusement" },
@@ -122,11 +123,8 @@ const allVideos = [
     {id: 110, src: "1959.mp4", type: "Sadness" }
 ];
   
-
-
-
+// Randomize into group A or B (for videos)
 let userGroup;
-
 if (localStorage.getItem('userGroup')) {
     // If user group already exists in local storage, retrieve it
     userGroup = localStorage.getItem('userGroup');
@@ -136,9 +134,7 @@ if (localStorage.getItem('userGroup')) {
     // Then store it in local storage for future visits
     localStorage.setItem('userGroup', userGroup);
 }
-
 let videos;
-
 if(userGroup === 'groupA') {
     // Filter the videos to show only those with IDs between 1 and 55
     videos = allVideos.filter(video => video.id >= 1 && video.id <= 55);
@@ -148,12 +144,10 @@ if(userGroup === 'groupA') {
 }
 
 
-
+// Now script as normal
 for(let i = 0; i < videos.length; i++) {
     videos[i].id = i.toString();
 }
-
-
 
 let participantChoices = [];
 let startTime; 
@@ -165,8 +159,9 @@ function startTimer() {  // Function to start the timer when buttons appear
 
 
 
+//                                                  RATINGS
 
-// // Valence and arousal
+// Valence and arousal
 function createFeedbackForm(videoId, onSubmit) {
     feedbackContainer.innerHTML = '';
 
@@ -235,8 +230,6 @@ function createFeedbackForm(videoId, onSubmit) {
     feedbackContainer.appendChild(submitButton);
     feedbackContainer.style.display = "block";
 }
-
-
 
 // Relevant emotions 
 function createLikertContainer(min, max, minLabel, maxLabel, midLabel, emotion) {
@@ -375,7 +368,6 @@ function createRatingForm(videoId, onSubmit) {
 }
 
 //Watch again? 
-
 function createWatchAgainForm(onSubmit) {
     feedbackContainer.innerHTML = '';
 
@@ -440,7 +432,7 @@ function createWatchAgainForm(onSubmit) {
 
 
 
-
+//                                              SET VIDEO ORDER
 
 // Function to shuffle an array
 function shuffleArray(array) {
@@ -498,10 +490,15 @@ function generateVideoSequence(videosByType, order) {
     return { sequence, videosByType };
   }
   
+  const order1 = ["Joy", "Fear", "Interest", "Craving", "Anger", "Romance", "Sadness", "Excitement", "Amusement", "Disgust", "Calmness"];
+  const order2 = ["Romance", "Fear", "Craving", "Sadness", "Calmness", "Amusement", "Anger", "Interest", "Excitement", "Disgust", "Joy"];
+
+  
 
 
-// EXPERIMENTAL
+//                                          EXPERIMENTAL PRESENTATION
 
+//Instructions
 function instructions() {
     let message = document.getElementById("message");
     message.innerHTML = `
@@ -522,12 +519,6 @@ function instructions() {
         experimentalSet();
     }));
 }
-
-
-const order1 = ["Joy", "Fear", "Interest", "Craving", "Anger", "Romance", "Sadness", "Excitement", "Amusement", "Disgust", "Calmness"];
-const order2 = ["Romance", "Fear", "Craving", "Sadness", "Calmness", "Amusement", "Anger", "Interest", "Excitement", "Disgust", "Joy"];
-
-
 
 //Video Pilot
 function experimentalSet() {
@@ -657,14 +648,6 @@ function experimentalSet() {
 }
 
 
-
-
-
-
-
-
-
-
 // Byebye
 function instructions3() {
     showMessage("Congratulations! You have completed this study :)");
@@ -675,10 +658,9 @@ function instructions3() {
 
 
 
+//                                             AUXILIARY FUNCTIONS
 
 
-
-// Auxiliary functions
 function showMessage(text) {
     message.innerText = text;
     message.style.display = "block";
@@ -723,7 +705,8 @@ function shuffleArray(array) {
 
 
 
-// Generate data 
+//                                              GENERATE DATA
+
 function generateAndUploadCSV(participantChoices) {
     const header = ["vID", "reactionTime",  "valence", "arousal", "videoType", "EmoRated", "EmoScore", "WatchAgain"]; //initialValence and initialArousal if new flow
     const csvRows = [header];
@@ -737,7 +720,7 @@ function generateAndUploadCSV(participantChoices) {
         row.videoType || "",
         row.EmoRated || "",
         row.EmoScore || "",
-        row.WatchAgain || ""
+        row.watchAgain || ""
       ];
 
       csvRows.push(rowData);
@@ -766,8 +749,9 @@ function generateAndUploadCSV(participantChoices) {
   
 
 
-  //START
+// START                                              
   instructions();       
+
 
 
 
