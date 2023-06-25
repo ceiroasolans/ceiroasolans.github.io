@@ -12,7 +12,7 @@ const buttonsContainer = document.getElementById("buttonsContainer");
 // Videos
 const allVideos = [
     {id: 1, src: "0074.mp4", type: "Amusement" },
-    // {id: 2, src: "0574.mp4", type: "Amusement" },
+    {id: 2, src: "0574.mp4", type: "Amusement" },
     // {id: 3, src: "0656.mp4", type: "Amusement" },
     // {id: 4, src: "1043.mp4", type: "Amusement" },
     // {id: 5, src: "1145.mp4", type: "Amusement" },
@@ -648,13 +648,50 @@ function experimentalSet() {
 }
 
 
-// Byebye
+// Calculate means 
+// A helper function to calculate the mean of an array of numbers
+function calculateMean(numbers) {
+    let sum = numbers.reduce((a, b) => a + b, 0);
+    return sum / numbers.length;
+}
+
+// A helper function to calculate the mean valence and arousal for each video type
+function calculateMeanRatings(participantChoices) {
+    let videoTypes = ["Joy", "Fear", "Interest", "Craving", "Anger", "Romance", "Sadness", "Excitement", "Disgust", "Calmness"];
+    let meanRatings = {};
+
+    for (let type of videoTypes) {
+        let choicesOfType = participantChoices.filter(choice => choice.videoType === type);
+        if (choicesOfType.length > 0) {
+            let meanValence = calculateMean(choicesOfType.map(choice => choice.valence));
+            let meanArousal = calculateMean(choicesOfType.map(choice => choice.arousal));
+            meanRatings[type] = { meanValence, meanArousal };
+        }
+    }
+
+    return meanRatings;
+}
+
 function instructions3() {
-    showMessage("Congratulations! You have completed this study :)");
+    let meanRatings = calculateMeanRatings(participantChoices);
+    let message = "Congratulations! You have completed this study :)\n\nHere are your average valence and arousal ratings for each video type:\n";
+
+    for (let type in meanRatings) {
+        message += `${type}: Valence - ${meanRatings[type].meanValence.toFixed(2)}, Arousal - ${meanRatings[type].meanArousal.toFixed(2)}\n`;
+    }
+
+    showMessage(message);
     clearButtons();
     generateAndUploadCSV(participantChoices);
-    
 }
+
+
+
+// function instructions3() {
+//     showMessage("Congratulations! You have completed this study :)");
+//     clearButtons();
+//     generateAndUploadCSV(participantChoices);
+// }
 
 
 
