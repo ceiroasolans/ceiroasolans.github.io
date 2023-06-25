@@ -674,18 +674,18 @@ function calculateMeanRatings(participantChoices) {
 
 
 //Fun 3
-function instructions3() {
-    let meanRatings = calculateMeanRatings(participantChoices);
-    let message = "Congratulations! You have completed this study :)\n\nHere are your average valence and arousal ratings for each video type:\n";
+// function instructions3() {
+//     let meanRatings = calculateMeanRatings(participantChoices);
+//     let message = "Congratulations! You have completed this study :)\n\nHere are your average valence and arousal ratings for each video type:\n";
 
-    for (let type in meanRatings) {
-        message += `${type}: Valence - ${meanRatings[type].meanValence.toFixed(2)}, Arousal - ${meanRatings[type].meanArousal.toFixed(2)}\n`;
-    }
+//     for (let type in meanRatings) {
+//         message += `${type}: Valence - ${meanRatings[type].meanValence.toFixed(2)}, Arousal - ${meanRatings[type].meanArousal.toFixed(2)}\n`;
+//     }
 
-    showMessage(message);
-    clearButtons();
-    generateAndUploadCSV(participantChoices);
-}
+//     showMessage(message);
+//     clearButtons();
+//     generateAndUploadCSV(participantChoices);
+// }
 
 function instructions3() {
     let meanRatings = calculateMeanRatings(participantChoices);
