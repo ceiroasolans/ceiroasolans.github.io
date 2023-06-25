@@ -213,7 +213,7 @@ function createFeedbackForm(videoId, onSubmit) {
 
 
 // Relevant emotions 
-function createLikertContainer(min, max, minLabel, maxLabel, midLabel) {
+function createLikertContainer(min, max, minLabel, maxLabel, midLabel, emotion) {
     let container = document.createElement('div');
     container.className = 'likert-container';
 
@@ -302,7 +302,7 @@ function createRatingForm(videoId, onSubmit) {
     feedbackContainer.appendChild(header);
 
     ratings.forEach((rating, index) => {
-        let likertContainer = createLikertContainer(1, 7, `not ${rating}`, `very ${rating}`,`moderately ${rating}` );
+        let likertContainer = createLikertContainer(1, 7, `not ${rating}`, `very ${rating}`,`moderately ${rating}`, rating);
         likertContainer.id = `likert-${index + 1}`;
         likertContainer.style.marginBottom = '20px'; // Add spacing between the ratings
         feedbackContainer.appendChild(likertContainer);
