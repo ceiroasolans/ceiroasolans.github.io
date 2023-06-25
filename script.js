@@ -231,7 +231,7 @@ function createLikertContainer(min, max, minLabel, maxLabel, midLabel, emotion) 
     for (let i = min; i <= max; i++) {
         let box = document.createElement('div');
         box.className = 'likert-box';
-
+        
         box.addEventListener('click', function () {
             // Remove 'selected' class from all boxes in the container
             let boxes = container.getElementsByClassName('likert-box');
@@ -240,19 +240,10 @@ function createLikertContainer(min, max, minLabel, maxLabel, midLabel, emotion) 
                 boxes[j].style.backgroundColor = ""; // Remove previous background color
             }
 
-            // If this box was already selected, do not re-add the 'selected' class
-            if(this.classList.contains('selected')){
-                this.classList.remove('selected');
-                this.style.backgroundColor = ""; // Remove previous background color
-            } else {
-                // Add 'selected' class to the clicked box
-                this.classList.add('selected');
-                this.style.backgroundColor = "#ccc"; // Set background color to darker shade
-            }
+            // Add 'selected' class to the clicked box
+            this.classList.add('selected');
+            this.style.backgroundColor = "#ccc"; // Set background color to darker shade
         });
-
-        let contentContainer = document.createElement('div');
-        contentContainer.className = 'likert-content';
 
         let number = document.createElement('div');
         number.className = 'likert-number';
@@ -260,7 +251,6 @@ function createLikertContainer(min, max, minLabel, maxLabel, midLabel, emotion) 
 
         let label = document.createElement('div');
         label.className = 'likert-label';
-        
         if (i === min) {
             label.textContent = minLabel;
         } else if (i === max) {
@@ -269,10 +259,9 @@ function createLikertContainer(min, max, minLabel, maxLabel, midLabel, emotion) 
             label.textContent = midLabel;
         }
 
-        contentContainer.appendChild(number);
-        contentContainer.appendChild(label);
-        box.appendChild(contentContainer);
-        container.appendChild(box);
+        box.appendChild(number);
+        box.appendChild(label);
+        mainContainer.appendChild(box);
     }
 
     return mainContainer;
