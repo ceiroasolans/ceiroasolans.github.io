@@ -130,7 +130,7 @@ button:disabled {
 
 .main-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center; /* align items vertically */
     justify-content: space-between; /* add space between the label and likert scale */
     width: 100%;
