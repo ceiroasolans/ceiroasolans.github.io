@@ -672,6 +672,8 @@ function calculateMeanRatings(participantChoices) {
     return meanRatings;
 }
 
+
+//Fun 3
 function instructions3() {
     let meanRatings = calculateMeanRatings(participantChoices);
     let message = "Congratulations! You have completed this study :)\n\nHere are your average valence and arousal ratings for each video type:\n";
@@ -681,6 +683,42 @@ function instructions3() {
     }
 
     showMessage(message);
+    clearButtons();
+    generateAndUploadCSV(participantChoices);
+}
+
+function instructions3() {
+    let meanRatings = calculateMeanRatings(participantChoices);
+
+    let resultTableContainer = document.getElementById("resultTableContainer");
+
+    let tableHtml = `
+    <table class="result-table">
+        <thead>
+            <tr>
+                <th>Video Type</th>
+                <th>Average Valence</th>
+                <th>Average Arousal</th>
+            </tr>
+        </thead>
+        <tbody>
+    `;
+
+    for (let type in meanRatings) {
+        tableHtml += `
+        <tr>
+            <td>${type}</td>
+            <td>${meanRatings[type].meanValence.toFixed(2)}</td>
+            <td>${meanRatings[type].meanArousal.toFixed(2)}</td>
+        </tr>
+        `;
+    }
+
+    tableHtml += '</tbody></table>';
+
+    resultTableContainer.innerHTML = tableHtml;
+
+    showMessage("Congratulations! You have completed this study :)");
     clearButtons();
     generateAndUploadCSV(participantChoices);
 }
