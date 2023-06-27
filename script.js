@@ -830,6 +830,7 @@ function instructions3() {
         };
 
         let tableHtml = `
+        <div class="container">
         <table class="result-table">
             <thead>
                 <tr>
@@ -878,7 +879,7 @@ function instructions3() {
             `;
         }
 
-        tableHtml += '</tbody></table>';
+        tableHtml += '</tbody></table></div>';
 
         resultTableContainer.innerHTML += groupText[group].before + tableHtml + groupText[group].after;
     }
