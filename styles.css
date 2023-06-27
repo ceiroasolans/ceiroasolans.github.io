@@ -27,6 +27,7 @@ body {
 
 #mainContainer {
     text-align: center;
+    align-items: center;
 }
 
 /* Comment this out when not running strategy selection task  */
