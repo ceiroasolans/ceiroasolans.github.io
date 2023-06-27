@@ -42,6 +42,7 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 2rem;
+    align-items: center; 
 }
 
 button {
@@ -56,6 +57,7 @@ button {
     margin: 0.25rem 0.5rem;
     cursor: pointer;
     border-radius: 0.25rem;
+    align-items: center; 
 }
 
 button:disabled {
