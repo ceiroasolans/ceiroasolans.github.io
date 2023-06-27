@@ -769,8 +769,11 @@ const populationMeans = {
     "Disgust": {valence: 1.34},
     "Excitement": {valence: 4.71},
     "Fear": {valence: 2.18},
-    "Joy": {valence: 6.04}
+    "Joy": {valence: 6.04},
+    "Sadness": {valence: 2.09},
+    "Romance": {valence: 5.54}
 };
+
 
 function calculateMean(numbers) {
     let sum = numbers.reduce((a, b) => a + b, 0);
@@ -802,11 +805,17 @@ function instructions3() {
     };
 
     for (let group in emotionGroups) {
+        let placeholderTextBefore = `<p>Here is the table for ${group} emotions:</p>`;
+        resultTableContainer.innerHTML += placeholderTextBefore;
+
         let tableHtml = `
         <table class="result-table">
             <thead>
                 <tr>
-                    <th>Video Type</th>
+                    <th rowspan="2">Video Type</th>
+                    <th colspan="2">Emotional Intensity</th>
+                </tr>
+                <tr>
                     <th>You</th>
                     <th>Population</th>
                 </tr>
@@ -851,8 +860,12 @@ function instructions3() {
         tableHtml += '</tbody></table>';
 
         resultTableContainer.innerHTML += tableHtml;
+
+        let placeholderTextAfter = `<p>End of ${group} emotions table.</p>`;
+        resultTableContainer.innerHTML += placeholderTextAfter;
     }
 }
+
 
 
 
