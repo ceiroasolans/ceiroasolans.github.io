@@ -180,6 +180,7 @@ button:disabled {
 html, body {
     height: 100%;
     overflow: auto;
+    align-items: flex-start;
 }
 .content-text {
     padding: 0 20%;
