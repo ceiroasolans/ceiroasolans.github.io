@@ -108,7 +108,7 @@ button:disabled {
 .likert-box {
     flex-basis: calc(100% / 7);
     border: 1px solid #ccc;
-    text-align: center;
+    text-align: flex-start;
     cursor: pointer;
     transition: background-color 0.3s;
     padding: 15px;
