@@ -58,7 +58,6 @@ button {
     margin: 0.25rem 0.5rem;
     cursor: pointer;
     border-radius: 0.25rem;
-    padding-top: 20%;
 }
 
 button:disabled {
@@ -104,7 +103,6 @@ button:disabled {
 /* LIKERT RATINGS */
 
 .likert-container {
-    padding-top: 20%;
     flex-grow: 1; 
     display: flex;
     justify-content: space-between;
@@ -112,7 +110,6 @@ button:disabled {
 }
 
 .likert-box {
-    padding-top: 20%;
     flex-basis: calc(100% / 7);
     border: 1px solid #ccc;
     text-align: center;
