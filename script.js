@@ -392,7 +392,7 @@ function createLikertContainer(min, max, minLabel, maxLabel, midLabel, emotion) 
             label.textContent = minLabel;
         } else if (i === max) {
             label.textContent = maxLabel;
-        } else if (i === 4) {
+        } else if (i === 3) {
             label.textContent = midLabel;
         }
         box.appendChild(label);
