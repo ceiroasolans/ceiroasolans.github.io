@@ -27,7 +27,6 @@ body {
 
 #mainContainer {
     text-align: center;
-    align-items: center;
 }
 
 /* Comment this out when not running strategy selection task  */
@@ -49,6 +48,8 @@ body {
     width: 100%;
     height: 100%;
     object-fit: contain; /* or 'cover' */
+    align-items: center;
+    display: flex;
 }
 
 #fixationCross {
