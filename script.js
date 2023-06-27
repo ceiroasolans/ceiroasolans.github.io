@@ -794,6 +794,69 @@ function calculateMeanRatings(participantChoices) {
     return meanRatings;
 }
 
+// function instructions3() {
+//     let meanRatings = calculateMeanRatings(participantChoices);
+//     let resultTableContainer = document.getElementById("resultTableContainer");
+
+//     let tableHtml = `
+//     <table class="result-table">
+//         <colgroup>
+//             <col span="1" style="width: 20%;">
+//             <col span="2" style="width: 40%;">
+//             <col span="2" style="width: 40%;">
+//         </colgroup>
+//         <thead>
+//             <tr>
+//                 <th rowspan="2">Video Type</th>
+//                 <th colspan="2">You</th>
+//                 <th colspan="2">Population</th>
+//             </tr>
+//             <tr>
+//                 <th>Valence</th>
+//                 <th>Arousal</th>
+//                 <th>Valence</th>
+//                 <th>Arousal</th>
+//             </tr>
+//         </thead>
+//         <tbody>
+//     `;
+
+//     for (let type in meanRatings) {
+//         let populationMeanValence = populationMeans[type] ? populationMeans[type].valence.toFixed(2) : "N/A";
+//         let populationMeanArousal = populationMeans[type] ? populationMeans[type].arousal.toFixed(2) : "N/A";
+//         tableHtml += `
+//         <tr>
+//             <td>${type}</td>
+//             <td>${meanRatings[type].meanValence.toFixed(2)}</td>
+//             <td>${meanRatings[type].meanArousal.toFixed(2)}</td>
+//             <td>${populationMeanValence}</td>
+//             <td>${populationMeanArousal}</td>
+//         </tr>
+//         `;
+//     }
+
+//     tableHtml += '</tbody></table>';
+
+//     resultTableContainer.innerHTML = tableHtml;
+
+//     showMessage("<h1><strong>Your CAPS Feedback</strong></h1> <strong>Important</strong>: <u>Make a screenshot of this feedback as proof of completion and submit it for this assignment on bcourses. </u> For this feedback, all of your scores are on a scale from 1 (not at all) to 7 (very much so). Your CAPS feedback includes your own emotional reaction to 10 kinds of videos that are commonly used in emotion research to elicit emotional reactions. In addition, next to your own ratings are average ratings of an adult population taken from all over the U.S. /n/n The video clips covered 10 major emotional domains: four positive, four negative, and two special cases of interest to this class. Most researchers emphasize the positive and negative emotions that people feel. Positive emotions commonly include happiness or joy, peacefulness (feeling calm and contented), amusement, and excitement. /n/n Your feedback indicates how much you reacted positively to the videos in each category. So a high value (e.g. 5, 6, and higher) would indicate that you enjoyed these videos very much, whereas low scores (e.g. 3, 2, and lower) would indicated that you found these videos unpleasant. /n/n When you look at your feedback, you can compare your own responses to those of the normative ratings from the U.S. adult sample. Ask yourself where are your scores higher, where are they lower? Why do you think that’s the case?  /n/n 1-Within the positive videos: /nCompare how you felt about each of the four positive emotion videos. Check which of the four positive videos you enjoyed the most and which you enjoyed the least. In addition, consider what we learned about theories of extraversion. For example, Eysenck and the approach system researchers emphasized that more extraverted individuals seek out and enjoy exciting situations in their lives. In contrast, more introverted individuals seek out and enjoy peaceful situations. What is your pattern for these two emotions?");
+//     clearButtons();
+//     generateAndUploadCSV(participantChoices);
+// }
+
+
+
+
+// function instructions3() {
+//     showMessage("Congratulations! You have completed this study :)");
+//     clearButtons();
+//     generateAndUploadCSV(participantChoices);
+// }
+
+
+
+//                                             AUXILIARY FUNCTIONS
+
 function instructions3() {
     let meanRatings = calculateMeanRatings(participantChoices);
     let resultTableContainer = document.getElementById("resultTableContainer");
@@ -839,23 +902,12 @@ function instructions3() {
 
     resultTableContainer.innerHTML = tableHtml;
 
-    showMessage("<h1><strong>Your CAPS Feedback</strong></h1> <strong>Important</strong>: <u>Make a screenshot of this feedback as proof of completion and submit it for this assignment on bcourses. </u> For this feedback, all of your scores are on a scale from 1 (not at all) to 7 (very much so). Your CAPS feedback includes your own emotional reaction to 10 kinds of videos that are commonly used in emotion research to elicit emotional reactions. In addition, next to your own ratings are average ratings of an adult population taken from all over the U.S. /n/n The video clips covered 10 major emotional domains: four positive, four negative, and two special cases of interest to this class. Most researchers emphasize the positive and negative emotions that people feel. Positive emotions commonly include happiness or joy, peacefulness (feeling calm and contented), amusement, and excitement. /n/n Your feedback indicates how much you reacted positively to the videos in each category. So a high value (e.g. 5, 6, and higher) would indicate that you enjoyed these videos very much, whereas low scores (e.g. 3, 2, and lower) would indicated that you found these videos unpleasant. /n/n When you look at your feedback, you can compare your own responses to those of the normative ratings from the U.S. adult sample. Ask yourself where are your scores higher, where are they lower? Why do you think that’s the case?  /n/n 1-Within the positive videos: /nCompare how you felt about each of the four positive emotion videos. Check which of the four positive videos you enjoyed the most and which you enjoyed the least. In addition, consider what we learned about theories of extraversion. For example, Eysenck and the approach system researchers emphasized that more extraverted individuals seek out and enjoy exciting situations in their lives. In contrast, more introverted individuals seek out and enjoy peaceful situations. What is your pattern for these two emotions?");
+    showMessage("<h1><strong>Your CAPS Feedback</strong></h1> <strong>Important</strong>: <u>Make a screenshot of this feedback as proof of completion and submit it for this assignment on bcourses. </u> For this feedback, all of your scores are on a scale from 1 (not at all) to 7 (very much so). Your CAPS feedback includes your own emotional reaction to 10 kinds of videos that are commonly used in emotion research to elicit emotional reactions. In addition, next to your own ratings are average ratings of an adult population taken from all over the U.S.\n\nThe video clips covered 10 major emotional domains: four positive, four negative, and two special cases of interest to this class. Most researchers emphasize the positive and negative emotions that people feel. Positive emotions commonly include happiness or joy, peacefulness (feeling calm and contented), amusement, and excitement.\n\nYour feedback indicates how much you reacted positively to the videos in each category. So a high value (e.g. 5, 6, and higher) would indicate that you enjoyed these videos very much, whereas low scores (e.g. 3, 2, and lower) would indicated that you found these videos unpleasant.\n\nWhen you look at your feedback, you can compare your own responses to those of the normative ratings from the U.S. adult sample. Ask yourself where are your scores higher, where are they lower? Why do you think that’s the case?\n\n1-Within the positive videos:\nCompare how you felt about each of the four positive emotion videos. Check which of the four positive videos you enjoyed the most and which you enjoyed the least. In addition, consider what we learned about theories of extraversion. For example, Eysenck and the approach system researchers emphasized that more extraverted individuals seek out and enjoy exciting situations in their lives. In contrast, more introverted individuals seek out and enjoy peaceful situations. What is your pattern for these two emotions?");
     clearButtons();
     generateAndUploadCSV(participantChoices);
 }
 
 
-
-
-// function instructions3() {
-//     showMessage("Congratulations! You have completed this study :)");
-//     clearButtons();
-//     generateAndUploadCSV(participantChoices);
-// }
-
-
-
-//                                             AUXILIARY FUNCTIONS
 
 
 function showMessage(text) {
