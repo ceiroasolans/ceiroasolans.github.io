@@ -142,8 +142,8 @@ button:disabled {
 
 .main-container {
     display: flex;
-    flex-direction: column; /* row here for labels on the side
-    align-items: center; /* align items vertically */
+    flex-direction: column; /* row here for labels on the side */
+    align-items: flex-start;
     justify-content: space-between; /* add space between the label and likert scale */
     width: 100%;
     padding: 10px 20px; /* add vertical padding */
