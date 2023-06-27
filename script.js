@@ -503,11 +503,11 @@ function instructions() {
     let message = document.getElementById("message");
     message.innerHTML = `
         <div style="max-width: 600px; margin: auto; padding: 20px; font-family: 'Helvetica Neue', Arial, sans-serif; line-height: 1.6; text-align: left; color: #333;">
-            <strong style="font-size: 1.3em; display: block; text-align: center; margin-bottom: 20px;">Welcome!</strong>
+            <strong style="font-size: 1.3em; display: block; text-align: center; margin-bottom: 20px;"></strong>
             <p style="margin-top: 20px;">You're about to watch a series of videos.  </p>
             <ol style="padding-left: 30px; margin-top: 20px;">
                 <li style="margin-bottom: 10px;"> Please sit back and immerse yourself!</li>
-                <li style="margin-bottom: 10px;">After every video, you will complete two simple ratings.</li>
+                <li style="margin-bottom: 10px;">After every video, you will complete a few simple ratings.</li>
             </ol>
         </div>
     `;
