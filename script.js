@@ -984,9 +984,9 @@ function instructions3() {
     let groupText = {
         positive: `<div class = "content-text"><h2 style="text-align:center;">Your CAPS Feedback</h2>
             <p style="text-align:justify;"><i><strong>Important</strong>: Make a screenshot of this feedback as proof of completion and submit it for this assignment on bcourses.</i><br><br><br> For this feedback, all of your scores are on a scale from 1 (not at all) to 7 (very much so). Your CAPS feedback includes your own emotional reaction to 10 kinds of videos that are commonly used in emotion research to elicit emotional reactions. In addition, next to your own ratings are average ratings of an adult population taken from all over the U.S.<br> <br> The video clips covered 10 major emotional domains: four positive, four negative, and two special cases of interest to this class. Most researchers emphasize the positive and negative emotions that people feel. Positive emotions commonly include happiness or joy, peacefulness (feeling calm and contented), amusement, and excitement. <br><br> Your feedback indicates how much you reacted positively to the videos in each category. So a high value (e.g. 5, 6, and higher) would indicate that you enjoyed these videos very much, whereas low scores (e.g. 3, 2, and lower) would indicated that you found these videos unpleasant. <br><br> When you look at your feedback, you can compare your own responses to those of the normative ratings from the U.S. adult sample. Ask yourself where are your scores higher, where are they lower? Why do you think that’s the case? <br><br><br> <strong>1-Within the positive videos:</strong><br>
-            Compare how you felt about each of the four positive emotion videos. Check which of the four positive videos you enjoyed the most and which you enjoyed the least. In addition, consider what we learned about theories of extraversion. For example, Eysenck and the approach system researchers emphasized that more extraverted individuals seek out and enjoy exciting situations in their lives. In contrast, more introverted individuals seek out and enjoy peaceful situations. What is your pattern for these two emotions?<br><br>`,
+            <br>Compare how you felt about each of the four positive emotion videos. Check which of the four positive videos you enjoyed the most and which you enjoyed the least. In addition, consider what we learned about theories of extraversion. For example, Eysenck and the approach system researchers emphasized that more extraverted individuals seek out and enjoy exciting situations in their lives. In contrast, more introverted individuals seek out and enjoy peaceful situations. What is your pattern for these two emotions?<br><br>`,
         negative: `<div class = "content-text"><p style="text-align:justify;"><br><br><strong>2- Within the negative videos:</strong><br> <br>Again, compare how you felt about each of the four negative emotion videos. In all likelihood you have rated all of these below 4, which is the neutral midpoint of the 7-point rating scale. Most people find the disgusting videos the most unpleasant. But what about the other three, anger, sadness, and fear? We talked about automatic vigilance which Is Kahneman’s system 1 warning us about impending dangers or threats. <br><br>`,
-        special: `<div class = "content-text"><p style="text-align:justify;"><br><br><strong>3-We also included two special emotional situations</strong> (here: videos).<br> The first is romance, which is obviously related to adult attachment. How positively or negatively did you respond to these romantic videos? The other special emotional situation involves cravings, which is usually studied by showing people photos of appealing and tempting foods. Again, how did you respond to these videos? Also, compare the positivity of your response to these two special situations with the other positive videos in the first block. In the normative study, both romance and cravings were rated in the top 4 most positive emotions. How about you? <br>.`
+        special: `<div class = "content-text"><p style="text-align:justify;"><br><br><strong>3-We also included two special emotional situations</strong> (here: videos).<br><br> The first is romance, which is obviously related to adult attachment. How positively or negatively did you respond to these romantic videos? The other special emotional situation involves cravings, which is usually studied by showing people photos of appealing and tempting foods. Again, how did you respond to these videos? Also, compare the positivity of your response to these two special situations with the other positive videos in the first block. In the normative study, both romance and cravings were rated in the top 4 most positive emotions. How about you? <br>.`
     };
 
     for (let group in emotionGroups) {
@@ -1012,17 +1012,17 @@ function instructions3() {
 
         for (let type of emotionGroups[group]) {
             let participantValence = meanRatings[type] ? meanRatings[type].meanValence.toFixed(2) : "N/A";
-            let populationValence = populationMeans[type] ? populationMeans[type].valence.toFixed(2) : "N/A";
+            let populationValence = populationMeans[type.toLowerCase()] ? populationMeans[type.toLowerCase()].valence.toFixed(2) : "N/A"; // Convert key to lowercase
             tableHtml += `
-            <tr>
-                <td>${type}</td>
-                <td>${participantValence}</td>
-                <td>${populationValence}</td>
-            </tr>
+                <tr>
+                    <td>${type}</td>
+                    <td>${participantValence}</td>
+                    <td>${populationValence}</td>
+                </tr>
             `;
-            if(meanRatings[type] && populationMeans[type]){
+            if(meanRatings[type] && populationMeans[type.toLowerCase()]){ // Convert key to lowercase
                 participantTotal += meanRatings[type].meanValence;
-                populationTotal += populationMeans[type].valence;
+                populationTotal += populationMeans[type.toLowerCase()].valence; // Convert key to lowercase
                 count++;
             }
         }
@@ -1032,11 +1032,11 @@ function instructions3() {
             let populationAverage = populationTotal/count;
 
             tableHtml += `
-            <tr>
-                <td>Overall</td>
-                <td>${participantAverage.toFixed(2)}</td>
-                <td>${populationAverage.toFixed(2)}</td>
-            </tr>
+                <tr>
+                    <td>Overall</td>
+                    <td>${participantAverage.toFixed(2)}</td>
+                    <td>${populationAverage.toFixed(2)}</td>
+                </tr>
             `;
         }
 
