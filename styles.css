@@ -100,7 +100,6 @@ button:disabled {
     display: flex;
     justify-content: space-between;
     margin-bottom: 1rem; 
-    min-height: 100vh;
 }
 
 .likert-box {
