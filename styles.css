@@ -2,7 +2,7 @@ body {
     font-family: Arial, sans-serif;
     display: flex;
     justify-content: center;
-    /*align-items: center; /* Align the items at the start = flex-start. or center for normal before*/
+    align-items: center; /* Align the items at the start = flex-start. or center for normal before*/
     height: 100vh;
     margin: 0;
     background-color: #f0f0f0;
@@ -42,7 +42,6 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 2rem;
-    align-items: center; 
 }
 
 button {
@@ -57,7 +56,6 @@ button {
     margin: 0.25rem 0.5rem;
     cursor: pointer;
     border-radius: 0.25rem;
-    align-items: center; 
 }
 
 button:disabled {
