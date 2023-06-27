@@ -153,10 +153,8 @@ button:disabled {
 
 /* MEAN TABLE */
 
-/* MEAN TABLE */
-
 .result-table {
-    max-width: 80%;
+    max-width: 50%;
     margin: 0 auto;
     border-collapse: collapse;
 }
@@ -178,27 +176,4 @@ button:disabled {
 
 .result-table tr:hover {
     background-color: #ddd;
-}
-
-/* CUSTOM CSS FOR TEXT AND CONTAINER */
-
-.container {
-    max-width: 80%;
-    margin: 0 auto;
-    font-family: Arial, sans-serif; /* Use a more aesthetic font */
-}
-
-p {
-    margin-bottom: 30px; /* Add more spacing between paragraphs */
-    line-height: 1.6; /* Improve readability */
-    text-align: justify;
-}
-
-h2 {
-    text-align: center;
-    margin-bottom: 20px;
-}
-html, body {
-    height: 100%;
-    overflow: auto;
 }
