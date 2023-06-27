@@ -183,6 +183,7 @@ html, body {
 }
 .content-text {
     padding: 0 20%;
+    align-items: flex-start;
     
 }
 
