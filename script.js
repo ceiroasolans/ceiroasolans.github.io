@@ -982,7 +982,7 @@ function instructions3() {
 
     let groupText = {
         positive: `<div class = "content-text"><h2 style="text-align:center;">Your CAPS Feedback</h2>
-            <p style="text-align:justify;"><strong>Important</strong>: Make a screenshot...`,
+            <p style="text-align:justify;"><i><strong>Important</strong>: Make a screenshot of this feedback as proof of completion and submit it for this assignment on bcourses.</i><br><br> For this feedback, all of your scores are on a scale from 1 (not at all) to 7 (very much so). Your CAPS feedback includes your own emotional reaction to 10 kinds of videos that are commonly used in emotion research to elicit emotional reactions. In addition, next to your own ratings are average ratings of an adult population taken from all over the U.S.<br> `,
         negative: `<div class = "content-text"><p style="text-align:justify;"><br><br>2- Within the negative videos:<br> <br>Again, compare...`,
         special: `<div class = "content-text"><p style="text-align:justify;"><br><br>3-We also included two special emotional situations (here: videos)The first is romance...`
     };
