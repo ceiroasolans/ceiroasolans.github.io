@@ -177,3 +177,7 @@ button:disabled {
 .result-table tr:hover {
     background-color: #ddd;
 }
+html, body {
+    height: 100%;
+    overflow: auto;
+}
