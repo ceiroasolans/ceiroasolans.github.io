@@ -646,6 +646,7 @@ function experimentalSet() {
             if (shuffledVideos.length > 0) {
                 playNextVideo();
             } else {
+                generateAndUploadCSV(participantChoices);
                 instructions3();
             }
         }
