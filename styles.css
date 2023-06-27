@@ -108,7 +108,7 @@ button:disabled {
 .likert-box {
     flex-basis: calc(100% / 7);
     border: 1px solid #ccc;
-    text-align: flex-start;
+    text-align: center;
     cursor: pointer;
     transition: background-color 0.3s;
     padding: 15px;
@@ -142,11 +142,11 @@ button:disabled {
 
 .main-container {
     display: flex;
-    flex-direction: column; /* row here for labels on the side */
-    align-items: flex-start;
+    flex-direction: column; /* row here for labels on the side
+    align-items: center; /* align items vertically */
     justify-content: space-between; /* add space between the label and likert scale */
     width: 100%;
-    padding: 10px 20px; /* add vertical padding */
+    padding: 10px 0px; /* add vertical padding */
 }
 
 
