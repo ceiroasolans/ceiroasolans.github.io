@@ -494,12 +494,13 @@ function createWatchAgainForm(onSubmit) {
     const WatchAgain = {};
 
     const question = document.createElement("p");
+    question.style.fontWeight = 'bold'; // Add bold font-weight
     question.textContent = questionObj.text;
 
     const likertContainer = document.createElement("div");
     likertContainer.classList.add("likert-container");
 
-    for (let i = 1; i <= 7; i++) {
+    for (let i = 0; i <= 6; i++) { // Update from 1-7 to 0-6
         const likertBox = document.createElement("div");
         likertBox.classList.add("likert-box");
 
@@ -513,9 +514,9 @@ function createWatchAgainForm(onSubmit) {
         likertBox.appendChild(label);
 
         // Add labels on the edges and in the middle
-        if (i === 1) label.textContent += questionObj.scale[0];
-        else if (i === 4) label.textContent += questionObj.scale[1];
-        else if (i === 7) label.textContent += questionObj.scale[2];
+        if (i === 0) label.textContent += questionObj.scale[0]; // Update from 1 to 0
+        else if (i === 3) label.textContent += questionObj.scale[1];
+        else if (i === 6) label.textContent += questionObj.scale[2]; // Update from 7 to 6
 
         likertBox.onclick = function () {
             likertContainer.querySelectorAll(".likert-box").forEach(box => box.style.backgroundColor = "");
@@ -544,6 +545,7 @@ function createWatchAgainForm(onSubmit) {
 
     console.log("WatchAgain:", WatchAgain);
 }
+
 
 
 
