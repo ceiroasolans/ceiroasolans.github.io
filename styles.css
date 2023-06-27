@@ -190,4 +190,5 @@ html, body {
 thead th {
     background-color: green;
     color: white;
+    align-items: flex-start;
 }
