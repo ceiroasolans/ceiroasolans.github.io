@@ -420,7 +420,7 @@ function createRatingForm(videoId, onSubmit) {
         "Fear": ["angry", "sad", "disgusted", "afraid"]
     };
 
-    const video = videos.find(v => v.id === videoId);
+    const video = videos.find(v => v.id === videoId); //change to v.id
 
     if (!video) {
         console.error(`Video with id ${videoId} not found.`);
@@ -444,7 +444,12 @@ function createRatingForm(videoId, onSubmit) {
     feedbackContainer.appendChild(header);
 
     ratings.forEach((rating, index) => {
-        let likertContainer = createLikertContainer(0, 6, `not ${rating} at all`, `very ${rating}`, `somewhat ${rating}`, rating);
+        let likertContainer;
+        if (rating === ratings[2]) {
+            likertContainer = createLikertContainer(0, 6, `not ${rating} at all`, `very ${rating}`, rating, `somewhat ${rating}`);
+        } else {
+            likertContainer = createLikertContainer(0, 6, `not ${rating} at all`, `very ${rating}`, rating);
+        }
         likertContainer.id = `likert-${index + 1}`;
         likertContainer.style.marginBottom = '20px'; // Add spacing between the ratings
         feedbackContainer.appendChild(likertContainer);
@@ -468,6 +473,7 @@ function createRatingForm(videoId, onSubmit) {
                 EmoScore: parseInt(selectedBox.textContent),
                 vID: video.src
             });
+                
         }
 
         feedbackContainer.innerHTML = ''; // Clear the feedback container after successful submission
