@@ -184,3 +184,8 @@ html, body {
 .content-text {
     padding: 0 20px;
 }
+
+thead th {
+    background-color: green;
+    color: white;
+}
