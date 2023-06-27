@@ -30,7 +30,7 @@ const allVideos = [
     {id: 71, src: "1229.mp4", type: "Anger" },
     {id: 72, src: "1844.mp4", type: "Anger" },
     {id: 73, src: "2049.mp4", type: "Anger" },
-    {id: 74, src: "2066.mp4", type: "Anger" }//,
+    {id: 74, src: "2066.mp4", type: "Anger" },
     {id: 9, src: "0090.mp4", type: "Calmness" },
     {id: 10, src: "0339.mp4", type: "Calmness" },
     {id: 11, src: "0493.mp4", type: "Calmness" },
