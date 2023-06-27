@@ -1011,7 +1011,7 @@ function instructions3() {
         let count = 0;
 
         for (let type of emotionGroups[group]) {
-            let participantValence = meanRatings[type] ? meanRatings[type].meanValence.toFixed(2) : "N/A";
+            let participantValence = meanRatings[type.toLowerCase()] ? meanRatings[type.toLowerCase()].meanValence.toFixed(2) : "N/A"; // Convert key to lowercase
             let populationValence = populationMeans[type.toLowerCase()] ? populationMeans[type.toLowerCase()].valence.toFixed(2) : "N/A"; // Convert key to lowercase
             tableHtml += `
                 <tr>
@@ -1020,8 +1020,8 @@ function instructions3() {
                     <td>${populationValence}</td>
                 </tr>
             `;
-            if(meanRatings[type] && populationMeans[type.toLowerCase()]){ // Convert key to lowercase
-                participantTotal += meanRatings[type].meanValence;
+            if(meanRatings[type.toLowerCase()] && populationMeans[type.toLowerCase()]){ // Convert key to lowercase
+                participantTotal += meanRatings[type.toLowerCase()].meanValence; // Convert key to lowercase
                 populationTotal += populationMeans[type.toLowerCase()].valence; // Convert key to lowercase
                 count++;
             }
@@ -1045,7 +1045,6 @@ function instructions3() {
         resultTableContainer.innerHTML += groupText[group] + tableHtml;
     }
 }
-
 
 
 
