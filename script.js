@@ -762,15 +762,14 @@ function experimentalSet() {
 }
 
 const populationMeans = {
-    "Amusement": {valence: 5.50, arousal: 4.83},
-    "Anger": {valence: 1.97, arousal: 4.36},
-    "Calmness": {valence: 5.29, arousal: 4.10},
-    "Craving": {valence: 5.74, arousal: 4.75},
-    "Disgust": {valence: 1.34, arousal: 3.87},
-    "Excitement": {valence: 4.71, arousal: 5.35},
-    "Fear": {valence: 2.18, arousal: 5.12},
-    "Interest": {valence: 4.23, arousal: 4.45},
-    "Joy": {valence: 6.04, arousal: 4.65}
+    "Amusement": {valence: 5.50},
+    "Anger": {valence: 1.97},
+    "Calmness": {valence: 5.29},
+    "Craving": {valence: 5.74},
+    "Disgust": {valence: 1.34},
+    "Excitement": {valence: 4.71},
+    "Fear": {valence: 2.18},
+    "Joy": {valence: 6.04}
 };
 
 function calculateMean(numbers) {
@@ -779,70 +778,82 @@ function calculateMean(numbers) {
 }
 
 function calculateMeanRatings(participantChoices) {
-    let videoTypes = ["Joy", "Fear", "Interest", "Craving", "Anger", "Romance", "Sadness", "Excitement", "Disgust", "Calmness", "Amusement"];
+    let videoTypes = ["Joy", "Fear", "Craving", "Anger", "Sadness", "Excitement", "Disgust", "Calmness", "Amusement"];
     let meanRatings = {};
 
     for (let type of videoTypes) {
         let choicesOfType = participantChoices.filter(choice => choice.videoType === type);
         if (choicesOfType.length > 0) {
             let meanValence = calculateMean(choicesOfType.map(choice => choice.valence));
-            let meanArousal = calculateMean(choicesOfType.map(choice => choice.arousal));
-            meanRatings[type] = { meanValence, meanArousal };
+            meanRatings[type] = { meanValence };
         }
     }
 
     return meanRatings;
 }
 
-// function instructions3() {
-//     let meanRatings = calculateMeanRatings(participantChoices);
-//     let resultTableContainer = document.getElementById("resultTableContainer");
+function instructions3() {
+    let meanRatings = calculateMeanRatings(participantChoices);
+    let resultTableContainer = document.getElementById("resultTableContainer");
+    let emotionGroups = {
+        positive: ["Joy", "Calmness", "Amusement", "Excitement"],
+        negative: ["Disgust", "Sadness", "Anger", "Fear"],
+        special: ["Romance", "Craving"]
+    };
 
-//     let tableHtml = `
-//     <table class="result-table">
-//         <colgroup>
-//             <col span="1" style="width: 20%;">
-//             <col span="2" style="width: 40%;">
-//             <col span="2" style="width: 40%;">
-//         </colgroup>
-//         <thead>
-//             <tr>
-//                 <th rowspan="2">Video Type</th>
-//                 <th colspan="2">You</th>
-//                 <th colspan="2">Population</th>
-//             </tr>
-//             <tr>
-//                 <th>Valence</th>
-//                 <th>Arousal</th>
-//                 <th>Valence</th>
-//                 <th>Arousal</th>
-//             </tr>
-//         </thead>
-//         <tbody>
-//     `;
+    for (let group in emotionGroups) {
+        let tableHtml = `
+        <table class="result-table">
+            <thead>
+                <tr>
+                    <th>Video Type</th>
+                    <th>You</th>
+                    <th>Population</th>
+                </tr>
+            </thead>
+            <tbody>
+        `;
 
-//     for (let type in meanRatings) {
-//         let populationMeanValence = populationMeans[type] ? populationMeans[type].valence.toFixed(2) : "N/A";
-//         let populationMeanArousal = populationMeans[type] ? populationMeans[type].arousal.toFixed(2) : "N/A";
-//         tableHtml += `
-//         <tr>
-//             <td>${type}</td>
-//             <td>${meanRatings[type].meanValence.toFixed(2)}</td>
-//             <td>${meanRatings[type].meanArousal.toFixed(2)}</td>
-//             <td>${populationMeanValence}</td>
-//             <td>${populationMeanArousal}</td>
-//         </tr>
-//         `;
-//     }
+        let participantTotal = 0;
+        let populationTotal = 0;
+        let count = 0;
 
-//     tableHtml += '</tbody></table>';
+        for (let type of emotionGroups[group]) {
+            let participantValence = meanRatings[type] ? meanRatings[type].meanValence.toFixed(2) : "N/A";
+            let populationValence = populationMeans[type] ? populationMeans[type].valence.toFixed(2) : "N/A";
+            tableHtml += `
+            <tr>
+                <td>${type}</td>
+                <td>${participantValence}</td>
+                <td>${populationValence}</td>
+            </tr>
+            `;
+            if(meanRatings[type] && populationMeans[type]){
+                participantTotal += meanRatings[type].meanValence;
+                populationTotal += populationMeans[type].valence;
+                count++;
+            }
+        }
 
-//     resultTableContainer.innerHTML = tableHtml;
+        if(group === "positive" || group === "negative"){
+            let participantAverage = participantTotal/count;
+            let populationAverage = populationTotal/count;
 
-//     showMessage("<h1><strong>Your CAPS Feedback</strong></h1> <strong>Important</strong>: <u>Make a screenshot of this feedback as proof of completion and submit it for this assignment on bcourses. </u> For this feedback, all of your scores are on a scale from 1 (not at all) to 7 (very much so). Your CAPS feedback includes your own emotional reaction to 10 kinds of videos that are commonly used in emotion research to elicit emotional reactions. In addition, next to your own ratings are average ratings of an adult population taken from all over the U.S. /n/n The video clips covered 10 major emotional domains: four positive, four negative, and two special cases of interest to this class. Most researchers emphasize the positive and negative emotions that people feel. Positive emotions commonly include happiness or joy, peacefulness (feeling calm and contented), amusement, and excitement. /n/n Your feedback indicates how much you reacted positively to the videos in each category. So a high value (e.g. 5, 6, and higher) would indicate that you enjoyed these videos very much, whereas low scores (e.g. 3, 2, and lower) would indicated that you found these videos unpleasant. /n/n When you look at your feedback, you can compare your own responses to those of the normative ratings from the U.S. adult sample. Ask yourself where are your scores higher, where are they lower? Why do you think that’s the case?  /n/n 1-Within the positive videos: /nCompare how you felt about each of the four positive emotion videos. Check which of the four positive videos you enjoyed the most and which you enjoyed the least. In addition, consider what we learned about theories of extraversion. For example, Eysenck and the approach system researchers emphasized that more extraverted individuals seek out and enjoy exciting situations in their lives. In contrast, more introverted individuals seek out and enjoy peaceful situations. What is your pattern for these two emotions?");
-//     clearButtons();
-//     generateAndUploadCSV(participantChoices);
-// }
+            tableHtml += `
+            <tr>
+                <td>Overall</td>
+                <td>${participantAverage.toFixed(2)}</td>
+                <td>${populationAverage.toFixed(2)}</td>
+            </tr>
+            `;
+        }
+
+        tableHtml += '</tbody></table>';
+
+        resultTableContainer.innerHTML += tableHtml;
+    }
+}
+
 
 
 
@@ -855,59 +866,7 @@ function calculateMeanRatings(participantChoices) {
 
 
 
-//                                             AUXILIARY FUNCTIONS
-
-function instructions3() {
-    let meanRatings = calculateMeanRatings(participantChoices);
-    let resultTableContainer = document.getElementById("resultTableContainer");
-
-    let tableHtml = `
-
-    <table class="result-table">
-        <colgroup>
-            <col span="1" style="width: 20%;">
-            <col span="2" style="width: 40%;">
-            <col span="2" style="width: 40%;">
-        </colgroup>
-        <thead>
-            <tr>
-                <th rowspan="2">Video Type</th>
-                <th colspan="2">You</th>
-                <th colspan="2">Population</th>
-            </tr>
-            <tr>
-                <th>Valence</th>
-                <th>Valence</th>
-            </tr>
-        </thead>
-        <tbody>
-    `;
-
-    for (let type in meanRatings) {
-        let populationMeanValence = populationMeans[type] ? populationMeans[type].valence.toFixed(2) : "N/A";
-        let populationMeanArousal = populationMeans[type] ? populationMeans[type].arousal.toFixed(2) : "N/A";
-        tableHtml += `
-        <tr>
-            <td>${type}</td>
-            <td>${meanRatings[type].meanValence.toFixed(2)}</td>
-            <td>${meanRatings[type].meanArousal.toFixed(2)}</td>
-            <td>${populationMeanValence}</td>
-            <td>${populationMeanArousal}</td>
-        </tr>
-        `;
-    }
-
-    tableHtml += '</tbody></table>';
-
-    resultTableContainer.innerHTML = tableHtml;
-
-    showMessage(resultTableContainer.innerHTML);
-    clearButtons();
-    generateAndUploadCSV(participantChoices);
-}
-
-
-
+  //                                          AUXILIARY FUNCTIONS
 
 function showMessage(text) {
     message.innerText = text;
