@@ -102,6 +102,7 @@ button:disabled {
     flex-grow: 1; 
     display: flex;
     justify-content: flex-start;
+    align-items: flex-start;
     justify-content: space-between;
     margin-bottom: 1rem; 
 }
@@ -169,6 +170,7 @@ button:disabled {
     border: 1px solid #ddd;
     padding: 8px;
     text-align: left;
+    vertical-align: top;
 }
 
 .result-table tr:nth-child(even) {
