@@ -182,13 +182,27 @@ html, body {
     overflow: auto;
 }
 .content-text {
+    display: flex;
+    flex-direction: column;  /* Stack child elements vertically */
+    justify-content: flex-start; /* Center child elements vertically */
+    align-items: flex-start;     /* Center child elements horizontally */
     padding: 0 20%;
-    align-items: flex-start;
-    
 }
+
 
 thead th {
     background-color: green;
     color: white;
-    align-items: flex-start;
 }
+
+
+
+
+.center-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+

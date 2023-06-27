@@ -972,6 +972,12 @@ function calculateMeanRatings(participantChoices) {
 
 
 function instructions3() {
+    let contentTextElements = document.querySelectorAll('.content-text');
+    contentTextElements.forEach(element => {
+        element.classList.add('center-content');
+    });
+
+
     let meanRatings = calculateMeanRatings(participantChoices);
     let resultTableContainer = document.getElementById("resultTableContainer");
     let emotionGroups = {
@@ -1042,8 +1048,13 @@ function instructions3() {
         tableHtml += '</tbody></table>';
 
         resultTableContainer.innerHTML += groupText[group] + tableHtml;
+
+        contentTextElements.forEach(element => {
+            element.classList.remove('center-content');
+        });
     }
 }
+
 
 
 
