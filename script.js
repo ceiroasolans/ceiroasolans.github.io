@@ -444,7 +444,7 @@ function createRatingForm(videoId, onSubmit) {
     feedbackContainer.appendChild(header);
 
     ratings.forEach((rating, index) => {
-        let likertContainer = createLikertContainer(1, 7, `not ${rating} at all`, `very ${rating}`,`somewhat ${rating}`, rating);
+        let likertContainer = createLikertContainer(0, 6, `not ${rating} at all`, `very ${rating}`,`somewhat ${rating}`, rating);
         likertContainer.id = `likert-${index + 1}`;
         likertContainer.style.marginBottom = '20px'; // Add spacing between the ratings
         feedbackContainer.appendChild(likertContainer);
@@ -1011,18 +1011,18 @@ function instructions3() {
         let count = 0;
 
         for (let type of emotionGroups[group]) {
-            let participantValence = meanRatings[type.toLowerCase()] ? meanRatings[type.toLowerCase()].meanValence.toFixed(2) : "N/A"; // Convert key to lowercase
-            let populationValence = populationMeans[type.toLowerCase()] ? populationMeans[type.toLowerCase()].valence.toFixed(2) : "N/A"; // Convert key to lowercase
+            let participantValence = meanRatings[type] ? meanRatings[type].meanValence.toFixed(2) : "N/A";
+            let populationValence = populationMeans[type] ? populationMeans[type].valence.toFixed(2) : "N/A";
             tableHtml += `
-                <tr>
-                    <td>${type}</td>
-                    <td>${participantValence}</td>
-                    <td>${populationValence}</td>
-                </tr>
+            <tr>
+                <td>${type}</td>
+                <td>${participantValence}</td>
+                <td>${populationValence}</td>
+            </tr>
             `;
-            if(meanRatings[type.toLowerCase()] && populationMeans[type.toLowerCase()]){ // Convert key to lowercase
-                participantTotal += meanRatings[type.toLowerCase()].meanValence; // Convert key to lowercase
-                populationTotal += populationMeans[type.toLowerCase()].valence; // Convert key to lowercase
+            if(meanRatings[type] && populationMeans[type]){
+                participantTotal += meanRatings[type].meanValence;
+                populationTotal += populationMeans[type].valence;
                 count++;
             }
         }
@@ -1032,11 +1032,11 @@ function instructions3() {
             let populationAverage = populationTotal/count;
 
             tableHtml += `
-                <tr>
-                    <td>Overall</td>
-                    <td>${participantAverage.toFixed(2)}</td>
-                    <td>${populationAverage.toFixed(2)}</td>
-                </tr>
+            <tr>
+                <td>Overall</td>
+                <td>${participantAverage.toFixed(2)}</td>
+                <td>${populationAverage.toFixed(2)}</td>
+            </tr>
             `;
         }
 
@@ -1045,6 +1045,7 @@ function instructions3() {
         resultTableContainer.innerHTML += groupText[group] + tableHtml;
     }
 }
+
 
 
 
