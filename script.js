@@ -125,7 +125,7 @@ const buttonsContainer = document.getElementById("buttonsContainer");
 
 const allVideos = [
     {id: 1, src: "0074.mp4", type: "Amusement" },
-    {id: 2, src: "0574.mp4", type: "Amusement" }//,
+    {id: 2, src: "0574.mp4", type: "Amusement" },
     // {id: 3, src: "0656.mp4", type: "Amusement" },
     // {id: 4, src: "1043.mp4", type: "Amusement" },
     // {id: 44, src: "1145.mp4", type: "Amusement" },
@@ -134,7 +134,7 @@ const allVideos = [
     // {id: 68, src: "1606.mp4", type: "Amusement" },
     // {id: 69, src: "2072.mp4", type: "Amusement" },
     // {id: 70, src: "2083.mp4", type: "Amusement" },
-    // {id: 5, src: "0124.mp4", type: "Anger" },
+    {id: 5, src: "0124.mp4", type: "Anger" }//,
     // {id: 6, src: "0252.mp4", type: "Anger" },
     // {id: 7, src: "0414.mp4", type: "Anger" },
     // {id: 8, src: "0595.mp4", type: "Anger" },
@@ -862,6 +862,8 @@ function instructions3() {
     let resultTableContainer = document.getElementById("resultTableContainer");
 
     let tableHtml = `
+    <h1><strong>Your CAPS Feedback</strong></h1> <strong>Important</strong>: <u>Make a screenshot of this feedback as proof of completion and submit it for this assignment on bcourses. </u> For this feedback, all of your scores are on a scale from 1 (not at all) to 7 (very much so). Your CAPS feedback includes your own emotional reaction to 10 kinds of videos that are commonly used in emotion research to elicit emotional reactions. In addition, next to your own ratings are average ratings of an adult population taken from all over the U.S.\n\nThe video clips covered 10 major emotional domains: four positive, four negative, and two special cases of interest to this class. Most researchers emphasize the positive and negative emotions that people feel. Positive emotions commonly include happiness or joy, peacefulness (feeling calm and contented), amusement, and excitement.\n\nYour feedback indicates how much you reacted positively to the videos in each category. So a high value (e.g. 5, 6, and higher) would indicate that you enjoyed these videos very much, whereas low scores (e.g. 3, 2, and lower) would indicated that you found these videos unpleasant.\n\nWhen you look at your feedback, you can compare your own responses to those of the normative ratings from the U.S. adult sample. Ask yourself where are your scores higher, where are they lower? Why do you think that’s the case?\n\n1-Within the positive videos:\nCompare how you felt about each of the four positive emotion videos. Check which of the four positive videos you enjoyed the most and which you enjoyed the least. In addition, consider what we learned about theories of extraversion. For example, Eysenck and the approach system researchers emphasized that more extraverted individuals seek out and enjoy exciting situations in their lives. In contrast, more introverted individuals seek out and enjoy peaceful situations. What is your pattern for these two emotions?");
+  
     <table class="result-table">
         <colgroup>
             <col span="1" style="width: 20%;">
@@ -902,27 +904,10 @@ function instructions3() {
 
     resultTableContainer.innerHTML = tableHtml;
 
-    showMessage(`<pre style="white-space: pre-wrap; font-family: monospace;">
-    <h1><strong>Your CAPS Feedback</strong></h1>
- 
-    <strong>Important</strong>: <u>Make a screenshot of this feedback as proof of completion and submit it for this assignment on bcourses. </u>
- 
-    For this feedback, all of your scores are on a scale from 1 (not at all) to 7 (very much so). Your CAPS feedback includes your own emotional reaction to 10 kinds of videos that are commonly used in emotion research to elicit emotional reactions. In addition, next to your own ratings are average ratings of an adult population taken from all over the U.S.
- 
-    The video clips covered 10 major emotional domains: four positive, four negative, and two special cases of interest to this class. Most researchers emphasize the positive and negative emotions that people feel. Positive emotions commonly include happiness or joy, peacefulness (feeling calm and contented), amusement, and excitement.
- 
-    Your feedback indicates how much you reacted positively to the videos in each category. So a high value (e.g. 5, 6, and higher) would indicate that you enjoyed these videos very much, whereas low scores (e.g. 3, 2, and lower) would indicate that you found these videos unpleasant.
- 
-    When you look at your feedback, you can compare your own responses to those of the normative ratings from the U.S. adult sample. Ask yourself where are your scores higher, where are they lower? Why do you think that’s the case?
- 
-    1-Within the positive videos:
-    Compare how you felt about each of the four positive emotion videos. Check which of the four positive videos you enjoyed the most and which you enjoyed the least. In addition, consider what we learned about theories of extraversion. For example, Eysenck and the approach system researchers emphasized that more extraverted individuals seek out and enjoy exciting situations in their lives. In contrast, more introverted individuals seek out and enjoy peaceful situations. What is your pattern for these two emotions?
-    </pre>`);
-    
+    showMessage(resultTableContainer.innerHTML);
     clearButtons();
     generateAndUploadCSV(participantChoices);
 }
-
 
 
 
