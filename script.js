@@ -166,8 +166,8 @@ function createFeedbackForm(videoId, onSubmit) {
     feedbackContainer.innerHTML = '';
 
     const questions = [
-        { text: "How do you feel?", scale: ["Still, inactive", "Neutral", "Activated, aroused"] },
-        { text: " ", scale: ["Unpleasant, negative", "Neutral", "Pleasant, positive"] }
+        { text: "How do you feel right now?", scale: ["Unpleasant, negative", "Neutral", "Pleasant, positive"] },
+        { text: " ", scale: ["Still, inactive", "Neutral", "Activated, aroused"] }
     ];
 
     const responses = {};
@@ -327,11 +327,11 @@ function createRatingForm(videoId, onSubmit) {
     // Add the header "How do you feel?"
     let header = document.createElement('h3');
     header.style.fontWeight = 'bold';
-    header.innerText = 'How do you feel?';
+    header.innerText = 'How do you feel right now?';
     feedbackContainer.appendChild(header);
 
     ratings.forEach((rating, index) => {
-        let likertContainer = createLikertContainer(1, 7, `not ${rating}`, `very ${rating}`,`somewhat ${rating}`, rating);
+        let likertContainer = createLikertContainer(1, 7, `not ${rating} at all`, `very ${rating}`,`somewhat ${rating}`, rating);
         likertContainer.id = `likert-${index + 1}`;
         likertContainer.style.marginBottom = '20px'; // Add spacing between the ratings
         feedbackContainer.appendChild(likertContainer);
@@ -491,7 +491,7 @@ function generateVideoSequence(videosByType, order) {
   }
   
   const order1 = ["Joy", "Fear", "Interest", "Craving", "Anger", "Romance", "Sadness", "Excitement", "Amusement", "Disgust", "Calmness"];
-  const order2 = ["Romance", "Fear", "Craving", "Sadness", "Calmness", "Amusement", "Anger", "Interest", "Excitement", "Disgust", "Joy"];
+  const order2 = ["Romance", "Fear", "Craving", "Sadness", "Calmness", "Amusement", "Anger", "Interest", "Joy", "Disgust", "Excitement"];
 
   
 
@@ -725,7 +725,7 @@ function instructions3() {
 
     resultTableContainer.innerHTML = tableHtml;
 
-    showMessage("Congratulations! You have completed this study :) \n\n\n");
+    showMessage(" \n\n\n");
     clearButtons();
     generateAndUploadCSV(participantChoices);
 }
