@@ -194,3 +194,7 @@ thead th {
 
 
 
+.instructions-body-align {
+    align-items: flex-start;
+  }
+  

@@ -972,6 +972,7 @@ function calculateMeanRatings(participantChoices) {
 
 
 function instructions3() {
+    document.body.classList.add('instructions-body-align');
     let meanRatings = calculateMeanRatings(participantChoices);
     let resultTableContainer = document.getElementById("resultTableContainer");
     let emotionGroups = {
