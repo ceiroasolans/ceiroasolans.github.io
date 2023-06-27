@@ -509,7 +509,7 @@ function instructions() {
         <li style="margin-bottom: 10px;">Please sit back and immerse yourself!</li>
         <li style="margin-bottom: 10px;">After every video, you will complete a few simple ratings.</li>
     </ol>
-    <p style="margin-top: 20px; text-align: center; font-weight: bold; text-decoration: underline;">Make sure your window covers your entire screen!</p>
+    <p style="margin-top: 20px; text-align: center; text-decoration: underline;">Make sure your window covers your entire screen!</p>
 </div>
     `;
     message.style.display = 'block';  // Make sure the message is visible
