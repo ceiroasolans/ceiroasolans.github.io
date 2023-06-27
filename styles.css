@@ -101,6 +101,7 @@ button:disabled {
 .likert-container {
     flex-grow: 1; 
     display: flex;
+    justify-content: flex-start;
     justify-content: space-between;
     margin-bottom: 1rem; 
 }
@@ -167,7 +168,7 @@ button:disabled {
 .result-table th, .result-table td {
     border: 1px solid #ddd;
     padding: 8px;
-    text-align: flex-start;
+    text-align: left;
 }
 
 .result-table tr:nth-child(even) {
