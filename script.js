@@ -235,6 +235,7 @@ function createFeedbackForm(videoId, onSubmit) {
 
 // Relevant emotions 
 function createLikertContainer(min, max, minLabel, maxLabel, midLabel, emotion) {
+    document.body.classList.add('instructions-body-align');
     let mainContainer = document.createElement('div');
     mainContainer.className = 'main-container';
 
@@ -288,8 +289,9 @@ function createLikertContainer(min, max, minLabel, maxLabel, midLabel, emotion) 
         
         container.appendChild(box);
     }
-
+   
     mainContainer.appendChild(container);
+    document.body.classList.add('instructions-body-align');
     return mainContainer;
 }
 
