@@ -332,7 +332,7 @@ function createRatingForm(videoId, onSubmit) {
     // Add the header "How do you feel?"
     let header = document.createElement('h3');
     header.style.fontWeight = 'bold';
-    header.textAlign = 'center';
+    header.style.textAlign = 'center';
     header.innerText = 'How do you feel right now?';
     feedbackContainer.appendChild(header);
 
