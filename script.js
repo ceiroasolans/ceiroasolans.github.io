@@ -175,6 +175,7 @@ function createFeedbackForm(videoId, onSubmit) {
     questions.forEach((questionObj, index) => {
         const question = document.createElement("p");
         question.style.fontWeight = 'bold'; // Add bold font-weight
+        question.style.textAlign = 'center';
         question.textContent = questionObj.text;
 
         const likertContainer = document.createElement("div");
@@ -331,6 +332,7 @@ function createRatingForm(videoId, onSubmit) {
     // Add the header "How do you feel?"
     let header = document.createElement('h3');
     header.style.fontWeight = 'bold';
+    header.textAlign = 'center';
     header.innerText = 'How do you feel right now?';
     feedbackContainer.appendChild(header);
 
@@ -385,6 +387,7 @@ function createWatchAgainForm(onSubmit) {
 
     const question = document.createElement("p");
     question.style.fontWeight = 'bold'; // Add bold font-weight
+    question.style.textAlign = 'center';
     question.textContent = questionObj.text;
 
     const likertContainer = document.createElement("div");
