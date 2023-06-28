@@ -490,7 +490,7 @@ function createWatchAgainForm(onSubmit) {
         likertBox.classList.add("likert-box");
 
         const number = document.createElement("div");
-        number.textContent = i;
+        number.textContent = i.toString(); // Convert i to a string
         number.classList.add("likert-number");
         likertBox.appendChild(number);
 
@@ -518,7 +518,7 @@ function createWatchAgainForm(onSubmit) {
     const submitButton = document.createElement("button");
     submitButton.innerText = "Submit";
     submitButton.onclick = () => {
-        if (WatchAgain[questionObj.text] !== undefined || WatchAgain[questionObj.text] === 0) {
+        if (WatchAgain[questionObj.text] !== undefined || WatchAgain[questionObj.text] === "0") {
             onSubmit(WatchAgain);
         } else {
             alert("Please answer the question.");
