@@ -164,76 +164,6 @@ function startTimer() {  // Function to start the timer when buttons appear
 //                                                  RATINGS
 
 // Valence and arousal
-// function createFeedbackForm(videoId, onSubmit) {
-//     feedbackContainer.innerHTML = '';
-
-//     const questions = [
-//         { text: "How do you feel right now?", scale: ["Very unpleasant, negative", "Neutral", "Very pleasant, positive"] },
-//         { text: " ", scale: ["Not activated / aroused at all", "Somewhat", "Very activated / aroused"] }
-//     ];
-
-//     const responses = {};
-
-//     questions.forEach((questionObj, index) => {
-//         const question = document.createElement("p");
-//         question.style.fontWeight = 'bold'; // Add bold font-weight
-//         question.style.textAlign = 'center';
-//         question.textContent = questionObj.text;
-
-//         const likertContainer = document.createElement("div");
-//         likertContainer.classList.add("likert-container");
-
-//         for(let i = 0; i <= 6; i++){ // Update from 1-7 to 0-6
-//             const likertBox = document.createElement("div");
-//             likertBox.classList.add("likert-box");
-
-//             const number = document.createElement("div");
-//             number.textContent = i;
-//             number.classList.add("likert-number");
-//             likertBox.appendChild(number);
-
-//             const label = document.createElement("div");
-//             label.classList.add("likert-label");
-//             likertBox.appendChild(label);
-
-//             // Add labels on the edges and in the middle
-//             if (i === 0) label.textContent += questionObj.scale[0]; // Update from 1 to 0
-//             else if (i === 3) label.textContent += questionObj.scale[1];
-//             else if (i === 6) label.textContent += questionObj.scale[2]; // Update from 7 to 6
-
-//             likertBox.onclick = function() {
-//                 likertContainer.querySelectorAll(".likert-box").forEach(box => box.style.backgroundColor = "");
-
-//                 // Depending on the index, save to valence or arousal
-//                 if(index === 0) {
-//                     responses['valence'] = i;
-//                 } else if(index === 1) {
-//                     responses['arousal'] = i;
-//                 }
-                
-//                 likertBox.style.backgroundColor = "#d8d8d8";  // Change color to indicate selection
-//             };
-
-//             likertContainer.appendChild(likertBox);
-//         }
-
-//         feedbackContainer.appendChild(question);
-//         feedbackContainer.appendChild(likertContainer);
-//     });
-
-//     const submitButton = document.createElement("button");
-//     submitButton.innerText = "Submit";
-//     submitButton.onclick = () => {
-//         if (Object.keys(responses).length === questions.length) {
-//             onSubmit(responses);
-//         } else {
-//             alert("Please answer all questions.");
-//         }
-//     };
-
-//     feedbackContainer.appendChild(submitButton);
-//     feedbackContainer.style.display = "block";
-// }
 function createFeedbackForm(videoId, onSubmit) {
     feedbackContainer.innerHTML = '';
 
@@ -366,6 +296,89 @@ function createLikertContainer(min, max, minLabel, maxLabel, midLabel, emotion) 
     return mainContainer;
 }
 
+// function createRatingForm(videoId, onSubmit) {
+//     // An object to store the rating types for each video type
+//     document.body.classList.add('instructions-body-align');
+//     const videoTypeRatings = {
+//         "Excitement": ["excited", "interested", "amused", "happy"],
+//         "Amusement": ["happy", "amused", "excited", "interested"],
+//         "Joy": ["amused", "loving", "happy", "peaceful"],
+//         "Romance": ["excited", "peaceful", "happy", "loving"],
+//         "Craving": ["hungry", "interested", "happy", "excited"],
+//         "Calmness": ["interested", "calm", "happy", "peaceful"],
+//         "Interest": ["peaceful", "excited", "interested", "happy"],
+//         "Disgust": ["disgusted", "afraid", "angry", "sad"],
+//         "Anger": ["sad", "angry", "afraid", "disgusted"],
+//         "Sadness": ["afraid", "disgusted", "sad", "angry"],
+//         "Fear": ["angry", "sad", "disgusted", "afraid"]
+//     };
+
+//     const video = videos.find(v => v.id === videoId);
+
+//     if (!video) {
+//         console.error(`Video with id ${videoId} not found.`);
+//         return;
+//     }
+
+//     // Get the appropriate ratings for this video type
+//     const ratings = videoTypeRatings[video.type];
+
+//     if (!ratings) {
+//         console.error(`No ratings found for video type ${video.type}`);
+//         return;
+//     }
+
+//     feedbackContainer.innerHTML = '';
+
+//     // Add the header "How do you feel?"
+//     let header = document.createElement('h3');
+//     header.style.fontWeight = 'bold';
+//     header.style.textAlign = 'center';
+//     header.innerText = 'How do you feel right now?';
+//     feedbackContainer.appendChild(header);
+
+//     ratings.forEach((rating, index) => {
+//         let likertContainer = createLikertContainer(0, 6, `not ${rating} at all`, `very ${rating}`, `somewhat ${rating}`, rating);
+//         likertContainer.id = `likert-${index + 1}`;
+//         likertContainer.style.marginBottom = '20px'; // Add spacing between the ratings
+//         feedbackContainer.appendChild(likertContainer);
+//     });
+
+//     let submitButton = createButton("Submit", () => {
+//         let userRatings = [];
+
+//         for (let i = 1; i <= 4; i++) {
+//             let likertContainer = document.getElementById(`likert-${i}`);
+//             let selectedBox = likertContainer.querySelector('.likert-box.selected');
+
+//             if (!selectedBox) {
+//                 alert('Please answer all the questions before submitting.');
+//                 return;
+//             }
+
+//             userRatings.push({
+//                 videoType: video.type,
+//                 EmoRated: ratings[i - 1], // get the rating type from the ratings array
+//                 EmoScore: parseInt(selectedBox.textContent),
+//                 vID: video.src
+//             });
+//         }
+
+//         feedbackContainer.innerHTML = ''; // Clear the feedback container after successful submission
+//         onSubmit(userRatings);
+//     });
+
+//     feedbackContainer.appendChild(submitButton); // Append the button directly to the feedbackContainer
+//     feedbackContainer.style.display = 'block';
+//     submitButton.addEventListener('click', () => {
+//         document.body.classList.remove('instructions-body-align'); // Remove the class when the submit button is clicked
+//     });
+// }
+
+
+
+//Watch again 
+
 function createRatingForm(videoId, onSubmit) {
     // An object to store the rating types for each video type
     document.body.classList.add('instructions-body-align');
@@ -426,10 +439,15 @@ function createRatingForm(videoId, onSubmit) {
                 return;
             }
 
+            let EmoScore = parseInt(selectedBox.textContent);
+            if (isNaN(EmoScore)) {
+                EmoScore = 0;
+            }
+
             userRatings.push({
                 videoType: video.type,
                 EmoRated: ratings[i - 1], // get the rating type from the ratings array
-                EmoScore: parseInt(selectedBox.textContent),
+                EmoScore: EmoScore,
                 vID: video.src
             });
         }
@@ -447,7 +465,6 @@ function createRatingForm(videoId, onSubmit) {
 
 
 
-//Watch again 
 function createWatchAgainForm(onSubmit) {
     feedbackContainer.innerHTML = '';
 
