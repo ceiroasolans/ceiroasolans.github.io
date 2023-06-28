@@ -492,7 +492,7 @@ function createWatchAgainForm(onSubmit) {
         const number = document.createElement("div");
         number.textContent = i === 0 ? "0" : i.toString(); // Convert only non-zero values to strings
         number.classList.add("likert-number");
-l       ikertBox.appendChild(number);
+        likertBox.appendChild(number);
 
 
         const label = document.createElement("div");
