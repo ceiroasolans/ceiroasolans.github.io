@@ -511,46 +511,67 @@ function generateVideoSequence(videosByType, order) {
 
 //                                              MODIFY VIDEO SIZE
 
-function modifyVideoSize(videoElement) {
+// function modifyVideoSize(videoElement) {
+//     // Get the current size of the video element
+//     const currentWidth = videoElement.clientWidth;
+//     const currentHeight = videoElement.clientHeight;
+  
+//     // Calculate the mean size of videos
+//     const videoElements = document.getElementsByTagName('video');
+//     let totalWidth = 0;
+//     let totalHeight = 0;
+//     for (let i = 0; i < videoElements.length; i++) {
+//       totalWidth += videoElements[i].clientWidth;
+//       totalHeight += videoElements[i].clientHeight;
+//     }
+//     const meanWidth = totalWidth / videoElements.length;
+//     const meanHeight = totalHeight / videoElements.length;
+  
+//     // Calculate the standard deviation
+//     let deviationSum = 0;
+//     for (let i = 0; i < videoElements.length; i++) {
+//       const widthDiff = videoElements[i].clientWidth - meanWidth;
+//       const heightDiff = videoElements[i].clientHeight - meanHeight;
+//       deviationSum += Math.sqrt(widthDiff * widthDiff + heightDiff * heightDiff);
+//     }
+//     const standardDeviation = deviationSum / (videoElements.length - 1);
+  
+//     // Apply modifications based on standard deviation
+//     if (currentWidth > meanWidth + standardDeviation) {
+//       // Reduce size by 20% while maintaining aspect ratio
+//       const newWidth = currentWidth * 0.8;
+//       const newHeight = (newWidth / currentWidth) * currentHeight;
+//       videoElement.style.width = `${newWidth}px`;
+//       videoElement.style.height = `${newHeight}px`;
+//     } else if (currentWidth < meanWidth - standardDeviation) {
+//       // Increase size by 20% while maintaining aspect ratio
+//       const newWidth = currentWidth * 1.6;
+//       const newHeight = (newWidth / currentWidth) * currentHeight;
+//       videoElement.style.width = `${newWidth}px`;
+//       videoElement.style.height = `${newHeight}px`;
+//     }
+//   } // by sd
+
+  function modifyVideoSize(videoElement) {
     // Get the current size of the video element
     const currentWidth = videoElement.clientWidth;
     const currentHeight = videoElement.clientHeight;
   
-    // Calculate the mean size of videos
-    const videoElements = document.getElementsByTagName('video');
-    let totalWidth = 0;
-    let totalHeight = 0;
-    for (let i = 0; i < videoElements.length; i++) {
-      totalWidth += videoElements[i].clientWidth;
-      totalHeight += videoElements[i].clientHeight;
-    }
-    const meanWidth = totalWidth / videoElements.length;
-    const meanHeight = totalHeight / videoElements.length;
+    // Calculate the new size with a 50% increase
+    const newWidth = currentWidth * 1.5;
+    const newHeight = (newWidth / currentWidth) * currentHeight;
   
-    // Calculate the standard deviation
-    let deviationSum = 0;
-    for (let i = 0; i < videoElements.length; i++) {
-      const widthDiff = videoElements[i].clientWidth - meanWidth;
-      const heightDiff = videoElements[i].clientHeight - meanHeight;
-      deviationSum += Math.sqrt(widthDiff * widthDiff + heightDiff * heightDiff);
-    }
-    const standardDeviation = deviationSum / (videoElements.length - 1);
-  
-    // Apply modifications based on standard deviation
-    if (currentWidth > meanWidth + standardDeviation) {
-      // Reduce size by 20% while maintaining aspect ratio
-      const newWidth = currentWidth * 0.8;
-      const newHeight = (newWidth / currentWidth) * currentHeight;
-      videoElement.style.width = `${newWidth}px`;
-      videoElement.style.height = `${newHeight}px`;
-    } else if (currentWidth < meanWidth - standardDeviation) {
-      // Increase size by 20% while maintaining aspect ratio
-      const newWidth = currentWidth * 1.6;
-      const newHeight = (newWidth / currentWidth) * currentHeight;
-      videoElement.style.width = `${newWidth}px`;
-      videoElement.style.height = `${newHeight}px`;
-    }
+    // Apply the new size to the video element
+    videoElement.style.width = `${newWidth}px`;
+    videoElement.style.height = `${newHeight}px`;
   }
+  
+  // Apply the modification to all video elements
+  const videoElements = document.getElementsByTagName('video');
+  for (let i = 0; i < videoElements.length; i++) {
+    modifyVideoSize(videoElements[i]);
+  }
+  
   
   
 
