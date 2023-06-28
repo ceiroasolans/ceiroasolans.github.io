@@ -375,6 +375,71 @@ function createRatingForm(videoId, onSubmit) {
 
 
 //Watch again 
+// function createWatchAgainForm(onSubmit) {
+//     feedbackContainer.innerHTML = '';
+
+//     const questionObj = {
+//         text: "Would you watch this video again?",
+//         scale: ["No, never!", "Maybe", "Yes, anytime!"]
+//     };
+
+//     const WatchAgain = {};
+
+//     const question = document.createElement("p");
+//     question.style.fontWeight = 'bold'; // Add bold font-weight
+//     question.style.textAlign = 'center';
+//     question.textContent = questionObj.text;
+
+//     const likertContainer = document.createElement("div");
+//     likertContainer.classList.add("likert-container");
+
+//     for (let i = 0; i <= 6; i++) { // Update from 1-7 to 0-6
+//         const likertBox = document.createElement("div");
+//         likertBox.classList.add("likert-box");
+
+//         const number = document.createElement("div");
+//         number.textContent = i;
+//         number.classList.add("likert-number");
+//         likertBox.appendChild(number);
+
+//         const label = document.createElement("div");
+//         label.classList.add("likert-label");
+//         likertBox.appendChild(label);
+
+//         // Add labels on the edges and in the middle
+//         if (i === 0) label.textContent += questionObj.scale[0]; // Update from 1 to 0
+//         else if (i === 3) label.textContent += questionObj.scale[1];
+//         else if (i === 6) label.textContent += questionObj.scale[2]; // Update from 7 to 6
+
+//         likertBox.onclick = function () {
+//             likertContainer.querySelectorAll(".likert-box").forEach(box => box.style.backgroundColor = "");
+//             WatchAgain[questionObj.text] = i;
+//             likertBox.style.backgroundColor = "#d8d8d8";  // Change color to indicate selection
+//         };
+
+//         likertContainer.appendChild(likertBox);
+//     }
+
+//     feedbackContainer.appendChild(question);
+//     feedbackContainer.appendChild(likertContainer);
+
+//     const submitButton = document.createElement("button");
+//     submitButton.innerText = "Submit";
+//     submitButton.onclick = () => {
+//         if (WatchAgain[questionObj.text]) {
+//             onSubmit(WatchAgain);
+//         } else {
+//             alert("Please answer the question.");
+//         }
+//     };
+
+//     feedbackContainer.appendChild(submitButton);
+//     feedbackContainer.style.display = "block";
+
+//     console.log("WatchAgain:", WatchAgain);
+// }
+// Watch again 
+
 function createWatchAgainForm(onSubmit) {
     feedbackContainer.innerHTML = '';
 
@@ -426,7 +491,7 @@ function createWatchAgainForm(onSubmit) {
     const submitButton = document.createElement("button");
     submitButton.innerText = "Submit";
     submitButton.onclick = () => {
-        if (WatchAgain[questionObj.text]) {
+        if (WatchAgain[questionObj.text] !== undefined) {  // Check specifically for undefined
             onSubmit(WatchAgain);
         } else {
             alert("Please answer the question.");
@@ -438,6 +503,7 @@ function createWatchAgainForm(onSubmit) {
 
     console.log("WatchAgain:", WatchAgain);
 }
+
 
 
 
@@ -564,7 +630,7 @@ function experimentalSet() {
 
         videoPlayer.onended = videoPlayer.onpause = () => {
             cumulativeTime += Date.now() - startTime; // add time of current play to cumulativeTime
-            if (cumulativeTime < 4000) {
+            if (cumulativeTime < 6000) {
                 // check if cumulativeTime is less than 3 seconds
                 startTime = Date.now(); // reset startTime for the next play
                 videoPlayer.play(); // immediately replay video
