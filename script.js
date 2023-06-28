@@ -435,10 +435,15 @@ function createRatingForm(videoId, onSubmit) {
                 return;
             }
 
+            let emoScore = selectedBox.textContent.trim();
+            if (emoScore === "0not happy at all") {
+                emoScore = "0";
+            }
+
             userRatings.push({
                 videoType: video.type,
                 EmoRated: ratings[i - 1], // get the rating type from the ratings array
-                EmoScore: selectedBox.textContent, // use the raw value as a string
+                EmoScore: emoScore,
                 vID: video.src
             });
         }
@@ -453,6 +458,7 @@ function createRatingForm(videoId, onSubmit) {
         document.body.classList.remove('instructions-body-align'); // Remove the class when the submit button is clicked
     });
 }
+
 
 
 //Watch again 
