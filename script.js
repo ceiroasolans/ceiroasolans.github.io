@@ -375,10 +375,6 @@ function createLikertContainer(min, max, minLabel, maxLabel, midLabel, emotion) 
 //     });
 // }
 
-
-
-//Watch again 
-
 function createRatingForm(videoId, onSubmit) {
     // An object to store the rating types for each video type
     document.body.classList.add('instructions-body-align');
@@ -439,15 +435,10 @@ function createRatingForm(videoId, onSubmit) {
                 return;
             }
 
-            let EmoScore = parseInt(selectedBox.textContent);
-            if (isNaN(EmoScore)) {
-                EmoScore = 0;
-            }
-
             userRatings.push({
                 videoType: video.type,
                 EmoRated: ratings[i - 1], // get the rating type from the ratings array
-                EmoScore: EmoScore,
+                EmoScore: selectedBox.textContent, // use the raw value as a string
                 vID: video.src
             });
         }
@@ -464,7 +455,7 @@ function createRatingForm(videoId, onSubmit) {
 }
 
 
-
+//Watch again 
 function createWatchAgainForm(onSubmit) {
     feedbackContainer.innerHTML = '';
 
