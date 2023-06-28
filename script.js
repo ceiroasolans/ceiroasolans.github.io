@@ -82,7 +82,7 @@ const allVideos = [
     // {id: 93, src: "1964.mp4", type: "Fear" },
     // {id: 94, src: "2091.mp4", type: "Fear" },
     {id: 29, src: "0723.mp4", type: "Interest" },
-    // {id: 30, src: "0735.mp4", type: "Interest" },
+    {id: 30, src: "0735.mp4", type: "Interest" },
     // {id: 31, src: "1066.mp4", type: "Interest" },
     // {id: 32, src: "1068.mp4", type: "Interest" },
     // {id: 58, src: "1301.mp4", type: "Interest" },
