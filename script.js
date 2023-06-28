@@ -425,18 +425,23 @@ function createRatingForm(videoId, onSubmit) {
 
     let submitButton = createButton("Submit", () => {
         let userRatings = [];
-
+    
         for (let i = 1; i <= 4; i++) {
             let likertContainer = document.getElementById(`likert-${i}`);
             let selectedBox = likertContainer.querySelector('.likert-box.selected');
-
+    
             if (!selectedBox) {
                 alert('Please answer all the questions before submitting.');
                 return;
             }
-
-            let emoScore = selectedBox.textContent.trim().replace("not happy at all", "0");
-
+    
+            let emoScore = selectedBox.textContent.trim();
+            const regex = /^(\d+)/;
+            const match = emoScore.match(regex);
+            if (match) {
+                emoScore = match[1];
+            }
+    
             userRatings.push({
                 videoType: video.type,
                 EmoRated: ratings[i - 1], // get the rating type from the ratings array
@@ -444,10 +449,11 @@ function createRatingForm(videoId, onSubmit) {
                 vID: video.src
             });
         }
-
+    
         feedbackContainer.innerHTML = ''; // Clear the feedback container after successful submission
         onSubmit(userRatings);
     });
+    
 
     feedbackContainer.appendChild(submitButton); // Append the button directly to the feedbackContainer
     feedbackContainer.style.display = 'block';
