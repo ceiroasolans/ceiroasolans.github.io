@@ -369,8 +369,8 @@ function createRatingForm(videoId, onSubmit) {
     feedbackContainer.appendChild(submitButton); // Append the button directly to the feedbackContainer
 
     setTimeout(() => {
-        document.body.classList.remove('instructions-body-align');
         feedbackContainer.style.display = 'block';
+        document.body.classList.remove('instructions-body-align');
     }, 100); // Use a small delay, such as 0 milliseconds, to allow the class to be applied before creating the form
 }
 
