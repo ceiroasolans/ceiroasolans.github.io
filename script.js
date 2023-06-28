@@ -11,8 +11,8 @@ const buttonsContainer = document.getElementById("buttonsContainer");
 
 // Videos
 const allVideos = [
-    // {id: 1, src: "0074.mp4", type: "Amusement" },
-    // {id: 2, src: "0574.mp4", type: "Amusement" },
+    {id: 1, src: "0074.mp4", type: "Amusement" },
+    {id: 2, src: "0574.mp4", type: "Amusement" },
     // {id: 3, src: "0656.mp4", type: "Amusement" },
     // {id: 4, src: "1043.mp4", type: "Amusement" },
     // {id: 44, src: "1145.mp4", type: "Amusement" },
@@ -21,7 +21,7 @@ const allVideos = [
     // {id: 68, src: "1606.mp4", type: "Amusement" },
     // {id: 69, src: "2072.mp4", type: "Amusement" },
     // {id: 70, src: "2083.mp4", type: "Amusement" },
-    // {id: 5, src: "0124.mp4", type: "Anger" },
+    {id: 5, src: "0124.mp4", type: "Anger" },
     // {id: 6, src: "0252.mp4", type: "Anger" },
     // {id: 7, src: "0414.mp4", type: "Anger" },
     // {id: 8, src: "0595.mp4", type: "Anger" },
@@ -81,8 +81,8 @@ const allVideos = [
     // {id: 92, src: "1832.mp4", type: "Fear" },
     // {id: 93, src: "1964.mp4", type: "Fear" },
     // {id: 94, src: "2091.mp4", type: "Fear" },
-    {id: 29, src: "0723.mp4", type: "Interest" },
-    {id: 30, src: "0735.mp4", type: "Interest" },
+    // {id: 29, src: "0723.mp4", type: "Interest" },
+    // {id: 30, src: "0735.mp4", type: "Interest" },
     // {id: 31, src: "1066.mp4", type: "Interest" },
     // {id: 32, src: "1068.mp4", type: "Interest" },
     // {id: 58, src: "1301.mp4", type: "Interest" },
