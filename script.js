@@ -504,12 +504,11 @@ function createWatchAgainForm(onSubmit) {
         else if (i === 3) label.textContent += questionObj.scale[1];
         else if (i === 6) label.textContent += questionObj.scale[2]; // Update from 7 to 6
 
-        likertBox.onclick = ((index) => function () {
+        likertBox.onclick = function () {
             likertContainer.querySelectorAll(".likert-box").forEach(box => box.style.backgroundColor = "");
-            WatchAgain[questionObj.text] = index;
-            this.style.backgroundColor = "#d8d8d8";  // Change color to indicate selection
-        })(i);
-        
+            WatchAgain[questionObj.text] = i;
+            likertBox.style.backgroundColor = "#d8d8d8";  // Change color to indicate selection
+        };
 
         likertContainer.appendChild(likertBox);
     }
@@ -789,7 +788,7 @@ function calculateMeanRatings(participantChoices) {
     for (let type of videoTypes) {
         let choicesOfType = participantChoices.filter(choice => choice.videoType === type);
         if (choicesOfType.length > 0) {
-            let meanValence = calculateMean(choicesOfType.map(choice => choice.valence));
+            let meanValence = calculateMean(choicesOfType.map(choice => Number(choice.valence)));
             meanRatings[type] = { meanValence };
         }
     }
