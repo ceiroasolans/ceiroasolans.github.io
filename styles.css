@@ -195,3 +195,7 @@ thead th {
     align-items: flex-start;
   }
   
+  button {
+    margin: 0 auto;
+    display: block;
+  }
