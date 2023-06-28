@@ -12,7 +12,7 @@ const buttonsContainer = document.getElementById("buttonsContainer");
 // Videos
 const allVideos = [
     {id: 1, src: "0074.mp4", type: "Amusement" },
-    {id: 2, src: "0574.mp4", type: "Amusement" },
+    // {id: 2, src: "0574.mp4", type: "Amusement" },
     // {id: 3, src: "0656.mp4", type: "Amusement" },
     // {id: 4, src: "1043.mp4", type: "Amusement" },
     // {id: 44, src: "1145.mp4", type: "Amusement" },
@@ -435,10 +435,7 @@ function createRatingForm(videoId, onSubmit) {
                 return;
             }
 
-            let emoScore = selectedBox.textContent.trim();
-            if (emoScore === "0not happy at all") {
-                emoScore = "0";
-            }
+            let emoScore = selectedBox.textContent.trim().replace("not happy at all", "0");
 
             userRatings.push({
                 videoType: video.type,
@@ -454,10 +451,12 @@ function createRatingForm(videoId, onSubmit) {
 
     feedbackContainer.appendChild(submitButton); // Append the button directly to the feedbackContainer
     feedbackContainer.style.display = 'block';
+
     submitButton.addEventListener('click', () => {
         document.body.classList.remove('instructions-body-align'); // Remove the class when the submit button is clicked
     });
 }
+
 
 
 
