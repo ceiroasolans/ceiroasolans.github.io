@@ -166,8 +166,8 @@ function createFeedbackForm(videoId, onSubmit) {
     feedbackContainer.innerHTML = '';
 
     const questions = [
-        { text: "How do you feel right now?", scale: ["Unpleasant, negative", "Neutral", "Pleasant, positive"] },
-        { text: " ", scale: ["Still, inactive", "Neutral", "Activated, aroused"] }
+        { text: "How do you feel right now?", scale: ["Very unpleasant, negative", "Neutral", "Very pleasant, positive"] },
+        { text: " ", scale: ["Not activated / aroused at all", "Somewhat", "Very activated / aroused"] }
     ];
 
     const responses = {};
@@ -564,7 +564,7 @@ function experimentalSet() {
 
         videoPlayer.onended = videoPlayer.onpause = () => {
             cumulativeTime += Date.now() - startTime; // add time of current play to cumulativeTime
-            if (cumulativeTime < 3000) {
+            if (cumulativeTime < 4000) {
                 // check if cumulativeTime is less than 3 seconds
                 startTime = Date.now(); // reset startTime for the next play
                 videoPlayer.play(); // immediately replay video
