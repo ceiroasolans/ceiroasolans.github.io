@@ -34,6 +34,7 @@ body {
     display: flex;
     justify-content: center; /* new */
     align-items: center;  /* new */
+    padding-bottom: 10px;
 
 }
 

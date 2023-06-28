@@ -368,9 +368,9 @@ function createRatingForm(videoId, onSubmit) {
 
     feedbackContainer.appendChild(submitButton); // Append the button directly to the feedbackContainer
     feedbackContainer.style.display = 'block';
-    setTimeout(() => {
-        document.body.classList.remove('instructions-body-align');
-    }, 100); // Use a small delay, such as 0 milliseconds, to allow the class to be applied before creating the form
+    submitButton.addEventListener('click', () => {
+        document.body.classList.remove('instructions-body-align'); // Remove the class when the submit button is clicked
+    });
 }
 
 
