@@ -295,6 +295,86 @@ function createLikertContainer(min, max, minLabel, maxLabel, midLabel, emotion) 
     return mainContainer;
 }
 
+// function createRatingForm(videoId, onSubmit) {
+//     // An object to store the rating types for each video type
+//     document.body.classList.add('instructions-body-align');
+//     const videoTypeRatings = {
+//         "Excitement": ["excited", "interested", "amused", "happy"],
+//         "Amusement": ["happy", "amused", "excited", "interested"],
+//         "Joy": ["amused", "loving", "happy", "peaceful"],
+//         "Romance": ["excited", "peaceful", "happy", "loving"],
+//         "Craving": ["hungry", "interested", "happy", "excited"],
+//         "Calmness": ["interested", "calm", "happy", "peaceful"],
+//         "Interest": ["peaceful", "excited", "interested", "happy"],
+//         "Disgust": ["disgusted", "afraid", "angry", "sad"],
+//         "Anger": ["sad", "angry", "afraid", "disgusted"],
+//         "Sadness": ["afraid", "disgusted", "sad", "angry"],
+//         "Fear": ["angry", "sad", "disgusted", "afraid"]
+//     };
+
+//     const video = videos.find(v => v.id === videoId);
+
+//     if (!video) {
+//         console.error(`Video with id ${videoId} not found.`);
+//         return;
+//     }
+
+//     // Get the appropriate ratings for this video type
+//     const ratings = videoTypeRatings[video.type];
+
+//     if (!ratings) {
+//         console.error(`No ratings found for video type ${video.type}`);
+//         return;
+//     }
+
+//     feedbackContainer.innerHTML = '';
+
+//     // Add the header "How do you feel?"
+//     let header = document.createElement('h3');
+//     header.style.fontWeight = 'bold';
+//     header.innerText = 'How do you feel right now?';
+//     feedbackContainer.appendChild(header);
+
+//     ratings.forEach((rating, index) => {
+//         let likertContainer = createLikertContainer(0, 6, `not ${rating} at all`, `very ${rating}`, `somewhat ${rating}`, rating);
+//         likertContainer.id = `likert-${index + 1}`;
+//         likertContainer.style.marginBottom = '20px'; // Add spacing between the ratings
+//         feedbackContainer.appendChild(likertContainer);
+//     });
+
+//     let submitButton = createButton("Submit", () => {
+//         let userRatings = [];
+
+//         for (let i = 1; i <= 4; i++) {
+//             let likertContainer = document.getElementById(`likert-${i}`);
+//             let selectedBox = likertContainer.querySelector('.likert-box.selected');
+
+//             if (!selectedBox) {
+//                 alert('Please answer all the questions before submitting.');
+//                 return;
+//             }
+
+//             userRatings.push({
+//                 videoType: video.type,
+//                 EmoRated: ratings[i - 1], // get the rating type from the ratings array
+//                 EmoScore: parseInt(selectedBox.textContent),
+//                 vID: video.src
+//             });
+//         }
+
+//         feedbackContainer.innerHTML = ''; // Clear the feedback container after successful submission
+//         onSubmit(userRatings);
+//     });
+
+//     feedbackContainer.appendChild(submitButton); // Append the button directly to the feedbackContainer
+
+//     feedbackContainer.style.display = 'block';
+//     document.body.classList.remove('instructions-body-align');
+// }
+
+
+//Watch again? 
+
 function createRatingForm(videoId, onSubmit) {
     // An object to store the rating types for each video type
     document.body.classList.add('instructions-body-align');
@@ -373,7 +453,6 @@ function createRatingForm(videoId, onSubmit) {
 }
 
 
-//Watch again? 
 function createWatchAgainForm(onSubmit) {
     feedbackContainer.innerHTML = '';
 

@@ -11,9 +11,6 @@ body {
 
 
 
-#mainContainer {
-    text-align: center;
-}
 
 /* Comment this out when not running strategy selection task  */
 #dimOverlay {
@@ -195,6 +192,10 @@ thead th {
 
 
 .instructions-body-align {
+    align-items: flex-start;
+  }
+  
+  .instructions-body-align body {
     align-items: flex-start;
   }
   
