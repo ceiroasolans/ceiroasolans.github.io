@@ -371,7 +371,7 @@ function createRatingForm(videoId, onSubmit) {
     setTimeout(() => {
         document.body.classList.remove('instructions-body-align');
         feedbackContainer.style.display = 'block';
-    }, 0); // Use a small delay, such as 0 milliseconds, to allow the class to be applied before creating the form
+    }, 100); // Use a small delay, such as 0 milliseconds, to allow the class to be applied before creating the form
 }
 
 
