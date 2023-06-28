@@ -545,7 +545,7 @@ function modifyVideoSize(videoElement) {
       videoElement.style.height = `${newHeight}px`;
     } else if (currentWidth < meanWidth - standardDeviation) {
       // Increase size by 20% while maintaining aspect ratio
-      const newWidth = currentWidth * 1.2;
+      const newWidth = currentWidth * 1.6;
       const newHeight = (newWidth / currentWidth) * currentHeight;
       videoElement.style.width = `${newWidth}px`;
       videoElement.style.height = `${newHeight}px`;
