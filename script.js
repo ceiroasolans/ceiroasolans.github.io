@@ -19,7 +19,7 @@ const allVideos = [
     // {id: 45, src: "1411.mp4", type: "Amusement" },
     // {id: 67, src: "1564.mp4", type: "Amusement" },
     // {id: 68, src: "1606.mp4", type: "Amusement" },
-    // {id: 69, src: "2072.mp4", type: "Amusement" },
+    {id: 69, src: "2072.mp4", type: "Amusement" },
     {id: 70, src: "2083.mp4", type: "Amusement" },
     // {id: 5, src: "0124.mp4", type: "Anger" },
     // {id: 6, src: "0252.mp4", type: "Anger" },
@@ -292,7 +292,7 @@ function createLikertContainer(min, max, minLabel, maxLabel, midLabel, emotion) 
     }
    
     mainContainer.appendChild(container);
-    document.body.classList.add('instructions-body-align');
+    document.body.classList.remove('instructions-body-align');
     return mainContainer;
 }
 
