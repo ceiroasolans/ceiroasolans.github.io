@@ -164,6 +164,76 @@ function startTimer() {  // Function to start the timer when buttons appear
 //                                                  RATINGS
 
 // Valence and arousal
+// function createFeedbackForm(videoId, onSubmit) {
+//     feedbackContainer.innerHTML = '';
+
+//     const questions = [
+//         { text: "How do you feel right now?", scale: ["Very unpleasant, negative", "Neutral", "Very pleasant, positive"] },
+//         { text: " ", scale: ["Not activated / aroused at all", "Somewhat", "Very activated / aroused"] }
+//     ];
+
+//     const responses = {};
+
+//     questions.forEach((questionObj, index) => {
+//         const question = document.createElement("p");
+//         question.style.fontWeight = 'bold'; // Add bold font-weight
+//         question.style.textAlign = 'center';
+//         question.textContent = questionObj.text;
+
+//         const likertContainer = document.createElement("div");
+//         likertContainer.classList.add("likert-container");
+
+//         for(let i = 0; i <= 6; i++){ // Update from 1-7 to 0-6
+//             const likertBox = document.createElement("div");
+//             likertBox.classList.add("likert-box");
+
+//             const number = document.createElement("div");
+//             number.textContent = i;
+//             number.classList.add("likert-number");
+//             likertBox.appendChild(number);
+
+//             const label = document.createElement("div");
+//             label.classList.add("likert-label");
+//             likertBox.appendChild(label);
+
+//             // Add labels on the edges and in the middle
+//             if (i === 0) label.textContent += questionObj.scale[0]; // Update from 1 to 0
+//             else if (i === 3) label.textContent += questionObj.scale[1];
+//             else if (i === 6) label.textContent += questionObj.scale[2]; // Update from 7 to 6
+
+//             likertBox.onclick = function() {
+//                 likertContainer.querySelectorAll(".likert-box").forEach(box => box.style.backgroundColor = "");
+
+//                 // Depending on the index, save to valence or arousal
+//                 if(index === 0) {
+//                     responses['valence'] = i;
+//                 } else if(index === 1) {
+//                     responses['arousal'] = i;
+//                 }
+                
+//                 likertBox.style.backgroundColor = "#d8d8d8";  // Change color to indicate selection
+//             };
+
+//             likertContainer.appendChild(likertBox);
+//         }
+
+//         feedbackContainer.appendChild(question);
+//         feedbackContainer.appendChild(likertContainer);
+//     });
+
+//     const submitButton = document.createElement("button");
+//     submitButton.innerText = "Submit";
+//     submitButton.onclick = () => {
+//         if (Object.keys(responses).length === questions.length) {
+//             onSubmit(responses);
+//         } else {
+//             alert("Please answer all questions.");
+//         }
+//     };
+
+//     feedbackContainer.appendChild(submitButton);
+//     feedbackContainer.style.display = "block";
+// }
 function createFeedbackForm(videoId, onSubmit) {
     feedbackContainer.innerHTML = '';
 
@@ -206,9 +276,9 @@ function createFeedbackForm(videoId, onSubmit) {
 
                 // Depending on the index, save to valence or arousal
                 if(index === 0) {
-                    responses['valence'] = i;
+                    responses['valence'] = i.toString(); // Convert to string
                 } else if(index === 1) {
-                    responses['arousal'] = i;
+                    responses['arousal'] = i.toString(); // Convert to string
                 }
                 
                 likertBox.style.backgroundColor = "#d8d8d8";  // Change color to indicate selection
@@ -224,7 +294,7 @@ function createFeedbackForm(videoId, onSubmit) {
     const submitButton = document.createElement("button");
     submitButton.innerText = "Submit";
     submitButton.onclick = () => {
-        if (Object.keys(responses).length === questions.length - 1) {
+        if (Object.keys(responses).length === questions.length) {
             onSubmit(responses);
         } else {
             alert("Please answer all questions.");
