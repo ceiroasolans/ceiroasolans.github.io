@@ -518,12 +518,13 @@ function createWatchAgainForm(onSubmit) {
     const submitButton = document.createElement("button");
     submitButton.innerText = "Submit";
     submitButton.onclick = () => {
-        if (WatchAgain[questionObj.text] !== undefined) {  // Check specifically for undefined
+        if (WatchAgain[questionObj.text] !== undefined || WatchAgain[questionObj.text] === 0) {
             onSubmit(WatchAgain);
         } else {
             alert("Please answer the question.");
         }
     };
+    
 
     feedbackContainer.appendChild(submitButton);
     feedbackContainer.style.display = "block";
