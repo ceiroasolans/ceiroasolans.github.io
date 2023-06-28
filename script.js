@@ -13,34 +13,34 @@ const buttonsContainer = document.getElementById("buttonsContainer");
 const allVideos = [
     {id: 1, src: "0074.mp4", type: "Amusement" },
     {id: 2, src: "0574.mp4", type: "Amusement" },
-    // {id: 3, src: "0656.mp4", type: "Amusement" },
-    // {id: 4, src: "1043.mp4", type: "Amusement" },
-    // {id: 44, src: "1145.mp4", type: "Amusement" },
-    // {id: 45, src: "1411.mp4", type: "Amusement" },
-    // {id: 67, src: "1564.mp4", type: "Amusement" },
-    // {id: 68, src: "1606.mp4", type: "Amusement" },
+    {id: 3, src: "0656.mp4", type: "Amusement" },
+    {id: 4, src: "1043.mp4", type: "Amusement" },
+    {id: 44, src: "1145.mp4", type: "Amusement" },
+    {id: 45, src: "1411.mp4", type: "Amusement" },
+    {id: 67, src: "1564.mp4", type: "Amusement" },
+    {id: 68, src: "1606.mp4", type: "Amusement" },
     {id: 69, src: "2072.mp4", type: "Amusement" },
     {id: 70, src: "2083.mp4", type: "Amusement" },
-    // {id: 5, src: "0124.mp4", type: "Anger" },
-    // {id: 6, src: "0252.mp4", type: "Anger" },
-    // {id: 7, src: "0414.mp4", type: "Anger" },
-    // {id: 8, src: "0595.mp4", type: "Anger" },
-    // {id: 46, src: "0681.mp4", type: "Anger" },
-    // {id: 47, src: "0948.mp4", type: "Anger" },
-    // {id: 71, src: "1229.mp4", type: "Anger" },
-    // {id: 72, src: "1844.mp4", type: "Anger" },
-    // {id: 73, src: "2049.mp4", type: "Anger" },
-    // {id: 74, src: "2066.mp4", type: "Anger" },
-    // {id: 9, src: "0090.mp4", type: "Calmness" },
-    // {id: 10, src: "0339.mp4", type: "Calmness" },
-    // {id: 11, src: "0493.mp4", type: "Calmness" },
-    // {id: 12, src: "0553.mp4", type: "Calmness" },
-    // {id: 48, src: "0580.mp4", type: "Calmness" },
-    // {id: 49, src: "0645.mp4", type: "Calmness" },
-    // {id: 75, src: "0671.mp4", type: "Calmness" },
-    // {id: 76, src: "1216.mp4", type: "Calmness" },
-    // {id: 77, src: "1760.mp4", type: "Calmness" },
-    // {id: 78, src: "1835.mp4", type: "Calmness" },
+    {id: 5, src: "0124.mp4", type: "Anger" },
+    {id: 6, src: "0252.mp4", type: "Anger" },
+    {id: 7, src: "0414.mp4", type: "Anger" },
+    {id: 8, src: "0595.mp4", type: "Anger" },
+    {id: 46, src: "0681.mp4", type: "Anger" },
+    {id: 47, src: "0948.mp4", type: "Anger" },
+    {id: 71, src: "1229.mp4", type: "Anger" },
+    {id: 72, src: "1844.mp4", type: "Anger" },
+    {id: 73, src: "2049.mp4", type: "Anger" },
+    {id: 74, src: "2066.mp4", type: "Anger" },
+    {id: 9, src: "0090.mp4", type: "Calmness" },
+    {id: 10, src: "0339.mp4", type: "Calmness" },
+    {id: 11, src: "0493.mp4", type: "Calmness" },
+    {id: 12, src: "0553.mp4", type: "Calmness" },
+    {id: 48, src: "0580.mp4", type: "Calmness" },
+    {id: 49, src: "0645.mp4", type: "Calmness" },
+    {id: 75, src: "0671.mp4", type: "Calmness" },
+    {id: 76, src: "1216.mp4", type: "Calmness" },
+    {id: 77, src: "1760.mp4", type: "Calmness" },
+    {id: 78, src: "1835.mp4", type: "Calmness" },
     // {id: 13, src: "0110.mp4", type: "Craving" },
     // {id: 14, src: "0458.mp4", type: "Craving" },
     // {id: 15, src: "0780.mp4", type: "Craving" },
@@ -534,7 +534,7 @@ function modifyVideoSize(videoElement) {
       const heightDiff = videoElements[i].clientHeight - meanHeight;
       deviationSum += Math.sqrt(widthDiff * widthDiff + heightDiff * heightDiff);
     }
-    const standardDeviation = deviationSum / videoElements.length;
+    const standardDeviation = deviationSum / (videoElements.length - 1);
   
     // Apply modifications based on standard deviation
     if (currentWidth > meanWidth + standardDeviation) {
@@ -551,6 +551,7 @@ function modifyVideoSize(videoElement) {
       videoElement.style.height = `${newHeight}px`;
     }
   }
+  
   
 
 
