@@ -519,7 +519,8 @@ function createWatchAgainForm(onSubmit) {
     const submitButton = document.createElement("button");
     submitButton.innerText = "Submit";
     submitButton.onclick = () => {
-        if (WatchAgain[questionObj.text] !== undefined) {
+        if (typeof WatchAgain[questionObj.text] !== 'undefined') {
+
             onSubmit(WatchAgain);
         } else {
             alert("Please answer the question.");
