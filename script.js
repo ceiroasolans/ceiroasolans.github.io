@@ -297,7 +297,6 @@ function createLikertContainer(min, max, minLabel, maxLabel, midLabel, emotion) 
 
 function createRatingForm(videoId, onSubmit) {
     // An object to store the rating types for each video type
-    document.body.classList.add('instructions-body-align');
     const videoTypeRatings = {
         "Excitement": ["excited", "interested", "amused", "happy"],
         "Amusement": ["happy", "amused", "excited", "interested"],
@@ -369,7 +368,6 @@ function createRatingForm(videoId, onSubmit) {
     feedbackContainer.appendChild(submitButton); // Append the button directly to the feedbackContainer
 
     feedbackContainer.style.display = 'block';
-    document.body.classList.remove('instructions-body-align');
 }
 
 
