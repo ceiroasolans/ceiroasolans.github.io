@@ -836,7 +836,8 @@ function experimentalSet() {
                                         videoType: rating['videoType'],
                                         EmoRated: rating['EmoRated'],
                                         EmoScore: rating['EmoScore'],
-                                        watchAgain: WatchAgainResponse["Would you watch this video again?"]
+                                        watchAgain: WatchAgainResponse["Would you watch this video again?"],
+                                        SID: participantSID 
                                 });
                               });
                             });
@@ -1057,7 +1058,7 @@ function shuffleArray(array) {
 //                                              GENERATE DATA
 
 function generateAndUploadCSV(participantChoices) {
-    const header = ["vID", "reactionTime",  "valence", "arousal", "videoType", "EmoRated", "EmoScore", "WatchAgain"]; //initialValence and initialArousal if new flow
+    const header = ["SID", "vID", "reactionTime",  "valence", "arousal", "videoType", "EmoRated", "EmoScore", "WatchAgain"]; //initialValence and initialArousal if new flow
     const csvRows = [header];
   
     for (const row of participantChoices) {
