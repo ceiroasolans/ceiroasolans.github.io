@@ -9,14 +9,127 @@ const buttonsContainer = document.getElementById("buttonsContainer");
 
  //                                             PREP 
 
-// Videos
+// Videos (first is old, pilot 1)
+// const allVideos = [
+//     {id: 1, src: "0074.mp4", type: "Amusement" },
+//     {id: 2, src: "0574.mp4", type: "Amusement" },
+//     {id: 3, src: "0656.mp4", type: "Amusement" },
+//     {id: 4, src: "1043.mp4", type: "Amusement" },
+//     {id: 44, src: "1145.mp4", type: "Amusement" }, //this should've started on 45?
+//     {id: 45, src: "1411.mp4", type: "Amusement" },
+//     {id: 67, src: "1564.mp4", type: "Amusement" },
+//     {id: 68, src: "1606.mp4", type: "Amusement" },
+//     {id: 69, src: "2072.mp4", type: "Amusement" },
+//     {id: 70, src: "2083.mp4", type: "Amusement" },
+//     {id: 5, src: "0124.mp4", type: "Anger" },
+//     {id: 6, src: "0252.mp4", type: "Anger" },
+//     {id: 7, src: "0414.mp4", type: "Anger" },
+//     {id: 8, src: "0595.mp4", type: "Anger" },
+//     {id: 46, src: "0681.mp4", type: "Anger" },
+//     {id: 47, src: "0948.mp4", type: "Anger" },
+//     {id: 71, src: "1229.mp4", type: "Anger" },
+//     {id: 72, src: "1844.mp4", type: "Anger" },
+//     {id: 73, src: "2049.mp4", type: "Anger" },
+//     {id: 74, src: "2066.mp4", type: "Anger" },
+//     {id: 9, src: "0090.mp4", type: "Calmness" },
+//     {id: 10, src: "0339.mp4", type: "Calmness" },
+//     {id: 11, src: "0493.mp4", type: "Calmness" },
+//     {id: 12, src: "0553.mp4", type: "Calmness" },
+//     {id: 48, src: "0580.mp4", type: "Calmness" },
+//     {id: 49, src: "0645.mp4", type: "Calmness" },
+//     {id: 75, src: "0671.mp4", type: "Calmness" },
+//     {id: 76, src: "1216.mp4", type: "Calmness" },
+//     {id: 77, src: "1760.mp4", type: "Calmness" },
+//     {id: 78, src: "1835.mp4", type: "Calmness" },
+//     {id: 13, src: "0110.mp4", type: "Craving" },
+//     {id: 14, src: "0458.mp4", type: "Craving" },
+//     {id: 15, src: "0780.mp4", type: "Craving" },
+//     {id: 16, src: "0883.mp4", type: "Craving" },
+//     {id: 50, src: "0898.mp4", type: "Craving" },
+//     {id: 51, src: "0919.mp4", type: "Craving" },
+//     {id: 79, src: "1449.mp4", type: "Craving" },
+//     {id: 80, src: "1498.mp4", type: "Craving" },
+//     {id: 81,  src: "1740.mp4", type: "Craving" },
+//     {id: 82, src: "1826.mp4", type: "Craving" },
+//     {id: 17, src: "0187.mp4", type: "Disgust" },
+//     {id: 18,  src: "0235.mp4", type: "Disgust" },
+//     {id: 19, src: "0355.mp4", type: "Disgust" },
+//     {id: 20, src: "0713.mp4", type: "Disgust" },
+//     {id: 52, src: "0876.mp4", type: "Disgust" },
+//     {id: 53, src: "0929.mp4", type: "Disgust" },
+//     {id: 83, src: "1194.mp4", type: "Disgust" },
+//     {id: 84, src: "1423.mp4", type: "Disgust" },
+//     {id: 85, src: "1907.mp4", type: "Disgust" },
+//     {id: 86, src: "2018.mp4", type: "Disgust" },
+//     {id: 21, src: "0202.mp4", type: "Excitement" },
+//     {id: 22, src: "0402.mp4", type: "Excitement" },
+//     {id: 23, src: "0546.mp4", type: "Excitement" },
+//     {id: 24, src: "0550.mp4", type: "Excitement" },
+//     {id: 54, src: "0701.mp4", type: "Excitement" },
+//     {id: 55, src: "0970.mp4", type: "Excitement" },
+//     {id: 87, src: "1297.mp4", type: "Excitement" },
+//     {id: 88, src: "1537.mp4", type: "Excitement" },
+//     {id: 89,  src: "1717.mp4", type: "Excitement" },
+//     {id: 90, src: "2021.mp4", type: "Excitement" },
+//     {id: 25, src: "0379.mp4", type: "Fear" },
+//     {id: 26,  src: "0489.mp4", type: "Fear" },
+//     {id: 27, src: "0706.mp4", type: "Fear" },
+//     {id: 28, src: "1202.mp4", type: "Fear" },
+//     {id: 56, src: "1375.mp4", type: "Fear" },
+//     {id: 57, src: "1726.mp4", type: "Fear" },
+//     {id: 91, src: "1780.mp4", type: "Fear" },
+//     {id: 92, src: "1832.mp4", type: "Fear" },
+//     {id: 93, src: "1964.mp4", type: "Fear" },
+//     {id: 94, src: "2091.mp4", type: "Fear" },
+//     {id: 29, src: "0723.mp4", type: "Interest" },
+//     {id: 30, src: "0735.mp4", type: "Interest" },
+//     {id: 31, src: "1066.mp4", type: "Interest" },
+//     {id: 32, src: "1068.mp4", type: "Interest" },
+//     {id: 58, src: "1301.mp4", type: "Interest" },
+//     {id: 59, src: "1619.mp4", type: "Interest" },
+//     {id: 95, src: "1624.mp4", type: "Interest" },
+//     {id: 96, src: "1641.mp4", type: "Interest" },
+//     {id: 97, src: "1664.mp4", type: "Interest" },
+//     {id: 98, src: "1945.mp4", type: "Interest" },
+//     {id: 33, src: "0035.mp4", type: "Joy" },
+//     {id: 34,src: "0087.mp4", type: "Joy" },
+//     {id: 35, src: "0126.mp4", type: "Joy" },
+//     {id: 36, src: "0597.mp4", type: "Joy" },
+//     {id: 60, src: "0605.mp4", type: "Joy" },
+//     {id: 61, src: "0666.mp4", type: "Joy" },
+//     {id: 99, src: "1032.mp4", type: "Joy" },
+//     {id: 100, src: "1034.mp4", type: "Joy" },
+//     {id: 101, src: "1093.mp4", type: "Joy" },
+//     {id: 102, src: "2013.mp4", type: "Joy" },
+//     {id: 37, src: "0204.mp4", type: "Romance" },
+//     {id: 38, src: "0369.mp4", type: "Romance" },
+//     {id: 39, src: "0773.mp4", type: "Romance" },
+//     {id: 40, src: "1074.mp4", type: "Romance" },
+//     {id: 62, src: "1295.mp4", type: "Romance" },
+//     {id: 63, src: "1407.mp4", type: "Romance" },
+//     {id: 103, src: "1424.mp4", type: "Romance" },
+//     {id: 104, src: "1551.mp4", type: "Romance" },
+//     {id: 105, src: "1911.mp4", type: "Romance" },
+//     {id: 106, src: "1978.mp4", type: "Romance" },
+//     {id: 41, src: "0226.mp4", type: "Sadness" },
+//     {id: 42, src: "0299.mp4", type: "Sadness" },
+//     {id: 43, src: "0611.mp4", type: "Sadness" },
+//     {id: 44, src: "0756.mp4", type: "Sadness" }, //fucked
+//     {id: 64, src: "0803.mp4", type: "Sadness" },
+//     {id: 65, src: "0860.mp4", type: "Sadness" },
+//     {id: 107, src: "0975.mp4", type: "Sadness" },
+//     {id: 108, src: "1164.mp4", type: "Sadness" },
+//     {id: 109, src: "1485.mp4", type: "Sadness" },
+//     {id: 110, src: "1959.mp4", type: "Sadness" }
+// ];
+  
 const allVideos = [
     {id: 1, src: "0074.mp4", type: "Amusement" },
     {id: 2, src: "0574.mp4", type: "Amusement" },
     {id: 3, src: "0656.mp4", type: "Amusement" },
     {id: 4, src: "1043.mp4", type: "Amusement" },
-    {id: 44, src: "1145.mp4", type: "Amusement" },
-    {id: 45, src: "1411.mp4", type: "Amusement" },
+    {id: 45, src: "1145.mp4", type: "Amusement" }, //this should've started on 45? now does
+    {id: 46, src: "1411.mp4", type: "Amusement" },
     {id: 67, src: "1564.mp4", type: "Amusement" },
     {id: 68, src: "1606.mp4", type: "Amusement" },
     {id: 69, src: "2072.mp4", type: "Amusement" },
@@ -25,8 +138,8 @@ const allVideos = [
     {id: 6, src: "0252.mp4", type: "Anger" },
     {id: 7, src: "0414.mp4", type: "Anger" },
     {id: 8, src: "0595.mp4", type: "Anger" },
-    {id: 46, src: "0681.mp4", type: "Anger" },
-    {id: 47, src: "0948.mp4", type: "Anger" },
+    {id: 47, src: "0681.mp4", type: "Anger" },
+    {id: 48, src: "0948.mp4", type: "Anger" },
     {id: 71, src: "1229.mp4", type: "Anger" },
     {id: 72, src: "1844.mp4", type: "Anger" },
     {id: 73, src: "2049.mp4", type: "Anger" },
@@ -35,8 +148,8 @@ const allVideos = [
     {id: 10, src: "0339.mp4", type: "Calmness" },
     {id: 11, src: "0493.mp4", type: "Calmness" },
     {id: 12, src: "0553.mp4", type: "Calmness" },
-    {id: 48, src: "0580.mp4", type: "Calmness" },
-    {id: 49, src: "0645.mp4", type: "Calmness" },
+    {id: 49, src: "0580.mp4", type: "Calmness" },
+    {id: 50, src: "0645.mp4", type: "Calmness" },
     {id: 75, src: "0671.mp4", type: "Calmness" },
     {id: 76, src: "1216.mp4", type: "Calmness" },
     {id: 77, src: "1760.mp4", type: "Calmness" },
@@ -45,8 +158,8 @@ const allVideos = [
     {id: 14, src: "0458.mp4", type: "Craving" },
     {id: 15, src: "0780.mp4", type: "Craving" },
     {id: 16, src: "0883.mp4", type: "Craving" },
-    {id: 50, src: "0898.mp4", type: "Craving" },
-    {id: 51, src: "0919.mp4", type: "Craving" },
+    {id: 51, src: "0898.mp4", type: "Craving" },
+    {id: 52, src: "0919.mp4", type: "Craving" },
     {id: 79, src: "1449.mp4", type: "Craving" },
     {id: 80, src: "1498.mp4", type: "Craving" },
     {id: 81,  src: "1740.mp4", type: "Craving" },
@@ -55,8 +168,8 @@ const allVideos = [
     {id: 18,  src: "0235.mp4", type: "Disgust" },
     {id: 19, src: "0355.mp4", type: "Disgust" },
     {id: 20, src: "0713.mp4", type: "Disgust" },
-    {id: 52, src: "0876.mp4", type: "Disgust" },
-    {id: 53, src: "0929.mp4", type: "Disgust" },
+    {id: 53, src: "0876.mp4", type: "Disgust" },
+    {id: 54, src: "0929.mp4", type: "Disgust" },
     {id: 83, src: "1194.mp4", type: "Disgust" },
     {id: 84, src: "1423.mp4", type: "Disgust" },
     {id: 85, src: "1907.mp4", type: "Disgust" },
@@ -65,8 +178,8 @@ const allVideos = [
     {id: 22, src: "0402.mp4", type: "Excitement" },
     {id: 23, src: "0546.mp4", type: "Excitement" },
     {id: 24, src: "0550.mp4", type: "Excitement" },
-    {id: 54, src: "0701.mp4", type: "Excitement" },
-    {id: 55, src: "0970.mp4", type: "Excitement" },
+    {id: 55, src: "0701.mp4", type: "Excitement" },
+    {id: 56, src: "0970.mp4", type: "Excitement" },
     {id: 87, src: "1297.mp4", type: "Excitement" },
     {id: 88, src: "1537.mp4", type: "Excitement" },
     {id: 89,  src: "1717.mp4", type: "Excitement" },
@@ -75,8 +188,8 @@ const allVideos = [
     {id: 26,  src: "0489.mp4", type: "Fear" },
     {id: 27, src: "0706.mp4", type: "Fear" },
     {id: 28, src: "1202.mp4", type: "Fear" },
-    {id: 56, src: "1375.mp4", type: "Fear" },
-    {id: 57, src: "1726.mp4", type: "Fear" },
+    {id: 57, src: "1375.mp4", type: "Fear" },
+    {id: 58, src: "1726.mp4", type: "Fear" },
     {id: 91, src: "1780.mp4", type: "Fear" },
     {id: 92, src: "1832.mp4", type: "Fear" },
     {id: 93, src: "1964.mp4", type: "Fear" },
@@ -85,8 +198,8 @@ const allVideos = [
     {id: 30, src: "0735.mp4", type: "Interest" },
     {id: 31, src: "1066.mp4", type: "Interest" },
     {id: 32, src: "1068.mp4", type: "Interest" },
-    {id: 58, src: "1301.mp4", type: "Interest" },
-    {id: 59, src: "1619.mp4", type: "Interest" },
+    {id: 59, src: "1301.mp4", type: "Interest" },
+    {id: 60, src: "1619.mp4", type: "Interest" },
     {id: 95, src: "1624.mp4", type: "Interest" },
     {id: 96, src: "1641.mp4", type: "Interest" },
     {id: 97, src: "1664.mp4", type: "Interest" },
@@ -95,8 +208,8 @@ const allVideos = [
     {id: 34,src: "0087.mp4", type: "Joy" },
     {id: 35, src: "0126.mp4", type: "Joy" },
     {id: 36, src: "0597.mp4", type: "Joy" },
-    {id: 60, src: "0605.mp4", type: "Joy" },
-    {id: 61, src: "0666.mp4", type: "Joy" },
+    {id: 61, src: "0605.mp4", type: "Joy" },
+    {id: 62, src: "0666.mp4", type: "Joy" },
     {id: 99, src: "1032.mp4", type: "Joy" },
     {id: 100, src: "1034.mp4", type: "Joy" },
     {id: 101, src: "1093.mp4", type: "Joy" },
@@ -105,8 +218,8 @@ const allVideos = [
     {id: 38, src: "0369.mp4", type: "Romance" },
     {id: 39, src: "0773.mp4", type: "Romance" },
     {id: 40, src: "1074.mp4", type: "Romance" },
-    {id: 62, src: "1295.mp4", type: "Romance" },
-    {id: 63, src: "1407.mp4", type: "Romance" },
+    {id: 63, src: "1295.mp4", type: "Romance" },
+    {id: 64, src: "1407.mp4", type: "Romance" },
     {id: 103, src: "1424.mp4", type: "Romance" },
     {id: 104, src: "1551.mp4", type: "Romance" },
     {id: 105, src: "1911.mp4", type: "Romance" },
@@ -114,16 +227,14 @@ const allVideos = [
     {id: 41, src: "0226.mp4", type: "Sadness" },
     {id: 42, src: "0299.mp4", type: "Sadness" },
     {id: 43, src: "0611.mp4", type: "Sadness" },
-    {id: 44, src: "0756.mp4", type: "Sadness" },
-    {id: 64, src: "0803.mp4", type: "Sadness" },
-    {id: 65, src: "0860.mp4", type: "Sadness" },
+    {id: 44, src: "0756.mp4", type: "Sadness" }, //previously fucked -- not any more
+    {id: 65, src: "0803.mp4", type: "Sadness" },
+    {id: 66, src: "0860.mp4", type: "Sadness" }, // now this could've been fucked but it's not! Line 133 (starts with 67)
     {id: 107, src: "0975.mp4", type: "Sadness" },
     {id: 108, src: "1164.mp4", type: "Sadness" },
     {id: 109, src: "1485.mp4", type: "Sadness" },
     {id: 110, src: "1959.mp4", type: "Sadness" }
 ];
-  
-
 
 // Randomize into group A or B (for videos)
 let userGroup;
@@ -136,13 +247,14 @@ if (localStorage.getItem('userGroup')) {
     // Then store it in local storage for future visits
     localStorage.setItem('userGroup', userGroup);
 }
+
 let videos;
 if(userGroup === 'groupA') {
-    // Filter the videos to show only those with IDs between 1 and 55
-    videos = allVideos.filter(video => video.id >= 1 && video.id <= 55);
+    // Filter the videos to show only those with IDs between 1 and 66
+    videos = allVideos.filter(video => video.id >= 1 && video.id <= 66); // before I had 55 (wrong)
 } else {
-    // Filter the videos to show only those with IDs between 56 and 110
-    videos = allVideos.filter(video => video.id >= 56 && video.id <= 110);
+    // Filter the videos to show only those with IDs between 45 and 110
+    videos = allVideos.filter(video => video.id >= 45 && video.id <= 110); //before I had 55 (wrong). Now 45-66. 11 emotions, 12 numbers, 2 per emo, checks out. 
 }
 
 
@@ -974,6 +1086,7 @@ function generateAndUploadCSV(participantChoices) {
 
 
 //CHEAT CODE (to update):
+// navigate to folder first
 // git status
 // git add .                               (preparing all new changes to be added)
 // git commit -m "Your commit message"     (commiting changes)
