@@ -1070,7 +1070,7 @@ function generateAndUploadCSV(participantChoices) {
         row.videoType || "",
         row.EmoRated || "",
         row.EmoScore || "",
-        row.watchAgain || ""
+        row.watchAgain || "",
         row.SID || "" 
       ];
 
