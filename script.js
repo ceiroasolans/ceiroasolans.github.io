@@ -1058,7 +1058,7 @@ function shuffleArray(array) {
 //                                              GENERATE DATA
 
 function generateAndUploadCSV(participantChoices) {
-    const header = ["SID", "vID", "reactionTime",  "valence", "arousal", "videoType", "EmoRated", "EmoScore", "WatchAgain"]; //initialValence and initialArousal if new flow
+    const header = ["vID", "reactionTime",  "valence", "arousal", "videoType", "EmoRated", "EmoScore", "WatchAgain", "SID"]; //initialValence and initialArousal if new flow
     const csvRows = [header];
   
     for (const row of participantChoices) {
@@ -1071,6 +1071,7 @@ function generateAndUploadCSV(participantChoices) {
         row.EmoRated || "",
         row.EmoScore || "",
         row.watchAgain || ""
+        row.SID || "" 
       ];
 
       csvRows.push(rowData);
