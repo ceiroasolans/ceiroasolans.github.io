@@ -1086,7 +1086,7 @@ function generateAndUploadCSV(participantChoices) {
 
 
 //CHEAT CODE (to update):
-// navigate to folder first
+// <navigate to folder first>
 // git status
 // git add .                               (preparing all new changes to be added)
 // git commit -m "Your commit message"     (commiting changes)
