@@ -717,8 +717,14 @@ function generateVideoSequence(videosByType, order) {
 
 //                                          EXPERIMENTAL PRESENTATION
 
+// Global variable to store the SID number
+let participantSID;
+
 //Instructions
 function instructions() {
+    // Prompt the user to enter their SID number
+    participantSID = prompt("Please enter your SID number:", "");
+
     let message = document.getElementById("message");
     message.innerHTML = `
     <div style="max-width: 600px; margin: auto; padding: 20px; font-family: 'Helvetica Neue', Arial, sans-serif; line-height: 1.6; text-align: left; color: #333;">
@@ -739,6 +745,7 @@ function instructions() {
         experimentalSet();
     }));
 }
+
 
 //Video Pilot
 function experimentalSet() {
