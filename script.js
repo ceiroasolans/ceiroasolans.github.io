@@ -281,18 +281,16 @@ function startTimer() {  // Function to start the timer when buttons appear
 function demographics() {
     // Main wrapper
     let wrapper = document.createElement('div');
-    wrapper.style.margin = '4rem 0'; // Added more spacing at the start and end
-
-    // Adjusted the font family for better aesthetics
+    wrapper.style.marginTop = '4rem'; // Added top spacing
     wrapper.style.fontFamily = "'Arial', sans-serif"; 
 
     // Helper function to generate a styled label
     function createStyledLabel(content) {
         let label = document.createElement('label');
         label.textContent = content;
-        label.style.fontWeight = 'bold';  // Bold the question
-        label.style.display = 'block';    // Display on new line
-        label.style.marginTop = '2rem';   // Increased spacing between questions
+        label.style.fontWeight = 'bold';  
+        label.style.display = 'block';    
+        label.style.marginTop = '2rem';   
         return label;
     }
 
@@ -314,13 +312,20 @@ function demographics() {
                     return parseInt(value);
                 }
             },
-            tooltips: true  // Display the current value as a tooltip on the handle
+            tooltips: {
+                mode: 'range',
+                position: 'bottom'  // Position tooltip below handle
+            }
         });
 
         let minMaxLabel = document.createElement('div');
         minMaxLabel.style.display = 'flex';
         minMaxLabel.style.justifyContent = 'space-between';
         minMaxLabel.appendChild(document.createTextNode(min.toString()));
+        // Create a spacer for the middle to ensure min/max stays on the ends
+        let spacer = document.createElement('span');
+        spacer.style.flexGrow = '1';
+        minMaxLabel.appendChild(spacer);
         minMaxLabel.appendChild(document.createTextNode(max.toString()));
 
         let container = document.createElement('div');
