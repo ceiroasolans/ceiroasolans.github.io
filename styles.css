@@ -206,3 +206,12 @@ thead th {
   }
 
   
+
+
+  /* For demographics */
+
+  .noUi-tooltip {
+    top: 100%;
+    bottom: auto !important;
+    transform: translateY(6px);
+}

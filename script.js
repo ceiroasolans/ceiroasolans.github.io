@@ -281,8 +281,12 @@ function startTimer() {  // Function to start the timer when buttons appear
 function demographics() {
     // Main wrapper
     let wrapper = document.createElement('div');
-    wrapper.style.marginTop = '4rem'; // Added top spacing
-    wrapper.style.fontFamily = "'Arial', sans-serif"; 
+    wrapper.style.marginTop = '6rem'; // Increased top spacing
+    wrapper.style.paddingBottom = '2rem'; // Added bottom padding
+    wrapper.style.fontFamily = "'Arial', sans-serif";
+
+    // Make sure the webpage starts at the top
+    document.getElementById('mainContainer').scrollTop = 0;
 
     // Helper function to generate a styled label
     function createStyledLabel(content) {
@@ -371,9 +375,41 @@ function demographics() {
     wrapper.appendChild(createStyledLabel('What year are you in?'));
     wrapper.appendChild(createRadioButtons('yearInSchool', ['Freshmen', 'Sophomore', 'Junior', 'Senior']));
 
+    // Create the button
+    let nextButton = document.createElement('button');
+    nextButton.textContent = "Proceed";
+    nextButton.style.display = "none";  // Initially hidden
+    nextButton.onclick = instructions;  // Assuming you have an 'instructions' function ready to be executed
+
+    wrapper.appendChild(nextButton);
+
+    // Check if all questions are answered
+    function checkAllAnswered() {
+        let allRadios = wrapper.querySelectorAll('input[type="radio"]');
+        let answeredQuestions = new Set();
+        allRadios.forEach(radio => {
+            if (radio.checked) {
+                answeredQuestions.add(radio.name);
+            }
+        });
+
+        if (answeredQuestions.size === 5) {  // Assuming you have 5 radio questions
+            nextButton.style.display = "block";
+        } else {
+            nextButton.style.display = "none";
+        }
+    }
+
+    // Add event listeners to radio buttons
+    let allRadios = wrapper.querySelectorAll('input[type="radio"]');
+    allRadios.forEach(radio => {
+        radio.addEventListener('change', checkAllAnswered);
+    });
+
     // Append to main container
     document.getElementById('mainContainer').appendChild(wrapper);
 }
+
 
 
 
