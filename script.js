@@ -719,6 +719,18 @@ function generateVideoSequence(videosByType, order) {
 
 // Global variable to store the SID number
 let participantSID;
+function generateUniqueKey() {
+    const length = 16;
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let result = '';
+    for (let i = 0; i < length; i++) {
+        result += characters.charAt(Math.floor(Math.random() * characters.length));
+    }
+    return result;
+}
+const participantUniqueKey = generateUniqueKey();
+
+
 
 //Instructions
 function instructions() {
@@ -745,6 +757,8 @@ function instructions() {
         experimentalSet();
     }));
 }
+
+
 
 
 //Video Pilot
@@ -827,6 +841,7 @@ function experimentalSet() {
                                         feedbackContainer.style.display = "none";                                    
                                 showFixationCross(playNextVideo);
     
+                                
                                 userRatings.forEach((rating) => {
                                     participantChoices.push({
                                         vID: rating.vID,
@@ -837,7 +852,8 @@ function experimentalSet() {
                                         EmoRated: rating['EmoRated'],
                                         EmoScore: rating['EmoScore'],
                                         watchAgain: WatchAgainResponse["Would you watch this video again?"],
-                                        SID: participantSID 
+                                        SID: participantSID,
+                                        uniqueKey: participantUniqueKey 
                                 });
                               });
                             });
@@ -916,18 +932,9 @@ function calculateMeanRatings(participantChoices) {
     return meanRatings;
 }
 
-function generateUniqueKey() {
-    const length = 16;
-    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    let result = '';
-    for (let i = 0; i < length; i++) {
-        result += characters.charAt(Math.floor(Math.random() * characters.length));
-    }
-    return result;
-}
+
 
 function instructions3() {
-    const uniqueKey = generateUniqueKey();
     document.body.classList.add('instructions-body-align');
     let meanRatings = calculateMeanRatings(participantChoices);
     let resultTableContainer = document.getElementById("resultTableContainer");
@@ -1001,7 +1008,7 @@ function instructions3() {
         resultTableContainer.innerHTML += groupText[group] + tableHtml;
     }
 // At the very end, append a unique key to the end of the feedback for the participant
-resultTableContainer.innerHTML += `<br><div class="content-text"><h2 style="text-align:center;">Completion Key</h2><p style="text-align:center;">Your unique completion key is: <strong>${uniqueKey}</strong>. Please copy and paste this key where required to prove you have completed this experiment.</p></div>`;
+resultTableContainer.innerHTML += `<br><div class="content-text"><h2 style="text-align:center;">Completion Key</h2><p style="text-align:center;">Your unique completion key is: <strong>${participantUniqueKey}</strong>. Please copy and paste this key where required to prove you have completed this experiment.</p></div>`;
 }
 
 
