@@ -1036,9 +1036,9 @@ function instructions3() {
         <h2 style="text-align:center;">Completion Key:</h2>
         <p style="text-align:center;">
             <strong><u id="uniqueKey">${participantUniqueKey}</strong></u>
-            <br>
+            <br><br>
             <button onclick="copyToClipboard()">Click to Copy</button>
-            <br><br><br>
+            <br><br><br><br>
             Please copy and paste this key on the next Qualtrics page to prove you have completed this exercise.
         </p>
     </div>`;
