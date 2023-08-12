@@ -753,8 +753,8 @@ function demographics() {
     // Make sure the webpage starts at the top
     document.getElementById('mainContainer').scrollTop = 0;
 
-     // Helper function to generate a styled label
-     function createStyledLabel(content) {
+    // Helper function to generate a styled label
+    function createStyledLabel(content) {
         let label = document.createElement('label');
         label.textContent = content;
         label.style.fontWeight = 'bold';  
@@ -894,6 +894,7 @@ function demographics() {
     // Append to main container
     document.getElementById('mainContainer').appendChild(wrapper);
 }
+
 
 
 //Instructions
