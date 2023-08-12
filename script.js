@@ -1024,13 +1024,46 @@ function calculateMeanRatings(participantChoices) {
 
 
 //Instructions3 for student research pool
+
+
 function instructions3() {
     let resultTableContainer = document.getElementById("resultTableContainer");
 
     // Only include the unique key at the end of the feedback for the participant
-    resultTableContainer.innerHTML = `<br><div class="content-text"><h2 style="text-align:center;">Completion Key:</h2><p style="text-align:center;"> <strong><u>${participantUniqueKey}</strong></u> <br><br>. Please copy and paste this key on the next Qualtrics page to prove you have completed this exercise.</p></div>`;
+    resultTableContainer.innerHTML = `
+    <br>
+    <div class="content-text">
+        <h2 style="text-align:center;">Completion Key:</h2>
+        <p style="text-align:center;">
+            <strong><u id="uniqueKey">${participantUniqueKey}</strong></u>
+            <br><br>
+            Please copy and paste this key on the next Qualtrics page to prove you have completed this exercise.
+        </p>
+        <button onclick="copyToClipboard()">Copy Key</button>
+    </div>`;
+
+    // Add the copy function to the page (or it can be added elsewhere if desired)
+    let script = document.createElement('script');
+    script.textContent = `
+    function copyToClipboard() {
+        const textToCopy = document.getElementById("uniqueKey").textContent;
+        const textArea = document.createElement("textarea");
+        textArea.value = textToCopy;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand("copy");
+        document.body.removeChild(textArea);
+        alert("Key copied to clipboard!");
+    }`;
+    document.body.appendChild(script);
 }
 
+// function instructions3() {
+//     let resultTableContainer = document.getElementById("resultTableContainer");
+
+//     // Only include the unique key at the end of the feedback for the participant
+//     resultTableContainer.innerHTML = `<br><div class="content-text"><h2 style="text-align:center;">Completion Key:</h2><p style="text-align:center;"> <strong><u>${participantUniqueKey}</strong></u> <br><br>. Please copy and paste this key on the next Qualtrics page to prove you have completed this exercise.</p></div>`;
+// }
 
 
 
