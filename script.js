@@ -7,6 +7,8 @@ const fixationCross = document.getElementById("fixationCross");
 const message = document.getElementById("message");
 const buttonsContainer = document.getElementById("buttonsContainer");
 
+
+
  //                                             PREP 
 
 // Videos (first is old, pilot 1)
@@ -732,9 +734,15 @@ const participantUniqueKey = generateUniqueKey();
 
 
 //Instructions
+
 function instructions() {
     // Prompt the user to enter their SID number
-    participantSID = prompt("Please enter your SID number:", "");
+    let participantSID = prompt("Please enter your 10-digit SID number:", "");
+
+    // Keep prompting the user until they provide a valid 10-digit SID
+    while (!isValidSID(participantSID)) {
+        participantSID = prompt("Invalid SID. Please enter a 10-digit SID number:", "");
+    }
 
     let message = document.getElementById("message");
     message.innerHTML = `
@@ -756,6 +764,37 @@ function instructions() {
         experimentalSet();
     }));
 }
+
+// Validate the SID to be 10 digits
+function isValidSID(sid) {
+    return /^\d{10}$/.test(sid);
+}
+
+// function instructions() {
+//     // Prompt the user to enter their SID number
+//     participantSID = prompt("Please enter your SID number:", "");
+
+//     let message = document.getElementById("message");
+//     message.innerHTML = `
+//     <div style="max-width: 600px; margin: auto; padding: 20px; font-family: 'Helvetica Neue', Arial, sans-serif; line-height: 1.6; text-align: left; color: #333;">
+//     <strong style="font-size: 1.3em; display: block; text-align: center; margin-bottom: 20px;"></strong>
+//     <p style="margin-top: 20px;">You're about to watch a series of videos.</p>
+//     <ol style="padding-left: 30px; margin-top: 20px;">
+//         <li style="margin-bottom: 10px;">Please sit back and immerse yourself!</li>
+//         <li style="margin-bottom: 10px;">After every video, you will complete a few simple ratings.</li>
+//     </ol>
+//     <p style="margin-top: 20px; text-align: center; text-decoration: underline;">Make sure your window covers the entire screen!</p>
+// </div>
+//     `;
+//     message.style.display = 'block';  // Make sure the message is visible
+
+//     clearButtons();
+//     addButton(createButton("Next", () => {
+//         message.style.display = 'none';  // Make sure the message is visible
+//         experimentalSet();
+//     }));
+// }
+
 
 
 
