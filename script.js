@@ -746,6 +746,7 @@ function demographics() {
 
     // Main wrapper
     let wrapper = document.createElement('div');
+    wrapper.id = "demographicsContainer";
     wrapper.style.marginTop = '10rem';
     wrapper.style.paddingBottom = '2rem';
     wrapper.style.fontFamily = "'Arial', sans-serif";
@@ -856,13 +857,12 @@ function demographics() {
     // Create the button
     let nextButton = document.createElement('button');
     nextButton.textContent = "Proceed";
-    nextButton.style.display = "none";
+    nextButton.style.display = "none";  
     nextButton.onclick = function() {
-        // Assuming you have an 'instructions' function ready to be executed
-        instructions();
-        // Hide the main container's content
-        document.getElementById('mainContainer').innerHTML = '';
+        document.getElementById('demographicsContainer').style.display = 'none';  // Hide the demographics container
+        instructions();  // Then display the instructions
     };
+    
 
     wrapper.appendChild(nextButton);
     // Check if all questions are answered
