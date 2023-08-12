@@ -724,6 +724,8 @@ function generateUniqueKey() {
 }
 const participantUniqueKey = generateUniqueKey();
 
+
+// Validate the SID to be 10 digits
 function isValidSID(sid) {
     return /^\d{10}$/.test(sid);
 }
@@ -738,9 +740,9 @@ function demographics() {
     participantSID = prompt("Please enter your SID number:", "");
 
     // Keep prompting the user until they provide a valid 10-digit SID
-    while (!isValidSID(participantSID)) {
-        participantSID = prompt("Invalid SID. Please enter a 10-digit SID number:", "");
-    }
+    //while (!isValidSID(participantSID)) {
+   //     participantSID = prompt("Invalid SID. Please enter a 10-digit SID number:", "");
+    //}
 
     // Main wrapper
     let wrapper = document.createElement('div');
@@ -829,10 +831,6 @@ function demographics() {
     // Append to main container
     document.getElementById('mainContainer').appendChild(wrapper);
 }
-
-
-// Validate the SID to be 10 digits
-
 
 
 //Instructions
