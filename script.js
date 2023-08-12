@@ -283,23 +283,58 @@ function demographics() {
     let wrapper = document.createElement('div');
     wrapper.style.margin = '2rem 0'; // Spacing for aesthetics
 
-    // Age slider
-    let ageLabel = document.createElement('label');
-    ageLabel.textContent = 'What is your age?';
-    let ageSlider = document.createElement('div');
-    noUiSlider.create(ageSlider, {
-        start: [30],
-        range: {
-            'min': [18],
-            'max': [80]
-        }
-    });
-    wrapper.appendChild(ageLabel);
-    wrapper.appendChild(ageSlider);
+    // Helper function to generate a styled label
+    function createStyledLabel(content) {
+        let label = document.createElement('label');
+        label.textContent = content;
+        label.style.fontWeight = 'bold';  // Bold the question
+        label.style.display = 'block';    // Display on new line
+        label.style.marginTop = '1rem';   // Spacing between questions
+        return label;
+    }
+
+    // Helper function to create and style a slider
+    function createStyledSlider(min, max) {
+        let div = document.createElement('div');
+        let valueLabel = document.createElement('span');
+
+        noUiSlider.create(div, {
+            start: [(min + max) / 2],
+            range: {
+                'min': [min],
+                'max': [max]
+            },
+            format: {
+                to: function (value) {
+                    return parseInt(value);
+                },
+                from: function (value) {
+                    return parseInt(value);
+                }
+            }
+        });
+
+        div.noUiSlider.on('update', function (values, handle) {
+            valueLabel.textContent = values[handle];
+        });
+
+        let minMaxLabel = document.createElement('div');
+        minMaxLabel.style.display = 'flex';
+        minMaxLabel.style.justifyContent = 'space-between';
+        minMaxLabel.appendChild(document.createTextNode(min.toString()));
+        minMaxLabel.appendChild(valueLabel);
+        minMaxLabel.appendChild(document.createTextNode(max.toString()));
+
+        let container = document.createElement('div');
+        container.appendChild(div);
+        container.appendChild(minMaxLabel);
+        return container;
+    }
 
     // Helper function to generate radio buttons
     function createRadioButtons(name, options) {
         let div = document.createElement('div');
+        div.style.marginTop = '0.5rem';
         for (let option of options) {
             let label = document.createElement('label');
             label.style.display = 'block';  // Each radio button on new line
@@ -314,53 +349,32 @@ function demographics() {
         return div;
     }
 
-    // Racial identity
-    let raceLabel = document.createElement('label');
-    raceLabel.textContent = 'What is your racial identity?';
-    wrapper.appendChild(raceLabel);
+    // Append and style each question and input
+    wrapper.appendChild(createStyledLabel('What is your age?'));
+    wrapper.appendChild(createStyledSlider(18, 80));
+
+    wrapper.appendChild(createStyledLabel('What is your racial identity?'));
     wrapper.appendChild(createRadioButtons('racialIdentity', ['Asian', 'Black', 'Latino', 'Native American', 'White']));
 
-    // Gender identity
-    let genderLabel = document.createElement('label');
-    genderLabel.textContent = 'What is your gender identity?';
-    wrapper.appendChild(genderLabel);
+    wrapper.appendChild(createStyledLabel('What is your gender identity?'));
     wrapper.appendChild(createRadioButtons('genderIdentity', ['Female', 'Male', 'Non-binary']));
 
-    // Father's education
-    let fatherEduLabel = document.createElement('label');
-    fatherEduLabel.textContent = 'What is the highest level of education obtained by your father?';
-    wrapper.appendChild(fatherEduLabel);
+    wrapper.appendChild(createStyledLabel('What is the highest level of education obtained by your father?'));
     wrapper.appendChild(createRadioButtons('fatherEducation', ['Some high school', 'High school diploma', 'Associate degree', 'Bachelor\'s degree', 'Master\'s degree', 'Ph.D.']));
 
-    // Mother's education
-    let motherEduLabel = document.createElement('label');
-    motherEduLabel.textContent = 'What is the highest level of education obtained by your mother?';
-    wrapper.appendChild(motherEduLabel);
+    wrapper.appendChild(createStyledLabel('What is the highest level of education obtained by your mother?'));
     wrapper.appendChild(createRadioButtons('motherEducation', ['Some high school', 'High school diploma', 'Associate degree', 'Bachelor\'s degree', 'Master\'s degree', 'Ph.D.']));
 
-    // Family income slider
-    let incomeLabel = document.createElement('label');
-    incomeLabel.textContent = 'What is your family income, in thousands of dollars?';
-    let incomeSlider = document.createElement('div');
-    noUiSlider.create(incomeSlider, {
-        start: [100],
-        range: {
-            'min': [0],
-            'max': [200]
-        }
-    });
-    wrapper.appendChild(incomeLabel);
-    wrapper.appendChild(incomeSlider);
+    wrapper.appendChild(createStyledLabel('What is your family income, in thousands of dollars?'));
+    wrapper.appendChild(createStyledSlider(0, 200));
 
-    // Year in school
-    let yearLabel = document.createElement('label');
-    yearLabel.textContent = 'What year are you in?';
-    wrapper.appendChild(yearLabel);
+    wrapper.appendChild(createStyledLabel('What year are you in?'));
     wrapper.appendChild(createRadioButtons('yearInSchool', ['Freshmen', 'Sophomore', 'Junior', 'Senior']));
 
     // Append to main container
     document.getElementById('mainContainer').appendChild(wrapper);
 }
+
 
 // END NEW STUFF
 
