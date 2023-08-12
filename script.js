@@ -312,10 +312,7 @@ function demographics() {
                     return parseInt(value);
                 }
             },
-            tooltips: {
-                mode: 'range',
-                position: 'bottom'  // Position tooltip below handle
-            }
+            tooltips: true  // This should enable the default tooltip
         });
 
         let minMaxLabel = document.createElement('div');
