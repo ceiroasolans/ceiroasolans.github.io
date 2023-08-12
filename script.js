@@ -1216,7 +1216,8 @@ function generateAndUploadCSV(participantChoices) {
         row.videoType || "",
         row.EmoRated || "",
         row.EmoScore || "",
-        row.watchAgain || "",
+        //row.watchAgain || "",
+        (typeof row.watchAgain !== 'undefined' ? row.watchAgain : ""),
         row.SID || "",
         row.uniqueKey || ""
       ];
