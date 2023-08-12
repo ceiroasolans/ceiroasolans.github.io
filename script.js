@@ -277,6 +277,95 @@ function startTimer() {  // Function to start the timer when buttons appear
 
 //                                                  RATINGS
 
+//NEW STUFF
+function demographics() {
+    // Main wrapper
+    let wrapper = document.createElement('div');
+    wrapper.style.margin = '2rem 0'; // Spacing for aesthetics
+
+    // Age slider
+    let ageLabel = document.createElement('label');
+    ageLabel.textContent = 'What is your age?';
+    let ageSlider = document.createElement('div');
+    noUiSlider.create(ageSlider, {
+        start: [30],
+        range: {
+            'min': [18],
+            'max': [80]
+        }
+    });
+    wrapper.appendChild(ageLabel);
+    wrapper.appendChild(ageSlider);
+
+    // Helper function to generate radio buttons
+    function createRadioButtons(name, options) {
+        let div = document.createElement('div');
+        for (let option of options) {
+            let label = document.createElement('label');
+            label.style.display = 'block';  // Each radio button on new line
+            let radio = document.createElement('input');
+            radio.type = 'radio';
+            radio.name = name;
+            radio.value = option;
+            label.appendChild(radio);
+            label.appendChild(document.createTextNode(option));
+            div.appendChild(label);
+        }
+        return div;
+    }
+
+    // Racial identity
+    let raceLabel = document.createElement('label');
+    raceLabel.textContent = 'What is your racial identity?';
+    wrapper.appendChild(raceLabel);
+    wrapper.appendChild(createRadioButtons('racialIdentity', ['Asian', 'Black', 'Latino', 'Native American', 'White']));
+
+    // Gender identity
+    let genderLabel = document.createElement('label');
+    genderLabel.textContent = 'What is your gender identity?';
+    wrapper.appendChild(genderLabel);
+    wrapper.appendChild(createRadioButtons('genderIdentity', ['Female', 'Male', 'Non-binary']));
+
+    // Father's education
+    let fatherEduLabel = document.createElement('label');
+    fatherEduLabel.textContent = 'What is the highest level of education obtained by your father?';
+    wrapper.appendChild(fatherEduLabel);
+    wrapper.appendChild(createRadioButtons('fatherEducation', ['Some high school', 'High school diploma', 'Associate degree', 'Bachelor\'s degree', 'Master\'s degree', 'Ph.D.']));
+
+    // Mother's education
+    let motherEduLabel = document.createElement('label');
+    motherEduLabel.textContent = 'What is the highest level of education obtained by your mother?';
+    wrapper.appendChild(motherEduLabel);
+    wrapper.appendChild(createRadioButtons('motherEducation', ['Some high school', 'High school diploma', 'Associate degree', 'Bachelor\'s degree', 'Master\'s degree', 'Ph.D.']));
+
+    // Family income slider
+    let incomeLabel = document.createElement('label');
+    incomeLabel.textContent = 'What is your family income, in thousands of dollars?';
+    let incomeSlider = document.createElement('div');
+    noUiSlider.create(incomeSlider, {
+        start: [100],
+        range: {
+            'min': [0],
+            'max': [200]
+        }
+    });
+    wrapper.appendChild(incomeLabel);
+    wrapper.appendChild(incomeSlider);
+
+    // Year in school
+    let yearLabel = document.createElement('label');
+    yearLabel.textContent = 'What year are you in?';
+    wrapper.appendChild(yearLabel);
+    wrapper.appendChild(createRadioButtons('yearInSchool', ['Freshmen', 'Sophomore', 'Junior', 'Senior']));
+
+    // Append to main container
+    document.getElementById('mainContainer').appendChild(wrapper);
+}
+
+// END NEW STUFF
+
+
+
 // Valence and arousal
 function createFeedbackForm(videoId, onSubmit) {
     feedbackContainer.innerHTML = '';
@@ -1033,7 +1122,7 @@ function instructions3() {
     resultTableContainer.innerHTML = `
     <br>
     <div class="content-text">
-        <h2 style="text-align:center;">Completion Key:</h2>
+        <h2 style="text-align:center;">Completion Key:</h2><br>
         <p style="text-align:center;">
             <strong><u id="uniqueKey">${participantUniqueKey}</strong></u>
             <br><br>
@@ -1157,8 +1246,8 @@ function generateAndUploadCSV(participantChoices) {
 
 
 // START                                              
-  instructions();       
-
+  //instructions();       
+demographics();
 
 
 
