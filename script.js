@@ -281,7 +281,10 @@ function startTimer() {  // Function to start the timer when buttons appear
 function demographics() {
     // Main wrapper
     let wrapper = document.createElement('div');
-    wrapper.style.margin = '2rem 0'; // Spacing for aesthetics
+    wrapper.style.margin = '4rem 0'; // Added more spacing at the start and end
+
+    // Adjusted the font family for better aesthetics
+    wrapper.style.fontFamily = "'Arial', sans-serif"; 
 
     // Helper function to generate a styled label
     function createStyledLabel(content) {
@@ -289,14 +292,13 @@ function demographics() {
         label.textContent = content;
         label.style.fontWeight = 'bold';  // Bold the question
         label.style.display = 'block';    // Display on new line
-        label.style.marginTop = '1rem';   // Spacing between questions
+        label.style.marginTop = '2rem';   // Increased spacing between questions
         return label;
     }
 
     // Helper function to create and style a slider
     function createStyledSlider(min, max) {
         let div = document.createElement('div');
-        let valueLabel = document.createElement('span');
 
         noUiSlider.create(div, {
             start: [(min + max) / 2],
@@ -311,18 +313,14 @@ function demographics() {
                 from: function (value) {
                     return parseInt(value);
                 }
-            }
-        });
-
-        div.noUiSlider.on('update', function (values, handle) {
-            valueLabel.textContent = values[handle];
+            },
+            tooltips: true  // Display the current value as a tooltip on the handle
         });
 
         let minMaxLabel = document.createElement('div');
         minMaxLabel.style.display = 'flex';
         minMaxLabel.style.justifyContent = 'space-between';
         minMaxLabel.appendChild(document.createTextNode(min.toString()));
-        minMaxLabel.appendChild(valueLabel);
         minMaxLabel.appendChild(document.createTextNode(max.toString()));
 
         let container = document.createElement('div');
@@ -374,6 +372,7 @@ function demographics() {
     // Append to main container
     document.getElementById('mainContainer').appendChild(wrapper);
 }
+
 
 
 // END NEW STUFF
