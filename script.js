@@ -1036,10 +1036,11 @@ function instructions3() {
         <h2 style="text-align:center;">Completion Key:</h2>
         <p style="text-align:center;">
             <strong><u id="uniqueKey">${participantUniqueKey}</strong></u>
-            <br><br>
+            <br>
+            <button onclick="copyToClipboard()">Click to Copy</button>
+            <br><br><br>
             Please copy and paste this key on the next Qualtrics page to prove you have completed this exercise.
         </p>
-        <button onclick="copyToClipboard()">Copy Key</button>
     </div>`;
 
     // Add the copy function to the page (or it can be added elsewhere if desired)
@@ -1058,12 +1059,8 @@ function instructions3() {
     document.body.appendChild(script);
 }
 
-// function instructions3() {
-//     let resultTableContainer = document.getElementById("resultTableContainer");
 
-//     // Only include the unique key at the end of the feedback for the participant
-//     resultTableContainer.innerHTML = `<br><div class="content-text"><h2 style="text-align:center;">Completion Key:</h2><p style="text-align:center;"> <strong><u>${participantUniqueKey}</strong></u> <br><br>. Please copy and paste this key on the next Qualtrics page to prove you have completed this exercise.</p></div>`;
-// }
+
 
 
 
