@@ -746,7 +746,7 @@ function demographics() {
 
     // Main wrapper
     let wrapper = document.createElement('div');
-    wrapper.style.marginTop = '2rem';
+    wrapper.style.marginTop = '6rem';
     wrapper.style.paddingBottom = '2rem';
     wrapper.style.fontFamily = "'Arial', sans-serif";
 
