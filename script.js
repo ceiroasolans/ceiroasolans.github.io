@@ -746,25 +746,27 @@ function demographics() {
 
     // Main wrapper
     let wrapper = document.createElement('div');
-    wrapper.style.marginTop = '2rem'; // Reduced top spacing for visibility
+    wrapper.style.marginTop = '2rem';
     wrapper.style.paddingBottom = '2rem';
     wrapper.style.fontFamily = "'Arial', sans-serif";
-
-    // Make sure the webpage starts at the top
-    document.getElementById('mainContainer').scrollTop = 0;
 
     // Helper function to generate a styled label
     function createStyledLabel(content) {
         let label = document.createElement('label');
         label.textContent = content;
-        label.style.fontWeight = 'bold';  
-        label.style.display = 'block';    
-        label.style.marginTop = '2rem';   
+        label.style.fontWeight = 'bold';
+        label.style.display = 'block';
+        label.style.marginTop = '2rem';
         return label;
     }
+    // Track sliders' interactions
+    let slidersInteracted = {
+        ageSlider: false,
+        incomeSlider: false
+    };
 
     // Helper function to create and style a slider
-    function createStyledSlider(min, max) {
+    function createStyledSlider(min, max, sliderName) {
         let div = document.createElement('div');
 
         noUiSlider.create(div, {
@@ -781,14 +783,18 @@ function demographics() {
                     return parseInt(value);
                 }
             },
-            tooltips: true  // This should enable the default tooltip
+            tooltips: true
+        });
+
+        div.noUiSlider.on('change', () => {
+            slidersInteracted[sliderName] = true;
+            checkAllAnswered();
         });
 
         let minMaxLabel = document.createElement('div');
         minMaxLabel.style.display = 'flex';
         minMaxLabel.style.justifyContent = 'space-between';
         minMaxLabel.appendChild(document.createTextNode(min.toString()));
-        // Create a spacer for the middle to ensure min/max stays on the ends
         let spacer = document.createElement('span');
         spacer.style.flexGrow = '1';
         minMaxLabel.appendChild(spacer);
@@ -806,7 +812,7 @@ function demographics() {
         div.style.marginTop = '0.5rem';
         for (let option of options) {
             let label = document.createElement('label');
-            label.style.display = 'block';  // Each radio button on new line
+            label.style.display = 'block';
             let radio = document.createElement('input');
             radio.type = 'radio';
             radio.name = name;
@@ -817,20 +823,9 @@ function demographics() {
         }
         return div;
     }
-
-    // A function to check if a slider has been moved from its default value
-    function sliderMoved(sliderElement, min, max) {
-        let currentValue = sliderElement.noUiSlider.get();
-        let midpoint = (min + max) / 2;
-        return parseInt(currentValue) !== midpoint;
-    }
-
-    // Create and append your sliders and capture references
-    let ageSlider = createStyledSlider(18, 80);
-    let incomeSlider = createStyledSlider(0, 200);
-    
+    // Append and style each question and input
     wrapper.appendChild(createStyledLabel('What is your age?'));
-    wrapper.appendChild(ageSlider);
+    wrapper.appendChild(createStyledSlider(18, 80, 'ageSlider'));
 
     wrapper.appendChild(createStyledLabel('What is your racial identity?'));
     wrapper.appendChild(createRadioButtons('racialIdentity', ['Asian', 'Black', 'Latino', 'Native American', 'White']));
@@ -845,7 +840,7 @@ function demographics() {
     wrapper.appendChild(createRadioButtons('motherEducation', ['Some high school', 'High school diploma', 'Associate degree', 'Bachelor\'s degree', 'Master\'s degree', 'Ph.D.']));
 
     wrapper.appendChild(createStyledLabel('What is your family income, in thousands of dollars?'));
-    wrapper.appendChild(incomeSlider);
+    wrapper.appendChild(createStyledSlider(0, 200, 'incomeSlider'));
 
     wrapper.appendChild(createStyledLabel('What year are you in?'));
     wrapper.appendChild(createRadioButtons('yearInSchool', ['Freshmen', 'Sophomore', 'Junior', 'Senior']));
@@ -853,9 +848,16 @@ function demographics() {
     // Create the button
     let nextButton = document.createElement('button');
     nextButton.textContent = "Proceed";
-    nextButton.style.display = "none";  // Initially hidden
-    wrapper.appendChild(nextButton);
+    nextButton.style.display = "none";
+    nextButton.onclick = function() {
+        // Assuming you have an 'instructions' function ready to be executed
+        instructions();
+        // Hide the main container's content
+        document.getElementById('mainContainer').innerHTML = '';
+    };
 
+    wrapper.appendChild(nextButton);
+    // Check if all questions are answered
     function checkAllAnswered() {
         let allRadios = wrapper.querySelectorAll('input[type="radio"]');
         let answeredQuestions = new Set();
@@ -865,10 +867,10 @@ function demographics() {
             }
         });
 
-        let allSlidersAnswered = sliderMoved(ageSlider.querySelector('.noUi-target'), 18, 80) &&
-                                 sliderMoved(incomeSlider.querySelector('.noUi-target'), 0, 200);
+        // Also check sliders
+        let allSlidersAnswered = Object.values(slidersInteracted).every(val => val === true);
 
-        if (answeredQuestions.size === 5 && allSlidersAnswered) {  // Considering you have 5 radio questions + 2 sliders
+        if (answeredQuestions.size === 5 && allSlidersAnswered) {
             nextButton.style.display = "block";
         } else {
             nextButton.style.display = "none";
@@ -881,19 +883,10 @@ function demographics() {
         radio.addEventListener('change', checkAllAnswered);
     });
 
-    // Add listeners for the slider changes
-    ageSlider.noUiSlider.on('update', checkAllAnswered);
-    incomeSlider.noUiSlider.on('update', checkAllAnswered);
-
-    // Modify the onclick of the proceed button to hide the wrapper
-    nextButton.onclick = function() {
-        instructions();
-        wrapper.style.display = 'none';
-    }
-
     // Append to main container
     document.getElementById('mainContainer').appendChild(wrapper);
 }
+
 
 
 
