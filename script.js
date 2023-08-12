@@ -737,7 +737,7 @@ const participantUniqueKey = generateUniqueKey();
 
 function instructions() {
     // Prompt the user to enter their SID number
-    let participantSID = prompt("Please enter your SID number:", "");
+    participantSID = prompt("Please enter your SID number:", "");
 
     // Keep prompting the user until they provide a valid 10-digit SID
     while (!isValidSID(participantSID)) {
