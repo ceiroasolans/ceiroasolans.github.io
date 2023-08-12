@@ -1028,7 +1028,7 @@ function instructions3() {
     let resultTableContainer = document.getElementById("resultTableContainer");
 
     // Only include the unique key at the end of the feedback for the participant
-    resultTableContainer.innerHTML = `<br><div class="content-text"><h2 style="text-align:center;">Completion Key</h2><p style="text-align:center;">Your unique completion key is: <strong>${participantUniqueKey}</strong>. Please copy and paste this key where required to prove you have completed this experiment.</p></div>`;
+    resultTableContainer.innerHTML = `<br><div class="content-text"><h2 style="text-align:center;">Completion Key:</h2><p style="text-align:center;"> <strong><u>${participantUniqueKey}</strong></u> <br><br>. Please copy and paste this key on the next Qualtrics page to prove you have completed this exercise.</p></div>`;
 }
 
 
