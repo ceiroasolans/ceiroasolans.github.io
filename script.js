@@ -740,9 +740,9 @@ function demographics() {
     participantSID = prompt("Please enter your SID number:", "");
 
     // Keep prompting the user until they provide a valid 10-digit SID
-    //while (!isValidSID(participantSID)) {
-   //     participantSID = prompt("Invalid SID. Please enter a 10-digit SID number:", "");
-    //}
+    while (!isValidSID(participantSID)) {
+        participantSID = prompt("Invalid SID. Please enter a 10-digit SID number:", "");
+    }
 
     // Main wrapper
     let wrapper = document.createElement('div');
@@ -753,7 +753,70 @@ function demographics() {
     // Make sure the webpage starts at the top
     document.getElementById('mainContainer').scrollTop = 0;
 
-    // ... [Your helper functions remain unchanged]
+     // Helper function to generate a styled label
+     function createStyledLabel(content) {
+        let label = document.createElement('label');
+        label.textContent = content;
+        label.style.fontWeight = 'bold';  
+        label.style.display = 'block';    
+        label.style.marginTop = '2rem';   
+        return label;
+    }
+
+    // Helper function to create and style a slider
+    function createStyledSlider(min, max) {
+        let div = document.createElement('div');
+
+        noUiSlider.create(div, {
+            start: [(min + max) / 2],
+            range: {
+                'min': [min],
+                'max': [max]
+            },
+            format: {
+                to: function (value) {
+                    return parseInt(value);
+                },
+                from: function (value) {
+                    return parseInt(value);
+                }
+            },
+            tooltips: true  // This should enable the default tooltip
+        });
+
+        let minMaxLabel = document.createElement('div');
+        minMaxLabel.style.display = 'flex';
+        minMaxLabel.style.justifyContent = 'space-between';
+        minMaxLabel.appendChild(document.createTextNode(min.toString()));
+        // Create a spacer for the middle to ensure min/max stays on the ends
+        let spacer = document.createElement('span');
+        spacer.style.flexGrow = '1';
+        minMaxLabel.appendChild(spacer);
+        minMaxLabel.appendChild(document.createTextNode(max.toString()));
+
+        let container = document.createElement('div');
+        container.appendChild(div);
+        container.appendChild(minMaxLabel);
+        return container;
+    }
+
+    // Helper function to generate radio buttons
+    function createRadioButtons(name, options) {
+        let div = document.createElement('div');
+        div.style.marginTop = '0.5rem';
+        for (let option of options) {
+            let label = document.createElement('label');
+            label.style.display = 'block';  // Each radio button on new line
+            let radio = document.createElement('input');
+            radio.type = 'radio';
+            radio.name = name;
+            radio.value = option;
+            label.appendChild(radio);
+            label.appendChild(document.createTextNode(option));
+            div.appendChild(label);
+        }
+        return div;
+    }
 
     // A function to check if a slider has been moved from its default value
     function sliderMoved(sliderElement, min, max) {
