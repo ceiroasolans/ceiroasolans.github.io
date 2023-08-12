@@ -645,6 +645,83 @@ function createRatingForm(videoId, onSubmit) {
 //     console.log("WatchAgain:", WatchAgain);
 // }
 
+// function createWatchAgainForm(onSubmit) {
+//     feedbackContainer.innerHTML = '';
+
+//     const questionObj = {
+//         text: "Would you watch this video again?",
+//         scale: ["No, never!", "Maybe", "Yes, anytime!"]
+//     };
+
+//     const WatchAgain = {};
+
+//     const question = document.createElement("p");
+//     question.style.fontWeight = 'bold'; 
+//     question.style.textAlign = 'center';
+//     question.textContent = questionObj.text;
+
+//     const likertContainer = document.createElement("div");
+//     likertContainer.classList.add("likert-container");
+
+//     for (let i = 0; i <= 6; i++) {
+//         const likertBox = document.createElement("div");
+//         likertBox.classList.add("likert-box");
+
+//         const number = document.createElement("div");
+//         number.textContent = i === 0 ? "0" : i.toString(); 
+//         number.classList.add("likert-number");
+//         likertBox.appendChild(number);
+
+//         const label = document.createElement("div");
+//         label.classList.add("likert-label");
+//         likertBox.appendChild(label);
+
+//         if (i === 0) label.textContent += questionObj.scale[0];
+//         else if (i === 3) label.textContent += questionObj.scale[1];
+//         else if (i === 6) label.textContent += questionObj.scale[2];
+
+//         // IIFE to correctly capture the value of i
+//         (function(currentIndex) {
+//             likertBox.onclick = function () {
+//                 console.log("Clicked value:", currentIndex); // Check the value when clicked
+//                 likertContainer.querySelectorAll(".likert-box").forEach(box => box.style.backgroundColor = "");
+//                 WatchAgain[questionObj.text] = currentIndex;
+//                 likertBox.style.backgroundColor = "#d8d8d8";
+//                 console.log("Updated WatchAgain:", WatchAgain); // Check the updated object
+//             };
+//         })(i);
+        
+
+//         likertContainer.appendChild(likertBox);
+//     }
+
+//     feedbackContainer.appendChild(question);
+//     feedbackContainer.appendChild(likertContainer);
+
+//     const submitButton = document.createElement("button");
+//     submitButton.innerText = "Submit";
+//     submitButton.onclick = () => {
+//         if (typeof WatchAgain[questionObj.text] !== 'undefined') {
+//             onSubmit(WatchAgain);
+//         } else {
+//             alert("Please answer the question.");
+//         }
+//     };
+
+//     feedbackContainer.appendChild(submitButton);
+//     feedbackContainer.style.display = "block";
+
+//     console.log("WatchAgain:", WatchAgain);
+// }
+
+
+
+
+
+//                                              SET VIDEO ORDER
+
+// Function to shuffle an array
+
 function createWatchAgainForm(onSubmit) {
     feedbackContainer.innerHTML = '';
 
@@ -653,7 +730,7 @@ function createWatchAgainForm(onSubmit) {
         scale: ["No, never!", "Maybe", "Yes, anytime!"]
     };
 
-    const WatchAgain = {};
+    const WatchAgainResponse = {};
 
     const question = document.createElement("p");
     question.style.fontWeight = 'bold'; 
@@ -685,9 +762,9 @@ function createWatchAgainForm(onSubmit) {
             likertBox.onclick = function () {
                 console.log("Clicked value:", currentIndex); // Check the value when clicked
                 likertContainer.querySelectorAll(".likert-box").forEach(box => box.style.backgroundColor = "");
-                WatchAgain[questionObj.text] = currentIndex;
+                WatchAgainResponse[questionObj.text] = currentIndex;
                 likertBox.style.backgroundColor = "#d8d8d8";
-                console.log("Updated WatchAgain:", WatchAgain); // Check the updated object
+                console.log("Updated WatchAgain:", WatchAgainResponse); // Check the updated object
             };
         })(i);
         
@@ -701,8 +778,8 @@ function createWatchAgainForm(onSubmit) {
     const submitButton = document.createElement("button");
     submitButton.innerText = "Submit";
     submitButton.onclick = () => {
-        if (typeof WatchAgain[questionObj.text] !== 'undefined') {
-            onSubmit(WatchAgain);
+        if (typeof WatchAgainResponse[questionObj.text] !== 'undefined') {
+            onSubmit(WatchAgainResponse);
         } else {
             alert("Please answer the question.");
         }
@@ -711,16 +788,11 @@ function createWatchAgainForm(onSubmit) {
     feedbackContainer.appendChild(submitButton);
     feedbackContainer.style.display = "block";
 
-    console.log("WatchAgain:", WatchAgain);
+    console.log("WatchAgain:", WatchAgainResponse);
 }
 
 
 
-
-
-//                                              SET VIDEO ORDER
-
-// Function to shuffle an array
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
       let j = Math.floor(Math.random() * (i + 1));
