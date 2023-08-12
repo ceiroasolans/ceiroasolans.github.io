@@ -750,6 +750,13 @@ function demographics() {
     wrapper.style.paddingBottom = '2rem';
     wrapper.style.fontFamily = "'Arial', sans-serif";
 
+    // Adding a header
+    let header = document.createElement('h2');
+    header.textContent = "Please respond to the following questions";
+    header.style.textAlign = 'center';
+    header.style.marginBottom = '2rem';
+    wrapper.appendChild(header);
+
     // Helper function to generate a styled label
     function createStyledLabel(content) {
         let label = document.createElement('label');
@@ -759,6 +766,7 @@ function demographics() {
         label.style.marginTop = '2rem';
         return label;
     }
+
     // Track sliders' interactions
     let slidersInteracted = {
         ageSlider: false,
