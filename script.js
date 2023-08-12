@@ -724,7 +724,9 @@ function generateUniqueKey() {
 }
 const participantUniqueKey = generateUniqueKey();
 
-
+function isValidSID(sid) {
+    return /^\d{10}$/.test(sid);
+}
 
 
 //                                          EXPERIMENTAL PRESENTATION
@@ -830,9 +832,7 @@ function demographics() {
 
 
 // Validate the SID to be 10 digits
-function isValidSID(sid) {
-    return /^\d{10}$/.test(sid);
-}
+
 
 
 //Instructions
