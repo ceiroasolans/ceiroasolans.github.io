@@ -732,90 +732,38 @@ const participantUniqueKey = generateUniqueKey();
 
 // Demographics
 function demographics() {
-        // Prompt the user to enter their SID number
-        participantSID = prompt("Please enter your SID number:", "");
+    // Prompt the user to enter their SID number
+    participantSID = prompt("Please enter your SID number:", "");
 
-        // Keep prompting the user until they provide a valid 10-digit SID
-        while (!isValidSID(participantSID)) {
-            participantSID = prompt("Invalid SID. Please enter a 10-digit SID number:", "");
-        }
+    // Keep prompting the user until they provide a valid 10-digit SID
+    while (!isValidSID(participantSID)) {
+        participantSID = prompt("Invalid SID. Please enter a 10-digit SID number:", "");
+    }
+
     // Main wrapper
     let wrapper = document.createElement('div');
-    wrapper.style.marginTop = '6rem'; // Increased top spacing
-    wrapper.style.paddingBottom = '2rem'; // Added bottom padding
+    wrapper.style.marginTop = '2rem'; // Reduced top spacing for visibility
+    wrapper.style.paddingBottom = '2rem';
     wrapper.style.fontFamily = "'Arial', sans-serif";
 
     // Make sure the webpage starts at the top
     document.getElementById('mainContainer').scrollTop = 0;
 
-    // Helper function to generate a styled label
-    function createStyledLabel(content) {
-        let label = document.createElement('label');
-        label.textContent = content;
-        label.style.fontWeight = 'bold';  
-        label.style.display = 'block';    
-        label.style.marginTop = '2rem';   
-        return label;
+    // ... [Your helper functions remain unchanged]
+
+    // A function to check if a slider has been moved from its default value
+    function sliderMoved(sliderElement, min, max) {
+        let currentValue = sliderElement.noUiSlider.get();
+        let midpoint = (min + max) / 2;
+        return parseInt(currentValue) !== midpoint;
     }
 
-    // Helper function to create and style a slider
-    function createStyledSlider(min, max) {
-        let div = document.createElement('div');
-
-        noUiSlider.create(div, {
-            start: [(min + max) / 2],
-            range: {
-                'min': [min],
-                'max': [max]
-            },
-            format: {
-                to: function (value) {
-                    return parseInt(value);
-                },
-                from: function (value) {
-                    return parseInt(value);
-                }
-            },
-            tooltips: true  // This should enable the default tooltip
-        });
-
-        let minMaxLabel = document.createElement('div');
-        minMaxLabel.style.display = 'flex';
-        minMaxLabel.style.justifyContent = 'space-between';
-        minMaxLabel.appendChild(document.createTextNode(min.toString()));
-        // Create a spacer for the middle to ensure min/max stays on the ends
-        let spacer = document.createElement('span');
-        spacer.style.flexGrow = '1';
-        minMaxLabel.appendChild(spacer);
-        minMaxLabel.appendChild(document.createTextNode(max.toString()));
-
-        let container = document.createElement('div');
-        container.appendChild(div);
-        container.appendChild(minMaxLabel);
-        return container;
-    }
-
-    // Helper function to generate radio buttons
-    function createRadioButtons(name, options) {
-        let div = document.createElement('div');
-        div.style.marginTop = '0.5rem';
-        for (let option of options) {
-            let label = document.createElement('label');
-            label.style.display = 'block';  // Each radio button on new line
-            let radio = document.createElement('input');
-            radio.type = 'radio';
-            radio.name = name;
-            radio.value = option;
-            label.appendChild(radio);
-            label.appendChild(document.createTextNode(option));
-            div.appendChild(label);
-        }
-        return div;
-    }
-
-    // Append and style each question and input
+    // Create and append your sliders and capture references
+    let ageSlider = createStyledSlider(18, 80);
+    let incomeSlider = createStyledSlider(0, 200);
+    
     wrapper.appendChild(createStyledLabel('What is your age?'));
-    wrapper.appendChild(createStyledSlider(18, 80));
+    wrapper.appendChild(ageSlider);
 
     wrapper.appendChild(createStyledLabel('What is your racial identity?'));
     wrapper.appendChild(createRadioButtons('racialIdentity', ['Asian', 'Black', 'Latino', 'Native American', 'White']));
@@ -830,7 +778,7 @@ function demographics() {
     wrapper.appendChild(createRadioButtons('motherEducation', ['Some high school', 'High school diploma', 'Associate degree', 'Bachelor\'s degree', 'Master\'s degree', 'Ph.D.']));
 
     wrapper.appendChild(createStyledLabel('What is your family income, in thousands of dollars?'));
-    wrapper.appendChild(createStyledSlider(0, 200));
+    wrapper.appendChild(incomeSlider);
 
     wrapper.appendChild(createStyledLabel('What year are you in?'));
     wrapper.appendChild(createRadioButtons('yearInSchool', ['Freshmen', 'Sophomore', 'Junior', 'Senior']));
@@ -839,11 +787,8 @@ function demographics() {
     let nextButton = document.createElement('button');
     nextButton.textContent = "Proceed";
     nextButton.style.display = "none";  // Initially hidden
-    nextButton.onclick = instructions;  // Assuming you have an 'instructions' function ready to be executed
-
     wrapper.appendChild(nextButton);
 
-    // Check if all questions are answered
     function checkAllAnswered() {
         let allRadios = wrapper.querySelectorAll('input[type="radio"]');
         let answeredQuestions = new Set();
@@ -853,7 +798,10 @@ function demographics() {
             }
         });
 
-        if (answeredQuestions.size === 5) {  // Assuming you have 5 radio questions
+        let allSlidersAnswered = sliderMoved(ageSlider.querySelector('.noUi-target'), 18, 80) &&
+                                 sliderMoved(incomeSlider.querySelector('.noUi-target'), 0, 200);
+
+        if (answeredQuestions.size === 5 && allSlidersAnswered) {  // Considering you have 5 radio questions + 2 sliders
             nextButton.style.display = "block";
         } else {
             nextButton.style.display = "none";
@@ -866,14 +814,28 @@ function demographics() {
         radio.addEventListener('change', checkAllAnswered);
     });
 
+    // Add listeners for the slider changes
+    ageSlider.noUiSlider.on('update', checkAllAnswered);
+    incomeSlider.noUiSlider.on('update', checkAllAnswered);
+
+    // Modify the onclick of the proceed button to hide the wrapper
+    nextButton.onclick = function() {
+        instructions();
+        wrapper.style.display = 'none';
+    }
+
     // Append to main container
     document.getElementById('mainContainer').appendChild(wrapper);
-    
+}
+
+
+// Validate the SID to be 10 digits
+function isValidSID(sid) {
+    return /^\d{10}$/.test(sid);
 }
 
 
 //Instructions
-
 function instructions() {
     let message = document.getElementById("message");
     message.innerHTML = `
@@ -896,10 +858,6 @@ function instructions() {
     }));
 }
 
-// Validate the SID to be 10 digits
-function isValidSID(sid) {
-    return /^\d{10}$/.test(sid);
-}
 
 
 
