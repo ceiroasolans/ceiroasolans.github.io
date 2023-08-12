@@ -277,145 +277,6 @@ function startTimer() {  // Function to start the timer when buttons appear
 
 //                                                  RATINGS
 
-//NEW STUFF
-function demographics() {
-    // Main wrapper
-    let wrapper = document.createElement('div');
-    wrapper.style.marginTop = '6rem'; // Increased top spacing
-    wrapper.style.paddingBottom = '2rem'; // Added bottom padding
-    wrapper.style.fontFamily = "'Arial', sans-serif";
-
-    // Make sure the webpage starts at the top
-    document.getElementById('mainContainer').scrollTop = 0;
-
-    // Helper function to generate a styled label
-    function createStyledLabel(content) {
-        let label = document.createElement('label');
-        label.textContent = content;
-        label.style.fontWeight = 'bold';  
-        label.style.display = 'block';    
-        label.style.marginTop = '2rem';   
-        return label;
-    }
-
-    // Helper function to create and style a slider
-    function createStyledSlider(min, max) {
-        let div = document.createElement('div');
-
-        noUiSlider.create(div, {
-            start: [(min + max) / 2],
-            range: {
-                'min': [min],
-                'max': [max]
-            },
-            format: {
-                to: function (value) {
-                    return parseInt(value);
-                },
-                from: function (value) {
-                    return parseInt(value);
-                }
-            },
-            tooltips: true  // This should enable the default tooltip
-        });
-
-        let minMaxLabel = document.createElement('div');
-        minMaxLabel.style.display = 'flex';
-        minMaxLabel.style.justifyContent = 'space-between';
-        minMaxLabel.appendChild(document.createTextNode(min.toString()));
-        // Create a spacer for the middle to ensure min/max stays on the ends
-        let spacer = document.createElement('span');
-        spacer.style.flexGrow = '1';
-        minMaxLabel.appendChild(spacer);
-        minMaxLabel.appendChild(document.createTextNode(max.toString()));
-
-        let container = document.createElement('div');
-        container.appendChild(div);
-        container.appendChild(minMaxLabel);
-        return container;
-    }
-
-    // Helper function to generate radio buttons
-    function createRadioButtons(name, options) {
-        let div = document.createElement('div');
-        div.style.marginTop = '0.5rem';
-        for (let option of options) {
-            let label = document.createElement('label');
-            label.style.display = 'block';  // Each radio button on new line
-            let radio = document.createElement('input');
-            radio.type = 'radio';
-            radio.name = name;
-            radio.value = option;
-            label.appendChild(radio);
-            label.appendChild(document.createTextNode(option));
-            div.appendChild(label);
-        }
-        return div;
-    }
-
-    // Append and style each question and input
-    wrapper.appendChild(createStyledLabel('What is your age?'));
-    wrapper.appendChild(createStyledSlider(18, 80));
-
-    wrapper.appendChild(createStyledLabel('What is your racial identity?'));
-    wrapper.appendChild(createRadioButtons('racialIdentity', ['Asian', 'Black', 'Latino', 'Native American', 'White']));
-
-    wrapper.appendChild(createStyledLabel('What is your gender identity?'));
-    wrapper.appendChild(createRadioButtons('genderIdentity', ['Female', 'Male', 'Non-binary']));
-
-    wrapper.appendChild(createStyledLabel('What is the highest level of education obtained by your father?'));
-    wrapper.appendChild(createRadioButtons('fatherEducation', ['Some high school', 'High school diploma', 'Associate degree', 'Bachelor\'s degree', 'Master\'s degree', 'Ph.D.']));
-
-    wrapper.appendChild(createStyledLabel('What is the highest level of education obtained by your mother?'));
-    wrapper.appendChild(createRadioButtons('motherEducation', ['Some high school', 'High school diploma', 'Associate degree', 'Bachelor\'s degree', 'Master\'s degree', 'Ph.D.']));
-
-    wrapper.appendChild(createStyledLabel('What is your family income, in thousands of dollars?'));
-    wrapper.appendChild(createStyledSlider(0, 200));
-
-    wrapper.appendChild(createStyledLabel('What year are you in?'));
-    wrapper.appendChild(createRadioButtons('yearInSchool', ['Freshmen', 'Sophomore', 'Junior', 'Senior']));
-
-    // Create the button
-    let nextButton = document.createElement('button');
-    nextButton.textContent = "Proceed";
-    nextButton.style.display = "none";  // Initially hidden
-    nextButton.onclick = instructions;  // Assuming you have an 'instructions' function ready to be executed
-
-    wrapper.appendChild(nextButton);
-
-    // Check if all questions are answered
-    function checkAllAnswered() {
-        let allRadios = wrapper.querySelectorAll('input[type="radio"]');
-        let answeredQuestions = new Set();
-        allRadios.forEach(radio => {
-            if (radio.checked) {
-                answeredQuestions.add(radio.name);
-            }
-        });
-
-        if (answeredQuestions.size === 5) {  // Assuming you have 5 radio questions
-            nextButton.style.display = "block";
-        } else {
-            nextButton.style.display = "none";
-        }
-    }
-
-    // Add event listeners to radio buttons
-    let allRadios = wrapper.querySelectorAll('input[type="radio"]');
-    allRadios.forEach(radio => {
-        radio.addEventListener('change', checkAllAnswered);
-    });
-
-    // Append to main container
-    document.getElementById('mainContainer').appendChild(wrapper);
-}
-
-
-
-
-// END NEW STUFF
-
-
 
 // Valence and arousal
 function createFeedbackForm(videoId, onSubmit) {
@@ -718,8 +579,6 @@ function createRatingForm(videoId, onSubmit) {
 }
 
 
-
-
 // Watch Again
 function createWatchAgainForm(onSubmit) {
     feedbackContainer.innerHTML = '';
@@ -852,12 +711,6 @@ function generateVideoSequence(videosByType, order) {
   const order2 = ["Romance", "Fear", "Craving", "Sadness", "Calmness", "Amusement", "Anger", "Interest", "Joy", "Disgust", "Excitement"];
 
 
-
-
-
-
-//                                          EXPERIMENTAL PRESENTATION
-
 // Global variable to store the SID number
 let participantSID;
 function generateUniqueKey() {
@@ -873,17 +726,155 @@ const participantUniqueKey = generateUniqueKey();
 
 
 
+
+//                                          EXPERIMENTAL PRESENTATION
+
+
+// Demographics
+function demographics() {
+        // Prompt the user to enter their SID number
+        participantSID = prompt("Please enter your SID number:", "");
+
+        // Keep prompting the user until they provide a valid 10-digit SID
+        while (!isValidSID(participantSID)) {
+            participantSID = prompt("Invalid SID. Please enter a 10-digit SID number:", "");
+        }
+    // Main wrapper
+    let wrapper = document.createElement('div');
+    wrapper.style.marginTop = '6rem'; // Increased top spacing
+    wrapper.style.paddingBottom = '2rem'; // Added bottom padding
+    wrapper.style.fontFamily = "'Arial', sans-serif";
+
+    // Make sure the webpage starts at the top
+    document.getElementById('mainContainer').scrollTop = 0;
+
+    // Helper function to generate a styled label
+    function createStyledLabel(content) {
+        let label = document.createElement('label');
+        label.textContent = content;
+        label.style.fontWeight = 'bold';  
+        label.style.display = 'block';    
+        label.style.marginTop = '2rem';   
+        return label;
+    }
+
+    // Helper function to create and style a slider
+    function createStyledSlider(min, max) {
+        let div = document.createElement('div');
+
+        noUiSlider.create(div, {
+            start: [(min + max) / 2],
+            range: {
+                'min': [min],
+                'max': [max]
+            },
+            format: {
+                to: function (value) {
+                    return parseInt(value);
+                },
+                from: function (value) {
+                    return parseInt(value);
+                }
+            },
+            tooltips: true  // This should enable the default tooltip
+        });
+
+        let minMaxLabel = document.createElement('div');
+        minMaxLabel.style.display = 'flex';
+        minMaxLabel.style.justifyContent = 'space-between';
+        minMaxLabel.appendChild(document.createTextNode(min.toString()));
+        // Create a spacer for the middle to ensure min/max stays on the ends
+        let spacer = document.createElement('span');
+        spacer.style.flexGrow = '1';
+        minMaxLabel.appendChild(spacer);
+        minMaxLabel.appendChild(document.createTextNode(max.toString()));
+
+        let container = document.createElement('div');
+        container.appendChild(div);
+        container.appendChild(minMaxLabel);
+        return container;
+    }
+
+    // Helper function to generate radio buttons
+    function createRadioButtons(name, options) {
+        let div = document.createElement('div');
+        div.style.marginTop = '0.5rem';
+        for (let option of options) {
+            let label = document.createElement('label');
+            label.style.display = 'block';  // Each radio button on new line
+            let radio = document.createElement('input');
+            radio.type = 'radio';
+            radio.name = name;
+            radio.value = option;
+            label.appendChild(radio);
+            label.appendChild(document.createTextNode(option));
+            div.appendChild(label);
+        }
+        return div;
+    }
+
+    // Append and style each question and input
+    wrapper.appendChild(createStyledLabel('What is your age?'));
+    wrapper.appendChild(createStyledSlider(18, 80));
+
+    wrapper.appendChild(createStyledLabel('What is your racial identity?'));
+    wrapper.appendChild(createRadioButtons('racialIdentity', ['Asian', 'Black', 'Latino', 'Native American', 'White']));
+
+    wrapper.appendChild(createStyledLabel('What is your gender identity?'));
+    wrapper.appendChild(createRadioButtons('genderIdentity', ['Female', 'Male', 'Non-binary']));
+
+    wrapper.appendChild(createStyledLabel('What is the highest level of education obtained by your father?'));
+    wrapper.appendChild(createRadioButtons('fatherEducation', ['Some high school', 'High school diploma', 'Associate degree', 'Bachelor\'s degree', 'Master\'s degree', 'Ph.D.']));
+
+    wrapper.appendChild(createStyledLabel('What is the highest level of education obtained by your mother?'));
+    wrapper.appendChild(createRadioButtons('motherEducation', ['Some high school', 'High school diploma', 'Associate degree', 'Bachelor\'s degree', 'Master\'s degree', 'Ph.D.']));
+
+    wrapper.appendChild(createStyledLabel('What is your family income, in thousands of dollars?'));
+    wrapper.appendChild(createStyledSlider(0, 200));
+
+    wrapper.appendChild(createStyledLabel('What year are you in?'));
+    wrapper.appendChild(createRadioButtons('yearInSchool', ['Freshmen', 'Sophomore', 'Junior', 'Senior']));
+
+    // Create the button
+    let nextButton = document.createElement('button');
+    nextButton.textContent = "Proceed";
+    nextButton.style.display = "none";  // Initially hidden
+    nextButton.onclick = instructions;  // Assuming you have an 'instructions' function ready to be executed
+
+    wrapper.appendChild(nextButton);
+
+    // Check if all questions are answered
+    function checkAllAnswered() {
+        let allRadios = wrapper.querySelectorAll('input[type="radio"]');
+        let answeredQuestions = new Set();
+        allRadios.forEach(radio => {
+            if (radio.checked) {
+                answeredQuestions.add(radio.name);
+            }
+        });
+
+        if (answeredQuestions.size === 5) {  // Assuming you have 5 radio questions
+            nextButton.style.display = "block";
+        } else {
+            nextButton.style.display = "none";
+        }
+    }
+
+    // Add event listeners to radio buttons
+    let allRadios = wrapper.querySelectorAll('input[type="radio"]');
+    allRadios.forEach(radio => {
+        radio.addEventListener('change', checkAllAnswered);
+    });
+
+    // Append to main container
+    document.getElementById('mainContainer').appendChild(wrapper);
+    
+}
+
+
 //Instructions
 
 function instructions() {
-    // Prompt the user to enter their SID number
-    participantSID = prompt("Please enter your SID number:", "");
-
-    // Keep prompting the user until they provide a valid 10-digit SID
-    while (!isValidSID(participantSID)) {
-        participantSID = prompt("Invalid SID. Please enter a 10-digit SID number:", "");
-    }
-
     let message = document.getElementById("message");
     message.innerHTML = `
     <div style="max-width: 600px; margin: auto; padding: 20px; font-family: 'Helvetica Neue', Arial, sans-serif; line-height: 1.6; text-align: left; color: #333;">
