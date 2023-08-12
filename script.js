@@ -579,6 +579,72 @@ function createRatingForm(videoId, onSubmit) {
 
 
 //Watch again 
+// function createWatchAgainForm(onSubmit) {
+//     feedbackContainer.innerHTML = '';
+
+//     const questionObj = {
+//         text: "Would you watch this video again?",
+//         scale: ["No, never!", "Maybe", "Yes, anytime!"]
+//     };
+
+//     const WatchAgain = {};
+
+//     const question = document.createElement("p");
+//     question.style.fontWeight = 'bold'; // Add bold font-weight
+//     question.style.textAlign = 'center';
+//     question.textContent = questionObj.text;
+
+//     const likertContainer = document.createElement("div");
+//     likertContainer.classList.add("likert-container");
+
+//     for (let i = 0; i <= 6; i++) { // Update from 1-7 to 0-6
+//         const likertBox = document.createElement("div");
+//         likertBox.classList.add("likert-box");
+
+//         const number = document.createElement("div");
+//         number.textContent = i === 0 ? "0" : i.toString(); // Convert only non-zero values to strings
+//         number.classList.add("likert-number");
+//         likertBox.appendChild(number);
+
+
+//         const label = document.createElement("div");
+//         label.classList.add("likert-label");
+//         likertBox.appendChild(label);
+
+//         // Add labels on the edges and in the middle
+//         if (i === 0) label.textContent += questionObj.scale[0]; // Update from 1 to 0
+//         else if (i === 3) label.textContent += questionObj.scale[1];
+//         else if (i === 6) label.textContent += questionObj.scale[2]; // Update from 7 to 6
+
+//         likertBox.onclick = function () {
+//             likertContainer.querySelectorAll(".likert-box").forEach(box => box.style.backgroundColor = "");
+//             WatchAgain[questionObj.text] = i;
+//             likertBox.style.backgroundColor = "#d8d8d8";  // Change color to indicate selection
+//         };
+
+//         likertContainer.appendChild(likertBox);
+//     }
+
+//     feedbackContainer.appendChild(question);
+//     feedbackContainer.appendChild(likertContainer);
+
+//     const submitButton = document.createElement("button");
+//     submitButton.innerText = "Submit";
+//     submitButton.onclick = () => {
+//         if (typeof WatchAgain[questionObj.text] !== 'undefined') {
+
+//             onSubmit(WatchAgain);
+//         } else {
+//             alert("Please answer the question.");
+//         }
+//     };
+
+//     feedbackContainer.appendChild(submitButton);
+//     feedbackContainer.style.display = "block";
+
+//     console.log("WatchAgain:", WatchAgain);
+// }
+
 function createWatchAgainForm(onSubmit) {
     feedbackContainer.innerHTML = '';
 
@@ -590,37 +656,38 @@ function createWatchAgainForm(onSubmit) {
     const WatchAgain = {};
 
     const question = document.createElement("p");
-    question.style.fontWeight = 'bold'; // Add bold font-weight
+    question.style.fontWeight = 'bold'; 
     question.style.textAlign = 'center';
     question.textContent = questionObj.text;
 
     const likertContainer = document.createElement("div");
     likertContainer.classList.add("likert-container");
 
-    for (let i = 0; i <= 6; i++) { // Update from 1-7 to 0-6
+    for (let i = 0; i <= 6; i++) {
         const likertBox = document.createElement("div");
         likertBox.classList.add("likert-box");
 
         const number = document.createElement("div");
-        number.textContent = i === 0 ? "0" : i.toString(); // Convert only non-zero values to strings
+        number.textContent = i === 0 ? "0" : i.toString(); 
         number.classList.add("likert-number");
         likertBox.appendChild(number);
-
 
         const label = document.createElement("div");
         label.classList.add("likert-label");
         likertBox.appendChild(label);
 
-        // Add labels on the edges and in the middle
-        if (i === 0) label.textContent += questionObj.scale[0]; // Update from 1 to 0
+        if (i === 0) label.textContent += questionObj.scale[0];
         else if (i === 3) label.textContent += questionObj.scale[1];
-        else if (i === 6) label.textContent += questionObj.scale[2]; // Update from 7 to 6
+        else if (i === 6) label.textContent += questionObj.scale[2];
 
-        likertBox.onclick = function () {
-            likertContainer.querySelectorAll(".likert-box").forEach(box => box.style.backgroundColor = "");
-            WatchAgain[questionObj.text] = i;
-            likertBox.style.backgroundColor = "#d8d8d8";  // Change color to indicate selection
-        };
+        // IIFE to correctly capture the value of i
+        (function(currentIndex) {
+            likertBox.onclick = function () {
+                likertContainer.querySelectorAll(".likert-box").forEach(box => box.style.backgroundColor = "");
+                WatchAgain[questionObj.text] = currentIndex;
+                likertBox.style.backgroundColor = "#d8d8d8";
+            };
+        })(i);
 
         likertContainer.appendChild(likertBox);
     }
@@ -632,7 +699,6 @@ function createWatchAgainForm(onSubmit) {
     submitButton.innerText = "Submit";
     submitButton.onclick = () => {
         if (typeof WatchAgain[questionObj.text] !== 'undefined') {
-
             onSubmit(WatchAgain);
         } else {
             alert("Please answer the question.");
@@ -931,8 +997,6 @@ function calculateMeanRatings(participantChoices) {
 
     return meanRatings;
 }
-
-
 
 function instructions3() {
     document.body.classList.add('instructions-body-align');
