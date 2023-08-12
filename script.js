@@ -127,7 +127,7 @@ const buttonsContainer = document.getElementById("buttonsContainer");
   
 const allVideos = [
     {id: 1, src: "0074.mp4", type: "Amusement" },
-    {id: 2, src: "0574.mp4", type: "Amusement" },
+   // {id: 2, src: "0574.mp4", type: "Amusement" },
     // {id: 3, src: "0656.mp4", type: "Amusement" },
     // {id: 4, src: "1043.mp4", type: "Amusement" },
     // {id: 45, src: "1145.mp4", type: "Amusement" }, //this should've started on 45? now does
