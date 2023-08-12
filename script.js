@@ -683,11 +683,14 @@ function createWatchAgainForm(onSubmit) {
         // IIFE to correctly capture the value of i
         (function(currentIndex) {
             likertBox.onclick = function () {
+                console.log("Clicked value:", currentIndex); // Check the value when clicked
                 likertContainer.querySelectorAll(".likert-box").forEach(box => box.style.backgroundColor = "");
                 WatchAgain[questionObj.text] = currentIndex;
                 likertBox.style.backgroundColor = "#d8d8d8";
+                console.log("Updated WatchAgain:", WatchAgain); // Check the updated object
             };
         })(i);
+        
 
         likertContainer.appendChild(likertBox);
     }
