@@ -928,11 +928,11 @@ function baselineEmo() {
         for (let i = 0; i <= 6; i++) {
             let likertBox = document.createElement('div');
             likertBox.className = 'likert-box';
-            
+
             let number = document.createElement('div');
             number.textContent = i;
             number.className = 'likert-number';
-            
+
             let label;
             if (i === 0) label = "Not at all";
             else if (i === 3) label = "Somewhat";
@@ -942,14 +942,21 @@ function baselineEmo() {
             let labelText = document.createElement('div');
             labelText.textContent = label;
             labelText.className = 'likert-label';
-            
+
             likertBox.appendChild(number);
             likertBox.appendChild(labelText);
 
-            // Add click event to store the rating and check if all are answered
             likertBox.addEventListener('click', function() {
                 emotionRatings[emotion] = i;
-                checkAllAnsweredAndRedirect();
+                
+                // Visualize the selection for the user
+                let previouslySelected = likertContainer.querySelector('.selected-answer');
+                if (previouslySelected) {
+                    previouslySelected.classList.remove('selected-answer');
+                }
+                likertBox.classList.add('selected-answer');
+                
+                checkAllAnsweredAndShowNextButton();
             });
 
             likertContainer.appendChild(likertBox);
@@ -958,14 +965,28 @@ function baselineEmo() {
         container.appendChild(likertContainer);
     });
 
+    let nextButton = document.createElement('button');
+    nextButton.textContent = "Next";
+    nextButton.style.display = "none";  // Initially hidden
+    nextButton.onclick = function() {
+        document.getElementById('mainContainer').innerHTML = ''; // Clear the content
+        window.scrollTo(0,0); // Scroll to top
+        instructions();  // Redirect to instructions
+    };
+    container.appendChild(nextButton);
+    
     document.getElementById('mainContainer').appendChild(container);
+    window.scrollTo(0,0); // Scroll to top when survey loads
 }
 
-function checkAllAnsweredAndRedirect() {
+function checkAllAnsweredAndShowNextButton() {
     if (Object.keys(emotionRatings).length === 19) {
-        instructions();  // Redirect to instructions if all emotions are rated
+        // Show the next button if all emotions are rated
+        document.querySelector('button').style.display = 'block';
     }
 }
+
+
 
 
 

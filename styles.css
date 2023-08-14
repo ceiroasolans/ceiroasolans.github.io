@@ -151,6 +151,15 @@ button:disabled {
     padding: 10px 0px; /* add vertical padding */
 }
 
+/*Other likert */
+.emotion-label {
+    font-weight: bold; /* Bold the emotion words */
+    /* ... other properties ... */
+}
+
+.selected-answer {
+    background-color: #999; /* Darker shade for selected answer */
+}
 
 
 /* MEAN TABLE */
