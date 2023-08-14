@@ -905,88 +905,69 @@ function demographics() {
 }
 
 //Baseline Emo
-let emotionRatings = {};
+function baselineEmo(onSubmit) {
+    feedbackContainer.innerHTML = '';
 
-function baselineEmo() {
     const emotions = ["Active", "Afraid", "Amused", "Angry", "Aroused", "Calm", "Disgusted", "Excited", "Happy", "Hungry", "Inactive", "Loving", "Negative", "Peaceful", "Pleasant", "Positive", "Sad", "Still (quiet)", "Unpleasant"];
 
-    // Main container for the likert scale questions
-    let container = document.createElement('div');
-    container.className = 'main-container';
+    const scaleLabels = ["Not at all", "", "", "Somewhat", "", "", "Very"];
+
+    const emotionResponses = {};
 
     emotions.forEach(emotion => {
-        // Emotion label
-        let emotionLabel = document.createElement('div');
-        emotionLabel.textContent = emotion;
-        emotionLabel.className = 'emotion-label';
-        container.appendChild(emotionLabel);
+        const question = document.createElement("p");
+        question.style.fontWeight = 'bold';
+        question.style.textAlign = 'center';
+        question.textContent = emotion;
 
-        // Likert scale for the emotion
-        let likertContainer = document.createElement('div');
-        likertContainer.className = 'likert-container';
+        const likertContainer = document.createElement("div");
+        likertContainer.classList.add("likert-container");
 
         for (let i = 0; i <= 6; i++) {
-            let likertBox = document.createElement('div');
-            likertBox.className = 'likert-box';
+            const likertBox = document.createElement("div");
+            likertBox.classList.add("likert-box");
 
-            let number = document.createElement('div');
-            number.textContent = i;
-            number.className = 'likert-number';
-
-            let label;
-            if (i === 0) label = "Not at all";
-            else if (i === 3) label = "Somewhat";
-            else if (i === 6) label = "Very";
-            else label = "";
-
-            let labelText = document.createElement('div');
-            labelText.textContent = label;
-            labelText.className = 'likert-label';
-
+            const number = document.createElement("div");
+            number.textContent = i.toString();
+            number.classList.add("likert-number");
             likertBox.appendChild(number);
-            likertBox.appendChild(labelText);
 
-            likertBox.addEventListener('click', function() {
-                emotionRatings[emotion] = i;
-                
-                // Visualize the selection for the user
-                let previouslySelected = likertContainer.querySelector('.selected-answer');
-                if (previouslySelected) {
-                    previouslySelected.classList.remove('selected-answer');
-                }
-                likertBox.classList.add('selected-answer');
-                
-                checkAllAnsweredAndShowNextButton();
-            });
+            const label = document.createElement("div");
+            label.classList.add("likert-label");
+            label.textContent = scaleLabels[i];
+            likertBox.appendChild(label);
+
+            // IIFE to correctly capture the value of i and the current emotion
+            (function(currentIndex, currentEmotion) {
+                likertBox.onclick = function() {
+                    console.log("Clicked value for", currentEmotion, ":", currentIndex);
+                    likertContainer.querySelectorAll(".likert-box").forEach(box => box.style.backgroundColor = "");
+                    emotionResponses[currentEmotion] = currentIndex;
+                    likertBox.style.backgroundColor = "#d8d8d8";
+                    console.log("Updated emotionResponses:", emotionResponses);
+                };
+            })(i, emotion);
 
             likertContainer.appendChild(likertBox);
         }
 
-        container.appendChild(likertContainer);
+        feedbackContainer.appendChild(question);
+        feedbackContainer.appendChild(likertContainer);
     });
 
-    let nextButton = document.createElement('button');
-    nextButton.textContent = "Next";
-    nextButton.id = "nextLikertButton";  // Added an ID for easier reference
-    nextButton.style.display = "none";  // Initially hidden
-    nextButton.onclick = function() {
-        document.getElementById('mainContainer').innerHTML = ''; // Clear the content
-        window.scrollTo(0,0); // Scroll to top
-        instructions();  // Redirect to instructions
+    const submitButton = document.createElement("button");
+    submitButton.innerText = "Submit";
+    submitButton.onclick = () => {
+        if (Object.keys(emotionResponses).length === emotions.length) {
+            onSubmit(emotionResponses);
+            instructions();
+        } else {
+            alert("Please answer all the questions.");
+        }
     };
-    container.appendChild(nextButton);
 
-    document.getElementById('mainContainer').appendChild(container);
-    
-    // Introducing a slight delay before scrolling to the top
-    setTimeout(() => window.scrollTo(0, 0), 10);
-}
-
-function checkAllAnsweredAndShowNextButton() {
-    if (Object.keys(emotionRatings).length === 19) {
-        // Show the next button if all emotions are rated
-        document.querySelector('button').style.display = 'block';
-    }
+    feedbackContainer.appendChild(submitButton);
+    feedbackContainer.style.display = "block";
 }
 
 
