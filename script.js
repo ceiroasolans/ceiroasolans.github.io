@@ -1028,12 +1028,12 @@ function baselineEmo() {
             const likertBox = document.createElement("div");
             likertBox.classList.add("likert-box");
             likertBox.style.width = "60px";  // Increased width
-            likertBox.style.height = "25px";  // Reduced height
+            likertBox.style.height = "35px";  // Reduced height
 
             const number = document.createElement("div");
             number.textContent = i.toString();
             number.classList.add("likert-number");
-            number.style.lineHeight = "25px";  // Adjust to match the height
+            number.style.lineHeight = "35px";  // Adjust to match the height
 
             likertBox.appendChild(number);
 
