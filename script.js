@@ -1382,7 +1382,7 @@ function shuffleArray(array) {
 //                                              GENERATE DATA
 
 function generateAndUploadCSV(participantChoices) {
-    const header = ["vID", "reactionTime",  "valence", "arousal", "videoType", "EmoRated", "EmoScore", "WatchAgain", "SID", "uniqueKey", "age", "racialIdentity", "genderIdentity", "fatherEducation", "motherEducation", "familyIncome", "yearInSchool", "B_Active", "B_Afraid", "B_Amused", "B_Angry", "B_Aroused", "B_Calm", "B_Disgusted", "B_Excited", "B_Happy", "B_Hungry", "B_Inactive", "B_Loving", "B_Negative", "B_Peaceful", "B_Pleasant", "B_Positive", "B_Sad", "B_Still (quiet)", "B_Unpleasant"]; //initialValence and initialArousal if new flow
+    const header = ["vID", "reactionTime",  "valence", "arousal", "videoType", "EmoRated", "EmoScore", "WatchAgain", "SID", "uniqueKey", "age", "racialIdentity", "genderIdentity", "fatherEducation", "motherEducation", "familyIncome", "yearInSchool", "B_Active", "B_Afraid", "B_Amused", "B_Angry", "B_Aroused", "B_Calm", "B_Disgusted", "B_Excited", "B_Happy", "B_Hungry", "B_Inactive", "B_Loving", "B_Negative", "B_Peaceful", "B_Pleasant", "B_Positive", "B_Sad", "B_Still", "B_Unpleasant"]; //initialValence and initialArousal if new flow
     const csvRows = [header];
   
     for (const row of participantChoices) {
@@ -1421,7 +1421,7 @@ function generateAndUploadCSV(participantChoices) {
         row.B_Pleasant || "",
         row.B_Positive || "",
         row.B_Sad || "",
-        row["B_Still (quiet)"] || "",
+        row.B_Still || "",
         row.B_Unpleasant || ""
     ];
 
