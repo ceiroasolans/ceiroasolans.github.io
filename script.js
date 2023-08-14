@@ -735,6 +735,8 @@ function isValidSID(sid) {
 
 
 // Demographics
+let age, racialIdentity, genderIdentity, fatherEducation, motherEducation, familyIncome, yearInSchool;
+
 function demographics() {
     // Prompt the user to enter their SID number
     participantSID = prompt("Please enter your SID number:", "");
@@ -859,6 +861,15 @@ function demographics() {
     nextButton.textContent = "Proceed";
     nextButton.style.display = "none";  
     nextButton.onclick = function() {
+        // Extract data from the UI elements before hiding the demographics container
+        age = document.querySelector('.noUi-tooltip').textContent;  // Gets the value from the age slider's tooltip
+        racialIdentity = document.querySelector('input[name="racialIdentity"]:checked').value;
+        genderIdentity = document.querySelector('input[name="genderIdentity"]:checked').value;
+        fatherEducation = document.querySelector('input[name="fatherEducation"]:checked').value;
+        motherEducation = document.querySelector('input[name="motherEducation"]:checked').value;
+        familyIncome = document.querySelectorAll('.noUi-tooltip')[1].textContent;  // Gets the value from the income slider's tooltip
+        yearInSchool = document.querySelector('input[name="yearInSchool"]:checked').value;
+    
         document.getElementById('demographicsContainer').style.display = 'none';  // Hide the demographics container
         instructions();  // Then display the instructions
     };
@@ -1016,7 +1027,14 @@ function experimentalSet() {
                                         EmoScore: rating['EmoScore'],
                                         watchAgain: WatchAgainResponse["Would you watch this video again?"],
                                         SID: participantSID,
-                                        uniqueKey: participantUniqueKey 
+                                        uniqueKey: participantUniqueKey,
+                                        age: age,
+                                        racialIdentity: racialIdentity,
+                                        genderIdentity: genderIdentity,
+                                        fatherEducation: fatherEducation,
+                                        motherEducation: motherEducation,
+                                        familyIncome: familyIncome,
+                                        yearInSchool: yearInSchool
                                 });
                               });
                             });
@@ -1265,7 +1283,7 @@ function shuffleArray(array) {
 //                                              GENERATE DATA
 
 function generateAndUploadCSV(participantChoices) {
-    const header = ["vID", "reactionTime",  "valence", "arousal", "videoType", "EmoRated", "EmoScore", "WatchAgain", "SID", "uniqueKey"]; //initialValence and initialArousal if new flow
+    const header = ["vID", "reactionTime",  "valence", "arousal", "videoType", "EmoRated", "EmoScore", "WatchAgain", "SID", "uniqueKey", "age", "racialIdentity", "genderIdentity", "fatherEducation", "motherEducation", "familyIncome", "yearInSchool"]; //initialValence and initialArousal if new flow
     const csvRows = [header];
   
     for (const row of participantChoices) {
@@ -1279,7 +1297,14 @@ function generateAndUploadCSV(participantChoices) {
         row.EmoScore || "",
         row.watchAgain || "",
         row.SID || "",
-        row.uniqueKey || ""
+        row.uniqueKey || "",
+        row.age || "",
+        row.racialIdentity || "",
+        row.genderIdentity || "",
+        row.fatherEducation || "",
+        row.motherEducation || "",
+        row.familyIncome || "",
+        row.yearInSchool || ""
       ];
 
       csvRows.push(rowData);
