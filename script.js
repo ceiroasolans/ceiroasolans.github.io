@@ -908,7 +908,7 @@ function demographics() {
 function baselineEmo(onSubmit) {
     feedbackContainer.innerHTML = '';
     
-    feedbackContainer.style.paddingTop = '20rem';
+    feedbackContainer.style.paddingTop = '40rem';
     // Ensure page is scrolled to the top
     window.scrollTo(0, 0);
 
