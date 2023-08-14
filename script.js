@@ -912,7 +912,6 @@ function baselineEmo(onSubmit) {
     // Top-anchor
     document.body.classList.add('instructions-body-align');
     window.scrollTo(0, 0);
-    wrapper.style.marginTop = '20rem';
 
     const emotions = ["Active", "Afraid", "Amused", "Angry", "Aroused", "Calm", "Disgusted", "Excited", "Happy", "Hungry", "Inactive", "Loving", "Negative", "Peaceful", "Pleasant", "Positive", "Sad", "Still (quiet)", "Unpleasant"];
     const scaleLabels = ["Not at all", "", "", "Somewhat", "", "", "Very"];
