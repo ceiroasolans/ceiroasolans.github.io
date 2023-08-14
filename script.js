@@ -870,7 +870,7 @@ function demographics() {
         yearInSchool = document.querySelector('input[name="yearInSchool"]:checked').value;
     
         document.getElementById('demographicsContainer').style.display = 'none';  // Hide the demographics container
-        baselineEmo(onSubmit);  // Then display the baseline survey
+        baselineEmo();  // Then display the baseline survey
     };
     
 
@@ -966,15 +966,11 @@ function baselineEmo(onSubmit) {
 
     const submitButton = document.createElement("button");
     submitButton.innerText = "Submit";
-    submitButton.style.marginTop = "20px"; 
+    submitButton.style.marginTop = "20px"; // Padding added here
     submitButton.onclick = () => {
         if (emotions.every(emotion => emotion in emotionResponses)) {
-            if (typeof onSubmit === "function") {  // Check if onSubmit is a function
-                onSubmit(emotionResponses);
-            } else {
-                console.error("onSubmit is not a function.");
-            }
-            document.body.classList.remove('instructions-body-align');
+            onSubmit(emotionResponses);
+            document.body.classList.remove('instructions-body-align'); // Remove the class when the submit button is clicked
             instructions();
         } else {
             alert("Please answer all the questions.");
