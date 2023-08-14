@@ -907,12 +907,23 @@ function demographics() {
 //Baseline Emo
 function baselineEmo(onSubmit) {
     feedbackContainer.innerHTML = '';
+    
+    // Ensure page is scrolled to the top
+    window.scrollTo(0, 0);
 
     const emotions = ["Active", "Afraid", "Amused", "Angry", "Aroused", "Calm", "Disgusted", "Excited", "Happy", "Hungry", "Inactive", "Loving", "Negative", "Peaceful", "Pleasant", "Positive", "Sad", "Still (quiet)", "Unpleasant"];
 
     const scaleLabels = ["Not at all", "", "", "Somewhat", "", "", "Very"];
-
+    
     const emotionResponses = {};
+
+    // Add header
+    const header = document.createElement("p");
+    header.style.fontWeight = 'bold';
+    header.style.textAlign = 'center';
+    header.style.padding = '20px 0';
+    header.textContent = "Please rate the extent to which you feel the following emotions:";
+    feedbackContainer.appendChild(header);
 
     emotions.forEach(emotion => {
         const question = document.createElement("p");
@@ -937,14 +948,11 @@ function baselineEmo(onSubmit) {
             label.textContent = scaleLabels[i];
             likertBox.appendChild(label);
 
-            // IIFE to correctly capture the value of i and the current emotion
             (function(currentIndex, currentEmotion) {
                 likertBox.onclick = function() {
-                    console.log("Clicked value for", currentEmotion, ":", currentIndex);
                     likertContainer.querySelectorAll(".likert-box").forEach(box => box.style.backgroundColor = "");
                     emotionResponses[currentEmotion] = currentIndex;
                     likertBox.style.backgroundColor = "#d8d8d8";
-                    console.log("Updated emotionResponses:", emotionResponses);
                 };
             })(i, emotion);
 
@@ -958,7 +966,7 @@ function baselineEmo(onSubmit) {
     const submitButton = document.createElement("button");
     submitButton.innerText = "Submit";
     submitButton.onclick = () => {
-        if (Object.keys(emotionResponses).length === emotions.length) {
+        if (emotions.every(emotion => emotion in emotionResponses)) {
             onSubmit(emotionResponses);
             instructions();
         } else {
@@ -969,6 +977,7 @@ function baselineEmo(onSubmit) {
     feedbackContainer.appendChild(submitButton);
     feedbackContainer.style.display = "block";
 }
+
 
 
 
