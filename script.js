@@ -241,18 +241,21 @@ function createFeedbackForm(videoId, onSubmit) {
 function createLikertContainer(min, max, minLabel, maxLabel, midLabel, emotion) {
     let mainContainer = document.createElement('div');
     mainContainer.className = 'main-container';
-    mainContainer.style.display = "flex"; // To align the items in a row
-    mainContainer.style.alignItems = "center"; // Vertically align in the middle
     
+    let flexContainer = document.createElement('div');
+    flexContainer.style.display = 'flex';
+    flexContainer.style.alignItems = 'center';  // To vertically align items inside flexContainer
+
     let emotionLabel = document.createElement('div');
     emotionLabel.textContent = emotion;
     emotionLabel.style.fontWeight = 'bold';
     emotionLabel.className = 'emotion-label';
-    emotionLabel.style.marginRight = "20px"; // Space between the label and the scale
-    mainContainer.appendChild(emotionLabel);
-    
+    emotionLabel.style.marginRight = '20px'; // Add some spacing between the label and the Likert scale
+    flexContainer.appendChild(emotionLabel);
+
     let container = document.createElement('div');
     container.className = 'likert-container';
+
 
     for (let i = min; i <= max; i++) {
         let box = document.createElement('div');
@@ -299,8 +302,6 @@ function createLikertContainer(min, max, minLabel, maxLabel, midLabel, emotion) 
     mainContainer.appendChild(container);
     return mainContainer;
 }
-
-
 
 function createRatingForm(videoId, onSubmit) {
     
