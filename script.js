@@ -241,49 +241,33 @@ function createFeedbackForm(videoId, onSubmit) {
 function createLikertContainer(min, max, minLabel, maxLabel, midLabel, emotion) {
     let mainContainer = document.createElement('div');
     mainContainer.className = 'main-container';
-    mainContainer.style.flexDirection = 'row'; 
-    mainContainer.style.justifyContent = 'flex-start'; 
+    mainContainer.style.flexDirection = 'row';
+    mainContainer.style.justifyContent = 'flex-start'; // Align items to the start
 
     let emotionLabel = document.createElement('div');
     emotionLabel.textContent = emotion;
     emotionLabel.style.fontWeight = 'bold';
     emotionLabel.className = 'emotion-label';
-    emotionLabel.style.alignSelf = 'center';  // CHANGED: align emotion label to center vertically
-    emotionLabel.style.marginRight = '20px'; 
+    emotionLabel.style.alignSelf = 'center';
+    emotionLabel.style.marginRight = '20px';
     mainContainer.appendChild(emotionLabel);
 
     let container = document.createElement('div');
     container.className = 'likert-container';
-    container.style.width = '500px';
+    container.style.width = (60 * (max - min + 1)) + 'px';  // Adjusted width based on number of boxes and their individual width
 
     for (let i = min; i <= max; i++) {
-        let box = document.createElement('div');
-        box.className = 'likert-box';
-        box.style.flex = '1';
-        box.addEventListener('click', function () {
-            // If this box was already selected, deselect it
-            if (this.classList.contains('selected')) {
-                this.classList.remove('selected');
-                this.style.backgroundColor = ""; // Remove background color
-                return;
-            }
-            
-            // Remove 'selected' class from all boxes in the container
-            let boxes = container.getElementsByClassName('likert-box');
-            for (let j = 0; j < boxes.length; j++) {
-                boxes[j].classList.remove('selected');
-                boxes[j].style.backgroundColor = ""; // Remove previous background color
-            }
-            
-            // Add 'selected' class to the clicked box
-            this.classList.add('selected');
-            this.style.backgroundColor = "#ccc"; // Set background color to darker shade
-        });
-        
+        let likertBox = document.createElement('div');
+        likertBox.className = 'likert-box';
+        likertBox.style.flex = 'none';  // Do not stretch or shrink boxes
+        likertBox.style.width = "60px";  // Set width
+        likertBox.style.height = "35px";  // Set height
+
         let number = document.createElement('div');
         number.className = 'likert-number';
         number.textContent = i;
-        box.appendChild(number);
+        number.style.lineHeight = "20px";  // Adjust line height
+        likertBox.appendChild(number);
 
         let label = document.createElement('div');
         label.className = 'likert-label';
@@ -294,14 +278,80 @@ function createLikertContainer(min, max, minLabel, maxLabel, midLabel, emotion) 
         } else if (i === 3) {
             label.textContent = midLabel;
         }
-        box.appendChild(label);
-        
-        container.appendChild(box);
+        likertBox.appendChild(label);
+
+        container.appendChild(likertBox);
     }
-   
+
     mainContainer.appendChild(container);
     return mainContainer;
 }
+
+
+// function createLikertContainer(min, max, minLabel, maxLabel, midLabel, emotion) {
+//     let mainContainer = document.createElement('div');
+//     mainContainer.className = 'main-container';
+//     mainContainer.style.flexDirection = 'row'; 
+//     mainContainer.style.justifyContent = 'flex-start'; 
+
+//     let emotionLabel = document.createElement('div');
+//     emotionLabel.textContent = emotion;
+//     emotionLabel.style.fontWeight = 'bold';
+//     emotionLabel.className = 'emotion-label';
+//     emotionLabel.style.alignSelf = 'center';  // CHANGED: align emotion label to center vertically
+//     emotionLabel.style.marginRight = '20px'; 
+//     mainContainer.appendChild(emotionLabel);
+
+//     let container = document.createElement('div');
+//     container.className = 'likert-container';
+//     container.style.width = '500px';
+
+//     for (let i = min; i <= max; i++) {
+//         let box = document.createElement('div');
+//         box.className = 'likert-box';
+//         box.style.flex = '1';
+//         box.addEventListener('click', function () {
+//             // If this box was already selected, deselect it
+//             if (this.classList.contains('selected')) {
+//                 this.classList.remove('selected');
+//                 this.style.backgroundColor = ""; // Remove background color
+//                 return;
+//             }
+            
+//             // Remove 'selected' class from all boxes in the container
+//             let boxes = container.getElementsByClassName('likert-box');
+//             for (let j = 0; j < boxes.length; j++) {
+//                 boxes[j].classList.remove('selected');
+//                 boxes[j].style.backgroundColor = ""; // Remove previous background color
+//             }
+            
+//             // Add 'selected' class to the clicked box
+//             this.classList.add('selected');
+//             this.style.backgroundColor = "#ccc"; // Set background color to darker shade
+//         });
+        
+//         let number = document.createElement('div');
+//         number.className = 'likert-number';
+//         number.textContent = i;
+//         box.appendChild(number);
+
+//         let label = document.createElement('div');
+//         label.className = 'likert-label';
+//         if (i === min) {
+//             label.textContent = minLabel;
+//         } else if (i === max) {
+//             label.textContent = maxLabel;
+//         } else if (i === 3) {
+//             label.textContent = midLabel;
+//         }
+//         box.appendChild(label);
+        
+//         container.appendChild(box);
+//     }
+   
+//     mainContainer.appendChild(container);
+//     return mainContainer;
+// }
 
 
 function createRatingForm(videoId, onSubmit) {
