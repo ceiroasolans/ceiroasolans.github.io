@@ -1010,12 +1010,12 @@ function baselineEmo() {
         emotionContainer.style.display = "flex";
         emotionContainer.style.justifyContent = "space-between";
         emotionContainer.style.alignItems = "center";
-        emotionContainer.style.paddingBottom = "20px";
+        emotionContainer.style.paddingBottom = "10px";  // Reduced padding
 
         const question = document.createElement("p");
         question.style.fontWeight = 'bold';
         question.style.flex = "1";
-        question.style.marginRight = "20px"; // Padding to the right of the emotion text
+        question.style.marginRight = "10px"; // Reduced padding to the right of the emotion text
         question.textContent = emotion;
 
         emotionContainer.appendChild(question);
@@ -1027,10 +1027,14 @@ function baselineEmo() {
         for (let i = 0; i <= 6; i++) {
             const likertBox = document.createElement("div");
             likertBox.classList.add("likert-box");
+            likertBox.style.width = "60px";  // Increased width
+            likertBox.style.height = "25px";  // Reduced height
 
             const number = document.createElement("div");
             number.textContent = i.toString();
             number.classList.add("likert-number");
+            number.style.lineHeight = "25px";  // Adjust to match the height
+
             likertBox.appendChild(number);
 
             const label = document.createElement("div");
@@ -1073,6 +1077,7 @@ function baselineEmo() {
     feedbackContainer.appendChild(submitButton);
     feedbackContainer.style.display = "block";
 }
+
 
 
 
