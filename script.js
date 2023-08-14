@@ -972,6 +972,7 @@ function baselineEmo() {
     submitButton.onclick = () => {
         if (emotions.every(emotion => emotion in emotionResponses)) {
             baselineEmoResponses = emotionResponses; 
+            feedbackContainer.style.display = "block";
             document.body.classList.remove('instructions-body-align'); // Remove the class when the submit button is clicked
             instructions();
         } else {
