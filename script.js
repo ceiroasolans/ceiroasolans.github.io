@@ -870,7 +870,7 @@ function demographics() {
         yearInSchool = document.querySelector('input[name="yearInSchool"]:checked').value;
     
         document.getElementById('demographicsContainer').style.display = 'none';  // Hide the demographics container
-        baselineEmo();  // Then display the baseline survey
+        baselineEmo(onSubmit);  // Then display the baseline survey
     };
     
 
