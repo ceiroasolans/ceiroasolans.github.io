@@ -241,6 +241,7 @@ function createFeedbackForm(videoId, onSubmit) {
 function createLikertContainer(min, max, minLabel, maxLabel, midLabel, emotion) {
     let mainContainer = document.createElement('div');
     mainContainer.className = 'main-container';
+    mainContainer.style.flexDirection = 'row'; 
 
     let emotionLabel = document.createElement('div');
     emotionLabel.textContent = emotion;
