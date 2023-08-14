@@ -1111,25 +1111,25 @@ function experimentalSet() {
                                         motherEducation: motherEducation,
                                         familyIncome: familyIncome,
                                         yearInSchool: yearInSchool,
-                                        Active: baselineEmoResponses["Active"],
-                                        Afraid: baselineEmoResponses["Afraid"],
-                                        Amused: baselineEmoResponses["Amused"],
-                                        Angry: baselineEmoResponses["Angry"],
-                                        Aroused: baselineEmoResponses["Aroused"],
-                                        Calm: baselineEmoResponses["Calm"],
-                                        Disgusted: baselineEmoResponses["Disgusted"],
-                                        Excited: baselineEmoResponses["Excited"],
-                                        Happy: baselineEmoResponses["Happy"],
-                                        Hungry: baselineEmoResponses["Hungry"],
-                                        Inactive: baselineEmoResponses["Inactive"],
-                                        Loving: baselineEmoResponses["Loving"],
-                                        Negative: baselineEmoResponses["Negative"],
-                                        Peaceful: baselineEmoResponses["Peaceful"],
-                                        Pleasant: baselineEmoResponses["Pleasant"],
-                                        Positive: baselineEmoResponses["Positive"],
-                                        Sad: baselineEmoResponses["Sad"],
-                                        Still: baselineEmoResponses["Still (quiet)"],
-                                        Unpleasant: baselineEmoResponses["Unpleasant"]
+                                        B_Active: baselineEmoResponses["Active"],
+                                        B_Afraid: baselineEmoResponses["Afraid"],
+                                        B_Amused: baselineEmoResponses["Amused"],
+                                        B_Angry: baselineEmoResponses["Angry"],
+                                        B_Aroused: baselineEmoResponses["Aroused"],
+                                        B_Calm: baselineEmoResponses["Calm"],
+                                        B_Disgusted: baselineEmoResponses["Disgusted"],
+                                        B_Excited: baselineEmoResponses["Excited"],
+                                        B_Happy: baselineEmoResponses["Happy"],
+                                        B_Hungry: baselineEmoResponses["Hungry"],
+                                        B_Inactive: baselineEmoResponses["Inactive"],
+                                        B_ Loving: baselineEmoResponses["Loving"],
+                                        B_Negative: baselineEmoResponses["Negative"],
+                                        B_Peaceful: baselineEmoResponses["Peaceful"],
+                                        B_Pleasant: baselineEmoResponses["Pleasant"],
+                                        B_Positive: baselineEmoResponses["Positive"],
+                                        B_Sad: baselineEmoResponses["Sad"],
+                                        B_Still: baselineEmoResponses["Still (quiet)"],
+                                        B_Unpleasant: baselineEmoResponses["Unpleasant"]
                                 }
                                 );
                               });
@@ -1379,7 +1379,7 @@ function shuffleArray(array) {
 //                                              GENERATE DATA
 
 function generateAndUploadCSV(participantChoices) {
-    const header = ["vID", "reactionTime",  "valence", "arousal", "videoType", "EmoRated", "EmoScore", "WatchAgain", "SID", "uniqueKey", "age", "racialIdentity", "genderIdentity", "fatherEducation", "motherEducation", "familyIncome", "yearInSchool", "Active", "Afraid", "Amused", "Angry", "Aroused", "Calm", "Disgusted", "Excited", "Happy", "Hungry", "Inactive", "Loving", "Negative", "Peaceful", "Pleasant", "Positive", "Sad", "Still (quiet)", "Unpleasant"]; //initialValence and initialArousal if new flow
+    const header = ["vID", "reactionTime",  "valence", "arousal", "videoType", "EmoRated", "EmoScore", "WatchAgain", "SID", "uniqueKey", "age", "racialIdentity", "genderIdentity", "fatherEducation", "motherEducation", "familyIncome", "yearInSchool", "B_Active", "B_Afraid", "B_Amused", "B_Angry", "B_Aroused", "B_Calm", "B_Disgusted", "B_Excited", "B_Happy", "B_Hungry", "B_Inactive", "B_Loving", "B_Negative", "B_Peaceful", "B_Pleasant", "B_Positive", "B_Sad", "B_Still (quiet)", "B_Unpleasant"]; //initialValence and initialArousal if new flow
     const csvRows = [header];
   
     for (const row of participantChoices) {
@@ -1401,25 +1401,25 @@ function generateAndUploadCSV(participantChoices) {
         row.motherEducation || "",
         row.familyIncome || "",
         row.yearInSchool || "",
-        row.Active || "",
-        row.Afraid || "",
-        row.Amused || "",
-        row.Angry || "",
-        row.Aroused || "",
-        row.Calm || "",
-        row.Disgusted || "",
-        row.Excited || "",
-        row.Happy || "",
-        row.Hungry || "",
-        row.Inactive || "",
-        row.Loving || "",
-        row.Negative || "",
-        row.Peaceful || "",
-        row.Pleasant || "",
-        row.Positive || "",
-        row.Sad || "",
-        row["Still (quiet)"] || "",
-        row.Unpleasant || ""
+        row.B_Active || "",
+        row.B_Afraid || "",
+        row.B_Amused || "",
+        row.B_Angry || "",
+        row.B_Aroused || "",
+        row.B_Calm || "",
+        row.B_Disgusted || "",
+        row.B_Excited || "",
+        row.B_Happy || "",
+        row.B_Hungry || "",
+        row.B_Inactive || "",
+        row.B_Loving || "",
+        row.B_Negative || "",
+        row.B_Peaceful || "",
+        row.B_Pleasant || "",
+        row.B_Positive || "",
+        row.B_Sad || "",
+        row["B_Still (quiet)"] || "",
+        row.B_Unpleasant || ""
     ];
 
       csvRows.push(rowData);
