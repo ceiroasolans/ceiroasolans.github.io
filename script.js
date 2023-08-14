@@ -260,7 +260,7 @@ function createLikertContainer(min, max, minLabel, maxLabel, midLabel, emotion) 
 
     let container = document.createElement('div');
     container.className = 'likert-container';
-    container.style.width = '80%';
+    container.style.width = '60%';
 
     for (let i = min; i <= max; i++) {
         let box = document.createElement('div');
@@ -1288,9 +1288,8 @@ function generateAndUploadCSV(participantChoices) {
   
 
 
-// START                                              
-  instructions();       
-//demographics();
+// START                                               
+demographics();
 
 
 
