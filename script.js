@@ -1122,7 +1122,7 @@ function experimentalSet() {
                                         B_Happy: baselineEmoResponses["Happy"],
                                         B_Hungry: baselineEmoResponses["Hungry"],
                                         B_Inactive: baselineEmoResponses["Inactive"],
-                                        B_ Loving: baselineEmoResponses["Loving"],
+                                        B_Loving: baselineEmoResponses["Loving"],
                                         B_Negative: baselineEmoResponses["Negative"],
                                         B_Peaceful: baselineEmoResponses["Peaceful"],
                                         B_Pleasant: baselineEmoResponses["Pleasant"],
@@ -1418,8 +1418,8 @@ function generateAndUploadCSV(participantChoices) {
         row.B_Pleasant || "",
         row.B_Positive || "",
         row.B_Sad || "",
-        row["B_Still (quiet)"] || "",
-        row.B_Unpleasant || ""
+        row["Still (quiet)"] || "",
+        row.Unpleasant || ""
     ];
 
       csvRows.push(rowData);
