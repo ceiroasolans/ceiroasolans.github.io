@@ -906,7 +906,9 @@ function demographics() {
 }
 
 //Baseline Emo
-function baselineEmo(onSubmit) {
+let baselineEmoResponses = {};
+
+function baselineEmo() {
     feedbackContainer.innerHTML = '';
 
     // Top-anchor
@@ -969,7 +971,7 @@ function baselineEmo(onSubmit) {
     submitButton.style.marginTop = "20px"; // Padding added here
     submitButton.onclick = () => {
         if (emotions.every(emotion => emotion in emotionResponses)) {
-            onSubmit(emotionResponses);
+            baselineEmoResponses = emotionResponses; 
             document.body.classList.remove('instructions-body-align'); // Remove the class when the submit button is clicked
             instructions();
         } else {
