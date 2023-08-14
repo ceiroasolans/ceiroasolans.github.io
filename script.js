@@ -908,13 +908,13 @@ function demographics() {
 //Baseline Emo
 function baselineEmo(onSubmit) {
     feedbackContainer.innerHTML = '';
-    
+
+    // Top-anchor
     document.body.classList.add('instructions-body-align');
+    window.scrollTo(0, 0);
 
     const emotions = ["Active", "Afraid", "Amused", "Angry", "Aroused", "Calm", "Disgusted", "Excited", "Happy", "Hungry", "Inactive", "Loving", "Negative", "Peaceful", "Pleasant", "Positive", "Sad", "Still (quiet)", "Unpleasant"];
-
     const scaleLabels = ["Not at all", "", "", "Somewhat", "", "", "Very"];
-    
     const emotionResponses = {};
 
     // Add header
@@ -933,6 +933,7 @@ function baselineEmo(onSubmit) {
 
         const likertContainer = document.createElement("div");
         likertContainer.classList.add("likert-container");
+        likertContainer.style.paddingBottom = "20px";  // Padding added here
 
         for (let i = 0; i <= 6; i++) {
             const likertBox = document.createElement("div");
@@ -965,13 +966,12 @@ function baselineEmo(onSubmit) {
 
     const submitButton = document.createElement("button");
     submitButton.innerText = "Submit";
+    submitButton.style.marginTop = "20px"; // Padding added here
     submitButton.onclick = () => {
         if (emotions.every(emotion => emotion in emotionResponses)) {
             onSubmit(emotionResponses);
             document.body.classList.remove('instructions-body-align'); // Remove the class when the submit button is clicked
             instructions();
-            
-  
         } else {
             alert("Please answer all the questions.");
         }
@@ -980,6 +980,7 @@ function baselineEmo(onSubmit) {
     feedbackContainer.appendChild(submitButton);
     feedbackContainer.style.display = "block";
 }
+
 
 
 
