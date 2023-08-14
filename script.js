@@ -1002,7 +1002,7 @@ function baselineEmo() {
     header.style.fontWeight = 'bold';
     header.style.textAlign = 'center';
     header.style.padding = '20px 0';
-    header.textContent = "Please rate the extent to which you feel the following emotions:";
+    header.textContent = "Please rate the extent to which you feel:";
     feedbackContainer.appendChild(header);
 
     emotions.forEach(emotion => {
@@ -1033,7 +1033,7 @@ function baselineEmo() {
             const number = document.createElement("div");
             number.textContent = i.toString();
             number.classList.add("likert-number");
-            number.style.lineHeight = "35px";  // Adjust to match the height
+            number.style.lineHeight = "20px";  // Adjust to match the height
 
             likertBox.appendChild(number);
 
