@@ -490,8 +490,9 @@ function createLikertContainer(min, max, minLabel, maxLabel, midLabel, emotion) 
 // }
 
 function createRatingForm(videoId, onSubmit) {
-    // An object to store the rating types for each video type
+    
     document.body.classList.add('instructions-body-align');
+    // An object to store the rating types for each video type
     const videoTypeRatings = {
         "Excitement": ["excited", "interested", "amused", "happy"],
         "Amusement": ["happy", "amused", "excited", "interested"],
@@ -908,9 +909,7 @@ function demographics() {
 function baselineEmo(onSubmit) {
     feedbackContainer.innerHTML = '';
     
-    feedbackContainer.style.paddingTop = '40rem';
-    // Ensure page is scrolled to the top
-    window.scrollTo(0, 0);
+    document.body.classList.add('instructions-body-align');
 
     const emotions = ["Active", "Afraid", "Amused", "Angry", "Aroused", "Calm", "Disgusted", "Excited", "Happy", "Hungry", "Inactive", "Loving", "Negative", "Peaceful", "Pleasant", "Positive", "Sad", "Still (quiet)", "Unpleasant"];
 
@@ -969,7 +968,10 @@ function baselineEmo(onSubmit) {
     submitButton.onclick = () => {
         if (emotions.every(emotion => emotion in emotionResponses)) {
             onSubmit(emotionResponses);
+            document.body.classList.remove('instructions-body-align'); // Remove the class when the submit button is clicked
             instructions();
+            
+  
         } else {
             alert("Please answer all the questions.");
         }
