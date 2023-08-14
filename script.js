@@ -908,10 +908,88 @@ function demographics() {
 //Baseline Emo
 let baselineEmoResponses = {};
 
-function baselineEmo() {
-     // Top-anchor
-    document.body.classList.add('instructions-body-align');
+// function baselineEmo() {
+//      // Top-anchor
+//     document.body.classList.add('instructions-body-align');
 
+
+//     feedbackContainer.innerHTML = '';
+
+//     const emotions = ["Active", "Afraid", "Amused", "Angry", "Aroused", "Calm", "Disgusted", "Excited", "Happy", "Hungry", "Inactive", "Loving", "Negative", "Peaceful", "Pleasant", "Positive", "Sad", "Still (quiet)", "Unpleasant"];
+//     const scaleLabels = ["Not at all", "", "", "Somewhat", "", "", "Very"];
+//     const emotionResponses = {};
+
+//     // Add header
+//     const header = document.createElement("p");
+//     header.style.fontWeight = 'bold';
+//     header.style.textAlign = 'center';
+//     header.style.padding = '20px 0';
+//     header.textContent = "Please rate the extent to which you feel the following emotions:";
+//     feedbackContainer.appendChild(header);
+
+//     emotions.forEach(emotion => {
+//         const question = document.createElement("p");
+//         question.style.fontWeight = 'bold';
+//         question.style.textAlign = 'center';
+//         question.textContent = emotion;
+
+//         const likertContainer = document.createElement("div");
+//         likertContainer.classList.add("likert-container");
+//         likertContainer.style.paddingBottom = "20px";  // Padding added here
+
+//         for (let i = 0; i <= 6; i++) {
+//             const likertBox = document.createElement("div");
+//             likertBox.classList.add("likert-box");
+
+//             const number = document.createElement("div");
+//             number.textContent = i.toString();
+//             number.classList.add("likert-number");
+//             likertBox.appendChild(number);
+
+//             const label = document.createElement("div");
+//             label.classList.add("likert-label");
+//             label.textContent = scaleLabels[i];
+//             likertBox.appendChild(label);
+
+//             (function(currentIndex, currentEmotion) {
+//                 likertBox.onclick = function() {
+//                     likertContainer.querySelectorAll(".likert-box").forEach(box => box.style.backgroundColor = "");
+//                     emotionResponses[currentEmotion] = currentIndex;
+//                     likertBox.style.backgroundColor = "#d8d8d8";
+//                 };
+//             })(i, emotion);
+
+//             likertContainer.appendChild(likertBox);
+//         }
+
+//         feedbackContainer.appendChild(question);
+//         feedbackContainer.appendChild(likertContainer);
+//     });
+
+//     const submitButton = document.createElement("button");
+//     submitButton.innerText = "Submit";
+//     submitButton.style.marginTop = "20px"; // Padding added here
+//     submitButton.onclick = () => {
+//         if (emotions.every(emotion => emotion in emotionResponses)) {
+//             baselineEmoResponses = Object.keys(emotionResponses).reduce((acc, key) => {
+//                 acc[key] = emotionResponses[key].toString();
+//                 return acc;
+//             }, {});
+//             feedbackContainer.style.display = "none";
+//             document.body.classList.remove('instructions-body-align'); // Remove the class when the submit button is clicked
+//             instructions();
+//         } else {
+//             alert("Please answer all the questions.");
+//         }
+//     };
+
+//     feedbackContainer.appendChild(submitButton);
+//     feedbackContainer.style.display = "block";
+// }
+
+function baselineEmo() {
+    // Top-anchor
+    document.body.classList.add('instructions-body-align');
 
     feedbackContainer.innerHTML = '';
 
@@ -928,14 +1006,23 @@ function baselineEmo() {
     feedbackContainer.appendChild(header);
 
     emotions.forEach(emotion => {
+        const emotionContainer = document.createElement("div");
+        emotionContainer.style.display = "flex";
+        emotionContainer.style.justifyContent = "space-between";
+        emotionContainer.style.alignItems = "center";
+        emotionContainer.style.paddingBottom = "20px";
+
         const question = document.createElement("p");
         question.style.fontWeight = 'bold';
-        question.style.textAlign = 'center';
+        question.style.flex = "1";
+        question.style.marginRight = "20px"; // Padding to the right of the emotion text
         question.textContent = emotion;
+
+        emotionContainer.appendChild(question);
 
         const likertContainer = document.createElement("div");
         likertContainer.classList.add("likert-container");
-        likertContainer.style.paddingBottom = "20px";  // Padding added here
+        likertContainer.style.flex = "2"; 
 
         for (let i = 0; i <= 6; i++) {
             const likertBox = document.createElement("div");
@@ -962,13 +1049,13 @@ function baselineEmo() {
             likertContainer.appendChild(likertBox);
         }
 
-        feedbackContainer.appendChild(question);
-        feedbackContainer.appendChild(likertContainer);
+        emotionContainer.appendChild(likertContainer);
+        feedbackContainer.appendChild(emotionContainer);
     });
 
     const submitButton = document.createElement("button");
     submitButton.innerText = "Submit";
-    submitButton.style.marginTop = "20px"; // Padding added here
+    submitButton.style.marginTop = "20px"; 
     submitButton.onclick = () => {
         if (emotions.every(emotion => emotion in emotionResponses)) {
             baselineEmoResponses = Object.keys(emotionResponses).reduce((acc, key) => {
@@ -976,7 +1063,7 @@ function baselineEmo() {
                 return acc;
             }, {});
             feedbackContainer.style.display = "none";
-            document.body.classList.remove('instructions-body-align'); // Remove the class when the submit button is clicked
+            document.body.classList.remove('instructions-body-align'); 
             instructions();
         } else {
             alert("Please answer all the questions.");
@@ -986,6 +1073,7 @@ function baselineEmo() {
     feedbackContainer.appendChild(submitButton);
     feedbackContainer.style.display = "block";
 }
+
 
 
 //Instructions
