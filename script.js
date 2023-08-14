@@ -248,8 +248,14 @@ function createLikertContainer(min, max, minLabel, maxLabel, midLabel, emotion) 
     emotionLabel.textContent = emotion;
     emotionLabel.style.fontWeight = 'bold';
     emotionLabel.className = 'emotion-label';
-    emotionLabel.style.alignSelf = 'center';  // CHANGED: align emotion label to center vertically
+    emotionLabel.style.alignSelf = 'center'; 
     emotionLabel.style.marginRight = '20px'; 
+
+    // Set a fixed width for the emotion label
+    emotionLabel.style.width = '150px'; // CHANGED: set a fixed width
+    emotionLabel.style.overflow = 'hidden'; // Ensure long text does not overflow
+    emotionLabel.style.textOverflow = 'ellipsis'; // Truncate with ellipsis if overflow
+
     mainContainer.appendChild(emotionLabel);
 
     let container = document.createElement('div');
