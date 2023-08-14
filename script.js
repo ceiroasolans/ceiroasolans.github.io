@@ -909,11 +909,11 @@ function demographics() {
 let baselineEmoResponses = {};
 
 function baselineEmo() {
-    feedbackContainer.innerHTML = '';
-
-    // Top-anchor
+     // Top-anchor
     document.body.classList.add('instructions-body-align');
-    window.scrollTo(0, 0);
+
+
+    feedbackContainer.innerHTML = '';
 
     const emotions = ["Active", "Afraid", "Amused", "Angry", "Aroused", "Calm", "Disgusted", "Excited", "Happy", "Hungry", "Inactive", "Loving", "Negative", "Peaceful", "Pleasant", "Positive", "Sad", "Still (quiet)", "Unpleasant"];
     const scaleLabels = ["Not at all", "", "", "Somewhat", "", "", "Very"];
@@ -971,7 +971,10 @@ function baselineEmo() {
     submitButton.style.marginTop = "20px"; // Padding added here
     submitButton.onclick = () => {
         if (emotions.every(emotion => emotion in emotionResponses)) {
-            baselineEmoResponses = emotionResponses; 
+            baselineEmoResponses = Object.keys(emotionResponses).reduce((acc, key) => {
+                acc[key] = emotionResponses[key].toString();
+                return acc;
+            }, {});
             feedbackContainer.style.display = "none";
             document.body.classList.remove('instructions-body-align'); // Remove the class when the submit button is clicked
             instructions();
