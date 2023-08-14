@@ -249,7 +249,7 @@ function createLikertContainer(min, max, minLabel, maxLabel, midLabel, emotion) 
     emotionLabel.style.fontWeight = 'bold';
     emotionLabel.className = 'emotion-label';
     emotionLabel.style.alignSelf = 'center'; 
-    emotionLabel.style.marginRight = '20px'; 
+    emotionLabel.style.marginRight = '5px'; 
 
     // Set a fixed width for the emotion label
     emotionLabel.style.width = '150px'; // CHANGED: set a fixed width
