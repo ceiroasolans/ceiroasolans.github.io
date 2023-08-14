@@ -912,6 +912,7 @@ function baselineEmo(onSubmit) {
     // Top-anchor
     document.body.classList.add('instructions-body-align');
     window.scrollTo(0, 0);
+    wrapper.style.marginTop = '20rem';
 
     const emotions = ["Active", "Afraid", "Amused", "Angry", "Aroused", "Calm", "Disgusted", "Excited", "Happy", "Hungry", "Inactive", "Loving", "Negative", "Peaceful", "Pleasant", "Positive", "Sad", "Still (quiet)", "Unpleasant"];
     const scaleLabels = ["Not at all", "", "", "Somewhat", "", "", "Very"];
@@ -966,11 +967,15 @@ function baselineEmo(onSubmit) {
 
     const submitButton = document.createElement("button");
     submitButton.innerText = "Submit";
-    submitButton.style.marginTop = "20px"; // Padding added here
+    submitButton.style.marginTop = "20px"; 
     submitButton.onclick = () => {
         if (emotions.every(emotion => emotion in emotionResponses)) {
-            onSubmit(emotionResponses);
-            document.body.classList.remove('instructions-body-align'); // Remove the class when the submit button is clicked
+            if (typeof onSubmit === "function") {  // Check if onSubmit is a function
+                onSubmit(emotionResponses);
+            } else {
+                console.error("onSubmit is not a function.");
+            }
+            document.body.classList.remove('instructions-body-align');
             instructions();
         } else {
             alert("Please answer all the questions.");
