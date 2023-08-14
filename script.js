@@ -967,6 +967,7 @@ function baselineEmo() {
 
     let nextButton = document.createElement('button');
     nextButton.textContent = "Next";
+    nextButton.id = "nextLikertButton";  // Added an ID for easier reference
     nextButton.style.display = "none";  // Initially hidden
     nextButton.onclick = function() {
         document.getElementById('mainContainer').innerHTML = ''; // Clear the content
@@ -974,9 +975,11 @@ function baselineEmo() {
         instructions();  // Redirect to instructions
     };
     container.appendChild(nextButton);
-    
+
     document.getElementById('mainContainer').appendChild(container);
-    window.scrollTo(0,0); // Scroll to top when survey loads
+    
+    // Introducing a slight delay before scrolling to the top
+    setTimeout(() => window.scrollTo(0, 0), 10);
 }
 
 function checkAllAnsweredAndShowNextButton() {

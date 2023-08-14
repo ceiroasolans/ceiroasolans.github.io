@@ -154,11 +154,12 @@ button:disabled {
 /*Other likert */
 .emotion-label {
     font-weight: bold; /* Bold the emotion words */
-    /* ... other properties ... */
+    
 }
 
 .selected-answer {
     background-color: #999; /* Darker shade for selected answer */
+    transition: background-color 0.01s;
 }
 
 
