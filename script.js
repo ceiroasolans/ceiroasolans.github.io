@@ -350,7 +350,6 @@ function createFeedbackForm(videoId, onSubmit) {
     feedbackContainer.style.display = "block";
 }
 
-
 // Relevant emotions 
 function createLikertContainer(min, max, minLabel, maxLabel, midLabel, emotion) {
     let mainContainer = document.createElement('div');
@@ -577,7 +576,6 @@ function createRatingForm(videoId, onSubmit) {
         document.body.classList.remove('instructions-body-align'); // Remove the class when the submit button is clicked
     });
 }
-
 
 // Watch Again
 function createWatchAgainForm(onSubmit) {
@@ -871,7 +869,7 @@ function demographics() {
         yearInSchool = document.querySelector('input[name="yearInSchool"]:checked').value;
     
         document.getElementById('demographicsContainer').style.display = 'none';  // Hide the demographics container
-        instructions();  // Then display the instructions
+        baselineEmo();  // Then display the baseline survey
     };
     
 
@@ -906,6 +904,68 @@ function demographics() {
     document.getElementById('mainContainer').appendChild(wrapper);
 }
 
+//Baseline Emo
+let emotionRatings = {};
+
+function baselineEmo() {
+    const emotions = ["Active", "Afraid", "Amused", "Angry", "Aroused", "Calm", "Disgusted", "Excited", "Happy", "Hungry", "Inactive", "Loving", "Negative", "Peaceful", "Pleasant", "Positive", "Sad", "Still (quiet)", "Unpleasant"];
+
+    // Main container for the likert scale questions
+    let container = document.createElement('div');
+    container.className = 'main-container';
+
+    emotions.forEach(emotion => {
+        // Emotion label
+        let emotionLabel = document.createElement('div');
+        emotionLabel.textContent = emotion;
+        emotionLabel.className = 'emotion-label';
+        container.appendChild(emotionLabel);
+
+        // Likert scale for the emotion
+        let likertContainer = document.createElement('div');
+        likertContainer.className = 'likert-container';
+
+        for (let i = 0; i <= 6; i++) {
+            let likertBox = document.createElement('div');
+            likertBox.className = 'likert-box';
+            
+            let number = document.createElement('div');
+            number.textContent = i;
+            number.className = 'likert-number';
+            
+            let label;
+            if (i === 0) label = "Not at all";
+            else if (i === 3) label = "Somewhat";
+            else if (i === 6) label = "Very";
+            else label = "";
+
+            let labelText = document.createElement('div');
+            labelText.textContent = label;
+            labelText.className = 'likert-label';
+            
+            likertBox.appendChild(number);
+            likertBox.appendChild(labelText);
+
+            // Add click event to store the rating and check if all are answered
+            likertBox.addEventListener('click', function() {
+                emotionRatings[emotion] = i;
+                checkAllAnsweredAndRedirect();
+            });
+
+            likertContainer.appendChild(likertBox);
+        }
+
+        container.appendChild(likertContainer);
+    });
+
+    document.getElementById('mainContainer').appendChild(container);
+}
+
+function checkAllAnsweredAndRedirect() {
+    if (Object.keys(emotionRatings).length === 19) {
+        instructions();  // Redirect to instructions if all emotions are rated
+    }
+}
 
 
 
