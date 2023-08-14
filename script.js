@@ -1421,8 +1421,8 @@ function generateAndUploadCSV(participantChoices) {
         row.B_Pleasant || "",
         row.B_Positive || "",
         row.B_Sad || "",
-        row["Still (quiet)"] || "",
-        row.Unpleasant || ""
+        row["B_Still (quiet)"] || "",
+        row.B_Unpleasant || ""
     ];
 
       csvRows.push(rowData);
