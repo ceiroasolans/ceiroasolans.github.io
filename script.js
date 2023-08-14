@@ -972,7 +972,7 @@ function baselineEmo() {
     submitButton.onclick = () => {
         if (emotions.every(emotion => emotion in emotionResponses)) {
             baselineEmoResponses = emotionResponses; 
-            feedbackContainer.style.display = "block";
+            feedbackContainer.style.display = "none";
             document.body.classList.remove('instructions-body-align'); // Remove the class when the submit button is clicked
             instructions();
         } else {
@@ -983,11 +983,6 @@ function baselineEmo() {
     feedbackContainer.appendChild(submitButton);
     feedbackContainer.style.display = "block";
 }
-
-
-
-
-
 
 
 //Instructions
@@ -1115,8 +1110,28 @@ function experimentalSet() {
                                         fatherEducation: fatherEducation,
                                         motherEducation: motherEducation,
                                         familyIncome: familyIncome,
-                                        yearInSchool: yearInSchool
-                                });
+                                        yearInSchool: yearInSchool,
+                                        Active: baselineEmoResponses["Active"],
+                                        Afraid: baselineEmoResponses["Afraid"],
+                                        Amused: baselineEmoResponses["Amused"],
+                                        Angry: baselineEmoResponses["Angry"],
+                                        Aroused: baselineEmoResponses["Aroused"],
+                                        Calm: baselineEmoResponses["Calm"],
+                                        Disgusted: baselineEmoResponses["Disgusted"],
+                                        Excited: baselineEmoResponses["Excited"],
+                                        Happy: baselineEmoResponses["Happy"],
+                                        Hungry: baselineEmoResponses["Hungry"],
+                                        Inactive: baselineEmoResponses["Inactive"],
+                                        Loving: baselineEmoResponses["Loving"],
+                                        Negative: baselineEmoResponses["Negative"],
+                                        Peaceful: baselineEmoResponses["Peaceful"],
+                                        Pleasant: baselineEmoResponses["Pleasant"],
+                                        Positive: baselineEmoResponses["Positive"],
+                                        Sad: baselineEmoResponses["Sad"],
+                                        Still: baselineEmoResponses["Still (quiet)"],
+                                        Unpleasant: baselineEmoResponses["Unpleasant"]
+                                }
+                                );
                               });
                             });
                         });
@@ -1364,7 +1379,7 @@ function shuffleArray(array) {
 //                                              GENERATE DATA
 
 function generateAndUploadCSV(participantChoices) {
-    const header = ["vID", "reactionTime",  "valence", "arousal", "videoType", "EmoRated", "EmoScore", "WatchAgain", "SID", "uniqueKey", "age", "racialIdentity", "genderIdentity", "fatherEducation", "motherEducation", "familyIncome", "yearInSchool"]; //initialValence and initialArousal if new flow
+    const header = ["vID", "reactionTime",  "valence", "arousal", "videoType", "EmoRated", "EmoScore", "WatchAgain", "SID", "uniqueKey", "age", "racialIdentity", "genderIdentity", "fatherEducation", "motherEducation", "familyIncome", "yearInSchool", "Active", "Afraid", "Amused", "Angry", "Aroused", "Calm", "Disgusted", "Excited", "Happy", "Hungry", "Inactive", "Loving", "Negative", "Peaceful", "Pleasant", "Positive", "Sad", "Still (quiet)", "Unpleasant"]; //initialValence and initialArousal if new flow
     const csvRows = [header];
   
     for (const row of participantChoices) {
@@ -1385,8 +1400,27 @@ function generateAndUploadCSV(participantChoices) {
         row.fatherEducation || "",
         row.motherEducation || "",
         row.familyIncome || "",
-        row.yearInSchool || ""
-      ];
+        row.yearInSchool || "",
+        row.Active || "",
+        row.Afraid || "",
+        row.Amused || "",
+        row.Angry || "",
+        row.Aroused || "",
+        row.Calm || "",
+        row.Disgusted || "",
+        row.Excited || "",
+        row.Happy || "",
+        row.Hungry || "",
+        row.Inactive || "",
+        row.Loving || "",
+        row.Negative || "",
+        row.Peaceful || "",
+        row.Pleasant || "",
+        row.Positive || "",
+        row.Sad || "",
+        row["Still (quiet)"] || "",
+        row.Unpleasant || ""
+    ];
 
       csvRows.push(rowData);
     }
