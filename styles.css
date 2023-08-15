@@ -207,14 +207,11 @@ thead th {
 
 
 
-.instructions-body-align {
+  body.instructions-body-align {
     align-items: flex-start;
   }
-
-body.instructions-body-align {
-    align-items: flex-start;
-}
   
+
   button {
     margin: 0 auto;
     display: block;
