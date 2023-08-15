@@ -729,11 +729,10 @@ function demographics() {
 //Baseline Emo
 let baselineEmoResponses = {};
 
-
-
 function baselineEmo() {
     // Top-anchor
     document.body.classList.add('instructions-body-align');
+    window.scrollTo(0, 0);
 
     feedbackContainer.innerHTML = '';
 
@@ -821,6 +820,97 @@ function baselineEmo() {
     feedbackContainer.appendChild(submitButton);
     feedbackContainer.style.display = "block";
 }
+
+// function baselineEmo() {
+//     // Top-anchor
+//     document.body.classList.add('instructions-body-align');
+
+//     feedbackContainer.innerHTML = '';
+
+//     const emotions = ["Active", "Afraid", "Amused", "Angry", "Aroused", "Calm", "Disgusted", "Excited", "Happy", "Hungry", "Inactive", "Loving", "Negative", "Peaceful", "Pleasant", "Positive", "Sad", "Still (quiet)", "Unpleasant"];
+//     const scaleLabels = ["Not at all", "", "", "Somewhat", "", "", "Very"];
+//     const emotionResponses = {};
+
+//     // Add header
+//     const header = document.createElement("p");
+//     header.style.fontWeight = 'bold';
+//     header.style.textAlign = 'center';
+//     header.style.padding = '20px 0';
+//     header.textContent = "Please rate the extent to which you feel:";
+//     feedbackContainer.appendChild(header);
+
+//     emotions.forEach(emotion => {
+//         const emotionContainer = document.createElement("div");
+//         emotionContainer.style.display = "flex";
+//         emotionContainer.style.justifyContent = "space-between";
+//         emotionContainer.style.alignItems = "center";
+//         emotionContainer.style.paddingBottom = "10px";  // Reduced padding
+
+//         const question = document.createElement("p");
+//         question.style.fontWeight = 'bold';
+//         question.style.flex = "1";
+//         question.style.marginRight = "10px"; // Reduced padding to the right of the emotion text
+//         question.textContent = emotion;
+
+//         emotionContainer.appendChild(question);
+
+//         const likertContainer = document.createElement("div");
+//         likertContainer.classList.add("likert-container");
+//         likertContainer.style.flex = "2"; 
+
+//         for (let i = 0; i <= 6; i++) {
+//             const likertBox = document.createElement("div");
+//             likertBox.classList.add("likert-box");
+//             likertBox.style.width = "60px";  // Increased width
+//             likertBox.style.height = "35px";  // Reduced height
+
+//             const number = document.createElement("div");
+//             number.textContent = i.toString();
+//             number.classList.add("likert-number");
+//             number.style.lineHeight = "20px";  // Adjust to match the height
+
+//             likertBox.appendChild(number);
+
+//             const label = document.createElement("div");
+//             label.classList.add("likert-label");
+//             label.textContent = scaleLabels[i];
+//             likertBox.appendChild(label);
+
+//             (function(currentIndex, currentEmotion) {
+//                 likertBox.onclick = function() {
+//                     likertContainer.querySelectorAll(".likert-box").forEach(box => box.style.backgroundColor = "");
+//                     emotionResponses[currentEmotion] = currentIndex;
+//                     likertBox.style.backgroundColor = "#d8d8d8";
+//                 };
+//             })(i, emotion);
+
+//             likertContainer.appendChild(likertBox);
+//         }
+
+//         emotionContainer.appendChild(likertContainer);
+//         feedbackContainer.appendChild(emotionContainer);
+//     });
+
+//     const submitButton = document.createElement("button");
+//     submitButton.innerText = "Submit";
+//     submitButton.style.marginTop = "20px"; 
+//     submitButton.onclick = () => {
+//         if (emotions.every(emotion => emotion in emotionResponses)) {
+//             baselineEmoResponses = Object.keys(emotionResponses).reduce((acc, key) => {
+//                 acc[key] = emotionResponses[key].toString();
+//                 return acc;
+//             }, {});
+//             feedbackContainer.style.display = "none";
+//             document.body.classList.remove('instructions-body-align'); 
+//             instructions();
+//         } else {
+//             alert("Please answer all the questions.");
+//         }
+//     };
+
+//     feedbackContainer.appendChild(submitButton);
+//     feedbackContainer.style.display = "block";
+// }
 
 
 
