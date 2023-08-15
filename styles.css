@@ -208,8 +208,12 @@ thead th {
 
 
 .instructions-body-align {
-    align-items: flex-start !important;
+    align-items: flex-start;
   }
+
+body.instructions-body-align {
+    align-items: flex-start;
+}
   
   button {
     margin: 0 auto;
