@@ -558,7 +558,9 @@ function isValidSID(sid) {
 let age, racialIdentity, genderIdentity, fatherEducation, motherEducation, familyIncome, yearInSchool;
 
 function demographics() {
-    document.body.style.alignItems = 'flex-start';
+    //Anchor to top 
+    document.body.classList.add('instructions-body-align');
+
     // Prompt the user to enter their SID number
     participantSID = prompt("Please enter your SID number:", "");
 
@@ -693,7 +695,8 @@ nextButton.onclick = function() {
 
     let demoContainer = document.getElementById('demographicsContainer');
     demoContainer.parentNode.removeChild(demoContainer);  // Remove the demographics container from the DOM
-    document.body.classList.remove('instructions-body-align'); 
+    document.body.classList.remove('instructions-body-align');
+
     
     baselineEmo();  // Then display the baseline survey
 };
@@ -736,9 +739,9 @@ let baselineEmoResponses = {};
 function baselineEmo() {
     // Top-anchor
     document.body.classList.add('instructions-body-align');
-    document.body.style.alignItems = 'flex-start';
-    window.scrollTo(0, 0);
-    document.body.style.marginTop = '0';
+    //document.body.style.alignItems = 'flex-start';
+    //window.scrollTo(0, 0);
+    //document.body.style.marginTop = '0';
 
     feedbackContainer.innerHTML = '';
 
@@ -817,7 +820,7 @@ function baselineEmo() {
             }, {});
             feedbackContainer.style.display = "none";
             document.body.classList.remove('instructions-body-align'); 
-            document.body.style.alignItems = '';
+            //document.body.style.alignItems = '';
             instructions();
         } else {
             alert("Please answer all the questions.");
