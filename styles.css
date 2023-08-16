@@ -224,6 +224,6 @@ thead th {
 
   .noUi-tooltip {
     top: 100%;
-    bottom: auto !important;
+    bottom: auto ; /*!important*/
     transform: translateY(6px);
 }
