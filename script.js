@@ -741,7 +741,6 @@ function baselineEmo() {
     // Top-anchor
     document.body.classList.add('instructions-body-align');
     //document.body.style.alignItems = 'flex-start';
-    document.body.style.marginTop = '10rem';
     window.scrollTo(0, 0);
 
     feedbackContainer.innerHTML = '';
