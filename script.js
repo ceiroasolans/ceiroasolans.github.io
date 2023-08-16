@@ -738,18 +738,11 @@ nextButton.onclick = function() {
 let baselineEmoResponses = {};
 
 function baselineEmo() {
-    let checkElement = document.getElementById('demographicsContainer');
-    if (!checkElement) {
-        console.log("The element has been removed.");
-    } else {
-        console.log("The element is still present in the DOM.");
-    }
-    
     // Top-anchor
     document.body.classList.add('instructions-body-align');
     //document.body.style.alignItems = 'flex-start';
     //window.scrollTo(0, 0);
-    //document.body.style.marginTop = '0';
+    document.body.style.marginTop = '10rem';
 
     feedbackContainer.innerHTML = '';
 
