@@ -558,6 +558,7 @@ function isValidSID(sid) {
 let age, racialIdentity, genderIdentity, fatherEducation, motherEducation, familyIncome, yearInSchool;
 
 function demographics() {
+    document.body.style.alignItems = 'flex-start';
     // Prompt the user to enter their SID number
     participantSID = prompt("Please enter your SID number:", "");
 
@@ -569,7 +570,7 @@ function demographics() {
     // Main wrapper
     let wrapper = document.createElement('div');
     wrapper.id = "demographicsContainer";
-    wrapper.style.marginTop = '20rem';
+    wrapper.style.marginTop = '0rem'; // before 20rem
     wrapper.style.paddingBottom = '5rem';
     wrapper.style.fontFamily = "'Arial', sans-serif";
 
@@ -680,21 +681,22 @@ function demographics() {
     let nextButton = document.createElement('button');
     nextButton.textContent = "Proceed";
     nextButton.style.display = "none";  
-    nextButton.onclick = function() {
-        // Extract data from the UI elements before hiding the demographics container
-        age = document.querySelector('.noUi-tooltip').textContent;  // Gets the value from the age slider's tooltip
-        racialIdentity = document.querySelector('input[name="racialIdentity"]:checked').value;
-        genderIdentity = document.querySelector('input[name="genderIdentity"]:checked').value;
-        fatherEducation = document.querySelector('input[name="fatherEducation"]:checked').value;
-        motherEducation = document.querySelector('input[name="motherEducation"]:checked').value;
-        familyIncome = document.querySelectorAll('.noUi-tooltip')[1].textContent;  // Gets the value from the income slider's tooltip
-        yearInSchool = document.querySelector('input[name="yearInSchool"]:checked').value;
+nextButton.onclick = function() {
+    // Extract data from the UI elements before hiding the demographics container
+    age = document.querySelector('.noUi-tooltip').textContent;  // Gets the value from the age slider's tooltip
+    racialIdentity = document.querySelector('input[name="racialIdentity"]:checked').value;
+    genderIdentity = document.querySelector('input[name="genderIdentity"]:checked').value;
+    fatherEducation = document.querySelector('input[name="fatherEducation"]:checked').value;
+    motherEducation = document.querySelector('input[name="motherEducation"]:checked').value;
+    familyIncome = document.querySelectorAll('.noUi-tooltip')[1].textContent;  // Gets the value from the income slider's tooltip
+    yearInSchool = document.querySelector('input[name="yearInSchool"]:checked').value;
+
+    let demoContainer = document.getElementById('demographicsContainer');
+    demoContainer.parentNode.removeChild(demoContainer);  // Remove the demographics container from the DOM
+    document.body.classList.remove('instructions-body-align'); 
     
-        let demoContainer = document.getElementById('demographicsContainer');
-        demoContainer.parentNode.removeChild(demoContainer);  // Remove the demographics container from the DOM
-        
-        baselineEmo();  // Then display the baseline survey
-    };
+    baselineEmo();  // Then display the baseline survey
+};
     
 
     wrapper.appendChild(nextButton);
@@ -814,7 +816,7 @@ function baselineEmo() {
                 return acc;
             }, {});
             feedbackContainer.style.display = "none";
-            //document.body.classList.remove('instructions-body-align'); 
+            document.body.classList.remove('instructions-body-align'); 
             document.body.style.alignItems = '';
             instructions();
         } else {
