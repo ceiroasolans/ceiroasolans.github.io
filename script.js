@@ -699,12 +699,7 @@ nextButton.onclick = function() {
     document.body.classList.remove('instructions-body-align');
 
     baselineEmo();  // Then display the baseline survey
-    let checkElement = document.getElementById('demographicsContainer');
-    if (!checkElement) {
-        console.log("The element has been removed.");
-    } else {
-        console.log("The element is still present in the DOM.");
-    }
+
 };
     
 
@@ -743,6 +738,13 @@ nextButton.onclick = function() {
 let baselineEmoResponses = {};
 
 function baselineEmo() {
+    let checkElement = document.getElementById('demographicsContainer');
+    if (!checkElement) {
+        console.log("The element has been removed.");
+    } else {
+        console.log("The element is still present in the DOM.");
+    }
+    
     // Top-anchor
     document.body.classList.add('instructions-body-align');
     //document.body.style.alignItems = 'flex-start';
