@@ -558,7 +558,7 @@ function isValidSID(sid) {
 let age, racialIdentity, genderIdentity, fatherEducation, motherEducation, familyIncome, yearInSchool;
 
 function demographics() {
-   // document.body.style.alignItems = 'flex-start';
+    document.body.style.alignItems = 'flex-start';
     // Prompt the user to enter their SID number
     participantSID = prompt("Please enter your SID number:", "");
 
