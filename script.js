@@ -1381,9 +1381,8 @@ function generateAndUploadCSV(participantChoices) {
 
 
 // START                                               
-demographics();
-
-
+//demographics();
+baselineEmo();
 
 
 //CHEAT CODE (to update):
