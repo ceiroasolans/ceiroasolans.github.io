@@ -762,7 +762,7 @@ function baselineEmo() {
         emotionContainer.style.display = "flex";
         emotionContainer.style.justifyContent = "space-between";
         emotionContainer.style.alignItems = "center";
-        emotionContainer.style.paddingBottom = "100px";  // Reduced padding
+        emotionContainer.style.paddingBottom = "10px";  // Reduced padding
 
         const question = document.createElement("p");
         question.style.fontWeight = 'bold';
