@@ -739,9 +739,9 @@ let baselineEmoResponses = {};
 function baselineEmo() {
     // Top-anchor
     document.body.classList.add('instructions-body-align');
-    //document.body.style.alignItems = 'flex-start';
-    window.scrollTo(0, 0);
-    document.body.style.marginTop = '0';
+    document.body.style.alignItems = 'flex-start';
+    //window.scrollTo(0, 0);
+    //document.body.style.marginTop = '0';
 
     feedbackContainer.innerHTML = '';
 
