@@ -690,7 +690,9 @@ function demographics() {
         familyIncome = document.querySelectorAll('.noUi-tooltip')[1].textContent;  // Gets the value from the income slider's tooltip
         yearInSchool = document.querySelector('input[name="yearInSchool"]:checked').value;
     
-        document.getElementById('demographicsContainer').style.display = 'none';  // Hide the demographics container
+        let demoContainer = document.getElementById('demographicsContainer');
+        demoContainer.parentNode.removeChild(demoContainer);  // Remove the demographics container from the DOM
+        
         baselineEmo();  // Then display the baseline survey
     };
     
