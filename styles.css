@@ -2,7 +2,7 @@ body {
     font-family: Arial, sans-serif;
     display: flex;
     justify-content: center;
-    align-items: flex-start; /* Align the items at the start = flex-start. or "center" for normal before*/
+    align-items: center; /* Align the items at the start = flex-start. or "center" for normal before*/
     height: 100vh;
     margin: 0;
     background-color: #f0f0f0;
