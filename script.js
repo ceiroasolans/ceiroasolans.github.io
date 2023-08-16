@@ -695,17 +695,16 @@ nextButton.onclick = function() {
 
     let demoContainer = document.getElementById('demographicsContainer');
     demoContainer.parentNode.removeChild(demoContainer);  // Remove the demographics container from the DOM
-    
+        
+    document.body.classList.remove('instructions-body-align');
+
+    baselineEmo();  // Then display the baseline survey
     let checkElement = document.getElementById('demographicsContainer');
     if (!checkElement) {
         console.log("The element has been removed.");
     } else {
         console.log("The element is still present in the DOM.");
     }
-    
-    document.body.classList.remove('instructions-body-align');
-
-    baselineEmo();  // Then display the baseline survey
 };
     
 
