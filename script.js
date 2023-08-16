@@ -679,7 +679,7 @@ function demographics() {
 
     // Create the button
     let nextButton = document.createElement('button');
-    nextButton.textContent = "Proceed";
+    nextButton.textContent = "Next";
     nextButton.style.display = "none";  
 nextButton.onclick = function() {
     // Extract data from the UI elements before hiding the demographics container
@@ -735,7 +735,7 @@ let baselineEmoResponses = {};
 
 function baselineEmo() {
     // Top-anchor
-    //document.body.classList.add('instructions-body-align');
+    document.body.classList.add('instructions-body-align');
     document.body.style.alignItems = 'flex-start';
     window.scrollTo(0, 0);
     document.body.style.marginTop = '0';
