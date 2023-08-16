@@ -732,6 +732,7 @@ let baselineEmoResponses = {};
 function baselineEmo() {
     // Top-anchor
     document.body.classList.add('instructions-body-align');
+    document.body.style.alignItems = 'flex-start';
     window.scrollTo(0, 0);
 
     feedbackContainer.innerHTML = '';
@@ -744,7 +745,7 @@ function baselineEmo() {
     const header = document.createElement("p");
     header.style.fontWeight = 'bold';
     header.style.textAlign = 'center';
-    header.style.padding = '20px 0';
+    header.style.padding = '60px 0';
     header.textContent = "Please rate the extent to which you feel:";
     feedbackContainer.appendChild(header);
 
@@ -811,6 +812,7 @@ function baselineEmo() {
             }, {});
             feedbackContainer.style.display = "none";
             document.body.classList.remove('instructions-body-align'); 
+            document.body.style.alignItems = '';
             instructions();
         } else {
             alert("Please answer all the questions.");
