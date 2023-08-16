@@ -695,7 +695,7 @@ nextButton.onclick = function() {
 
     let demoContainer = document.getElementById('demographicsContainer');
     demoContainer.parentNode.removeChild(demoContainer);  // Remove the demographics container from the DOM
-    document.body.classList.remove('instructions-body-align');
+    //document.body.classList.remove('instructions-body-align');
 
     
     baselineEmo();  // Then display the baseline survey
