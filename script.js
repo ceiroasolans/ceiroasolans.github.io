@@ -1242,7 +1242,7 @@ function instructions3() {
             <br><br>
             <button onclick="copyToClipboard()">Click to Copy</button>
             <br><br><br><br>
-            Please copy and paste this key to prove you have completed this exercise.
+            Please copy this key and send it to "ceiroasolans@berkeley.edu" to prove you have completed this exercise.
         </p>
     </div>`;
 
