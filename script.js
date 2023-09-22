@@ -1398,7 +1398,7 @@ function BFI2(participantChoices) {
     header.textContent = "Please rate the extent to which you feel:";
     feedbackContainer.appendChild(header);
 
-    emotions.forEach(emotion => {
+    BFI.forEach(emotion => {
         const emotionContainer = document.createElement("div");
         emotionContainer.style.display = "flex";
         emotionContainer.style.justifyContent = "space-between";
@@ -1454,7 +1454,7 @@ function BFI2(participantChoices) {
     submitButton.innerText = "Submit";
     submitButton.style.marginTop = "20px"; 
     submitButton.onclick = () => {
-        if (emotions.every(emotion => emotion in emotionResponses)) {
+        if (BFI.every(emotion => emotion in emotionResponses)) {
             baselineEmoResponses = Object.keys(emotionResponses).reduce((acc, key) => {
                 acc[key] = emotionResponses[key].toString();
                 return acc;
