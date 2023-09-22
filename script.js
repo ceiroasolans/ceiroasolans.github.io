@@ -1157,9 +1157,9 @@ function BFI2(participantChoices) {
     feedbackContainer.innerHTML = '';
         // Top-anchor
         document.body.classList.add('instructions-body-align');
-        document.body.style.alignItems = 'flex-start';
+        //document.body.style.alignItems = 'flex-start';
         window.scrollTo(0, 0);
-        feedbackContainer.style.marginTop = '250px'; 
+        feedbackContainer.style.marginTop = '25px'; 
 
         const BFI = {
             "bfi_1": "Is outgoing, sociable.",
@@ -1179,7 +1179,7 @@ function BFI2(participantChoices) {
             "bfi_15": "Is inventive, finds clever ways to do things.",
             "bfi_16": "Tends to be quiet.",
             "bfi_17": "Feels little sympathy for others.",
-            "AC1": "Can pay attention and select strongly agree",
+            "AC1": "Can pay attention and select agree strongly",
             "bfi_18": "Is systematic, likes to keep things in order.",
             "bfi_19": "Can be tense.",
             "bfi_20": "Is fascinated by art, music, or literature.",
