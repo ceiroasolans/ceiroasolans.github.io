@@ -1154,8 +1154,170 @@ function calculateMeanRatings(participantChoices) {
 
 // BFI
 let bfiResponses = {};
+let bfiData = {};
+// function BFI2(participantChoices) {
+//     feedbackContainer.innerHTML = '';
+//         // Top-anchor
+//         document.body.classList.add('instructions-body-align');
+//         //document.body.style.alignItems = 'flex-start';
+//         window.scrollTo(0, 0);
+//         feedbackContainer.style.marginTop = '25px'; 
+
+//         const BFI = {
+//             "bfi_1": "Is outgoing, sociable.",
+//             // "bfi_2": "Is compassionate, has a soft heart.",
+//             // "bfi_3": "Tends to be disorganized.",
+//             // "bfi_4": "Is relaxed, handles stress well.",
+//             // "bfi_5": "Has few artistic interests.",
+//             // "bfi_6": "Has an assertive personality.",
+//             // "bfi_7": "Is respectful, treats others with respect.",
+//             // "bfi_8": "Tends to be lazy.",
+//             // "bfi_9": "Stays optimistic after experiencing a setback.",
+//             // "bfi_10": "Is curious about many different things.",
+//             // "bfi_11": "Rarely feels excited or eager.",
+//             // "bfi_12": "Tends to find fault with others.",
+//             // "bfi_13": "Is dependable, steady.",
+//             // "bfi_14": "Is moody, has up and down mood swings.",
+//             // "bfi_15": "Is inventive, finds clever ways to do things.",
+//             // "bfi_16": "Tends to be quiet.",
+//             // "bfi_17": "Feels little sympathy for others.",
+//             // "AC1": "Can pay attention and select agree strongly",
+//             // "bfi_18": "Is systematic, likes to keep things in order.",
+//             // "bfi_19": "Can be tense.",
+//             // "bfi_20": "Is fascinated by art, music, or literature.",
+//             // "bfi_21": "Is dominant, acts as a leader.",
+//             // "bfi_22": "Starts arguments with others.",
+//             // "bfi_23": "Has difficulty getting started on tasks.",
+//             // "bfi_24": "Feels secure, comfortable with self.",
+//             // "bfi_25": "Avoids intellectual, philosophical discussions.",
+//             // "bfi_26": "Is less active than other people.",
+//             // "bfi_27": "Has a forgiving nature.",
+//             // "bfi_28": "Can be somewhat careless.",
+//             // "bfi_29": "Is emotionally stable, not easily upset.",
+//             // "bfi_30": "Has little creativity.",
+//             // "bfi_31": "Is sometimes shy, introverted.",
+//             // "bfi_32": "Is helpful and unselfish with others.",
+//             // "bfi_33": "Keeps things neat and tidy.",
+//             // "bfi_34": "Worries a lot.",
+//             // "bfi_35": "Values art and beauty.",
+//             // "bfi_36": "Finds it hard to influence people.",
+//             // "bfi_37": "Is sometimes rude to others.",
+//             // "bfi_38": "Is efficient, gets things done.",
+//             // "bfi_39": "Often feels sad.",
+//             // "bfi_40": "Is complex, a deep thinker.",
+//             // "bfi_41": "Is full of energy.",
+//             // "bfi_42": "Is suspicious of others intentions.",
+//             // "bfi_43": "Is reliable, can always be counted on.",
+//             // "bfi_44": "Keeps their emotions under control.",
+//             // "bfi_45": "Has difficulty imagining things.",
+//             // "bfi_46": "Is talkative.",
+//             // "bfi_47": "Can be cold and uncaring.",
+//             // "bfi_48": "Leaves a mess, does not clean up.", 
+//             // "bfi_49": "Rarely feels anxious or afraid.",
+//             // "bfi_50": "Thinks poetry and plays are boring.",
+//             // "bfi_51": "Prefers to have others take charge.",
+//             // "bfi_52": "Is polite, courteous to others.",
+//             // "bfi_53": "Is persistent, works until the task is finished.",
+//             // "bfi_54": "Tends to feel depressed, blue.",
+//             // "bfi_55": "Has little interest in abstract ideas.",
+//             // "bfi_56": "Shows a lot of enthusiasm.",
+//             // "bfi_57": "Assumes the best about people.",
+//             // "bfi_58": "Sometimes behaves irresponsibly.",
+//             // "bfi_59": "Is temperamental, gets emotional easily.",
+//             // "bfi_60": "Is original, comes up with new ideas."
+//         };
+//         const scaleLabels = ["Disagree strongly", "Disagree a little", "Neutral; no opinion", "Agree a little", "Agree strongly"];
+//     const bfiResponses = {};
+//     // Add header
+//     const header = document.createElement("p");
+//     header.style.fontWeight = 'bold';
+//     header.style.textAlign = 'center';
+//     header.style.padding = '20px 0';
+//     header.textContent = "I am someone who...";
+//     feedbackContainer.appendChild(header);
+
+//     Object.entries(BFI).forEach(([key, item]) => {
+//         const itemContainer = document.createElement("div");
+//         itemContainer.style.display = "flex";
+//         itemContainer.style.justifyContent = "space-between";
+//         itemContainer.style.alignItems = "center";
+//         itemContainer.style.paddingBottom = "10px";  // Reduced padding
+
+//         const question = document.createElement("p");
+//         question.style.fontWeight = 'normal';
+//         question.style.flex = "1";
+//         question.style.marginRight = "10px"; // Reduced padding to the right of the item text
+//         question.textContent = item;
+
+//         itemContainer.appendChild(question);
+
+//         const likertContainer = document.createElement("div");
+//         likertContainer.classList.add("likert-container");
+//         likertContainer.style.flex = "2"; 
+
+//         for (let i = 1; i <= 5; i++) {
+//             const likertBox = document.createElement("div");
+//             likertBox.classList.add("likert-box");
+//             likertBox.style.width = "60px";  // Increased width
+//             likertBox.style.height = "45px";  // Reduced height
+
+//             const number = document.createElement("div");
+//             number.textContent = i.toString();
+//             number.classList.add("likert-number");
+//             number.style.lineHeight = "20px";  // Adjust to match the height
+
+//             likertBox.appendChild(number);
+
+//             const label = document.createElement("div");
+//             label.classList.add("likert-label");
+//             label.textContent = scaleLabels[i - 1];
+//             likertBox.appendChild(label);
+
+//             (function(currentIndex, currentKey) {
+//                 likertBox.onclick = function() {
+//                     likertContainer.querySelectorAll(".likert-box").forEach(box => box.style.backgroundColor = "");
+//                     bfiResponses[currentKey] = currentIndex;
+//                     likertBox.style.backgroundColor = "#d8d8d8";
+//                 };
+//             })(i, item);
+
+//             likertContainer.appendChild(likertBox);
+//         }
+
+//         itemContainer.appendChild(likertContainer);
+//         feedbackContainer.appendChild(itemContainer);
+//     });
+
+//     const submitButton = document.createElement("button");
+//     submitButton.innerText = "Submit";
+//     submitButton.style.marginTop = "20px"; 
+//     submitButton.onclick = () => {
+//         if (Object.keys(BFI).every(key => key in bfiResponses)) {
+//             bfiData = Object.keys(bfiResponses).reduce((acc, key) => {
+//                 acc[key] = bfiResponses[key].toString();
+//                 return acc;
+//             }, {});
+//             feedbackContainer.style.display = "none";
+//             document.body.classList.remove('instructions-body-align'); 
+//             feedbackContainer.style.marginTop = '0px';  
+//             //document.body.style.alignItems = '';
+
+//             //Append data (BFI will be at the end of the experiment)
+//             participantChoices.push(bfiResponses); 
+//             generateAndUploadCSV(participantChoices);
+//             instructions3();
+//         } else {
+//             alert("Please answer all the questions.");
+//         }
+//     };
+
+//     feedbackContainer.appendChild(submitButton);
+//     feedbackContainer.style.display = "block";
+// }
+
 function BFI2(participantChoices) {
     feedbackContainer.innerHTML = '';
+
         // Top-anchor
         document.body.classList.add('instructions-body-align');
         //document.body.style.alignItems = 'flex-start';
@@ -1226,29 +1388,30 @@ function BFI2(participantChoices) {
             // "bfi_60": "Is original, comes up with new ideas."
         };
         const scaleLabels = ["Disagree strongly", "Disagree a little", "Neutral; no opinion", "Agree a little", "Agree strongly"];
-    const bfiResponses = {};
+    const emotionResponses = {};
+
     // Add header
     const header = document.createElement("p");
     header.style.fontWeight = 'bold';
     header.style.textAlign = 'center';
     header.style.padding = '20px 0';
-    header.textContent = "I am someone who...";
+    header.textContent = "Please rate the extent to which you feel:";
     feedbackContainer.appendChild(header);
 
-    Object.entries(BFI).forEach(([key, item]) => {
-        const itemContainer = document.createElement("div");
-        itemContainer.style.display = "flex";
-        itemContainer.style.justifyContent = "space-between";
-        itemContainer.style.alignItems = "center";
-        itemContainer.style.paddingBottom = "10px";  // Reduced padding
+    emotions.forEach(emotion => {
+        const emotionContainer = document.createElement("div");
+        emotionContainer.style.display = "flex";
+        emotionContainer.style.justifyContent = "space-between";
+        emotionContainer.style.alignItems = "center";
+        emotionContainer.style.paddingBottom = "10px";  // Reduced padding
 
         const question = document.createElement("p");
-        question.style.fontWeight = 'normal';
+        question.style.fontWeight = 'bold';
         question.style.flex = "1";
-        question.style.marginRight = "10px"; // Reduced padding to the right of the item text
-        question.textContent = item;
+        question.style.marginRight = "10px"; // Reduced padding to the right of the emotion text
+        question.textContent = emotion;
 
-        itemContainer.appendChild(question);
+        emotionContainer.appendChild(question);
 
         const likertContainer = document.createElement("div");
         likertContainer.classList.add("likert-container");
@@ -1272,37 +1435,36 @@ function BFI2(participantChoices) {
             label.textContent = scaleLabels[i - 1];
             likertBox.appendChild(label);
 
-            (function(currentIndex, currentKey) {
+            (function(currentIndex, currentEmotion) {
                 likertBox.onclick = function() {
                     likertContainer.querySelectorAll(".likert-box").forEach(box => box.style.backgroundColor = "");
-                    bfiResponses[currentKey] = currentIndex;
+                    emotionResponses[currentEmotion] = currentIndex;
                     likertBox.style.backgroundColor = "#d8d8d8";
                 };
-            })(i, item);
+            })(i, emotion);
 
             likertContainer.appendChild(likertBox);
         }
 
-        itemContainer.appendChild(likertContainer);
-        feedbackContainer.appendChild(itemContainer);
+        emotionContainer.appendChild(likertContainer);
+        feedbackContainer.appendChild(emotionContainer);
     });
 
     const submitButton = document.createElement("button");
     submitButton.innerText = "Submit";
     submitButton.style.marginTop = "20px"; 
     submitButton.onclick = () => {
-        if (Object.keys(BFI).every(key => key in bfiResponses)) {
-            bfiData = Object.keys(bfiResponses).reduce((acc, key) => {
-                acc[key] = bfiResponses[key].toString();
+        if (emotions.every(emotion => emotion in emotionResponses)) {
+            baselineEmoResponses = Object.keys(emotionResponses).reduce((acc, key) => {
+                acc[key] = emotionResponses[key].toString();
                 return acc;
             }, {});
             feedbackContainer.style.display = "none";
             document.body.classList.remove('instructions-body-align'); 
             feedbackContainer.style.marginTop = '0px';  
             //document.body.style.alignItems = '';
-
             //Append data (BFI will be at the end of the experiment)
-            participantChoices.push(bfiResponses); 
+            participantChoices.push(emotionResponses); 
             generateAndUploadCSV(participantChoices);
             instructions3();
         } else {
@@ -1313,6 +1475,8 @@ function BFI2(participantChoices) {
     feedbackContainer.appendChild(submitButton);
     feedbackContainer.style.display = "block";
 }
+
+
 
 
 // //Instructions 3 as class exercise 
