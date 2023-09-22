@@ -1278,7 +1278,7 @@ function BFI2(participantChoices) {
                     bfiResponses[currentKey] = currentIndex;
                     likertBox.style.backgroundColor = "#d8d8d8";
                 };
-            })(i, item);
+            })(i, key);
 
             likertContainer.appendChild(likertBox);
         }
