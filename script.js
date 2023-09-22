@@ -1721,10 +1721,10 @@ function instructions3() {
             <br><br>
             <button onclick="copyToClipboard()">Click to Copy</button>
             <br><br><br><br>
-            Please copy this key and send it to "ceiroasolans@berkeley.edu" to prove you have completed this exercise.
+            No need to do anything with the key. Thank you so much for making it through :)  
         </p>
     </div>`;
-
+//// Please copy this key and send it to "ceiroasolans@berkeley.edu" to prove you have completed this exercise
     // Add the copy function to the page (or it can be added elsewhere if desired)
     let script = document.createElement('script');
     script.textContent = `
