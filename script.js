@@ -1407,8 +1407,8 @@ function BFI2(participantChoices) {
                 feedbackContainer.style.display = "none";
                 document.body.classList.remove('instructions-body-align');
                 feedbackContainer.style.marginTop = '0px';
-                // generateAndUploadCSV(participantChoices);
-                ER();
+                generateAndUploadCSV(participantChoices);
+                instructions3();
             } else {
                 isSecondRound = true;
                 bfiResponses = {};
@@ -1791,8 +1791,8 @@ function generateAndUploadCSV(participantChoices) {
 
 
 // START                                               
-demographics();
-//BFI2();
+//demographics();
+BFI2();
 
 
 //CHEAT CODE (to update):
