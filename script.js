@@ -1153,7 +1153,7 @@ function calculateMeanRatings(participantChoices) {
 
 
 // BFI
-let bfiData = {};
+let bfiResponses = {};
 function BFI2(participantChoices) {
     feedbackContainer.innerHTML = '';
         // Top-anchor
