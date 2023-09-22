@@ -1299,9 +1299,9 @@ function BFI2(participantChoices) {
             feedbackContainer.style.display = "none";
             document.body.classList.remove('instructions-body-align'); 
             feedbackContainer.style.marginTop = '0px';  
-
+            participantChoices.push(bfiResponses); 
             // Integrate bfiResponses into participantChoices.
-            participantChoices = {...participantChoices, ...bfiResponses};
+           // participantChoices = {...participantChoices, ...bfiResponses};
 
             generateAndUploadCSV(participantChoices);
             instructions3();
