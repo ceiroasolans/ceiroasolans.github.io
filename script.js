@@ -1224,7 +1224,7 @@ function BFI2(participantChoices) {
             "bfi_59": "Is temperamental, gets emotional easily.",
             "bfi_60": "Is original, comes up with new ideas."
         };
-        const scaleLabels = ["", "Disagree strongly", "Disagree a little", "Neutral; no opinion", "Agree a little", "Agree strongly"];
+        const scaleLabels = ["Disagree strongly", "Disagree a little", "Neutral; no opinion", "Agree a little", "Agree strongly"];
     const bfiResponses = {};
     // Add header
     const header = document.createElement("p");
@@ -1557,8 +1557,8 @@ function generateAndUploadCSV(participantChoices) {
 
 
 // START                                               
-demographics();
-//BFI2();
+//demographics();
+BFI2();
 
 
 //CHEAT CODE (to update):
