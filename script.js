@@ -1290,7 +1290,7 @@ function BFI2(participantChoices) {
     submitButton.innerText = "Submit";
     submitButton.style.marginTop = "20px"; 
     submitButton.onclick = () => {
-        if (BFI.every(item => item in bfiResponses)) {
+        if (Object.keys(BFI).every(key => key in bfiResponses)) {
             baselineEmoResponses = Object.keys(bfiResponses).reduce((acc, key) => {
                 acc[key] = bfiResponses[key].toString();
                 return acc;
