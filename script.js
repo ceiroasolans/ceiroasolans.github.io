@@ -1153,6 +1153,7 @@ function calculateMeanRatings(participantChoices) {
 
 
 // BFI
+let bfiData = {};
 function BFI2(participantChoices) {
     feedbackContainer.innerHTML = '';
         // Top-anchor
@@ -1268,7 +1269,7 @@ function BFI2(participantChoices) {
 
             const label = document.createElement("div");
             label.classList.add("likert-label");
-            label.textContent = scaleLabels[i];
+            label.textContent = scaleLabels[i - 1];
             likertBox.appendChild(label);
 
             (function(currentIndex, currentitem) {
@@ -1291,7 +1292,7 @@ function BFI2(participantChoices) {
     submitButton.style.marginTop = "20px"; 
     submitButton.onclick = () => {
         if (Object.keys(BFI).every(key => key in bfiResponses)) {
-            baselineEmoResponses = Object.keys(bfiResponses).reduce((acc, key) => {
+            bfiData = Object.keys(bfiResponses).reduce((acc, key) => {
                 acc[key] = bfiResponses[key].toString();
                 return acc;
             }, {});
