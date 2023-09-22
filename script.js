@@ -1297,11 +1297,12 @@ function BFI2(participantChoices) {
                 return acc;
             }, {});
             feedbackContainer.style.display = "none";
-            document.body.classList.remove('instructions-body-align');
-            feedbackContainer.style.marginTop = '0px';
-    
-            // Integrate bfiResponses into participantChoices on a per-column basis.
-            Object.values(bfiResponses).forEach(response => participantChoices.push(response));
+            document.body.classList.remove('instructions-body-align'); 
+            feedbackContainer.style.marginTop = '0px';  
+
+            // Integrate bfiResponses into participantChoices.
+            participantChoices = {...participantChoices, ...bfiResponses};
+
             generateAndUploadCSV(participantChoices);
             instructions3();
         } else {
