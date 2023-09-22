@@ -1300,8 +1300,127 @@ function BFI2(participantChoices) {
             document.body.classList.remove('instructions-body-align'); 
             feedbackContainer.style.marginTop = '0px';  
             participantChoices.push(bfiResponses); 
-            // Integrate bfiResponses into participantChoices.
-           // participantChoices = {...participantChoices, ...bfiResponses};
+
+            //generateAndUploadCSV(participantChoices);
+            ER();
+        } else {
+            alert("Please answer all the questions.");
+        }
+    };
+
+    feedbackContainer.appendChild(submitButton);
+    feedbackContainer.style.display = "block";
+}
+
+
+
+
+
+// BFI
+let ERdata = {};
+function ER(participantChoices) {
+    feedbackContainer.innerHTML = '';
+        // Top-anchor
+        document.body.classList.add('instructions-body-align');
+        //document.body.style.alignItems = 'flex-start';
+        window.scrollTo(0, 0);
+        feedbackContainer.style.marginTop = '25px'; 
+
+        const ERQ = {
+            "SS_Gen1": "When I choose how to spend my time, I place a lot of importance on how the people involved will make me feel.",
+            // "SM1": "When I’m upset, I make a plan of action to deal with the problem that’s making me upset",
+            // "SS_Av1": "I’m careful to avoid people or situations that make me have negative feelings.",
+            // "SS_Ap1": "I regulate my emotions by choosing to spend time with people that I think will probably make me feel good.",
+            // "SM2": "I control my emotions by changing the particular situation I happen to be in. ",
+            // "SS_Gen2": "How a situation will make me feel is of little concern to me.",
+            // "SS_Ap2": "I control my emotions by approaching situations and activities that I expect will put me in a good mood.",
+            // "SS_AvR": "I do not manage my emotions by avoiding situations and people that I expect will make me feel bad",
+            // "SM3": "When I’m in a stressful situation I take steps to turn the situation around, so it becomes more positive. ",
+            // "SS_Gen_3": "I control my emotions by carefully choosing the situations I get myself into.",
+            // "SS_Av3": "I control my emotions by avoiding situations and activities that I expect will put me in a bad mood.",
+            // "AC1": "Can pay attention and select agree strongly",
+            // "SM4": "When I’m in an emotionally challenging situation, I take action to deal with the problem.",
+            // "SS_ApR": "I do not manage my emotions by seeking out situations and people that I expect will make me feel good. ",
+            // "SS_Gen4": "When I choose friends or activities, I don’t think much about how they will make me feel.",
+            // "SM5": "When I’m stressed, I engage with the situation to neutralize the stressor, so it becomes less negative.",
+            // "SS_Ap3": "I’m careful to seek out people or situations that make me have positive feelings.",
+            // "SS_Av3": "I regulate my emotions by avoiding spending time with people that I think will probably make me feel bad.",
+        };
+        const scaleLabels = ["Disagree strongly", "Disagree a little", "Neutral; no opinion", "Agree a little", "Agree strongly"];
+    const ERQresponses = {};
+    // Add header
+    const header = document.createElement("p");
+    header.style.fontWeight = 'bold';
+    header.style.textAlign = 'center';
+    header.style.padding = '20px 0';
+    header.textContent = "Please rate the extent to which you agree with the following statements:";
+    feedbackContainer.appendChild(header);
+
+    Object.entries(ERQ).forEach(([key, item]) => {
+        const itemContainer = document.createElement("div");
+        itemContainer.style.display = "flex";
+        itemContainer.style.justifyContent = "space-between";
+        itemContainer.style.alignItems = "center";
+        itemContainer.style.paddingBottom = "10px";  // Reduced padding
+
+        const question = document.createElement("p");
+        question.style.fontWeight = 'normal';
+        question.style.flex = "1";
+        question.style.marginRight = "10px"; // Reduced padding to the right of the item text
+        question.textContent = item;
+
+        itemContainer.appendChild(question);
+
+        const likertContainer = document.createElement("div");
+        likertContainer.classList.add("likert-container");
+        likertContainer.style.flex = "2"; 
+
+        for (let i = 1; i <= 5; i++) {
+            const likertBox = document.createElement("div");
+            likertBox.classList.add("likert-box");
+            likertBox.style.width = "60px";  // Increased width
+            likertBox.style.height = "45px";  // Reduced height
+
+            const number = document.createElement("div");
+            number.textContent = i.toString();
+            number.classList.add("likert-number");
+            number.style.lineHeight = "20px";  // Adjust to match the height
+
+            likertBox.appendChild(number);
+
+            const label = document.createElement("div");
+            label.classList.add("likert-label");
+            label.textContent = scaleLabels[i - 1];
+            likertBox.appendChild(label);
+
+            (function(currentIndex, currentKey) {
+                likertBox.onclick = function() {
+                    likertContainer.querySelectorAll(".likert-box").forEach(box => box.style.backgroundColor = "");
+                    bfiResponses[currentKey] = currentIndex;
+                    likertBox.style.backgroundColor = "#d8d8d8";
+                };
+            })(i, key);
+
+            likertContainer.appendChild(likertBox);
+        }
+
+        itemContainer.appendChild(likertContainer);
+        feedbackContainer.appendChild(itemContainer);
+    });
+
+    const submitButton = document.createElement("button");
+    submitButton.innerText = "Submit";
+    submitButton.style.marginTop = "20px"; 
+    submitButton.onclick = () => {
+        if (Object.keys(ER).every(key => key in ERQresponses)) {
+            bfiData = Object.keys(ERQresponses).reduce((acc, key) => {
+                acc[key] = ERQresponses[key].toString();
+                return acc;
+            }, {});
+            feedbackContainer.style.display = "none";
+            document.body.classList.remove('instructions-body-align'); 
+            feedbackContainer.style.marginTop = '0px';  
+            participantChoices.push(ERQresponses); 
 
             generateAndUploadCSV(participantChoices);
             instructions3();
@@ -1313,7 +1432,6 @@ function BFI2(participantChoices) {
     feedbackContainer.appendChild(submitButton);
     feedbackContainer.style.display = "block";
 }
-
 
 
 
