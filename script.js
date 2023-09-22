@@ -1318,7 +1318,6 @@ function BFI2(participantChoices) {
 
 
 
-
 // //Instructions 3 as class exercise 
 // function instructions3() {
 //     document.body.classList.add('instructions-body-align');
