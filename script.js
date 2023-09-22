@@ -1488,7 +1488,7 @@ function BFI2(participantChoices) {
             } else {
                 isSecondRound = true;
                 bfiResponses = {};
-                renderQuestions(secondRoundQuestions, "I perceive myself as someone who...");
+                renderQuestions(secondRoundQuestions, "Please rate the extent to which you agree with the following questions:");
             }
         } else {
             alert("Please answer all the questions.");
