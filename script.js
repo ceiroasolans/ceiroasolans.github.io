@@ -1556,8 +1556,8 @@ function generateAndUploadCSV(participantChoices) {
 
 
 // START                                               
-demographics();
-//baselineEmo();
+//demographics();
+BFI2();
 
 
 //CHEAT CODE (to update):
