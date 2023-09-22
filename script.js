@@ -1235,7 +1235,7 @@ function BFI2(participantChoices) {
     header.textContent = "I am someone who...";
     feedbackContainer.appendChild(header);
 
-    BFI.forEach(item => {
+    Object.entries(BFI).forEach(([key, item]) => {
         const itemContainer = document.createElement("div");
         itemContainer.style.display = "flex";
         itemContainer.style.justifyContent = "space-between";
