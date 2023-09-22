@@ -1154,7 +1154,7 @@ function calculateMeanRatings(participantChoices) {
 
 // BFI
 let bfiData = {};
-function BFI2(participantChoices) {
+function BFI2() {
     feedbackContainer.innerHTML = '';
         // Top-anchor
         document.body.classList.add('instructions-body-align');
@@ -1311,9 +1311,6 @@ function BFI2(participantChoices) {
 
     feedbackContainer.appendChild(submitButton);
     feedbackContainer.style.display = "block";
-
- 
-
 }
 
 
