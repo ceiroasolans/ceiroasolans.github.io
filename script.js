@@ -1106,6 +1106,7 @@ function experimentalSet() {
                 playNextVideo();
             } else {
                 //generateAndUploadCSV(participantChoices);
+                console.log("Calling BFI2");
                 BFI2(participantChoices);
             }
         }
@@ -1154,7 +1155,7 @@ function calculateMeanRatings(participantChoices) {
 // BFI
 function BFI2(participantChoices) {
     feedbackContainer.innerHTML = '';
-
+    console.log(" BFI2 Checkpoint 1");
         // Top-anchor
         document.body.classList.add('instructions-body-align');
         //document.body.style.alignItems = 'flex-start';
@@ -1225,7 +1226,7 @@ function BFI2(participantChoices) {
         };
         const scaleLabels = ["Disagree strongly", "Disagree a little", "Neutral; no opinion", "Agree a little", "Agree strongly"];
     const bfiResponses = {};
-
+    console.log(" BFI2 Checkpoint 2");
     // Add header
     const header = document.createElement("p");
     header.style.fontWeight = 'bold';
@@ -1270,7 +1271,7 @@ function BFI2(participantChoices) {
             label.classList.add("likert-label");
             label.textContent = scaleLabels[i];
             likertBox.appendChild(label);
-
+            console.log(" BFI2 Checkpoint 3");
             (function(currentIndex, currentitem) {
                 likertBox.onclick = function() {
                     likertContainer.querySelectorAll(".likert-box").forEach(box => box.style.backgroundColor = "");
@@ -1310,6 +1311,7 @@ function BFI2(participantChoices) {
 
     feedbackContainer.appendChild(submitButton);
     feedbackContainer.style.display = "block";
+    console.log(" BFI2 Checkpoint 4");
  
 
 }
