@@ -1157,7 +1157,7 @@ function BFI2(participantChoices) {
     feedbackContainer.innerHTML = '';
         // Top-anchor
         document.body.classList.add('instructions-body-align');
-        //document.body.style.alignItems = 'flex-start';
+        document.body.style.alignItems = 'flex-start';
         window.scrollTo(0, 0);
         feedbackContainer.style.marginTop = '250px'; 
 
@@ -1223,7 +1223,7 @@ function BFI2(participantChoices) {
             "bfi_59": "Is temperamental, gets emotional easily.",
             "bfi_60": "Is original, comes up with new ideas."
         };
-        const scaleLabels = ["Disagree strongly", "Disagree a little", "Neutral; no opinion", "Agree a little", "Agree strongly"];
+        const scaleLabels = ["", "Disagree strongly", "Disagree a little", "Neutral; no opinion", "Agree a little", "Agree strongly"];
     const bfiResponses = {};
     // Add header
     const header = document.createElement("p");
