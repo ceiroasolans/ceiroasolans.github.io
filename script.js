@@ -1396,7 +1396,7 @@ function ER(participantChoices) {
             (function(currentIndex, currentKey) {
                 likertBox.onclick = function() {
                     likertContainer.querySelectorAll(".likert-box").forEach(box => box.style.backgroundColor = "");
-                    bfiResponses[currentKey] = currentIndex;
+                    ERQresponses[currentKey] = currentIndex;
                     likertBox.style.backgroundColor = "#d8d8d8";
                 };
             })(i, key);
