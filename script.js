@@ -1321,12 +1321,87 @@ function BFI2(participantChoices) {
 
     const BFI = {
         "bfi_1": "Is outgoing, sociable.",
-        //... [other first-round questions]
+//             // "bfi_2": "Is compassionate, has a soft heart.",
+//             // "bfi_3": "Tends to be disorganized.",
+//             // "bfi_4": "Is relaxed, handles stress well.",
+//             // "bfi_5": "Has few artistic interests.",
+//             // "bfi_6": "Has an assertive personality.",
+//             // "bfi_7": "Is respectful, treats others with respect.",
+//             // "bfi_8": "Tends to be lazy.",
+//             // "bfi_9": "Stays optimistic after experiencing a setback.",
+//             // "bfi_10": "Is curious about many different things.",
+//             // "bfi_11": "Rarely feels excited or eager.",
+//             // "bfi_12": "Tends to find fault with others.",
+//             // "bfi_13": "Is dependable, steady.",
+//             // "bfi_14": "Is moody, has up and down mood swings.",
+//             // "bfi_15": "Is inventive, finds clever ways to do things.",
+//             // "bfi_16": "Tends to be quiet.",
+//             // "bfi_17": "Feels little sympathy for others.",
+//             // "AC1": "Can pay attention and select agree strongly",
+//             // "bfi_18": "Is systematic, likes to keep things in order.",
+//             // "bfi_19": "Can be tense.",
+//             // "bfi_20": "Is fascinated by art, music, or literature.",
+//             // "bfi_21": "Is dominant, acts as a leader.",
+//             // "bfi_22": "Starts arguments with others.",
+//             // "bfi_23": "Has difficulty getting started on tasks.",
+//             // "bfi_24": "Feels secure, comfortable with self.",
+//             // "bfi_25": "Avoids intellectual, philosophical discussions.",
+//             // "bfi_26": "Is less active than other people.",
+//             // "bfi_27": "Has a forgiving nature.",
+//             // "bfi_28": "Can be somewhat careless.",
+//             // "bfi_29": "Is emotionally stable, not easily upset.",
+//             // "bfi_30": "Has little creativity.",
+//             // "bfi_31": "Is sometimes shy, introverted.",
+//             // "bfi_32": "Is helpful and unselfish with others.",
+//             // "bfi_33": "Keeps things neat and tidy.",
+//             // "bfi_34": "Worries a lot.",
+//             // "bfi_35": "Values art and beauty.",
+//             // "bfi_36": "Finds it hard to influence people.",
+//             // "bfi_37": "Is sometimes rude to others.",
+//             // "bfi_38": "Is efficient, gets things done.",
+//             // "bfi_39": "Often feels sad.",
+//             // "bfi_40": "Is complex, a deep thinker.",
+//             // "bfi_41": "Is full of energy.",
+//             // "bfi_42": "Is suspicious of others intentions.",
+//             // "bfi_43": "Is reliable, can always be counted on.",
+//             // "bfi_44": "Keeps their emotions under control.",
+//             // "bfi_45": "Has difficulty imagining things.",
+//             // "bfi_46": "Is talkative.",
+//             // "bfi_47": "Can be cold and uncaring.",
+//             // "bfi_48": "Leaves a mess, does not clean up.", 
+//             // "bfi_49": "Rarely feels anxious or afraid.",
+//             // "bfi_50": "Thinks poetry and plays are boring.",
+//             // "bfi_51": "Prefers to have others take charge.",
+//             // "bfi_52": "Is polite, courteous to others.",
+//             // "bfi_53": "Is persistent, works until the task is finished.",
+//             // "bfi_54": "Tends to feel depressed, blue.",
+//             // "bfi_55": "Has little interest in abstract ideas.",
+//             // "bfi_56": "Shows a lot of enthusiasm.",
+//             // "bfi_57": "Assumes the best about people.",
+//             // "bfi_58": "Sometimes behaves irresponsibly.",
+//             // "bfi_59": "Is temperamental, gets emotional easily.",
+//             // "bfi_60": "Is original, comes up with new ideas."
     };
 
     const secondRoundQuestions = {
-        "bfi_2": "Is compassionate, has a soft heart.",
-        //... [other second-round questions]
+         "SS_Gen1": "When I choose how to spend my time, I place a lot of importance on how the people involved will make me feel.",
+            // "SM1": "When I’m upset, I make a plan of action to deal with the problem that’s making me upset",
+            // "SS_Av1": "I’m careful to avoid people or situations that make me have negative feelings.",
+            // "SS_Ap1": "I regulate my emotions by choosing to spend time with people that I think will probably make me feel good.",
+            // "SM2": "I control my emotions by changing the particular situation I happen to be in. ",
+            // "SS_Gen2": "How a situation will make me feel is of little concern to me.",
+            // "SS_Ap2": "I control my emotions by approaching situations and activities that I expect will put me in a good mood.",
+            // "SS_AvR": "I do not manage my emotions by avoiding situations and people that I expect will make me feel bad",
+            // "SM3": "When I’m in a stressful situation I take steps to turn the situation around, so it becomes more positive. ",
+            // "SS_Gen_3": "I control my emotions by carefully choosing the situations I get myself into.",
+            // "SS_Av3": "I control my emotions by avoiding situations and activities that I expect will put me in a bad mood.",
+            // "AC2": "Can pay attention and select agree strongly",
+            // "SM4": "When I’m in an emotionally challenging situation, I take action to deal with the problem.",
+            // "SS_ApR": "I do not manage my emotions by seeking out situations and people that I expect will make me feel good. ",
+            // "SS_Gen4": "When I choose friends or activities, I don’t think much about how they will make me feel.",
+            // "SM5": "When I’m stressed, I engage with the situation to neutralize the stressor, so it becomes less negative.",
+            // "SS_Ap3": "I’m careful to seek out people or situations that make me have positive feelings.",
+            // "SS_Av3": "I regulate my emotions by avoiding spending time with people that I think will probably make me feel bad.",
     };
 
     const scaleLabels = ["Disagree strongly", "Disagree a little", "Neutral; no opinion", "Agree a little", "Agree strongly"];
@@ -1453,7 +1528,7 @@ function BFI2(participantChoices) {
 //             // "SM3": "When I’m in a stressful situation I take steps to turn the situation around, so it becomes more positive. ",
 //             // "SS_Gen_3": "I control my emotions by carefully choosing the situations I get myself into.",
 //             // "SS_Av3": "I control my emotions by avoiding situations and activities that I expect will put me in a bad mood.",
-//             // "AC1": "Can pay attention and select agree strongly",
+//             // "AC2": "Can pay attention and select agree strongly",
 //             // "SM4": "When I’m in an emotionally challenging situation, I take action to deal with the problem.",
 //             // "SS_ApR": "I do not manage my emotions by seeking out situations and people that I expect will make me feel good. ",
 //             // "SS_Gen4": "When I choose friends or activities, I don’t think much about how they will make me feel.",
@@ -1720,7 +1795,7 @@ function shuffleArray(array) {
 //                                              GENERATE DATA
 
 function generateAndUploadCSV(participantChoices) {
-    const header = ["vID", "reactionTime", "valence", "arousal", "videoType", "EmoRated", "EmoScore", "WatchAgain", "SID", "uniqueKey", "age", "racialIdentity", "genderIdentity", "fatherEducation", "motherEducation", "familyIncome", "yearInSchool", "B_Active", "B_Afraid", "B_Amused", "B_Angry", "B_Aroused", "B_Calm", "B_Disgusted", "B_Excited", "B_Happy", "B_Hungry", "B_Inactive", "B_Loving", "B_Negative", "B_Peaceful", "B_Pleasant", "B_Positive", "B_Sad", "B_Still", "B_Unpleasant", "bfi_1", "bfi_2", "bfi_3", "bfi_4", "bfi_5", "bfi_6", "bfi_7", "bfi_8", "bfi_9", "bfi_10", "bfi_11", "bfi_12", "bfi_13", "bfi_14", "bfi_15", "bfi_16", "bfi_17", "AC1", "bfi_18", "bfi_19", "bfi_20", "bfi_21", "bfi_22", "bfi_23", "bfi_24", "bfi_25", "bfi_26", "bfi_27", "bfi_28", "bfi_29", "bfi_30", "bfi_31", "bfi_32", "bfi_33", "bfi_34", "bfi_35", "bfi_36", "bfi_37", "bfi_38", "bfi_39", "bfi_40", "bfi_41", "bfi_42", "bfi_43", "bfi_44", "bfi_45", "bfi_46", "bfi_47", "bfi_48", "bfi_49", "bfi_50", "bfi_51", "bfi_52", "bfi_53", "bfi_54", "bfi_55", "bfi_56", "bfi_57", "bfi_58", "bfi_59", "bfi_60"];
+    const header = ["vID", "reactionTime", "valence", "arousal", "videoType", "EmoRated", "EmoScore", "WatchAgain", "SID", "uniqueKey", "age", "racialIdentity", "genderIdentity", "fatherEducation", "motherEducation", "familyIncome", "yearInSchool", "B_Active", "B_Afraid", "B_Amused", "B_Angry", "B_Aroused", "B_Calm", "B_Disgusted", "B_Excited", "B_Happy", "B_Hungry", "B_Inactive", "B_Loving", "B_Negative", "B_Peaceful", "B_Pleasant", "B_Positive", "B_Sad", "B_Still", "B_Unpleasant", "bfi_1", "bfi_2", "bfi_3", "bfi_4", "bfi_5", "bfi_6", "bfi_7", "bfi_8", "bfi_9", "bfi_10", "bfi_11", "bfi_12", "bfi_13", "bfi_14", "bfi_15", "bfi_16", "bfi_17", "AC1", "bfi_18", "bfi_19", "bfi_20", "bfi_21", "bfi_22", "bfi_23", "bfi_24", "bfi_25", "bfi_26", "bfi_27", "bfi_28", "bfi_29", "bfi_30", "bfi_31", "bfi_32", "bfi_33", "bfi_34", "bfi_35", "bfi_36", "bfi_37", "bfi_38", "bfi_39", "bfi_40", "bfi_41", "bfi_42", "bfi_43", "bfi_44", "bfi_45", "bfi_46", "bfi_47", "bfi_48", "bfi_49", "bfi_50", "bfi_51", "bfi_52", "bfi_53", "bfi_54", "bfi_55", "bfi_56", "bfi_57", "bfi_58", "bfi_59", "bfi_60", "SS_Gen1", "SM1", "SS_Av1", "SS_Ap1", "SM2", "SS_Gen2", "SS_Ap2", "SS_AvR", "SM3", "SS_Gen_3", "SS_Av3", "AC2", "SM4", "SS_ApR", "SS_Gen4", "SM5", "SS_Ap3", "SS_Av3"];
     const csvRows = [header];
   
     for (const row of participantChoices) {
@@ -1761,8 +1836,25 @@ function generateAndUploadCSV(participantChoices) {
         row.B_Sad || "",
         row.B_Still || "",
         row.B_Unpleasant || "", 
-        row.bfi_1 || "", row.bfi_2 || "", row.bfi_3 || "", row.bfi_4 || "", row.bfi_5 || "", row.bfi_6 || "", row.bfi_7 || "", row.bfi_8 || "", row.bfi_9 || "", row.bfi_10 || "", row.bfi_11 || "", row.bfi_12 || "", row.bfi_13 || "", row.bfi_14 || "", row.bfi_15 || "", row.bfi_16 || "", row.bfi_17 || "",row.AC1 || "", row.bfi_18 || "", row.bfi_19 || "", row.bfi_20 || "", row.bfi_21 || "", row.bfi_22 || "", row.bfi_23 || "", row.bfi_24 || "", row.bfi_25 || "", row.bfi_26 || "", row.bfi_27 || "", row.bfi_28 || "", row.bfi_29 || "", row.bfi_30 || "", row.bfi_31 || "", row.bfi_32 || "", row.bfi_33 || "", row.bfi_34 || "", row.bfi_35 || "", row.bfi_36 || "", row.bfi_37 || "", row.bfi_38 || "", row.bfi_39 || "", row.bfi_40 || "", row.bfi_41 || "", row.bfi_42 || "", row.bfi_43 || "", row.bfi_44 || "", row.bfi_45 || "", row.bfi_46 || "", row.bfi_47 || "", row.bfi_48 || "", row.bfi_49 || "", row.bfi_50 || "", row.bfi_51 || "", row.bfi_52 || "", row.bfi_53 || "", row.bfi_54 || "", row.bfi_55 || "", row.bfi_56 || "", row.bfi_57 || "", row.bfi_58 || "", row.bfi_59 || "", row.bfi_60 || ""
-
+        row.bfi_1 || "", row.bfi_2 || "", row.bfi_3 || "", row.bfi_4 || "", row.bfi_5 || "", row.bfi_6 || "", row.bfi_7 || "", row.bfi_8 || "", row.bfi_9 || "", row.bfi_10 || "", row.bfi_11 || "", row.bfi_12 || "", row.bfi_13 || "", row.bfi_14 || "", row.bfi_15 || "", row.bfi_16 || "", row.bfi_17 || "",row.AC1 || "", row.bfi_18 || "", row.bfi_19 || "", row.bfi_20 || "", row.bfi_21 || "", row.bfi_22 || "", row.bfi_23 || "", row.bfi_24 || "", row.bfi_25 || "", row.bfi_26 || "", row.bfi_27 || "", row.bfi_28 || "", row.bfi_29 || "", row.bfi_30 || "", row.bfi_31 || "", row.bfi_32 || "", row.bfi_33 || "", row.bfi_34 || "", row.bfi_35 || "", row.bfi_36 || "", row.bfi_37 || "", row.bfi_38 || "", row.bfi_39 || "", row.bfi_40 || "", row.bfi_41 || "", row.bfi_42 || "", row.bfi_43 || "", row.bfi_44 || "", row.bfi_45 || "", row.bfi_46 || "", row.bfi_47 || "", row.bfi_48 || "", row.bfi_49 || "", row.bfi_50 || "", row.bfi_51 || "", row.bfi_52 || "", row.bfi_53 || "", row.bfi_54 || "", row.bfi_55 || "", row.bfi_56 || "", row.bfi_57 || "", row.bfi_58 || "", row.bfi_59 || "", row.bfi_60 || "",
+        row.SS_Gen1 || "",
+        row.SM1 || "",
+        row.SS_Av1 || "",
+        row.SS_Ap1 || "",
+        row.SM2 || "",
+        row.SS_Gen2 || "",
+        row.SS_Ap2 || "",
+        row.SS_AvR || "",
+        row.SM3 || "",
+        row.SS_Gen_3 || "",
+        row.SS_Av3 || "",
+        row.AC2 || "",
+        row.SM4 || "",
+        row.SS_ApR || "",
+        row.SS_Gen4 || "",
+        row.SM5 || "",
+        row.SS_Ap3 || "",
+        row.SS_Av3 || ""
     ];
 
       csvRows.push(rowData);
