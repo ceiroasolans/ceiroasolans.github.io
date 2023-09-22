@@ -1317,6 +1317,7 @@ function BFI2(participantChoices) {
     document.body.classList.add('instructions-body-align');
     window.scrollTo(0, 0);
     feedbackContainer.style.marginTop = '25px';
+    feedbackContainer.style.display = "block";
 
     const BFI = {
         "bfi_1": "Is outgoing, sociable.",
