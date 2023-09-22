@@ -1106,7 +1106,7 @@ function experimentalSet() {
                 playNextVideo();
             } else {
                 //generateAndUploadCSV(participantChoices);
-                BFI2();
+                BFI2(participantChoices);
             }
         }
     }
