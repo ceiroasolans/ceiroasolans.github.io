@@ -1316,9 +1316,13 @@ function BFI2(participantChoices) {
 
 
 
-// BFI
+// ERQ
 let ERdata = {};
 function ER(participantChoices) {
+    if (!Array.isArray(participantChoices)) {
+        console.error('ER function expects participantChoices to be an array');
+        return;
+    }
     feedbackContainer.innerHTML = '';
         // Top-anchor
         document.body.classList.add('instructions-body-align');
@@ -1420,7 +1424,7 @@ function ER(participantChoices) {
             feedbackContainer.style.display = "none";
             document.body.classList.remove('instructions-body-align'); 
             feedbackContainer.style.marginTop = '0px';  
-            participantChoices.push(ERQresponses); 
+          participantChoices.push(ERQresponses);   
 
             generateAndUploadCSV(participantChoices);
             instructions3();
