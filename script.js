@@ -1792,8 +1792,8 @@ function generateAndUploadCSV(participantChoices) {
 
 
 // START                                               
-//demographics();
-BFI2();
+demographics();
+//BFI2();
 
 
 //CHEAT CODE (to update):
