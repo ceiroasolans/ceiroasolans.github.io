@@ -1272,10 +1272,10 @@ function BFI2(participantChoices) {
             label.textContent = scaleLabels[i - 1];
             likertBox.appendChild(label);
 
-            (function(currentIndex, currentitem) {
+            (function(currentIndex, currentKey) {
                 likertBox.onclick = function() {
                     likertContainer.querySelectorAll(".likert-box").forEach(box => box.style.backgroundColor = "");
-                    bfiResponses[currentitem] = currentIndex;
+                    bfiResponses[currentKey] = currentIndex;
                     likertBox.style.backgroundColor = "#d8d8d8";
                 };
             })(i, item);
@@ -1300,6 +1300,7 @@ function BFI2(participantChoices) {
             document.body.classList.remove('instructions-body-align'); 
             feedbackContainer.style.marginTop = '0px';  
             //document.body.style.alignItems = '';
+
             //Append data (BFI will be at the end of the experiment)
             participantChoices.push(bfiResponses); 
             generateAndUploadCSV(participantChoices);
