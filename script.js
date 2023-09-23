@@ -1354,18 +1354,15 @@ function Questionnaire(participantChoices) {
 
             if (currentRound === 2) { // If it's the third round, finalize.
                 //participantChoices.push(questionnaireResponses); 
-                // Convert the questionnaireResponses object values to an array
-                const responsesArray = Object.values(questionnaireResponses);
-
-                // Append the responsesArray to each sub-array within participantChoices
-                participantChoices = participantChoices.map(choice => {
-                    if(Array.isArray(choice)){
-                        return [...choice, ...responsesArray]; // Make sure the choice is an array before spreading
-                    } else {
-                        console.error('Choice is not an array:', choice); // Log an error if the choice is not an array
-                        return choice;
-                    }
-                });
+    // For each object within participantChoices, merge it with questionnaireResponses
+    participantChoices = participantChoices.map(choice => {
+        if (typeof choice === 'object' && !Array.isArray(choice)) {
+            return { ...choice, ...questionnaireResponses }; // Merge the objects
+        } else {
+            console.error('Choice is not an object:', choice); // Log an error if the choice is not an object
+            return choice;
+        }
+    });
 
                 feedbackContainer.style.display = "none";
                 document.body.classList.remove('instructions-body-align');
