@@ -1481,7 +1481,7 @@ function BFI2(participantChoices) {
 
             if (isSecondRound) {
                 feedbackContainer.style.display = "none";
-                document.body.classList.remove('instructions-body-align');
+                //document.body.classList.remove('instructions-body-align');
                 feedbackContainer.style.marginTop = '0px';
                 generateAndUploadCSV(participantChoices);
                 instructions3();
