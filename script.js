@@ -1351,8 +1351,13 @@ function Questionnaire(participantChoices) {
 
         if (Object.keys(currentQuestions).every(key => key in questionnaireResponses)) {
 
+
             if (currentRound === 2) { // If it's the third round, finalize.
-                participantChoices.push(questionnaireResponses); 
+                //participantChoices.push(questionnaireResponses); 
+                participantChoices.forEach((choice, index) => {
+                    participantChoices[index] = [...choice, ...questionnaireResponses];
+                });
+                
                 feedbackContainer.style.display = "none";
                 document.body.classList.remove('instructions-body-align');
                 feedbackContainer.style.marginTop = '0px';
