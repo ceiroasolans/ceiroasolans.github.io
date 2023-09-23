@@ -115,7 +115,7 @@ button:disabled {
     cursor: pointer;
     transition: background-color 0.3s;
     padding: 15px;
-    gap: 0 !important; 
+    gap: 0; 
 }
 
 .likert-box:active {
