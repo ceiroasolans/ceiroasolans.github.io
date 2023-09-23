@@ -1384,7 +1384,7 @@ function BFI2(participantChoices) {
     };
 
     const secondRoundQuestions = {
-         "SS_Gen1": "When I choose how to spend my time, I place a lot of importance on how the people involved will make me feel.",
+         "SS_Gen1": "When I choose how to spend my time,", // I place a lot of importance on how the people involved will make me feel.
             // "SM1": "When I’m upset, I make a plan of action to deal with the problem that’s making me upset",
             // "SS_Av1": "I’m careful to avoid people or situations that make me have negative feelings.",
             // "SS_Ap1": "I regulate my emotions by choosing to spend time with people that I think will probably make me feel good.",
@@ -1481,7 +1481,7 @@ function BFI2(participantChoices) {
 
             if (isSecondRound) {
                 feedbackContainer.style.display = "none";
-                //document.body.classList.remove('instructions-body-align');
+                document.body.classList.remove('instructions-body-align');
                 feedbackContainer.style.marginTop = '0px';
                 generateAndUploadCSV(participantChoices);
                 instructions3();
