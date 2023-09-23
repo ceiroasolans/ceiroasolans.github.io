@@ -1350,9 +1350,9 @@ function Questionnaire(participantChoices) {
         }
 
         if (Object.keys(currentQuestions).every(key => key in questionnaireResponses)) {
-            participantChoices.push(questionnaireResponses);
 
             if (currentRound === 2) { // If it's the third round, finalize.
+                participantChoices.push(questionnaireResponses); 
                 feedbackContainer.style.display = "none";
                 document.body.classList.remove('instructions-body-align');
                 feedbackContainer.style.marginTop = '0px';
@@ -1360,7 +1360,6 @@ function Questionnaire(participantChoices) {
                 instructions3();
             } else {
                 currentRound++;
-                questionnaireResponses = {};
                 const headerText = currentRound === 1
                     ? "Please rate the extent to which you agree with the following questions:"
                     : "Please rate the extent to which you agree with the following questions:"; 
