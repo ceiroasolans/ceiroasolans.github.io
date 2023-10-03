@@ -14,115 +14,115 @@ const buttonsContainer = document.getElementById("buttonsContainer");
   
 const allVideos = [
     {id: 1, src: "0074.mp4", type: "Amusement" },
-   {id: 2, src: "0574.mp4", type: "Amusement" },
-    {id: 3, src: "0656.mp4", type: "Amusement" },
-    {id: 4, src: "1043.mp4", type: "Amusement" },
-    {id: 45, src: "1145.mp4", type: "Amusement" }, //this should've started on 45? now does
-    {id: 46, src: "1411.mp4", type: "Amusement" },
-    {id: 67, src: "1564.mp4", type: "Amusement" },
-    {id: 68, src: "1606.mp4", type: "Amusement" },
-    {id: 69, src: "2072.mp4", type: "Amusement" },
-    {id: 70, src: "2083.mp4", type: "Amusement" },
-    {id: 5, src: "0124.mp4", type: "Anger" },
-    {id: 6, src: "0252.mp4", type: "Anger" },
-    {id: 7, src: "0414.mp4", type: "Anger" },
-    {id: 8, src: "0595.mp4", type: "Anger" },
-    {id: 47, src: "0681.mp4", type: "Anger" },
-    {id: 48, src: "0948.mp4", type: "Anger" },
-    {id: 71, src: "1229.mp4", type: "Anger" },
-    {id: 72, src: "1844.mp4", type: "Anger" },
-    {id: 73, src: "2049.mp4", type: "Anger" },
-    {id: 74, src: "2066.mp4", type: "Anger" },
-    {id: 9, src: "0090.mp4", type: "Calmness" },
-    {id: 10, src: "0339.mp4", type: "Calmness" },
-    {id: 11, src: "0493.mp4", type: "Calmness" },
-    {id: 12, src: "0553.mp4", type: "Calmness" },
-    {id: 49, src: "0580.mp4", type: "Calmness" },
-    {id: 50, src: "0645.mp4", type: "Calmness" },
-    {id: 75, src: "0671.mp4", type: "Calmness" },
-    {id: 76, src: "1216.mp4", type: "Calmness" },
-    {id: 77, src: "1760.mp4", type: "Calmness" },
-    {id: 78, src: "1835.mp4", type: "Calmness" },
-    {id: 13, src: "0110.mp4", type: "Craving" },
-    {id: 14, src: "0458.mp4", type: "Craving" },
-    {id: 15, src: "0780.mp4", type: "Craving" },
-    {id: 16, src: "0883.mp4", type: "Craving" },
-    {id: 51, src: "0898.mp4", type: "Craving" },
-    {id: 52, src: "0919.mp4", type: "Craving" },
-    {id: 79, src: "1449.mp4", type: "Craving" },
-    {id: 80, src: "1498.mp4", type: "Craving" },
-    {id: 81,  src: "1740.mp4", type: "Craving" },
-    {id: 82, src: "1826.mp4", type: "Craving" },
-    {id: 17, src: "0187.mp4", type: "Disgust" },
-    {id: 18,  src: "0235.mp4", type: "Disgust" },
-    {id: 19, src: "0355.mp4", type: "Disgust" },
-    {id: 20, src: "0713.mp4", type: "Disgust" },
-    {id: 53, src: "0876.mp4", type: "Disgust" },
-    {id: 54, src: "0929.mp4", type: "Disgust" },
-    {id: 83, src: "1194.mp4", type: "Disgust" },
-    {id: 84, src: "1423.mp4", type: "Disgust" },
-    {id: 85, src: "1907.mp4", type: "Disgust" },
-    {id: 86, src: "2018.mp4", type: "Disgust" },
-    {id: 21, src: "0202.mp4", type: "Excitement" },
-    {id: 22, src: "0402.mp4", type: "Excitement" },
-    {id: 23, src: "0546.mp4", type: "Excitement" },
-    {id: 24, src: "0550.mp4", type: "Excitement" },
-    {id: 55, src: "0701.mp4", type: "Excitement" },
-    {id: 56, src: "0970.mp4", type: "Excitement" },
-    {id: 87, src: "1297.mp4", type: "Excitement" },
-    {id: 88, src: "1537.mp4", type: "Excitement" },
-    {id: 89,  src: "1717.mp4", type: "Excitement" },
-    {id: 90, src: "2021.mp4", type: "Excitement" },
-    {id: 25, src: "0379.mp4", type: "Fear" },
-    {id: 26,  src: "0489.mp4", type: "Fear" },
-    {id: 27, src: "0706.mp4", type: "Fear" },
-    {id: 28, src: "1202.mp4", type: "Fear" },
-    {id: 57, src: "1375.mp4", type: "Fear" },
-    {id: 58, src: "1726.mp4", type: "Fear" },
-    {id: 91, src: "1780.mp4", type: "Fear" },
-    {id: 92, src: "1832.mp4", type: "Fear" },
-    {id: 93, src: "1964.mp4", type: "Fear" },
-    {id: 94, src: "2091.mp4", type: "Fear" },
-    {id: 29, src: "0723.mp4", type: "Interest" },
-    {id: 30, src: "0735.mp4", type: "Interest" },
-    {id: 31, src: "1066.mp4", type: "Interest" },
-    {id: 32, src: "1068.mp4", type: "Interest" },
-    {id: 59, src: "1301.mp4", type: "Interest" },
-    {id: 60, src: "1619.mp4", type: "Interest" },
-    {id: 95, src: "1624.mp4", type: "Interest" },
-    {id: 96, src: "1641.mp4", type: "Interest" },
-    {id: 97, src: "1664.mp4", type: "Interest" },
-    {id: 98, src: "1945.mp4", type: "Interest" },
-    {id: 33, src: "0035.mp4", type: "Joy" },
-    {id: 34,src: "0087.mp4", type: "Joy" },
-    {id: 35, src: "0126.mp4", type: "Joy" },
-    {id: 36, src: "0597.mp4", type: "Joy" },
-    {id: 61, src: "0605.mp4", type: "Joy" },
-    {id: 62, src: "0666.mp4", type: "Joy" },
-    {id: 99, src: "1032.mp4", type: "Joy" },
-    {id: 100, src: "1034.mp4", type: "Joy" },
-    {id: 101, src: "1093.mp4", type: "Joy" },
-    {id: 102, src: "2013.mp4", type: "Joy" },
-    {id: 37, src: "0204.mp4", type: "Romance" },
-    {id: 38, src: "0369.mp4", type: "Romance" },
-    {id: 39, src: "0773.mp4", type: "Romance" },
-    {id: 40, src: "1074.mp4", type: "Romance" },
-    {id: 63, src: "1295.mp4", type: "Romance" },
-    {id: 64, src: "1407.mp4", type: "Romance" },
-    {id: 103, src: "1424.mp4", type: "Romance" },
-    {id: 104, src: "1551.mp4", type: "Romance" },
-    {id: 105, src: "1911.mp4", type: "Romance" },
-    {id: 106, src: "1978.mp4", type: "Romance" },
-    {id: 41, src: "0226.mp4", type: "Sadness" },
-    {id: 42, src: "0299.mp4", type: "Sadness" },
-    {id: 43, src: "0611.mp4", type: "Sadness" },
-    {id: 44, src: "0756.mp4", type: "Sadness" }, //previously fucked -- not any more
-    {id: 65, src: "0803.mp4", type: "Sadness" },
-    {id: 66, src: "0860.mp4", type: "Sadness" }, // now this could've been fucked but it's not! Line 133 (starts with 67)
-    {id: 107, src: "0975.mp4", type: "Sadness" },
-    {id: 108, src: "1164.mp4", type: "Sadness" },
-    {id: 109, src: "1485.mp4", type: "Sadness" },
-    {id: 110, src: "1959.mp4", type: "Sadness" }
+//    {id: 2, src: "0574.mp4", type: "Amusement" },
+//     {id: 3, src: "0656.mp4", type: "Amusement" },
+//     {id: 4, src: "1043.mp4", type: "Amusement" },
+//     {id: 45, src: "1145.mp4", type: "Amusement" }, //this should've started on 45? now does
+//     {id: 46, src: "1411.mp4", type: "Amusement" },
+//     {id: 67, src: "1564.mp4", type: "Amusement" },
+//     {id: 68, src: "1606.mp4", type: "Amusement" },
+//     {id: 69, src: "2072.mp4", type: "Amusement" },
+//     {id: 70, src: "2083.mp4", type: "Amusement" },
+//     {id: 5, src: "0124.mp4", type: "Anger" },
+//     {id: 6, src: "0252.mp4", type: "Anger" },
+//     {id: 7, src: "0414.mp4", type: "Anger" },
+//     {id: 8, src: "0595.mp4", type: "Anger" },
+//     {id: 47, src: "0681.mp4", type: "Anger" },
+//     {id: 48, src: "0948.mp4", type: "Anger" },
+//     {id: 71, src: "1229.mp4", type: "Anger" },
+//     {id: 72, src: "1844.mp4", type: "Anger" },
+//     {id: 73, src: "2049.mp4", type: "Anger" },
+//     {id: 74, src: "2066.mp4", type: "Anger" },
+//     {id: 9, src: "0090.mp4", type: "Calmness" },
+//     {id: 10, src: "0339.mp4", type: "Calmness" },
+//     {id: 11, src: "0493.mp4", type: "Calmness" },
+//     {id: 12, src: "0553.mp4", type: "Calmness" },
+//     {id: 49, src: "0580.mp4", type: "Calmness" },
+//     {id: 50, src: "0645.mp4", type: "Calmness" },
+//     {id: 75, src: "0671.mp4", type: "Calmness" },
+//     {id: 76, src: "1216.mp4", type: "Calmness" },
+//     {id: 77, src: "1760.mp4", type: "Calmness" },
+//     {id: 78, src: "1835.mp4", type: "Calmness" },
+//     {id: 13, src: "0110.mp4", type: "Craving" },
+//     {id: 14, src: "0458.mp4", type: "Craving" },
+//     {id: 15, src: "0780.mp4", type: "Craving" },
+//     {id: 16, src: "0883.mp4", type: "Craving" },
+//     {id: 51, src: "0898.mp4", type: "Craving" },
+//     {id: 52, src: "0919.mp4", type: "Craving" },
+//     {id: 79, src: "1449.mp4", type: "Craving" },
+//     {id: 80, src: "1498.mp4", type: "Craving" },
+//     {id: 81,  src: "1740.mp4", type: "Craving" },
+//     {id: 82, src: "1826.mp4", type: "Craving" },
+//     {id: 17, src: "0187.mp4", type: "Disgust" },
+//     {id: 18,  src: "0235.mp4", type: "Disgust" },
+//     {id: 19, src: "0355.mp4", type: "Disgust" },
+//     {id: 20, src: "0713.mp4", type: "Disgust" },
+//     {id: 53, src: "0876.mp4", type: "Disgust" },
+//     {id: 54, src: "0929.mp4", type: "Disgust" },
+//     {id: 83, src: "1194.mp4", type: "Disgust" },
+//     {id: 84, src: "1423.mp4", type: "Disgust" },
+//     {id: 85, src: "1907.mp4", type: "Disgust" },
+//     {id: 86, src: "2018.mp4", type: "Disgust" },
+//     {id: 21, src: "0202.mp4", type: "Excitement" },
+//     {id: 22, src: "0402.mp4", type: "Excitement" },
+//     {id: 23, src: "0546.mp4", type: "Excitement" },
+//     {id: 24, src: "0550.mp4", type: "Excitement" },
+//     {id: 55, src: "0701.mp4", type: "Excitement" },
+//     {id: 56, src: "0970.mp4", type: "Excitement" },
+//     {id: 87, src: "1297.mp4", type: "Excitement" },
+//     {id: 88, src: "1537.mp4", type: "Excitement" },
+//     {id: 89,  src: "1717.mp4", type: "Excitement" },
+//     {id: 90, src: "2021.mp4", type: "Excitement" },
+//     {id: 25, src: "0379.mp4", type: "Fear" },
+//     {id: 26,  src: "0489.mp4", type: "Fear" },
+//     {id: 27, src: "0706.mp4", type: "Fear" },
+//     {id: 28, src: "1202.mp4", type: "Fear" },
+//     {id: 57, src: "1375.mp4", type: "Fear" },
+//     {id: 58, src: "1726.mp4", type: "Fear" },
+//     {id: 91, src: "1780.mp4", type: "Fear" },
+//     {id: 92, src: "1832.mp4", type: "Fear" },
+//     {id: 93, src: "1964.mp4", type: "Fear" },
+//     {id: 94, src: "2091.mp4", type: "Fear" },
+//     {id: 29, src: "0723.mp4", type: "Interest" },
+//     {id: 30, src: "0735.mp4", type: "Interest" },
+//     {id: 31, src: "1066.mp4", type: "Interest" },
+//     {id: 32, src: "1068.mp4", type: "Interest" },
+//     {id: 59, src: "1301.mp4", type: "Interest" },
+//     {id: 60, src: "1619.mp4", type: "Interest" },
+//     {id: 95, src: "1624.mp4", type: "Interest" },
+//     {id: 96, src: "1641.mp4", type: "Interest" },
+//     {id: 97, src: "1664.mp4", type: "Interest" },
+//     {id: 98, src: "1945.mp4", type: "Interest" },
+//     {id: 33, src: "0035.mp4", type: "Joy" },
+//     {id: 34,src: "0087.mp4", type: "Joy" },
+//     {id: 35, src: "0126.mp4", type: "Joy" },
+//     {id: 36, src: "0597.mp4", type: "Joy" },
+//     {id: 61, src: "0605.mp4", type: "Joy" },
+//     {id: 62, src: "0666.mp4", type: "Joy" },
+//     {id: 99, src: "1032.mp4", type: "Joy" },
+//     {id: 100, src: "1034.mp4", type: "Joy" },
+//     {id: 101, src: "1093.mp4", type: "Joy" },
+//     {id: 102, src: "2013.mp4", type: "Joy" },
+//     {id: 37, src: "0204.mp4", type: "Romance" },
+//     {id: 38, src: "0369.mp4", type: "Romance" },
+//     {id: 39, src: "0773.mp4", type: "Romance" },
+//     {id: 40, src: "1074.mp4", type: "Romance" },
+//     {id: 63, src: "1295.mp4", type: "Romance" },
+//     {id: 64, src: "1407.mp4", type: "Romance" },
+//     {id: 103, src: "1424.mp4", type: "Romance" },
+//     {id: 104, src: "1551.mp4", type: "Romance" },
+//     {id: 105, src: "1911.mp4", type: "Romance" },
+//     {id: 106, src: "1978.mp4", type: "Romance" },
+//     {id: 41, src: "0226.mp4", type: "Sadness" },
+//     {id: 42, src: "0299.mp4", type: "Sadness" },
+//     {id: 43, src: "0611.mp4", type: "Sadness" },
+//     {id: 44, src: "0756.mp4", type: "Sadness" }, //previously fucked -- not any more
+//     {id: 65, src: "0803.mp4", type: "Sadness" },
+//     {id: 66, src: "0860.mp4", type: "Sadness" }, // now this could've been fucked but it's not! Line 133 (starts with 67)
+//     {id: 107, src: "0975.mp4", type: "Sadness" },
+//     {id: 108, src: "1164.mp4", type: "Sadness" },
+//     {id: 109, src: "1485.mp4", type: "Sadness" },
+//     {id: 110, src: "1959.mp4", type: "Sadness" }
 ];
 
 // Randomize into group A or B (for videos)
@@ -555,9 +555,10 @@ function isValidSID(sid) {
 
 
 // Demographics
-let age, racialIdentity, genderIdentity, fatherEducation, motherEducation, familyIncome, yearInSchool;
+let age, racialIdentity, genderIdentity, fatherEducation, motherEducation, familyIncome, yearInSchool, timestamp1;
 
 function demographics() {
+    timestamp1 = new Date();
     //Anchor to top 
     document.body.classList.add('instructions-body-align');
 
@@ -1049,6 +1050,7 @@ function experimentalSet() {
                                         watchAgain: WatchAgainResponse["Would you watch this video again?"],
                                         SID: participantSID,
                                         uniqueKey: participantUniqueKey,
+                                        startTime: timestamp1,
                                         age: age,
                                         racialIdentity: racialIdentity,
                                         genderIdentity: genderIdentity,
@@ -1475,7 +1477,7 @@ function shuffleArray(array) {
 //                                              GENERATE DATA
 
 function generateAndUploadCSV(participantChoices) {
-    const header = ["vID", "reactionTime", "valence", "arousal", "videoType", "EmoRated", "EmoScore", "WatchAgain", "SID", "uniqueKey", "age", "racialIdentity", "genderIdentity", "fatherEducation", "motherEducation", "familyIncome", "yearInSchool", "B_Active", "B_Afraid", "B_Amused", "B_Angry", "B_Aroused", "B_Calm", "B_Disgusted", "B_Excited", "B_Happy", "B_Hungry", "B_Inactive", "B_Loving", "B_Negative", "B_Peaceful", "B_Pleasant", "B_Positive", "B_Sad", "B_Still", "B_Unpleasant", "bfi_1", "bfi_2", "bfi_3", "bfi_4", "bfi_5", "bfi_6", "bfi_7", "bfi_8", "bfi_9", "bfi_10", "bfi_11", "bfi_12", "bfi_13", "bfi_14", "bfi_15", "bfi_16", "bfi_17", "AC1", "bfi_18", "bfi_19", "bfi_20", "bfi_21", "bfi_22", "bfi_23", "bfi_24", "bfi_25", "bfi_26", "bfi_27", "bfi_28", "bfi_29", "bfi_30", "bfi_31", "bfi_32", "bfi_33", "bfi_34", "bfi_35", "bfi_36", "bfi_37", "bfi_38", "bfi_39", "bfi_40", "bfi_41", "bfi_42", "bfi_43", "bfi_44", "bfi_45", "bfi_46", "bfi_47", "bfi_48", "bfi_49", "bfi_50", "bfi_51", "bfi_52", "bfi_53", "bfi_54", "bfi_55", "bfi_56", "bfi_57", "bfi_58", "bfi_59", "bfi_60", "SS_Gen1", "SM1", "SS_Av1", "SS_Ap1", "SM2", "SS_Gen2", "SS_Ap2", "SS_AvR", "SM3", "SS_Gen_3", "SS_Av3", "AC2", "SM4", "SS_ApR", "SS_Gen4", "SM5", "SS_Ap3", "SS_Av3", "ERQ1", "ERQ2", "ERQ3", "ERQ4", "ERQ5", "ERQ6", "ERQ7", "ERQ8", "ERQ9", "ERQ10"];
+    const header = ["vID", "reactionTime", "valence", "arousal", "videoType", "EmoRated", "EmoScore", "WatchAgain", "SID", "uniqueKey", "startTime", "age", "racialIdentity", "genderIdentity", "fatherEducation", "motherEducation", "familyIncome", "yearInSchool", "B_Active", "B_Afraid", "B_Amused", "B_Angry", "B_Aroused", "B_Calm", "B_Disgusted", "B_Excited", "B_Happy", "B_Hungry", "B_Inactive", "B_Loving", "B_Negative", "B_Peaceful", "B_Pleasant", "B_Positive", "B_Sad", "B_Still", "B_Unpleasant", "bfi_1", "bfi_2", "bfi_3", "bfi_4", "bfi_5", "bfi_6", "bfi_7", "bfi_8", "bfi_9", "bfi_10", "bfi_11", "bfi_12", "bfi_13", "bfi_14", "bfi_15", "bfi_16", "bfi_17", "AC1", "bfi_18", "bfi_19", "bfi_20", "bfi_21", "bfi_22", "bfi_23", "bfi_24", "bfi_25", "bfi_26", "bfi_27", "bfi_28", "bfi_29", "bfi_30", "bfi_31", "bfi_32", "bfi_33", "bfi_34", "bfi_35", "bfi_36", "bfi_37", "bfi_38", "bfi_39", "bfi_40", "bfi_41", "bfi_42", "bfi_43", "bfi_44", "bfi_45", "bfi_46", "bfi_47", "bfi_48", "bfi_49", "bfi_50", "bfi_51", "bfi_52", "bfi_53", "bfi_54", "bfi_55", "bfi_56", "bfi_57", "bfi_58", "bfi_59", "bfi_60", "SS_Gen1", "SM1", "SS_Av1", "SS_Ap1", "SM2", "SS_Gen2", "SS_Ap2", "SS_AvR", "SM3", "SS_Gen_3", "SS_Av3", "AC2", "SM4", "SS_ApR", "SS_Gen4", "SM5", "SS_Ap3", "SS_Av3", "ERQ1", "ERQ2", "ERQ3", "ERQ4", "ERQ5", "ERQ6", "ERQ7", "ERQ8", "ERQ9", "ERQ10"];
     const csvRows = [header];
   
     for (const row of participantChoices) {
@@ -1490,6 +1492,7 @@ function generateAndUploadCSV(participantChoices) {
         row.watchAgain || "",
         row.SID || "",
         row.uniqueKey || "",
+        row.startTime || "",
         row.age || "",
         row.racialIdentity || "",
         row.genderIdentity || "",
@@ -1591,427 +1594,10 @@ demographics();
 // npx netlify deploy --prod               (deploy to website)
 // to check new files, go to AWS S3 (amazon), buckets, emotionregulation
 
-// or in short:         git add . && git commit -m "update" && git push
+// or in short:         git add . && git commit -m "update" && git push && npx netlify deploy --prod
 
 // data: https://us-east-1.console.aws.amazon.com/console/home?region=us-east-1#  --> console home --> S3 service --> emotionregulation bucket --> same name folder --> files 
 
 
 
 
-
-
-
-
-
-//                                                                  SAVE
-
-//const allVideos = [
-  //  {id: 1, src: "0074.mp4", type: "Amusement" },
-   // {id: 2, src: "0574.mp4", type: "Amusement" },
-    // {id: 3, src: "0656.mp4", type: "Amusement" },
-    // {id: 4, src: "1043.mp4", type: "Amusement" },
-    // {id: 45, src: "1145.mp4", type: "Amusement" }, //this should've started on 45? now does
-    // {id: 46, src: "1411.mp4", type: "Amusement" },
-    // {id: 67, src: "1564.mp4", type: "Amusement" },
-    // {id: 68, src: "1606.mp4", type: "Amusement" },
-    // {id: 69, src: "2072.mp4", type: "Amusement" },
-    // {id: 70, src: "2083.mp4", type: "Amusement" },
-    // {id: 5, src: "0124.mp4", type: "Anger" },
-    // {id: 6, src: "0252.mp4", type: "Anger" },
-    // {id: 7, src: "0414.mp4", type: "Anger" },
-    // {id: 8, src: "0595.mp4", type: "Anger" },
-    // {id: 47, src: "0681.mp4", type: "Anger" },
-    // {id: 48, src: "0948.mp4", type: "Anger" },
-    // {id: 71, src: "1229.mp4", type: "Anger" },
-    // {id: 72, src: "1844.mp4", type: "Anger" },
-    // {id: 73, src: "2049.mp4", type: "Anger" },
-    // {id: 74, src: "2066.mp4", type: "Anger" },
-    // {id: 9, src: "0090.mp4", type: "Calmness" },
-    // {id: 10, src: "0339.mp4", type: "Calmness" },
-    // {id: 11, src: "0493.mp4", type: "Calmness" },
-    // {id: 12, src: "0553.mp4", type: "Calmness" },
-    // {id: 49, src: "0580.mp4", type: "Calmness" },
-    // {id: 50, src: "0645.mp4", type: "Calmness" },
-    // {id: 75, src: "0671.mp4", type: "Calmness" },
-    // {id: 76, src: "1216.mp4", type: "Calmness" },
-    // {id: 77, src: "1760.mp4", type: "Calmness" },
-    // {id: 78, src: "1835.mp4", type: "Calmness" },
-    // {id: 13, src: "0110.mp4", type: "Craving" },
-    // {id: 14, src: "0458.mp4", type: "Craving" },
-    // {id: 15, src: "0780.mp4", type: "Craving" },
-    // {id: 16, src: "0883.mp4", type: "Craving" },
-    // {id: 51, src: "0898.mp4", type: "Craving" },
-    // {id: 52, src: "0919.mp4", type: "Craving" },
-    // {id: 79, src: "1449.mp4", type: "Craving" },
-    // {id: 80, src: "1498.mp4", type: "Craving" },
-    // {id: 81,  src: "1740.mp4", type: "Craving" },
-    // {id: 82, src: "1826.mp4", type: "Craving" },
-    // {id: 17, src: "0187.mp4", type: "Disgust" },
-    // {id: 18,  src: "0235.mp4", type: "Disgust" },
-    // {id: 19, src: "0355.mp4", type: "Disgust" },
-    // {id: 20, src: "0713.mp4", type: "Disgust" },
-    // {id: 53, src: "0876.mp4", type: "Disgust" },
-    // {id: 54, src: "0929.mp4", type: "Disgust" },
-    // {id: 83, src: "1194.mp4", type: "Disgust" },
-    // {id: 84, src: "1423.mp4", type: "Disgust" },
-    // {id: 85, src: "1907.mp4", type: "Disgust" },
-    // {id: 86, src: "2018.mp4", type: "Disgust" },
-    // {id: 21, src: "0202.mp4", type: "Excitement" },
-    // {id: 22, src: "0402.mp4", type: "Excitement" },
-    // {id: 23, src: "0546.mp4", type: "Excitement" },
-    // {id: 24, src: "0550.mp4", type: "Excitement" },
-    // {id: 55, src: "0701.mp4", type: "Excitement" },
-    // {id: 56, src: "0970.mp4", type: "Excitement" },
-    // {id: 87, src: "1297.mp4", type: "Excitement" },
-    // {id: 88, src: "1537.mp4", type: "Excitement" },
-    // {id: 89,  src: "1717.mp4", type: "Excitement" },
-    // {id: 90, src: "2021.mp4", type: "Excitement" },
-    // {id: 25, src: "0379.mp4", type: "Fear" },
-    // {id: 26,  src: "0489.mp4", type: "Fear" },
-    // {id: 27, src: "0706.mp4", type: "Fear" },
-    // {id: 28, src: "1202.mp4", type: "Fear" },
-    // {id: 57, src: "1375.mp4", type: "Fear" },
-    // {id: 58, src: "1726.mp4", type: "Fear" },
-    // {id: 91, src: "1780.mp4", type: "Fear" },
-    // {id: 92, src: "1832.mp4", type: "Fear" },
-    // {id: 93, src: "1964.mp4", type: "Fear" },
-    // {id: 94, src: "2091.mp4", type: "Fear" },
-    // {id: 29, src: "0723.mp4", type: "Interest" },
-    // {id: 30, src: "0735.mp4", type: "Interest" },
-    // {id: 31, src: "1066.mp4", type: "Interest" },
-    // {id: 32, src: "1068.mp4", type: "Interest" },
-    // {id: 59, src: "1301.mp4", type: "Interest" },
-    // {id: 60, src: "1619.mp4", type: "Interest" },
-    // {id: 95, src: "1624.mp4", type: "Interest" },
-    // {id: 96, src: "1641.mp4", type: "Interest" },
-    // {id: 97, src: "1664.mp4", type: "Interest" },
-    // {id: 98, src: "1945.mp4", type: "Interest" },
-    // {id: 33, src: "0035.mp4", type: "Joy" },
-    // {id: 34,src: "0087.mp4", type: "Joy" },
-    // {id: 35, src: "0126.mp4", type: "Joy" },
-    // {id: 36, src: "0597.mp4", type: "Joy" },
-    // {id: 61, src: "0605.mp4", type: "Joy" },
-    // {id: 62, src: "0666.mp4", type: "Joy" },
-    // {id: 99, src: "1032.mp4", type: "Joy" },
-    // {id: 100, src: "1034.mp4", type: "Joy" },
-    // {id: 101, src: "1093.mp4", type: "Joy" },
-    // {id: 102, src: "2013.mp4", type: "Joy" },
-    // {id: 37, src: "0204.mp4", type: "Romance" },
-    // {id: 38, src: "0369.mp4", type: "Romance" },
-    // {id: 39, src: "0773.mp4", type: "Romance" },
-    // {id: 40, src: "1074.mp4", type: "Romance" },
-    // {id: 63, src: "1295.mp4", type: "Romance" },
-    // {id: 64, src: "1407.mp4", type: "Romance" },
-    // {id: 103, src: "1424.mp4", type: "Romance" },
-    // {id: 104, src: "1551.mp4", type: "Romance" },
-    // {id: 105, src: "1911.mp4", type: "Romance" },
-    // {id: 106, src: "1978.mp4", type: "Romance" },
-    // {id: 41, src: "0226.mp4", type: "Sadness" },
-    // {id: 42, src: "0299.mp4", type: "Sadness" },
-    // {id: 43, src: "0611.mp4", type: "Sadness" },
-    // {id: 44, src: "0756.mp4", type: "Sadness" }, //previously fucked -- not any more
-    // {id: 65, src: "0803.mp4", type: "Sadness" },
-    // {id: 66, src: "0860.mp4", type: "Sadness" }, // now this could've been fucked but it's not! Line 133 (starts with 67)
-    // {id: 107, src: "0975.mp4", type: "Sadness" },
-    // {id: 108, src: "1164.mp4", type: "Sadness" },
-    // {id: 109, src: "1485.mp4", type: "Sadness" },
-    // {id: 110, src: "1959.mp4", type: "Sadness" }
-//];
-
-
-
-
-
-
-
-
-
-
-
-
-//                                                                  TRASH
-
-
-
-
-
-// Videos (first is old, pilot 1)
-// const allVideos = [
-//     {id: 1, src: "0074.mp4", type: "Amusement" },
-//     {id: 2, src: "0574.mp4", type: "Amusement" },
-//     {id: 3, src: "0656.mp4", type: "Amusement" },
-//     {id: 4, src: "1043.mp4", type: "Amusement" },
-//     {id: 44, src: "1145.mp4", type: "Amusement" }, //this should've started on 45?
-//     {id: 45, src: "1411.mp4", type: "Amusement" },
-//     {id: 67, src: "1564.mp4", type: "Amusement" },
-//     {id: 68, src: "1606.mp4", type: "Amusement" },
-//     {id: 69, src: "2072.mp4", type: "Amusement" },
-//     {id: 70, src: "2083.mp4", type: "Amusement" },
-//     {id: 5, src: "0124.mp4", type: "Anger" },
-//     {id: 6, src: "0252.mp4", type: "Anger" },
-//     {id: 7, src: "0414.mp4", type: "Anger" },
-//     {id: 8, src: "0595.mp4", type: "Anger" },
-//     {id: 46, src: "0681.mp4", type: "Anger" },
-//     {id: 47, src: "0948.mp4", type: "Anger" },
-//     {id: 71, src: "1229.mp4", type: "Anger" },
-//     {id: 72, src: "1844.mp4", type: "Anger" },
-//     {id: 73, src: "2049.mp4", type: "Anger" },
-//     {id: 74, src: "2066.mp4", type: "Anger" },
-//     {id: 9, src: "0090.mp4", type: "Calmness" },
-//     {id: 10, src: "0339.mp4", type: "Calmness" },
-//     {id: 11, src: "0493.mp4", type: "Calmness" },
-//     {id: 12, src: "0553.mp4", type: "Calmness" },
-//     {id: 48, src: "0580.mp4", type: "Calmness" },
-//     {id: 49, src: "0645.mp4", type: "Calmness" },
-//     {id: 75, src: "0671.mp4", type: "Calmness" },
-//     {id: 76, src: "1216.mp4", type: "Calmness" },
-//     {id: 77, src: "1760.mp4", type: "Calmness" },
-//     {id: 78, src: "1835.mp4", type: "Calmness" },
-//     {id: 13, src: "0110.mp4", type: "Craving" },
-//     {id: 14, src: "0458.mp4", type: "Craving" },
-//     {id: 15, src: "0780.mp4", type: "Craving" },
-//     {id: 16, src: "0883.mp4", type: "Craving" },
-//     {id: 50, src: "0898.mp4", type: "Craving" },
-//     {id: 51, src: "0919.mp4", type: "Craving" },
-//     {id: 79, src: "1449.mp4", type: "Craving" },
-//     {id: 80, src: "1498.mp4", type: "Craving" },
-//     {id: 81,  src: "1740.mp4", type: "Craving" },
-//     {id: 82, src: "1826.mp4", type: "Craving" },
-//     {id: 17, src: "0187.mp4", type: "Disgust" },
-//     {id: 18,  src: "0235.mp4", type: "Disgust" },
-//     {id: 19, src: "0355.mp4", type: "Disgust" },
-//     {id: 20, src: "0713.mp4", type: "Disgust" },
-//     {id: 52, src: "0876.mp4", type: "Disgust" },
-//     {id: 53, src: "0929.mp4", type: "Disgust" },
-//     {id: 83, src: "1194.mp4", type: "Disgust" },
-//     {id: 84, src: "1423.mp4", type: "Disgust" },
-//     {id: 85, src: "1907.mp4", type: "Disgust" },
-//     {id: 86, src: "2018.mp4", type: "Disgust" },
-//     {id: 21, src: "0202.mp4", type: "Excitement" },
-//     {id: 22, src: "0402.mp4", type: "Excitement" },
-//     {id: 23, src: "0546.mp4", type: "Excitement" },
-//     {id: 24, src: "0550.mp4", type: "Excitement" },
-//     {id: 54, src: "0701.mp4", type: "Excitement" },
-//     {id: 55, src: "0970.mp4", type: "Excitement" },
-//     {id: 87, src: "1297.mp4", type: "Excitement" },
-//     {id: 88, src: "1537.mp4", type: "Excitement" },
-//     {id: 89,  src: "1717.mp4", type: "Excitement" },
-//     {id: 90, src: "2021.mp4", type: "Excitement" },
-//     {id: 25, src: "0379.mp4", type: "Fear" },
-//     {id: 26,  src: "0489.mp4", type: "Fear" },
-//     {id: 27, src: "0706.mp4", type: "Fear" },
-//     {id: 28, src: "1202.mp4", type: "Fear" },
-//     {id: 56, src: "1375.mp4", type: "Fear" },
-//     {id: 57, src: "1726.mp4", type: "Fear" },
-//     {id: 91, src: "1780.mp4", type: "Fear" },
-//     {id: 92, src: "1832.mp4", type: "Fear" },
-//     {id: 93, src: "1964.mp4", type: "Fear" },
-//     {id: 94, src: "2091.mp4", type: "Fear" },
-//     {id: 29, src: "0723.mp4", type: "Interest" },
-//     {id: 30, src: "0735.mp4", type: "Interest" },
-//     {id: 31, src: "1066.mp4", type: "Interest" },
-//     {id: 32, src: "1068.mp4", type: "Interest" },
-//     {id: 58, src: "1301.mp4", type: "Interest" },
-//     {id: 59, src: "1619.mp4", type: "Interest" },
-//     {id: 95, src: "1624.mp4", type: "Interest" },
-//     {id: 96, src: "1641.mp4", type: "Interest" },
-//     {id: 97, src: "1664.mp4", type: "Interest" },
-//     {id: 98, src: "1945.mp4", type: "Interest" },
-//     {id: 33, src: "0035.mp4", type: "Joy" },
-//     {id: 34,src: "0087.mp4", type: "Joy" },
-//     {id: 35, src: "0126.mp4", type: "Joy" },
-//     {id: 36, src: "0597.mp4", type: "Joy" },
-//     {id: 60, src: "0605.mp4", type: "Joy" },
-//     {id: 61, src: "0666.mp4", type: "Joy" },
-//     {id: 99, src: "1032.mp4", type: "Joy" },
-//     {id: 100, src: "1034.mp4", type: "Joy" },
-//     {id: 101, src: "1093.mp4", type: "Joy" },
-//     {id: 102, src: "2013.mp4", type: "Joy" },
-//     {id: 37, src: "0204.mp4", type: "Romance" },
-//     {id: 38, src: "0369.mp4", type: "Romance" },
-//     {id: 39, src: "0773.mp4", type: "Romance" },
-//     {id: 40, src: "1074.mp4", type: "Romance" },
-//     {id: 62, src: "1295.mp4", type: "Romance" },
-//     {id: 63, src: "1407.mp4", type: "Romance" },
-//     {id: 103, src: "1424.mp4", type: "Romance" },
-//     {id: 104, src: "1551.mp4", type: "Romance" },
-//     {id: 105, src: "1911.mp4", type: "Romance" },
-//     {id: 106, src: "1978.mp4", type: "Romance" },
-//     {id: 41, src: "0226.mp4", type: "Sadness" },
-//     {id: 42, src: "0299.mp4", type: "Sadness" },
-//     {id: 43, src: "0611.mp4", type: "Sadness" },
-//     {id: 44, src: "0756.mp4", type: "Sadness" }, //fucked
-//     {id: 64, src: "0803.mp4", type: "Sadness" },
-//     {id: 65, src: "0860.mp4", type: "Sadness" },
-//     {id: 107, src: "0975.mp4", type: "Sadness" },
-//     {id: 108, src: "1164.mp4", type: "Sadness" },
-//     {id: 109, src: "1485.mp4", type: "Sadness" },
-//     {id: 110, src: "1959.mp4", type: "Sadness" }
-// ];
-
-
-
-// function baselineEmo() {    // WORDS ABOVE LIKERT
-//      // Top-anchor
-//     document.body.classList.add('instructions-body-align');
-
-
-//     feedbackContainer.innerHTML = '';
-
-//     const emotions = ["Active", "Afraid", "Amused", "Angry", "Aroused", "Calm", "Disgusted", "Excited", "Happy", "Hungry", "Inactive", "Loving", "Negative", "Peaceful", "Pleasant", "Positive", "Sad", "Still (quiet)", "Unpleasant"];
-//     const scaleLabels = ["Not at all", "", "", "Somewhat", "", "", "Very"];
-//     const emotionResponses = {};
-
-//     // Add header
-//     const header = document.createElement("p");
-//     header.style.fontWeight = 'bold';
-//     header.style.textAlign = 'center';
-//     header.style.padding = '20px 0';
-//     header.textContent = "Please rate the extent to which you feel the following emotions:";
-//     feedbackContainer.appendChild(header);
-
-//     emotions.forEach(emotion => {
-//         const question = document.createElement("p");
-//         question.style.fontWeight = 'bold';
-//         question.style.textAlign = 'center';
-//         question.textContent = emotion;
-
-//         const likertContainer = document.createElement("div");
-//         likertContainer.classList.add("likert-container");
-//         likertContainer.style.paddingBottom = "20px";  // Padding added here
-
-//         for (let i = 0; i <= 6; i++) {
-//             const likertBox = document.createElement("div");
-//             likertBox.classList.add("likert-box");
-
-//             const number = document.createElement("div");
-//             number.textContent = i.toString();
-//             number.classList.add("likert-number");
-//             likertBox.appendChild(number);
-
-//             const label = document.createElement("div");
-//             label.classList.add("likert-label");
-//             label.textContent = scaleLabels[i];
-//             likertBox.appendChild(label);
-
-//             (function(currentIndex, currentEmotion) {
-//                 likertBox.onclick = function() {
-//                     likertContainer.querySelectorAll(".likert-box").forEach(box => box.style.backgroundColor = "");
-//                     emotionResponses[currentEmotion] = currentIndex;
-//                     likertBox.style.backgroundColor = "#d8d8d8";
-//                 };
-//             })(i, emotion);
-
-//             likertContainer.appendChild(likertBox);
-//         }
-
-//         feedbackContainer.appendChild(question);
-//         feedbackContainer.appendChild(likertContainer);
-//     });
-
-//     const submitButton = document.createElement("button");
-//     submitButton.innerText = "Submit";
-//     submitButton.style.marginTop = "20px"; // Padding added here
-//     submitButton.onclick = () => {
-//         if (emotions.every(emotion => emotion in emotionResponses)) {
-//             baselineEmoResponses = Object.keys(emotionResponses).reduce((acc, key) => {
-//                 acc[key] = emotionResponses[key].toString();
-//                 return acc;
-//             }, {});
-//             feedbackContainer.style.display = "none";
-//             document.body.classList.remove('instructions-body-align'); // Remove the class when the submit button is clicked
-//             instructions();
-//         } else {
-//             alert("Please answer all the questions.");
-//         }
-//     };
-
-//     feedbackContainer.appendChild(submitButton);
-//     feedbackContainer.style.display = "block";
-// }
-
-
-
-
-
-
-
-
-// function createRatingForm(videoId, onSubmit) {
-//     // An object to store the rating types for each video type
-//     document.body.classList.add('instructions-body-align');
-//     const videoTypeRatings = {
-//         "Excitement": ["excited", "interested", "amused", "happy"],
-//         "Amusement": ["happy", "amused", "excited", "interested"],
-//         "Joy": ["amused", "loving", "happy", "peaceful"],
-//         "Romance": ["excited", "peaceful", "happy", "loving"],
-//         "Craving": ["hungry", "interested", "happy", "excited"],
-//         "Calmness": ["interested", "calm", "happy", "peaceful"],
-//         "Interest": ["peaceful", "excited", "interested", "happy"],
-//         "Disgust": ["disgusted", "afraid", "angry", "sad"],
-//         "Anger": ["sad", "angry", "afraid", "disgusted"],
-//         "Sadness": ["afraid", "disgusted", "sad", "angry"],
-//         "Fear": ["angry", "sad", "disgusted", "afraid"]
-//     };
-
-//     const video = videos.find(v => v.id === videoId);
-
-//     if (!video) {
-//         console.error(`Video with id ${videoId} not found.`);
-//         return;
-//     }
-
-//     // Get the appropriate ratings for this video type
-//     const ratings = videoTypeRatings[video.type];
-
-//     if (!ratings) {
-//         console.error(`No ratings found for video type ${video.type}`);
-//         return;
-//     }
-
-//     feedbackContainer.innerHTML = '';
-
-//     // Add the header "How do you feel?"
-//     let header = document.createElement('h3');
-//     header.style.fontWeight = 'bold';
-//     header.style.textAlign = 'center';
-//     header.innerText = 'How do you feel right now?';
-//     feedbackContainer.appendChild(header);
-
-//     ratings.forEach((rating, index) => {
-//         let likertContainer = createLikertContainer(0, 6, `not ${rating} at all`, `very ${rating}`, `somewhat ${rating}`, rating);
-//         likertContainer.id = `likert-${index + 1}`;
-//         likertContainer.style.marginBottom = '20px'; // Add spacing between the ratings
-//         feedbackContainer.appendChild(likertContainer);
-//     });
-
-//     let submitButton = createButton("Submit", () => {
-//         let userRatings = [];
-
-//         for (let i = 1; i <= 4; i++) {
-//             let likertContainer = document.getElementById(`likert-${i}`);
-//             let selectedBox = likertContainer.querySelector('.likert-box.selected');
-
-//             if (!selectedBox) {
-//                 alert('Please answer all the questions before submitting.');
-//                 return;
-//             }
-
-//             userRatings.push({
-//                 videoType: video.type,
-//                 EmoRated: ratings[i - 1], // get the rating type from the ratings array
-//                 EmoScore: parseInt(selectedBox.textContent),
-//                 vID: video.src
-//             });
-//         }
-
-//         feedbackContainer.innerHTML = ''; // Clear the feedback container after successful submission
-//         onSubmit(userRatings);
-//     });
-
-//     feedbackContainer.appendChild(submitButton); // Append the button directly to the feedbackContainer
-//     feedbackContainer.style.display = 'block';
-//     submitButton.addEventListener('click', () => {
-//         document.body.classList.remove('instructions-body-align'); // Remove the class when the submit button is clicked
-//     });
-// }
