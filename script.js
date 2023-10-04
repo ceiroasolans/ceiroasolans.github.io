@@ -747,7 +747,7 @@ function baselineEmo() {
         window.scrollTo(0, 0);
         feedbackContainer.style.marginTop = '250px'; 
 
-    const emotions = ["Active", "Afraid", "Amused", "Angry", "Aroused", "Calm", "Disgusted", "Excited", "Happy", "Hungry", "Inactive", "Loving", "Negative", "Peaceful", "Pleasant", "Positive", "Sad", "Still (quiet)", "Unpleasant"];
+    const emotions = ["Active"]; //, "Afraid", "Amused", "Angry", "Aroused", "Calm", "Disgusted", "Excited", "Happy", "Hungry", "Inactive", "Loving", "Negative", "Peaceful", "Pleasant", "Positive", "Sad", "Still (quiet)", "Unpleasant"
     const scaleLabels = ["Not at all", "", "", "Somewhat", "", "", "Very"];
     const emotionResponses = {};
 
@@ -1228,23 +1228,23 @@ function Questionnaire(participantChoices) {
 
     const Situational = {
          "SS_Gen1": "When I choose how to spend my time, I place a lot of importance on how the people involved will make me feel.", //
-        "SM1": "When I am upset, I make a plan of action to deal with the problem that is making me upset",
-        "SS_Av1": "I am careful to avoid people or situations that make me have negative feelings.",
-        "SS_Ap1": "I regulate my emotions by choosing to spend time with people that I think will probably make me feel good.",
-        "SM2": "I control my emotions by changing the particular situation I happen to be in. ",
-        "SS_Gen2": "How a situation will make me feel is of little concern to me.",
-        "SS_Ap2": "I control my emotions by approaching situations and activities that I expect will put me in a good mood.",
-        "SS_AvR": "I do not manage my emotions by avoiding situations and people that I expect will make me feel bad",
-        "SM3": "When I am in a stressful situation I take steps to turn the situation around, so it becomes more positive. ",
-        "SS_Gen_3": "I control my emotions by carefully choosing the situations I get myself into.",
-        "SS_Av3": "I control my emotions by avoiding situations and activities that I expect will put me in a bad mood.",
-        "AC2": "Can pay attention and select agree strongly",
-        "SM4": "When I am in an emotionally challenging situation, I take action to deal with the problem.",
-        "SS_ApR": "I do not manage my emotions by seeking out situations and people that I expect will make me feel good. ",
-        "SS_Gen4": "When I choose friends or activities, I do not think much about how they will make me feel.",
-        "SM5": "When I am stressed, I engage with the situation to neutralize the stressor, so it becomes less negative.",
-        "SS_Ap3": "I am careful to seek out people or situations that make me have positive feelings.",
-        "SS_Av3": "I regulate my emotions by avoiding spending time with people that I think will probably make me feel bad.",
+        // "SM1": "When I am upset, I make a plan of action to deal with the problem that is making me upset",
+        // "SS_Av1": "I am careful to avoid people or situations that make me have negative feelings.",
+        // "SS_Ap1": "I regulate my emotions by choosing to spend time with people that I think will probably make me feel good.",
+        // "SM2": "I control my emotions by changing the particular situation I happen to be in. ",
+        // "SS_Gen2": "How a situation will make me feel is of little concern to me.",
+        // "SS_Ap2": "I control my emotions by approaching situations and activities that I expect will put me in a good mood.",
+        // "SS_AvR": "I do not manage my emotions by avoiding situations and people that I expect will make me feel bad",
+        // "SM3": "When I am in a stressful situation I take steps to turn the situation around, so it becomes more positive. ",
+        // "SS_Gen_3": "I control my emotions by carefully choosing the situations I get myself into.",
+        // "SS_Av3": "I control my emotions by avoiding situations and activities that I expect will put me in a bad mood.",
+        // "AC2": "Can pay attention and select agree strongly",
+        // "SM4": "When I am in an emotionally challenging situation, I take action to deal with the problem.",
+        // "SS_ApR": "I do not manage my emotions by seeking out situations and people that I expect will make me feel good. ",
+        // "SS_Gen4": "When I choose friends or activities, I do not think much about how they will make me feel.",
+        // "SM5": "When I am stressed, I engage with the situation to neutralize the stressor, so it becomes less negative.",
+        // "SS_Ap3": "I am careful to seek out people or situations that make me have positive feelings.",
+        // "SS_Av3": "I regulate my emotions by avoiding spending time with people that I think will probably make me feel bad.",
     };
 
     const ERQ = {
