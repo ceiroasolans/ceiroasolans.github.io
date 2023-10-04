@@ -1478,7 +1478,7 @@ function shuffleArray(array) {
 //                                              GENERATE DATA
 
 function generateAndUploadCSV(participantChoices) {
-    const header = ["vID", "reactionTime", "valence", "arousal", "videoType", "EmoRated", "EmoScore", "WatchAgain", "SID", "uniqueKey", "startTime", "age", "racialIdentity", "genderIdentity", "fatherEducation", "motherEducation", "familyIncome", "yearInSchool", "B_Active", "B_Afraid", "B_Amused", "B_Angry", "B_Aroused", "B_Calm", "B_Disgusted", "B_Excited", "B_Happy", "B_Hungry", "B_Inactive", "B_Loving", "B_Negative", "B_Peaceful", "B_Pleasant", "B_Positive", "B_Sad", "B_Still", "B_Unpleasant", "bfi_1", "bfi_2", "bfi_3", "bfi_4", "bfi_5", "bfi_6", "bfi_7", "bfi_8", "bfi_9", "bfi_10", "bfi_11", "bfi_12", "bfi_13", "bfi_14", "bfi_15", "bfi_16", "bfi_17", "AC1", "bfi_18", "bfi_19", "bfi_20", "bfi_21", "bfi_22", "bfi_23", "bfi_24", "bfi_25", "bfi_26", "bfi_27", "bfi_28", "bfi_29", "bfi_30", "bfi_31", "bfi_32", "bfi_33", "bfi_34", "bfi_35", "bfi_36", "bfi_37", "bfi_38", "bfi_39", "bfi_40", "bfi_41", "bfi_42", "bfi_43", "bfi_44", "bfi_45", "bfi_46", "bfi_47", "bfi_48", "bfi_49", "bfi_50", "bfi_51", "bfi_52", "bfi_53", "bfi_54", "bfi_55", "bfi_56", "bfi_57", "bfi_58", "bfi_59", "bfi_60", "SS_Gen1", "SM1", "SS_Av1", "SS_Ap1", "SM2", "SS_Gen2", "SS_Ap2", "SS_AvR", "SM3", "SS_Gen_3", "SS_Av3", "AC2", "SM4", "SS_ApR", "SS_Gen4", "SM5", "SS_Ap3", "SS_Av3", "ERQ1", "ERQ2", "ERQ3", "ERQ4", "ERQ5", "ERQ6", "ERQ7", "ERQ8", "ERQ9", "ERQ10"];
+    const header = ["vID", "reactionTime", "valence", "arousal", "videoType", "EmoRated", "EmoScore", "WatchAgain", "SID", "uniqueKey", "startTime", "age", "racialIdentity", "genderIdentity", "fatherEducation", "motherEducation", "familyIncome", "yearInSchool", "B_Active", "B_Afraid", "B_Amused", "B_Angry", "B_Aroused", "B_Calm", "B_Disgusted", "B_Excited", "B_Happy", "B_Hungry", "B_Inactive", "B_Loving", "B_Negative", "B_Peaceful", "B_Pleasant", "B_Positive", "B_Sad", "B_Still", "B_Unpleasant", "bfi_1", "bfi_2", "bfi_3", "bfi_4", "bfi_5", "bfi_6", "bfi_7", "bfi_8", "bfi_9", "bfi_10", "bfi_11", "bfi_12", "bfi_13", "bfi_14", "bfi_15", "bfi_16", "bfi_17", "AC1", "bfi_18", "bfi_19", "bfi_20", "bfi_21", "bfi_22", "bfi_23", "bfi_24", "bfi_25", "bfi_26", "bfi_27", "bfi_28", "bfi_29", "bfi_30", "bfi_31", "bfi_32", "bfi_33", "bfi_34", "bfi_35", "bfi_36", "bfi_37", "bfi_38", "bfi_39", "bfi_40", "bfi_41", "bfi_42", "bfi_43", "bfi_44", "bfi_45", "bfi_46", "bfi_47", "bfi_48", "bfi_49", "bfi_50", "bfi_51", "bfi_52", "bfi_53", "bfi_54", "bfi_55", "bfi_56", "bfi_57", "bfi_58", "bfi_59", "bfi_60", "SS_Gen1", "SM1", "SS_Av1", "SS_Ap1", "SM2", "SS_Gen2", "SS_Ap2", "SS_AvR", "SM3", "SS_Gen_3", "SS_Av3", "AC2", "SM4", "SS_ApR", "SS_Gen4", "SM5", "SS_Ap3", "SS_Av3", "ERQ1", "ERQ2", "ERQ3", "ERQ4", "ERQ5", "ERQ6", "ERQ7", "ERQ8", "ERQ9", "ERQ10", "finishTime"];
     const csvRows = [header];
   
     for (const row of participantChoices) {
@@ -1549,6 +1549,7 @@ function generateAndUploadCSV(participantChoices) {
         row.ERQ8 || "",
         row.ERQ9 || "",
         row.ERQ10 || "",
+        row.finishTime || "",
     ];
 
       csvRows.push(rowData);
