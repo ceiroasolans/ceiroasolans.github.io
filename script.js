@@ -1357,7 +1357,7 @@ function Questionnaire(participantChoices) {
             if (currentRound === 2) { // If it's the third round, finalize.
                 //participantChoices.push(questionnaireResponses); 
     // For each object within participantChoices, merge it with questionnaireResponses
-    const timestamp2 = new Date().toISOString();
+    const timestamp2 = new Date();
     questionnaireResponses["finishTime"] = timestamp2;
     participantChoices = participantChoices.map(choice => {
         if (typeof choice === 'object' && !Array.isArray(choice)) {
