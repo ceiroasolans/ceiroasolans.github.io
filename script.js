@@ -1337,13 +1337,13 @@ function Questionnaire(participantChoices) {
         let currentQuestions;
         switch (currentRound) {
             case 0:
-                currentQuestions = BFI;
-                break;
-            case 1:
                 currentQuestions = Situational;
                 break;
-            case 2:
+            case 1:
                 currentQuestions = ERQ;
+                break;
+            case 2:
+                currentQuestions = BFI;
                 break;
             default:
                 // Handle an unexpected case
