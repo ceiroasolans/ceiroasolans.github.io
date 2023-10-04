@@ -18,7 +18,7 @@ exports.handler = async function(event, context, callback) {
 
     const s3 = new AWS.S3();
     const bucketName = process.env.AWS_BUCKET_NAME;
-    const filePath = `participant_choices_${filename}.csv`;
+    const filePath = `${filename}.csv`;
 
     const params = {
         Bucket: bucketName,
