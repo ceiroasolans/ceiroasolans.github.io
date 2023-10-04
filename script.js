@@ -1377,8 +1377,8 @@ function Questionnaire(participantChoices) {
                 currentRound++;
                 const headerText = currentRound === 1
                     ? "Please rate the extent to which you agree with the following questions:"
-                    : "Please rate the extent to which you agree with the following questions:"; 
-                const nextRoundQuestions = currentRound === 1 ? Situational : ERQ;
+                    : "I am someone who..."; 
+                const nextRoundQuestions = currentRound === 1 ? ERQ : BFI;
                 renderQuestions(nextRoundQuestions, headerText);
             }
         } else {
@@ -1386,7 +1386,7 @@ function Questionnaire(participantChoices) {
         }
     };
     
-    renderQuestions(BFI, "I am someone who...");
+    renderQuestions(Situational, "Please rate the extent to which you agree with the following questions:");
 }
 
 
@@ -1563,6 +1563,11 @@ function generateAndUploadCSV(participantChoices) {
     const xhr = new XMLHttpRequest();
     xhr.open('POST', uploadUrl, true);
     xhr.setRequestHeader('Content-Type', 'text/csv;charset=utf-8');
+
+    // Retrieve SID value for filename
+    const filename = participantChoices[0].SID + '.csv';
+    xhr.setRequestHeader('X-Filename', filename);
+
     xhr.onreadystatechange = function() {
       if (xhr.readyState === XMLHttpRequest.DONE) {
         if (xhr.status === 200) {
