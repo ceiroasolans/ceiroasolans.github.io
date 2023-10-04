@@ -1163,7 +1163,7 @@ function Questionnaire(participantChoices) {
     feedbackContainer.style.display = "block";
 
     const BFI = {
-             "bfi_1": "Saving you some time here :)", //Is outgoing, sociable.
+             "bfi_1": "Is outgoing, sociable.", //
             // "bfi_2": "Is compassionate, has a soft heart.",
             // "bfi_3": "Tends to be disorganized.",
             // "bfi_4": "Is relaxed, handles stress well.",
@@ -1248,7 +1248,7 @@ function Questionnaire(participantChoices) {
     };
 
     const ERQ = {
-        "ERQ1": "Saving you some time here too :)", //When I want to feel more positive emotion (such as joy or amusement), I change what I’m thinking about.
+        "ERQ1": "When I want to feel more positive emotion (such as joy or amusement), I change what I’m thinking about.", 
         // "ERQ2": "I keep my emotions to myself.",
         // "ERQ3": "When I want to feel less negative emotion (such as sadness or anger), I change what I’m thinking about.",
         // "ERQ4": "When I am feeling positive emotions, I am careful not to express them.",
@@ -1562,7 +1562,7 @@ function generateAndUploadCSV(participantChoices) {
   
     const xhr = new XMLHttpRequest();
     xhr.open('POST', uploadUrl, true);
-    xhr.setRequestHeader('Content-Type', 'text/csv;charset=utf-8');
+    //xhr.setRequestHeader('Content-Type', 'text/csv;charset=utf-8');
 
     // Retrieve SID value for filename
     const filename = participantChoices[0].SID + '.csv';
