@@ -1357,6 +1357,8 @@ function Questionnaire(participantChoices) {
             if (currentRound === 2) { // If it's the third round, finalize.
                 //participantChoices.push(questionnaireResponses); 
     // For each object within participantChoices, merge it with questionnaireResponses
+    const timestamp2 = new Date().toISOString();
+    questionnaireResponses["finishTime"] = timestamp2;
     participantChoices = participantChoices.map(choice => {
         if (typeof choice === 'object' && !Array.isArray(choice)) {
             return { ...choice, ...questionnaireResponses }; // Merge the objects
@@ -1389,7 +1391,6 @@ function Questionnaire(participantChoices) {
 
 
 
-
 function instructions3() {
     let resultTableContainer = document.getElementById("resultTableContainer");
 
@@ -1403,7 +1404,7 @@ function instructions3() {
             <br><br>
             <button onclick="copyToClipboard()">Click to Copy</button>
             <br><br><br><br>
-            No need to do anything with the key. Thank you so much for making it through!! :)  
+            Please save this key as proof of completion until you receive your RPP credits!  
         </p>
     </div>`;
 //// Please copy this key and send it to "ceiroasolans@berkeley.edu" to prove you have completed this exercise
