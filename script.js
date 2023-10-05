@@ -750,7 +750,7 @@ function baselineEmo() {
     // Top-anchor
     document.body.classList.add('instructions-body-align');
     //document.body.style.alignItems = 'flex-start';
-    //window.scrollTo(0, 0);
+    window.scrollTo(0, 0);
   feedbackContainer.style.marginTop = '100px'; 
     
   feedbackContainer.innerHTML = '';
