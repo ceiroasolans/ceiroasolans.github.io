@@ -171,7 +171,7 @@ function createFeedbackForm(videoId, onSubmit) {
 
     const questions = [
         { text: "How do you feel right now?", scale: ["Very unpleasant, negative", "Neutral", "Very pleasant, positive"] },
-        { text: " ", scale: ["Not activated / aroused at all", "Somewhat", "Very activated / aroused"] }
+        { text: " ", scale: ["Not activated / aroused at all", "Somewhat activated / aroused", "Very activated / aroused"] }
     ];
 
     const responses = {};
@@ -669,7 +669,7 @@ function demographics() {
     wrapper.appendChild(createRadioButtons('genderIdentity', ['Female', 'Male', 'Non-binary']));
 
     wrapper.appendChild(createStyledLabel('What is the highest level of education obtained by your father?'));
-    wrapper.appendChild(createRadioButtons('fatherEducation', ['Some high school', 'High school diploma', 'Associate degree', 'Bachelor\'s degree', 'Master\'s degree', 'Ph.D.']));
+    wrapper.appendChild(createRadioButtons('fatherEducation', ['Some high school', 'High school diploma', 'Associate degree', 'Bachelor\'s degree', 'Master\'s degree', 'Ph.D., M.D., J.D., Psy.D., or other']));
 
     wrapper.appendChild(createStyledLabel('What is the highest level of education obtained by your mother?'));
     wrapper.appendChild(createRadioButtons('motherEducation', ['Some high school', 'High school diploma', 'Associate degree', 'Bachelor\'s degree', 'Master\'s degree', 'Ph.D.']));
@@ -678,7 +678,7 @@ function demographics() {
     wrapper.appendChild(createStyledSlider(0, 200, 'incomeSlider'));
 
     wrapper.appendChild(createStyledLabel('What year are you in?'));
-    wrapper.appendChild(createRadioButtons('yearInSchool', ['Freshmen', 'Sophomore', 'Junior', 'Senior']));
+    wrapper.appendChild(createRadioButtons('yearInSchool', ['Freshman', 'Sophomore', 'Junior', 'Senior']));
 
     // Create the button
     let nextButton = document.createElement('button');
