@@ -661,6 +661,10 @@ function demographics() {
     // Append and style each question and input
     wrapper.appendChild(createStyledLabel('What is your age?'));
     wrapper.appendChild(createStyledSlider(18, 80, 'ageSlider'));
+    let ageSlider = wrapper.querySelector("#demographicsContainer div.noUi-target");
+    if (ageSlider) {
+     ageSlider.noUiSlider.set(80);
+    }
 
     wrapper.appendChild(createStyledLabel('What is your racial identity?'));
     wrapper.appendChild(createRadioButtons('racialIdentity', ['Asian', 'Black', 'Latino', 'Native American', 'White']));
@@ -672,10 +676,14 @@ function demographics() {
     wrapper.appendChild(createRadioButtons('fatherEducation', ['Some high school', 'High school diploma', 'Associate degree', 'Bachelor\'s degree', 'Master\'s degree', 'Ph.D., M.D., J.D., Psy.D., or other']));
 
     wrapper.appendChild(createStyledLabel('What is the highest level of education obtained by your mother?'));
-    wrapper.appendChild(createRadioButtons('motherEducation', ['Some high school', 'High school diploma', 'Associate degree', 'Bachelor\'s degree', 'Master\'s degree', 'Ph.D.']));
+    wrapper.appendChild(createRadioButtons('motherEducation', ['Some high school', 'High school diploma', 'Associate degree', 'Bachelor\'s degree', 'Master\'s degree', 'Ph.D., M.D., J.D., Psy.D., or other']));
 
     wrapper.appendChild(createStyledLabel('What is your family income, in thousands of dollars?'));
     wrapper.appendChild(createStyledSlider(0, 200, 'incomeSlider'));
+    let incomeSlider = wrapper.querySelectorAll("#demographicsContainer div.noUi-target")[1];
+    if (incomeSlider) {
+        incomeSlider.noUiSlider.set(0);
+    }
 
     wrapper.appendChild(createStyledLabel('What year are you in?'));
     wrapper.appendChild(createRadioButtons('yearInSchool', ['Freshman', 'Sophomore', 'Junior', 'Senior']));
