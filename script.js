@@ -679,7 +679,7 @@ function demographics() {
     wrapper.appendChild(createRadioButtons('motherEducation', ['Some high school', 'High school diploma', 'Associate degree', 'Bachelor\'s degree', 'Master\'s degree', 'Ph.D., M.D., J.D., Psy.D., or other']));
 
     wrapper.appendChild(createStyledLabel('What is your family income, in thousands of dollars?'));
-    wrapper.appendChild(createStyledSlider(0, 200000, 'incomeSlider'));
+    wrapper.appendChild(createStyledSlider(0, 200, 'incomeSlider'));
     let incomeSlider = wrapper.querySelectorAll("#demographicsContainer div.noUi-target")[1];
     if (incomeSlider) {
         incomeSlider.noUiSlider.set(0);
