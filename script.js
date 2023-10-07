@@ -479,38 +479,6 @@ function shuffleArray(array) {
     }
   }
   
-//   function generateVideoSequence(videos, order) {
-//     let videosByType = {};
-  
-//     // Group the videos by type
-//     for (let video of videos) {
-//       if (!videosByType[video.type]) {
-//         videosByType[video.type] = [];
-//       }
-//       videosByType[video.type].push(video);
-//     }
-  
-//     // Shuffle videos in each category
-//     for (let type in videosByType) {
-//       shuffleArray(videosByType[type]);
-//     }
-  
-//     // Generate the sequence based on the specified order
-//     let sequence = [];
-//     for (let type of order) {
-//       if (videosByType[type] && videosByType[type].length > 0) {
-//         sequence.push(videosByType[type].shift());  // Select and remove the first video from the shuffled array
-//       } else {
-//         console.warn(`No more videos available for type: ${type}`);
-//       }
-//     }
-  
-//     return sequence;
-//   }
-  
-
-
-// Instructions
 
 
 function generateVideoSequence(videosByType, order) {
@@ -533,6 +501,7 @@ function generateVideoSequence(videosByType, order) {
 
 // Global variable to store the SID number
 let participantSID;
+let participantName;
 function generateUniqueKey() {
     const length = 16;
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -553,7 +522,6 @@ function isValidSID(sid) {
 
 //                                          EXPERIMENTAL PRESENTATION
 
-
 // Demographics
 let age, racialIdentity, genderIdentity, fatherEducation, motherEducation, familyIncome, yearInSchool, timestamp1;
 
@@ -569,6 +537,8 @@ function demographics() {
     while (!isValidSID(participantSID)) {
         participantSID = prompt("Invalid SID. Please enter a 10-digit SID number:", "");
     }
+
+    participantName = prompt("What is your full name?", "")
 
     // Main wrapper
     let wrapper = document.createElement('div');
@@ -845,102 +815,6 @@ function baselineEmo() {
 }
 
 
-
-
-// function baselineEmo() {
-//     // Top-anchor
-//     document.body.classList.add('instructions-body-align');
-
-//     feedbackContainer.innerHTML = '';
-
-//     const emotions = ["Active", "Afraid", "Amused", "Angry", "Aroused", "Calm", "Disgusted", "Excited", "Happy", "Hungry", "Inactive", "Loving", "Negative", "Peaceful", "Pleasant", "Positive", "Sad", "Still (quiet)", "Unpleasant"];
-//     const scaleLabels = ["Not at all", "", "", "Somewhat", "", "", "Very"];
-//     const emotionResponses = {};
-
-//     // Add header
-//     const header = document.createElement("p");
-//     header.style.fontWeight = 'bold';
-//     header.style.textAlign = 'center';
-//     header.style.padding = '20px 0';
-//     header.textContent = "Please rate the extent to which you feel:";
-//     feedbackContainer.appendChild(header);
-
-//     emotions.forEach(emotion => {
-//         const emotionContainer = document.createElement("div");
-//         emotionContainer.style.display = "flex";
-//         emotionContainer.style.justifyContent = "space-between";
-//         emotionContainer.style.alignItems = "center";
-//         emotionContainer.style.paddingBottom = "10px";  // Reduced padding
-
-//         const question = document.createElement("p");
-//         question.style.fontWeight = 'bold';
-//         question.style.flex = "1";
-//         question.style.marginRight = "10px"; // Reduced padding to the right of the emotion text
-//         question.textContent = emotion;
-
-//         emotionContainer.appendChild(question);
-
-//         const likertContainer = document.createElement("div");
-//         likertContainer.classList.add("likert-container");
-//         likertContainer.style.flex = "2"; 
-
-//         for (let i = 0; i <= 6; i++) {
-//             const likertBox = document.createElement("div");
-//             likertBox.classList.add("likert-box");
-//             likertBox.style.width = "60px";  // Increased width
-//             likertBox.style.height = "35px";  // Reduced height
-
-//             const number = document.createElement("div");
-//             number.textContent = i.toString();
-//             number.classList.add("likert-number");
-//             number.style.lineHeight = "20px";  // Adjust to match the height
-
-//             likertBox.appendChild(number);
-
-//             const label = document.createElement("div");
-//             label.classList.add("likert-label");
-//             label.textContent = scaleLabels[i];
-//             likertBox.appendChild(label);
-
-//             (function(currentIndex, currentEmotion) {
-//                 likertBox.onclick = function() {
-//                     likertContainer.querySelectorAll(".likert-box").forEach(box => box.style.backgroundColor = "");
-//                     emotionResponses[currentEmotion] = currentIndex;
-//                     likertBox.style.backgroundColor = "#d8d8d8";
-//                 };
-//             })(i, emotion);
-
-//             likertContainer.appendChild(likertBox);
-//         }
-
-//         emotionContainer.appendChild(likertContainer);
-//         feedbackContainer.appendChild(emotionContainer);
-//     });
-
-//     const submitButton = document.createElement("button");
-//     submitButton.innerText = "Submit";
-//     submitButton.style.marginTop = "20px"; 
-//     submitButton.onclick = () => {
-//         if (emotions.every(emotion => emotion in emotionResponses)) {
-//             baselineEmoResponses = Object.keys(emotionResponses).reduce((acc, key) => {
-//                 acc[key] = emotionResponses[key].toString();
-//                 return acc;
-//             }, {});
-//             feedbackContainer.style.display = "none";
-//             document.body.classList.remove('instructions-body-align'); 
-//             instructions();
-//         } else {
-//             alert("Please answer all the questions.");
-//         }
-//     };
-
-//     feedbackContainer.appendChild(submitButton);
-//     feedbackContainer.style.display = "block";
-// }
-
-
-
-
 //Instructions
 function instructions() {
     let message = document.getElementById("message");
@@ -1057,6 +931,7 @@ function experimentalSet() {
                                         EmoScore: rating['EmoScore'],
                                         watchAgain: WatchAgainResponse["Would you watch this video again?"],
                                         SID: participantSID,
+                                        name: participantName,
                                         uniqueKey: participantUniqueKey,
                                         startTime: timestamp1,
                                         age: age,
@@ -1487,7 +1362,7 @@ function shuffleArray(array) {
 //                                              GENERATE DATA
 
 function generateAndUploadCSV(participantChoices) {
-    const header = ["vID", "reactionTime", "valence", "arousal", "videoType", "EmoRated", "EmoScore", "WatchAgain", "SID", "uniqueKey", "startTime", "age", "racialIdentity", "genderIdentity", "fatherEducation", "motherEducation", "familyIncome", "yearInSchool", "B_Active", "B_Afraid", "B_Amused", "B_Angry", "B_Aroused", "B_Calm", "B_Disgusted", "B_Excited", "B_Happy", "B_Hungry", "B_Inactive", "B_Loving", "B_Negative", "B_Peaceful", "B_Pleasant", "B_Positive", "B_Sad", "B_Still", "B_Unpleasant", "bfi_1", "bfi_2", "bfi_3", "bfi_4", "bfi_5", "bfi_6", "bfi_7", "bfi_8", "bfi_9", "bfi_10", "bfi_11", "bfi_12", "bfi_13", "bfi_14", "bfi_15", "bfi_16", "bfi_17", "AC1", "bfi_18", "bfi_19", "bfi_20", "bfi_21", "bfi_22", "bfi_23", "bfi_24", "bfi_25", "bfi_26", "bfi_27", "bfi_28", "bfi_29", "bfi_30", "bfi_31", "bfi_32", "bfi_33", "bfi_34", "bfi_35", "bfi_36", "bfi_37", "bfi_38", "bfi_39", "bfi_40", "bfi_41", "bfi_42", "bfi_43", "bfi_44", "bfi_45", "bfi_46", "bfi_47", "bfi_48", "bfi_49", "bfi_50", "bfi_51", "bfi_52", "bfi_53", "bfi_54", "bfi_55", "bfi_56", "bfi_57", "bfi_58", "bfi_59", "bfi_60", "SS_Gen1", "SM1", "SS_Av1", "SS_Ap1", "SM2", "SS_Gen2", "SS_Ap2", "SS_AvR", "SM3", "SS_Gen_3", "SS_Av3", "AC2", "SM4", "SS_ApR", "SS_Gen4", "SM5", "SS_Ap3", "SS_Av3", "ERQ1", "ERQ2", "ERQ3", "ERQ4", "ERQ5", "ERQ6", "ERQ7", "ERQ8", "ERQ9", "ERQ10", "finishTime"];
+    const header = ["vID", "reactionTime", "valence", "arousal", "videoType", "EmoRated", "EmoScore", "WatchAgain", "SID", "name", "uniqueKey", "startTime", "age", "racialIdentity", "genderIdentity", "fatherEducation", "motherEducation", "familyIncome", "yearInSchool", "B_Active", "B_Afraid", "B_Amused", "B_Angry", "B_Aroused", "B_Calm", "B_Disgusted", "B_Excited", "B_Happy", "B_Hungry", "B_Inactive", "B_Loving", "B_Negative", "B_Peaceful", "B_Pleasant", "B_Positive", "B_Sad", "B_Still", "B_Unpleasant", "bfi_1", "bfi_2", "bfi_3", "bfi_4", "bfi_5", "bfi_6", "bfi_7", "bfi_8", "bfi_9", "bfi_10", "bfi_11", "bfi_12", "bfi_13", "bfi_14", "bfi_15", "bfi_16", "bfi_17", "AC1", "bfi_18", "bfi_19", "bfi_20", "bfi_21", "bfi_22", "bfi_23", "bfi_24", "bfi_25", "bfi_26", "bfi_27", "bfi_28", "bfi_29", "bfi_30", "bfi_31", "bfi_32", "bfi_33", "bfi_34", "bfi_35", "bfi_36", "bfi_37", "bfi_38", "bfi_39", "bfi_40", "bfi_41", "bfi_42", "bfi_43", "bfi_44", "bfi_45", "bfi_46", "bfi_47", "bfi_48", "bfi_49", "bfi_50", "bfi_51", "bfi_52", "bfi_53", "bfi_54", "bfi_55", "bfi_56", "bfi_57", "bfi_58", "bfi_59", "bfi_60", "SS_Gen1", "SM1", "SS_Av1", "SS_Ap1", "SM2", "SS_Gen2", "SS_Ap2", "SS_AvR", "SM3", "SS_Gen_3", "SS_Av3", "AC2", "SM4", "SS_ApR", "SS_Gen4", "SM5", "SS_Ap3", "SS_Av3", "ERQ1", "ERQ2", "ERQ3", "ERQ4", "ERQ5", "ERQ6", "ERQ7", "ERQ8", "ERQ9", "ERQ10", "finishTime"];
     const csvRows = [header];
   
     for (const row of participantChoices) {
@@ -1501,6 +1376,7 @@ function generateAndUploadCSV(participantChoices) {
         row.EmoScore || "",
         row.watchAgain || "",
         row.SID || "",
+        row.name || "",
         row.uniqueKey || "",
         row.startTime || "",
         row.age || "",
