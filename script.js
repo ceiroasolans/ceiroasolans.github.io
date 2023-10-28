@@ -712,7 +712,8 @@ nextButton.onclick = function() {
 }
 
 let moviePreferences = {};
-function MoviePreferences(onSubmit) {
+function MoviePreferences() {
+    
     document.body.classList.add('instructions-body-align');
     feedbackContainer.innerHTML = '';
 
@@ -776,7 +777,7 @@ function MoviePreferences(onSubmit) {
     submitButton.innerText = "Submit";
     submitButton.onclick = () => {
         if (Object.keys(moviePreferences).length === genres.length) {
-            onSubmit(moviePreferences);
+            //onSubmit(moviePreferences);
             document.body.classList.remove('instructions-body-align');
             baselineEmo();
         } else {
