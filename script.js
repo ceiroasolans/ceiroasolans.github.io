@@ -734,7 +734,7 @@ function MoviePreferences(onSubmit) {
     genres.forEach((genre) => {
         const genreTitle = document.createElement("p");
         genreTitle.style.fontWeight = 'bold'; 
-        genreTitle.style.textAlign = 'center';
+        genreTitle.style.textAlign = 'left';
         genreTitle.textContent = genre;
 
         const likertContainer = document.createElement("div");
