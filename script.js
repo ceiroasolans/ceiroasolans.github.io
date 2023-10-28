@@ -789,7 +789,7 @@ function MoviePreferences(onSubmit) {
 }
 
 // Assuming feedbackContainer is a globally available DOM element.
-var feedbackContainer = document.getElementById("feedbackContainer");
+//var feedbackContainer = document.getElementById("feedbackContainer");
 
 
 //Baseline Emo
