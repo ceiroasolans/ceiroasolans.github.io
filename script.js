@@ -713,6 +713,7 @@ nextButton.onclick = function() {
 
 let moviePreferences = {};
 function MoviePreferences(onSubmit) {
+    document.body.classList.add('instructions-body-align');
     feedbackContainer.innerHTML = '';
 
     const genres = [
@@ -776,6 +777,7 @@ function MoviePreferences(onSubmit) {
     submitButton.onclick = () => {
         if (Object.keys(moviePreferences).length === genres.length) {
             onSubmit(moviePreferences);
+            document.body.classList.remove('instructions-body-align');
             baselineEmo();
         } else {
             alert("Please answer all questions.");
