@@ -675,7 +675,7 @@ nextButton.onclick = function() {
         
     document.body.classList.remove('instructions-body-align');
 
-    baselineEmo();  // Then display the baseline survey
+    MoviePreferences();  // Then display the baseline survey
 
 };
     
@@ -776,6 +776,7 @@ function MoviePreferences(onSubmit) {
     submitButton.onclick = () => {
         if (Object.keys(moviePreferences).length === genres.length) {
             onSubmit(moviePreferences);
+            baselineEmo();
         } else {
             alert("Please answer all questions.");
         }
