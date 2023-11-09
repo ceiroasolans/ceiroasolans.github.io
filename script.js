@@ -492,7 +492,7 @@ function generateVideoSequence(videosByType, order) {
   
     return { sequence, videosByType };
   }
-  
+  //FIxed order
   const order1 = ["Joy", "Fear", "Interest", "Craving", "Anger", "Romance", "Sadness", "Excitement", "Amusement", "Disgust", "Calmness"];
   const order2 = ["Romance", "Fear", "Craving", "Sadness", "Calmness", "Amusement", "Anger", "Interest", "Joy", "Disgust", "Excitement"];
 
