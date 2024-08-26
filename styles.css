@@ -1,9 +1,10 @@
 body {
     font-family: Arial, sans-serif;
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center; /* Align the items at the start = flex-start. or "center" for normal before*/
-    height: 100vh;
+    height: auto;
     margin: 0;
     background-color: #f0f0f0;
     overflow: auto;
@@ -28,12 +29,12 @@ body {
 
 
 #videoPlayer {
-    width: 100%;
-    height: 100%;
-    object-fit: contain; /* or 'cover' */
+    width: 640px;
+    height: 360px;
+    object-fit: fill; /* or 'cover' */
     display: flex;
-    justify-content: center; /* new */
-    align-items: center;  /* new */
+    justify-content: center; 
+    align-items: center;  
     padding-bottom: 10px;
 
 }
@@ -60,6 +61,11 @@ button {
     border-radius: 0.25rem;
 }
 
+#buttonsContainer {
+    text-align: center;
+    margin-top: 20px;
+}
+
 button:disabled {
     background-color: #ccc;
     cursor: not-allowed;
@@ -67,9 +73,13 @@ button:disabled {
 
 
 #mainContainer {
-    min-height: 360px; /* adjust as needed */
+    display: flex;
+    height: auto !important;
+    width: 1080px;
+    min-height: 60px; /* adjust as needed */
     position: relative;
 }
+
 
 /* erase the following if I go with the graph*/
 
@@ -88,6 +98,14 @@ button:disabled {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+}
+
+#feedbackContainer h2 {
+    display: flex;
+    text-align: center;
+    margin: 20px 0;
+    height: auto;
+    width: 100%;
 }
 
 
@@ -228,4 +246,15 @@ thead th {
     top: 100%;
     bottom: auto !important;
     transform: translateY(6px);
+}
+
+
+ /* Other */
+.no-select {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none;   /* Safari */
+    -khtml-user-select: none;    /* Konqueror HTML */
+    -moz-user-select: none;      /* Old versions of Firefox */
+    -ms-user-select: none;       /* Internet Explorer/Edge */
+    user-select: none;           /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
 }
