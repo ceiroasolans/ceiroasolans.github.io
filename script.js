@@ -189,8 +189,8 @@ function createSurvey(surveyName, questions, onSubmit) {
 //PreTrial Forecasting
 function Forecasting(videoId, onSubmit) {
     const questions = [
-        { text: "How interesting do you think this video will be?", scale: ["Not interesting at all", " ", " ", "Somewhat interesting", " ", " ", "Very interesting"], scaleValues: [0, 1, 2, 3, 4, 5, 6] }, 
-        { text: "How do you think this video will make you feel?", scale: ["Very unpleasant, negative", " ", " ", "Neutral", " ", " ", "Very pleasant, positive"], scaleValues: [-3, -2, -1, 0, 1, 2, 3] }
+        { id: "interestForecast", text: "How interesting do you think this video will be?", scale: ["Not interesting at all", " ", " ", "Somewhat interesting", " ", " ", "Very interesting"], scaleValues: [0, 1, 2, 3, 4, 5, 6] }, 
+        { id: "valenceForecast", text: "How do you think this video will make you feel?", scale: ["Very unpleasant, negative", " ", " ", "Neutral", " ", " ", "Very pleasant, positive"], scaleValues: [-3, -2, -1, 0, 1, 2, 3] }
     ];
 
     createSurvey("Forecasting", questions, function(forecast) {
@@ -355,7 +355,7 @@ function intro() {
     }
 
     if (participantSID === "1234567890") {
-        skipToExperiment();
+        Experiment();
         return; // Exit the function early
     }
 
@@ -393,8 +393,8 @@ function skipToExperiment() {
         uniqueKey: participantUniqueKey,
         startTime: timestamp1
     });
-    // Experiment();
-    IdealAffect1(participantChoices);
+    GazeCalibration();
+    // IdealAffect1(participantChoices);
 }
 
 
@@ -1130,10 +1130,10 @@ function GazeCalibration() {
                 var y = storedArray[1];
                 console.log("Stored array:  - X array:",x)
 
-                for (n=0; n < x.length; n++) {
+                for (let n = 0; n < x.length; n++) {
                     console.log("storedPoints - xn:",x[n])
-                    xDiff = x[n] - centerX
-                    yDiff = y[n] - centerY
+                    let xDiff = x[n] - centerX
+                    let yDiff = y[n] - centerY
                     // Calculate the Euclidean distance between the gaze point and the center point
                     const distance = Math.sqrt(Math.pow(xDiff, 2) + Math.pow(yDiff, 2));
                     console.log("distance - xn", distance)
@@ -1155,7 +1155,7 @@ function GazeCalibration() {
 
                 // Stricter method with threshold
                 const accuracyPercentage2 = (accurateGazePoints / distancesFromCenter.length) * 100;
-                accuracyPercentage = (100 - (averageDistance/window.innerHeight / 2 * 100)).toFixed(2);
+                let accuracyPercentage = (100 - (averageDistance/window.innerHeight / 2 * 100)).toFixed(2);
 
 
 
@@ -1392,9 +1392,9 @@ function playSingleTrainVideo(video, onComplete) {
         videoPlayer.onseeked = () => {
             videoPlayer.onseeked = null;
             videoPlayer.pause(); // Pause the video after seeking
-            webgazer.resume();
             videoPlayer.style.display = "block"; // Show the video still 
             startRecording();
+            webgazer.resume();
 
             participantChoices.push({
                 part: "Still frame"
@@ -1425,13 +1425,13 @@ function playSingleTrainVideo(video, onComplete) {
                                 vID: video.src,
                                 videoType: video.type,
                                 reactionTime: "NA",
-                                valenceForecast: forecastData.Forecasting_Question1,
-                                interestForecast: forecastData.Forecasting_Question2,
-                                postInterest: emoRatings.EmoRatingTest_Question1, 
-                                valence: emoRatings.EmoRatingTest_Question2, 
-                                targetEmo: emoRatings.EmoRatingTest_Question3, 
-                                counterEmo: emoRatings.EmoRatingTest_Question4,  
-                                watchAgain: emoRatings.EmoRatingTest_Question5,
+                                valenceForecast: forecastData.valenceForecast,
+                                interestForecast: forecastData.interestForecast,
+                                postInterest: emoRatings.postInterest, 
+                                valence: emoRatings.valence, 
+                                targetEmo: emoRatings.targetEmo, 
+                                counterEmo: emoRatings.counterEmo,  
+                                watchAgain: emoRatings.watchAgain,
                                 SID: participantSID,
                                 uniqueKey: participantUniqueKey,
                                 startTime: timestamp1,
@@ -1483,9 +1483,10 @@ function playSingleTestVideo(video, onComplete) {
         videoPlayer.onseeked = () => {
             videoPlayer.onseeked = null;
             videoPlayer.pause(); // Pause the video after seeking
-            webgazer.resume();
             videoPlayer.style.display = "block"; // Show the video still 
             startRecording();
+            webgazer.resume();
+            console.log(webgazer)
 
             participantChoices.push({
                 part: "Still frame"
@@ -1514,19 +1515,19 @@ function playSingleTestVideo(video, onComplete) {
                             EmoRatingTest(video.id, (emoRatings) => {
                                 feedbackContainer.style.display = "none";
                                 trialNum++;
-                                console.log("emo", emoRatings)
                                 participantChoices.push({
                                     choice: "watch",
                                     trialNum: trialNum,
                                     vID: video.src,
                                     videoType: video.type,
                                     reactionTime: reactionTime,
-                                    valenceForecast: forecastData.Forecasting_Question1, 
-                                    interestForecast: forecastData.Forecasting_Question2,
-                                    postInterest: emoRatings.EmoRatingTest_Question1, 
-                                    valence: emoRatings.EmoRatingTest_Question2, 
-                                    targetEmo: emoRatings.EmoRatingTest_Question3, 
-                                    counterEmo: emoRatings.EmoRatingTest_Question4, 
+                                    valenceForecast: forecastData.valenceForecast,
+                                    interestForecast: forecastData.interestForecast,
+                                    postInterest: emoRatings.postInterest, 
+                                    valence: emoRatings.valence, 
+                                    targetEmo: emoRatings.targetEmo, 
+                                    counterEmo: emoRatings.counterEmo,  
+                                    watchAgain: emoRatings.watchAgain,
                                     SID: participantSID,
                                     uniqueKey: participantUniqueKey,
                                     startTime: timestamp1,
@@ -1565,7 +1566,6 @@ function playSingleTestVideo(video, onComplete) {
                                 showFixationCross(onComplete);
                             });
                         });
-                        console.log("Forecast Data", forecastData)
                     });
 
                     let skipButton = createButton("Avoid", (reactionTime) => {
@@ -1722,16 +1722,26 @@ function handleDataAvailable(event) {
         recordedBlobs.push(event.data);
     }
 }
-
 // Ensure AWS SDK is loaded
+
+
+
 if (typeof AWS !== 'undefined') {
     AWS.config.update({
-        accessKeyId: AWS_ACCESS_KEY_ID,
-        secretAccessKey: AWS_SECRET_ACCESS_KEY,
-        region: AWS_REGION
-    });}
+        accessKeyId: awsConfig.AWS_ACCESS_KEY_ID,
+        secretAccessKey: awsConfig.AWS_SECRET_ACCESS_KEY,
+        region: awsConfig.AWS_REGION
+    });
 
-    const s3 = new AWS.S3();
+
+
+}
+
+const s3 = new AWS.S3();
+
+
+// Now you can use the `s3` instance to interact with S3
+
 
 function stopRecordingAndDownload(participantName, trialNum) {
     mediaRecorder.onstop = async () => {
@@ -3232,50 +3242,48 @@ function generateAndUploadCSV(participantChoices) {
     const csvContent = csvRows.map(e => e.join(",")).join("\n");
     
     // Use the SID as the filename or a default name if SID is not available
-    const filename = participantChoices[0].SID ? `${participantChoices[0].SID}.csv` : 'participant_choices.csv';
+    //  const filename = participantChoices[0].SID ? `${participantChoices[0].SID}.csv` : 'participant_choices.csv';
 
     // Trigger the download of the CSV file
-    downloadCSV(csvContent, filename);
+    // downloadCSV(csvContent, filename);
 
     //console.log(csvContent); 
     
     // Upload to serverless function
-//     const uploadUrl = '/.netlify/functions/upload-csv'; 
+    const uploadUrl = '/.netlify/functions/upload-csv'; 
   
-//     const xhr = new XMLHttpRequest();
-//     xhr.open('POST', uploadUrl, true);
-//     //xhr.setRequestHeader('Content-Type', 'text/csv;charset=utf-8');
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', uploadUrl, true);
+    //xhr.setRequestHeader('Content-Type', 'text/csv;charset=utf-8');
 
-//       // Function to check if the SID is valid (not empty and possibly other criteria)
-// function isValidSID2(sid) {
-//     return sid && sid.trim().length > 0;  // Example check for non-empty SID
-// }
-
-// // Find the first valid entry with an SID
-// const validEntry = participantChoices.find(choice => isValidSID2(choice.SID));
-
-// // Use the found SID or a default value if no valid entry exists
-// const filename = (validEntry ? validEntry.SID : "default") + '.csv';
-// xhr.setRequestHeader('X-Filename', filename);  
-//    // Retrieve SID value for filename
-//    // const filename = participantChoices[0].SID + '.csv';
-//     //xhr.setRequestHeader('X-Filename', filename);
-
-//     xhr.onreadystatechange = function() {
-//       if (xhr.readyState === XMLHttpRequest.DONE) {
-//         if (xhr.status === 200) {
-//           console.log('File uploaded successfully:');
-//         } else {
-//           console.error('Error uploading file:');
-//         }
-//       }
-//     };
-  
-//     xhr.send(csvContent);
-//   }
-
-
+      // Function to check if the SID is valid (not empty and possibly other criteria)
+function isValidSID2(sid) {
+    return sid && sid.trim().length > 0;  // Example check for non-empty SID
 }
+
+// Find the first valid entry with an SID
+const validEntry = participantChoices.find(choice => isValidSID2(choice.SID));
+
+// Use the found SID or a default value if no valid entry exists
+const filename = (validEntry ? validEntry.SID : "default") + '.csv';
+xhr.setRequestHeader('X-Filename', filename);  
+   // Retrieve SID value for filename
+   // const filename = participantChoices[0].SID + '.csv';
+    //xhr.setRequestHeader('X-Filename', filename);
+
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState === XMLHttpRequest.DONE) {
+        if (xhr.status === 200) {
+          console.log('File uploaded successfully:');
+        } else {
+          console.error('Error uploading file:');
+        }
+      }
+    };
+  
+    xhr.send(csvContent);
+  }
+
   
 
 
