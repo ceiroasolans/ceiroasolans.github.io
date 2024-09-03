@@ -1722,54 +1722,39 @@ function handleDataAvailable(event) {
         recordedBlobs.push(event.data);
     }
 }
-// Ensure AWS SDK is loaded
-
-
-
-if (typeof AWS !== 'undefined') {
-    AWS.config.update({
-        accessKeyId: awsConfig.AWS_ACCESS_KEY_ID,
-        secretAccessKey: awsConfig.AWS_SECRET_ACCESS_KEY,
-        region: awsConfig.AWS_REGION
-    });
-
-
-
-}
-
-const s3 = new AWS.S3();
-
-
-// Now you can use the `s3` instance to interact with S3
-
 
 function stopRecordingAndDownload(participantName, trialNum) {
     mediaRecorder.onstop = async () => {
-        // downloadRecording(participantName, trialNum);
         const blob = new Blob(recordedBlobs, { type: 'video/webm' });
         const fileName = `${participantName}_trial_${trialNum}.webm`;
         
-        // Convert blob to a buffer
+        // Convert blob to base64
         const arrayBuffer = await blob.arrayBuffer();
-        const buffer = new Uint8Array(arrayBuffer);
+        const base64Data = btoa(
+            new Uint8Array(arrayBuffer)
+            .reduce((data, byte) => data + String.fromCharCode(byte), '')
+        );
 
-        // Set up S3 upload parameters
-        const params = {
-            Bucket: 'emotion-science', //TODO: CHANGE FOR DIFFERENT ACCOUNT
-            Key: fileName,
-            Body: buffer,
-            ContentType: 'video/webm'
+        const uploadUrl = '/.netlify/functions/upload-video';
+
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', uploadUrl, true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.setRequestHeader('X-Filename', fileName);
+
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    console.log('Video uploaded successfully');
+                } else {
+                    console.error('Error uploading video');
+                }
+            }
         };
 
-        // Upload to S3
-        s3.upload(params, (err, data) => {
-            if (err) {
-                console.error('Error uploading to S3:', err);
-            } else {
-                console.log('Successfully uploaded to S3:', data.Location);
-            }
-        });
+        xhr.send(JSON.stringify({ videoData: base64Data }));
     };
+
     mediaRecorder.stop();
     videoStream.getTracks().forEach(track => track.stop());
 }
