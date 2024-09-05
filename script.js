@@ -1527,7 +1527,6 @@ function playSingleTestVideo(video, onComplete) {
                                     valence: emoRatings.valence, 
                                     targetEmo: emoRatings.targetEmo, 
                                     counterEmo: emoRatings.counterEmo,  
-                                    watchAgain: emoRatings.watchAgain,
                                     SID: participantSID,
                                     uniqueKey: participantUniqueKey,
                                     startTime: timestamp1,
@@ -1588,12 +1587,12 @@ function playSingleTestVideo(video, onComplete) {
                                     vID: video.src,
                                     videoType: video.type,
                                     reactionTime: reactionTime,
-                                    valenceForecast: forecastData.Forecasting_Question1, // Update the key reference
-                                    interestForecast: forecastData.Forecasting_Question2,
-                                    postInterest: emoRatings.EmoRatingTest_Question1, 
-                                    valence: emoRatings.EmoRatingTest_Question2, 
-                                    targetEmo: emoRatings.EmoRatingTest_Question3, 
-                                    counterEmo: emoRatings.EmoRatingTest_Question4, 
+                                    valenceForecast: forecastData.valenceForecast,
+                                    interestForecast: forecastData.interestForecast,
+                                    postInterest: emoRatings.postInterest, 
+                                    valence: emoRatings.valence, 
+                                    targetEmo: emoRatings.targetEmo, 
+                                    counterEmo: emoRatings.counterEmo,  
                                     SID: participantSID,
                                     uniqueKey: participantUniqueKey,
                                     startTime: timestamp1,
@@ -1724,10 +1723,16 @@ function handleDataAvailable(event) {
 }
 
 function stopRecordingAndDownload(participantName, trialNum) {
+    console.log("Downloading recording");
+
+    // Stop the recording first
+    mediaRecorder.stop();
+    videoStream.getTracks().forEach(track => track.stop());
+
     mediaRecorder.onstop = async () => {
         const blob = new Blob(recordedBlobs, { type: 'video/webm' });
         const fileName = `${participantName}_trial_${trialNum}.webm`;
-        
+
         // Convert blob to base64
         const arrayBuffer = await blob.arrayBuffer();
         const base64Data = btoa(
@@ -1736,11 +1741,15 @@ function stopRecordingAndDownload(participantName, trialNum) {
         );
 
         const uploadUrl = '/.netlify/functions/upload-video';
-
         const xhr = new XMLHttpRequest();
         xhr.open('POST', uploadUrl, true);
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.setRequestHeader('X-Filename', fileName);
+
+        const payload = JSON.stringify({ videoData: base64Data });
+        const payloadSize = new Blob([payload]).size;
+
+        console.log(`Payload size: ${payloadSize} bytes`);
 
         xhr.onreadystatechange = function() {
             if (xhr.readyState === XMLHttpRequest.DONE) {
@@ -1748,16 +1757,16 @@ function stopRecordingAndDownload(participantName, trialNum) {
                     console.log('Video uploaded successfully');
                 } else {
                     console.error('Error uploading video');
+                    console.error(xhr.responseText);  // Log the server's response for debugging
                 }
             }
         };
 
-        xhr.send(JSON.stringify({ videoData: base64Data }));
+        // Send the payload
+        xhr.send(payload);
     };
-
-    mediaRecorder.stop();
-    videoStream.getTracks().forEach(track => track.stop());
 }
+
 
 
 function downloadRecording(participantName, trialNum) {

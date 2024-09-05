@@ -1,3 +1,20 @@
 {
-	"siteId": "a69c1e77-c434-41da-9a4b-a85f6987fd62"
+	"siteId": "a69c1e77-c434-41da-9a4b-a85f6987fd62",
+	"geolocation": {
+		"data": {
+			"city": "Melrose",
+			"country": {
+				"code": "US",
+				"name": "United States"
+			},
+			"subdivision": {
+				"code": "MA",
+				"name": "Massachusetts"
+			},
+			"timezone": "America/New_York",
+			"latitude": 42.4597,
+			"longitude": -71.0638
+		},
+		"timestamp": 1725506057849
+	}
 }
