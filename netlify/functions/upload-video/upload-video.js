@@ -16,9 +16,10 @@ exports.handler = async function(event, context) {
 
         // Configure AWS SDK with environment variables
         AWS.config.update({
-            accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-            secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-            region: process.env.AWS_REGION
+            accessKeyId: process.env.key_id,
+            secretAccessKey: process.env.secret_key,
+            region: process.env.region,
+            endpoint: process.env.endpoint,
         });
 
         // Create an S3 instance

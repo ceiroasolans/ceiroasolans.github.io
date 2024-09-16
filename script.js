@@ -115,6 +115,9 @@ function createSurvey(surveyName, questions, onSubmit) {
     console.log(questions)
     const surveyContainer = document.createElement('div');
     surveyContainer.className = 'survey-container';
+    surveyContainer.style.position = 'relative'; // Ensures it stays at the top
+    surveyContainer.style.top = '0'; 
+    document.body.style.alignItems = 'flex-start';
 
     const responses = {};
 
@@ -171,6 +174,7 @@ function createSurvey(surveyName, questions, onSubmit) {
         if (allAnswered) {
             onSubmit(responses);
             surveyContainer.style.display = "none"; 
+            document.body.style.alignItems = 'center';
         } else {
             alert("Please answer all questions.");
         }
@@ -348,6 +352,7 @@ function intro() {
 
     // Student enter SID 
     participantSID = prompt("To receive credit, please enter your SID number:", "");
+    console.log(participantSID)
     
     // Keep prompting the user until they provide a valid 10-digit SID
     while (!isValidSID(participantSID)) {
@@ -358,6 +363,7 @@ function intro() {
         Experiment();
         return; // Exit the function early
     }
+
 
 
     message.innerHTML = `
@@ -393,7 +399,7 @@ function skipToExperiment() {
         uniqueKey: participantUniqueKey,
         startTime: timestamp1
     });
-    GazeCalibration();
+    Experiment();
     // IdealAffect1(participantChoices);
 }
 
@@ -468,6 +474,7 @@ function demographics() {
     let wrapper = document.createElement('div');
     wrapper.id = "demographicsContainer";
     wrapper.style.marginTop = '0rem'; // before 20rem
+    wrapper.style.top = '0';
     wrapper.style.paddingBottom = '5rem';
     wrapper.style.fontFamily = "'Arial', sans-serif";
 
@@ -484,6 +491,7 @@ function demographics() {
         label.textContent = content;
         label.style.fontWeight = 'bold';
         label.style.display = 'block';
+        label.style.textAlign = 'left';
         label.style.marginTop = '2rem';
         return label;
     }
@@ -580,9 +588,11 @@ function demographics() {
     function createRadioButtons(name, options) {
         let div = document.createElement('div');
         div.style.marginTop = '0.5rem';
+        
         for (let option of options) {
             let label = document.createElement('label');
             label.style.display = 'block';
+            label.style.textAlign = 'left';
             let radio = document.createElement('input');
             radio.type = 'radio';
             radio.name = name;
@@ -605,6 +615,7 @@ function demographics() {
             label.style.display = 'inline-flex'; // Display label in a row
             label.style.marginRight = '15px'; // Spacing between each radio button
             label.style.alignItems = 'center'; // Align items vertically for better appearance
+            label.style.textAlign = 'left';
     
             let radio = document.createElement('input');
             radio.type = 'radio';
@@ -1393,7 +1404,7 @@ function playSingleTrainVideo(video, onComplete) {
             videoPlayer.onseeked = null;
             videoPlayer.pause(); // Pause the video after seeking
             videoPlayer.style.display = "block"; // Show the video still 
-            startRecording();
+            // startRecording();
             webgazer.resume();
 
             participantChoices.push({
@@ -1466,7 +1477,7 @@ function playSingleTrainVideo(video, onComplete) {
                             });
                             console.log("trying to save csv")
                             generateAndUploadCSV(participantChoices);
-                            stopRecordingAndDownload(participantSID, trialNum);
+                            // stopRecordingAndDownload(participantSID, trialNum);
                             showFixationCross(onComplete);
                         });
                     }, 3000); // 3 second delay for still
@@ -1484,7 +1495,7 @@ function playSingleTestVideo(video, onComplete) {
             videoPlayer.onseeked = null;
             videoPlayer.pause(); // Pause the video after seeking
             videoPlayer.style.display = "block"; // Show the video still 
-            startRecording();
+            // startRecording();
             webgazer.resume();
             console.log(webgazer)
 
@@ -1561,7 +1572,7 @@ function playSingleTestVideo(video, onComplete) {
                                 });
                                 console.log("trying to save csv");
                                 generateAndUploadCSV(participantChoices);
-                                stopRecordingAndDownload(participantSID, trialNum);
+                                // stopRecordingAndDownload(participantSID, trialNum);
                                 showFixationCross(onComplete);
                             });
                         });
@@ -1627,7 +1638,7 @@ function playSingleTestVideo(video, onComplete) {
                                 });
                                 console.log("trying to save csv");
                                 generateAndUploadCSV(participantChoices);
-                                stopRecordingAndDownload(participantSID, trialNum);
+                                // stopRecordingAndDownload(participantSID, trialNum);
                                 showFixationCross(onComplete);
                             });
                         });
