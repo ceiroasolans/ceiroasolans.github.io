@@ -292,26 +292,6 @@ function EmoRatingTest(videoId, onSubmit) {
 
 
 
-  
-function generateVideoSequence(videosByType, order) {
-    // Generate the sequence based on the specified order
-    let sequence = [];
-    for (let type of order) {
-      if (videosByType[type] && videosByType[type].length > 0) {
-        sequence.push(videosByType[type].shift());  // Select and remove the first video from the shuffled array
-      } else {
-        console.warn(`No more videos available for type: ${type}`);
-      }
-    }
-  
-    return { sequence, videosByType };
-  }
-  
-  const order1 = ["Joy", "Fear",  "Amusement", "Sadness", "Excitement", "Disgust", "Calmness", "Anger", "Craving"]; 
-  const order2 = ["Fear", "Calmness", "Sadness", "Amusement", "Anger",  "Joy", "Disgust", "Excitement", "Craving"];
-
-
-
 // Global variable to store the SID number
 function generateUniqueKey() {
     const length = 16;
@@ -363,7 +343,6 @@ function intro() {
         Experiment();
         return; // Exit the function early
     }
-
 
 
     message.innerHTML = `
@@ -1310,7 +1289,7 @@ function playVideoUntil3Seconds(onComplete) {
 
     videoPlayer.onended = videoPlayer.onpause = () => {
         cumulativeTime += Date.now() - startTime; // add time of current play to cumulativeTime
-        if (cumulativeTime < 4000) {
+        if (cumulativeTime < 3000) {
             // check if cumulativeTime is less than 3 seconds
             startTime = Date.now(); // reset startTime for the next play
             videoPlayer.play(); // immediately replay video
@@ -1351,7 +1330,7 @@ function playNoVideoUntil3Seconds(onComplete) {
     videoPlayer.onended = videoPlayer.onpause = () => {
         cumulativeTime += Date.now() - startTime;
 
-        if (cumulativeTime < 4000) {
+        if (cumulativeTime < 3000) {
             startTime = Date.now();
             videoPlayer.play();
             webgazer.resume();
@@ -1971,15 +1950,13 @@ function choiceMotivation(participantChoices) {
                 currentQuestions = [
                     "Because I was curious about the events in the video",
                     "Because I wanted to feel the emotions shown in the video",
-                    "Because I am used to feeling this way",
-                    "Because I did not want to feel bored by the blank screen"
+                    "Because I did not want to feel bored by the neutral video"
                 ];
             } else if (participantChoice === 'avoid') {
                 currentQuestions = [
                     "Because I was not curious about the events in the video",
                     "Because I did not want to feel the emotions shown in the video",
-                    "Because I am not used to feeling this way",
-                    "Because I did not mind watching the blank screen"
+                    "Because I did not mind watching the neutral video"
                 ];
             }
             // Create a container div
@@ -2050,10 +2027,9 @@ function choiceMotivation(participantChoices) {
                     let trial = {
                         vID: videoIDs[currentVideoIndex],
                         choice: participantChoices.find(choice => choice.vID === videoIDs[currentVideoIndex])?.choice,
-                        Motivation_Emo: getLikertResponse(0),
-                        Motivation_Normal: getLikertResponse(1),
-                        Motivation_Events: getLikertResponse(2),
-                        Motivation_Boredom: getLikertResponse(3) 
+                        Motivation_Emo: getLikertResponse(1),
+                        Motivation_Events: getLikertResponse(0),
+                        Motivation_Boredom: getLikertResponse(2) 
                     };
                     trialData.push(trial);
 
@@ -2233,7 +2209,7 @@ function Questionnaire(participantChoices) {
         { id: "bfi_7", text: "Is respectful, treats others with respect.", scale: ["Disagree strongly", "Disagree a little", "Neutral; no opinion", "Agree a little", "Agree strongly"], scaleValues: [1, 2, 3, 4, 5] },
         { id: "bfi_8", text: "Tends to be lazy.", scale: ["Disagree strongly", "Disagree a little", "Neutral; no opinion", "Agree a little", "Agree strongly"], scaleValues: [1, 2, 3, 4, 5] },
         { id: "bfi_9", text: "Stays optimistic after experiencing a setback.", scale: ["Disagree strongly", "Disagree a little", "Neutral; no opinion", "Agree a little", "Agree strongly"], scaleValues: [1, 2, 3, 4, 5] },
-        // { id: "bfi_10", text: "Is curious about many different things.", scale: ["Disagree strongly", "Disagree a little", "Neutral; no opinion", "Agree a little", "Agree strongly"], scaleValues: [1, 2, 3, 4, 5] },
+        { id: "bfi_10", text: "Is curious about many different things.", scale: ["Disagree strongly", "Disagree a little", "Neutral; no opinion", "Agree a little", "Agree strongly"], scaleValues: [1, 2, 3, 4, 5] },
         { id: "bfi_11", text: "Rarely feels excited or eager.", scale: ["Disagree strongly", "Disagree a little", "Neutral; no opinion", "Agree a little", "Agree strongly"], scaleValues: [1, 2, 3, 4, 5] },
         { id: "bfi_12", text: "Tends to find fault with others.", scale: ["Disagree strongly", "Disagree a little", "Neutral; no opinion", "Agree a little", "Agree strongly"], scaleValues: [1, 2, 3, 4, 5] },
         { id: "bfi_13", text: "Is dependable, steady.", scale: ["Disagree strongly", "Disagree a little", "Neutral; no opinion", "Agree a little", "Agree strongly"], scaleValues: [1, 2, 3, 4, 5] },
@@ -2378,7 +2354,6 @@ function Questionnaire(participantChoices) {
 
 
 //Post experimental emotion
-// Post experimental emotion
 let postExperimentalEmoResponses = {};
 
 function postExperimentalEmo(participantChoices) {
@@ -2473,14 +2448,6 @@ function Questionnaire2(participantChoices) {
         "AC1": "I am paying attention and can select agree strongly",
         "Empathy_10_FS": "When I watch a good movie, I can very easily put myself in the place of a leading character.",//"Empathy_23_FS":
         "Empathy_11_EC_R": "Other people's misfortunes do not usually disturb me a great deal."//, // "Empathy_14_EC_R":
-        //"NEO_1": "Without strong emotions, life would be uninteresting to me.",
-        //"NEO_2_R": "I rarely experience strong emotions.",
-        //"NEO_3": "How I feel about things is important to me.",
-        //"NEO_4_R": "I seldom pay much attention to my feelings of the moment.",
-        //"NEO_5": "I experience a wide range of emotions or feelings.",
-        //"NEO_6_R": "I seldom notice the moods or feelings that different environments produce.",
-        //"NEO_7": "I find it easy to empathize--to feel myself what others are feeling.",
-        //"NEO_8_R": "Odd things--like certain scents or the names of distant places--can evoke strong moods in me."
         //"Empathy_1_FS": "I daydream and fantasize, with some regularity, about things that might happen to me.", 
         //"Empathy_2_EC": "I often have tender, concerned feelings for people less fortunate than me.",
         //"Empathy_6_PD": "In emergency situations, I feel apprehensive and ill-at-ease.", //
@@ -2521,11 +2488,6 @@ function Questionnaire2(participantChoices) {
         "BIS_6_R": "I have very few fears compared to my friends.",
         "BAS_19_Reward": "It would excite me to win a contest.",
         "BIS_7": "I worry about making mistakes."//,
-        //"BEQ_Intensity_1": "I experience my emotions very strongly.", 
-        //"BEQ_Intensity_2": "There have been times when I have not been able to stop crying even though I tried to stop.", 
-        //"BEQ_Intensity_3": "I have strong emotions.", 
-        //"BEQ_Intensity_4": "My body reacts very strongly to emotional situations.", 
-        //"BEQ_Intensity_5": "I sometimes cry during sad movies."
 };
 
    const Attachment = {
@@ -2595,9 +2557,6 @@ function Questionnaire2(participantChoices) {
 
     renderNextSurvey(); // Start the first survey
 }
-
-
-
 
 
 function Reactivity(participantChoices) {
@@ -3199,7 +3158,7 @@ function generateAndUploadCSV(participantChoices) {
      "Ideal_enthusiastic", "Ideal_down", "Ideal_astonished", "Ideal_disgusted", "Ideal_dull", "Ideal_joyful", "Ideal_quiet",  "Ideal_anxious", "Ideal_relaxed", "Ideal_craving", "Ideal_excited", "Ideal_surprised", "Ideal_interested", "Ideal_elated",  "Ideal_gross", "Ideal_sleepy", "Ideal_still",  "Ideal_amused", "Ideal_lonely", "Ideal_tempted",   "Ideal_strong",  "Ideal_passive",  "Ideal_content",  "Ideal_sluggish",  "Ideal_inactive",  "Ideal_funny", "Ideal_sad",  "Ideal_euphoric",  "Ideal_afraid",  "Ideal_happy",  "Ideal_idle",  "Ideal_calm",  "Ideal_unhappy",  "Ideal_aroused",  "Ideal_angry",  "Ideal_satisfied",  "Ideal_rested",  "Ideal_annoyed", "Ideal_peaceful",  "Ideal_serene", 
      "ERQ1", "ERQ2", "ERQ3", "ERQ4", "ERQ5", "ERQ6", "ERQ7", "ERQ8", "ERQ9", "ERQ10", 
      "WhyWatch", "WhyAvoid", "WhyCounterHedonic",
-     "Motivation_Emo", "Motivation_Normal", "Motivation_Events", "Motivation_Boredom",
+     "Motivation_Emo",  "Motivation_Events", "Motivation_Boredom",
      "finishTime", "windowSizeHeight","windowSizeWidth", "screenSizeHeight", "screenSizeWidth", "gazingPointX", "gazingPointY",
      "AC1", "AC2", "AC3", "attentionLevel",
      "participantSID2", "pName",
@@ -3233,7 +3192,7 @@ function generateAndUploadCSV(participantChoices) {
         row.Ideal_enthusiastic || "", row.Ideal_down || "", row.Ideal_astonished || "", row.Ideal_disgusted || "", row.Ideal_dull || "", row.Ideal_joyful || "", row.Ideal_quiet || "", row.Ideal_anxious || "", row.Ideal_relaxed || "", row.Ideal_craving || "", row.Ideal_excited || "", row.Ideal_surprised || "", row.Ideal_interested || "", row.Ideal_elated || "", row.Ideal_gross || "", row.Ideal_sleepy || "", row.Ideal_still || "", row.Ideal_amused || "", row.Ideal_lonely || "", row.Ideal_tempted || "", row.Ideal_strong || "", row.Ideal_passive || "", row.Ideal_content || "", row.Ideal_sluggish || "", row.Ideal_inactive || "", row.Ideal_funny || "", row.Ideal_sad || "", row.Ideal_euphoric || "", row.Ideal_afraid || "", row.Ideal_happy || "", row.Ideal_idle || "", row.Ideal_calm || "", row.Ideal_unhappy || "", row.Ideal_aroused || "", row.Ideal_angry || "", row.Ideal_satisfied || "", row.Ideal_rested || "", row.Ideal_annoyed || "", row.Ideal_peaceful || "", row.Ideal_serene || "",  
         row.ERQ1 || "", row.ERQ2 || "", row.ERQ3 || "", row.ERQ4 || "", row.ERQ5 || "", row.ERQ6 || "", row.ERQ7 || "", row.ERQ8 || "", row.ERQ9 || "", row.ERQ10 || "",
         row.WhyWatch || "", row.WhyAvoid || "",  row.WhyCounterHedonic || "", 
-        row.Motivation_Emo || "", row.Motivation_Normal || "", row.Motivation_Events || "", row.Motivation_Boredom || "",
+        row.Motivation_Emo || "", row.Motivation_Events || "", row.Motivation_Boredom || "",
         row.finishTime || "", row.windowSizeHeight, row.windowSizeWidth, row.screenSizeHeight, row.screenSizeWidth, row.gazingPointX, row.gazingPointY,
         row.AC1 || "", row.AC2 || "",row.AC3 || "", row.attentionLevel || "",
         row.participantSID2 || "", row.pName || "",
