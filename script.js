@@ -776,7 +776,7 @@ function importantScreen() {
     message.innerHTML = `
       <div style="max-width:800px; padding:20px; font-family:'Helvetica Neue', Arial, sans-serif; line-height:1.6; text-align:center; color:#333;">
         <p style="color:red; font-weight:bold;">IMPORTANT:</p>
-        <p style="font-weight:bold;">
+        <p style="font-weight:bold; margin-bottom: 2rem;">
           At the end of this study, you will receive personalized feedback about your personality and emotional tendencies.
           Please do your best to always respond truthfully and honestly.
         </p>
