@@ -1059,12 +1059,13 @@ window.submitImportant = function () {
          "Anxious","Enthusiastic","Bored","Happy","Angry","Relaxed","Amused","Down","Positive",
          "Unpleasant"].forEach(e => baselineEmoResponses[e] = '3');
 
-        /* Jump directly to the first instruction screen (or its successor) that
-           eventually leads to video‑choosing. We try a few known names until one exists. */
+        /* Jump directly to the earliest instruction / video phase we can find */
         const jump = () => {
-            if (typeof instructions1 === 'function') { instructions1(); return true; }
-            if (typeof instructions2 === 'function') { instructions2(); return true; }
-            if (typeof chooseVideos  === 'function') { chooseVideos();  return true; }
+            if (typeof instructions1 === 'function') { console.log('[QUICK] → instructions1'); instructions1(); return true; }
+            if (typeof instructions2 === 'function') { console.log('[QUICK] → instructions2'); instructions2(); return true; }
+            if (typeof instructions3 === 'function') { console.log('[QUICK] → instructions3'); instructions3(); return true; }
+            if (typeof chooseVideos   === 'function') { console.log('[QUICK] → chooseVideos');  chooseVideos();  return true; }
+            if (typeof beginTrials    === 'function') { console.log('[QUICK] → beginTrials');   beginTrials();   return true; }
             return false;
         };
         if (!jump()) {
