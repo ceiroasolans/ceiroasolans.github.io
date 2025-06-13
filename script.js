@@ -754,6 +754,14 @@ function consent() {
 function importantScreen() {
     document.body.classList.add('instructions-body-align');
     const message = document.getElementById("message");
+    // make it a full-screen overlay centered in X and Y
+    message.style.position    = 'fixed';
+    message.style.top         = '50%';
+    message.style.left        = '50%';
+    message.style.transform   = 'translate(-50%, -50%)';
+    message.style.zIndex      = '1000';
+
+    // existing styles
     message.style.display      = 'block';
     message.style.marginTop    = '0';
     message.style.maxWidth     = '800px';
@@ -764,6 +772,7 @@ function importantScreen() {
     message.style.lineHeight   = '1.6';
     message.style.textAlign    = 'left';
     message.style.color        = '#333';
+
     message.innerHTML = `
       <div style="max-width:800px; margin:auto; padding:20px; font-family:'Helvetica Neue', Arial, sans-serif; line-height:1.6; text-align:left; color:#333;">
         <p style="color:red; font-weight:bold;">IMPORTANT:</p>
