@@ -5593,45 +5593,98 @@ function showPersonalizedFeedback(participantChoices){
     wrap.insertAdjacentHTML("beforeend","<h3>Where You Stand on the Big Five</h3><p>(Curve = typical population; red bar = you)</p>");
     const sec1=document.createElement("div"); wrap.appendChild(sec1);
 
-    Object.entries(bfiScores).forEach(([trait,obj])=>{
-      const cv=document.createElement("canvas");
-      cv.height=150; cv.style.maxWidth="400px"; cv.style.margin="20px auto";
-      sec1.appendChild(cv);
+/* ========== Section 1: Big Five curves ========== */
+Object.entries(bfiScores).forEach(([trait,obj])=>{
+  const cv = document.createElement("canvas");
+  cv.height = 150;
+  cv.style.maxWidth = "400px";
+  cv.style.margin = "20px auto";
+  sec1.appendChild(cv);
 
-      /* normal curve points */
-      const mean=BFI_NORM_M[trait], sd=BFI_NORM_SD[trait];
-      const pts=[];
-      for(let x=mean-3*sd; x<=mean+3*sd; x+=sd/10){
-        const y=(1/(sd*Math.sqrt(2*Math.PI)))*Math.exp(-0.5*Math.pow((x-mean)/sd,2));
-        pts.push({x,y});
+  // build normal‐curve points
+  const mean = BFI_NORM_M[trait], sd = BFI_NORM_SD[trait];
+  const pts = [];
+  for(let x = mean - 3*sd; x <= mean + 3*sd; x += sd/10){
+    const y = (1/(sd*Math.sqrt(2*Math.PI))) *
+              Math.exp(-0.5 * Math.pow((x-mean)/sd,2));
+    pts.push({x: parseFloat(x.toFixed(2)), y});
+  }
+  const lineX = obj.avg;
+
+  new Chart(cv,{
+    type: "line",
+    data: {
+      datasets: [
+        {
+          label: "Distribution",
+          data: pts,
+          parsing: {xAxisKey: "x", yAxisKey: "y"},
+          borderWidth: 2,
+          pointRadius: 0,
+          fill: false,
+          tension: 0.25
+        },
+        {
+          label: "You",
+          data: [
+            {x: lineX, y: 0},
+            {x: lineX, y: Math.max(...pts.map(p=>p.y))*1.05}
+          ],
+          borderColor: "red",
+          borderWidth: 3,
+          pointRadius: 0,
+          fill: false
+        }
+      ]
+    },
+    options: {
+      plugins: { legend: { display: false }, tooltip: { enabled: false } },
+      scales: { x: { display: false }, y: { display: false } }
+    }
+  });
+
+  const p = document.createElement("p");
+  p.innerHTML = `<strong>${trait}</strong>: ${obj.percentile}<sup>th</sup> percentile`;
+  sec1.appendChild(p);
+});
+
+/* ========== Section 2: Valence bar chart ========== */
+wrap.insertAdjacentHTML("beforeend","<h3>Your Affect Profile</h3>");
+const bar = document.createElement("canvas");
+bar.height = 200;
+bar.style.maxWidth = "600px";
+wrap.appendChild(bar);
+
+new Chart(bar,{
+  type: "bar",
+  data: {
+    labels: ["Everyday Affect","Ideal Affect","Chosen Affect"],
+    datasets: [{
+      data: [everydayPct, idealPct, chosenPct],
+      backgroundColor: [
+        "rgba(54, 162, 235, 0.6)",
+        "rgba(255, 99, 132, 0.6)",
+        "rgba(255, 206, 86, 0.6)"
+      ],
+      borderColor: [
+        "rgba(54, 162, 235, 1)",
+        "rgba(255, 99, 132, 1)",
+        "rgba(255, 206, 86, 1)"
+      ],
+      borderWidth: 1
+    }]
+  },
+  options: {
+    plugins: { legend: { display: false } },
+    scales: {
+      y: {
+        beginAtZero: true,
+        max: 100,
+        title: { display: true, text: "Valence (%)" }
       }
-      const lineX = obj.avg;
-
-      new Chart(cv,{
-        type:"line",
-        data:{datasets:[
-          {data:pts, parsing:{xAxisKey:"x",yAxisKey:"y"}, borderWidth:2, pointRadius:0, fill:false, tension:0.25},
-          {data:[{x:lineX,y:0},{x:lineX,y:Math.max(...pts.map(p=>p.y))*1.05}], borderColor:"red", borderWidth:3, pointRadius:0, fill:false}
-        ]},
-        options:{plugins:{legend:{display:false},tooltip:{enabled:false}},scales:{x:{display:false},y:{display:false}}}
-      });
-
-      const p=document.createElement("p");
-      p.innerHTML=`<strong>${trait}</strong>: ${obj.percentile}<sup>th</sup> percentile`;
-      sec1.appendChild(p);
-    });
-
-    /* ========== Section 2: Valence bar chart ========== */
-    wrap.insertAdjacentHTML("beforeend","<h3>Your Affect Profile</h3>");
-    const bar=document.createElement("canvas");
-    bar.height=200; bar.style.maxWidth="600px"; wrap.appendChild(bar);
-
-    new Chart(bar,{
-      type:"bar",
-      data:{labels:["Everyday Affect","Ideal Affect","Chosen Affect"],
-            datasets:[{data:[everydayPct,idealPct,chosenPct],borderWidth:1}]},
-      options:{plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,max:100,title:{display:true,text:"Valence (%)"}}}}
-    });
+    }
+  }
+});
 
     /* ---- Continue button ---- */
     const btn=document.createElement("button");
@@ -6405,47 +6458,50 @@ experimentalInstructions();
 
 
 /* ======================================================================
-   DEV SHORTCUT — instantly preview the personalised-feedback page
+   DEV SHORTCUT — instant personalised-feedback preview  (global scope)
    ====================================================================== */
-function _mockParticipantChoices(){
-  /* 1.   Mock BFI responses (random but legal 1-5) */
-  const bfiItems = [].concat(
-    ...Object.values(BFI_KEYS)           // reuse the real list
-  );
-  const bfiResp = {};
-  bfiItems.forEach(k => bfiResp[k] = Math.ceil(Math.random()*5));
 
-  /* 2.   Mock Actual & Ideal Affect ratings */
+// 1.  Helper to merge *all* objects into one response hash
+function _aggregateResponses(choiceArr){
+  return choiceArr.reduce((acc,obj)=>
+    (obj && typeof obj==="object") ? Object.assign(acc,obj) : acc , {});
+}
+
+// 2.  Mock participant data (quick & dirty but legal)
+function _mockParticipantChoices(){
+  // --- BFI (random 1-5) -----------------------
+  const bfiItems = [].concat(...Object.values(BFI_KEYS));
+  const bfiResp  = {};
+  bfiItems.forEach(k => bfiResp[k] = 1+Math.floor(Math.random()*5));
+
+  // --- Actual & Ideal Affect -----------------
   const affectResp = {};
   [...POS_WORDS, ...NEG_WORDS].forEach(w=>{
-    affectResp["Actual_"+w] = Math.ceil(Math.random()*5);
-    affectResp["Ideal_"+w]  = Math.ceil(Math.random()*5);
+    affectResp["Actual_"+w] = 1+Math.floor(Math.random()*5);
+    affectResp["Ideal_" +w] = 1+Math.floor(Math.random()*5);
   });
 
-  /* 3.   Mock video-choice trials (20 trials, 50/50 pos/neg) */
+  // --- 20 mock video trials ------------------
   const trials = Array.from({length:20},(_,i)=>{
-    const valence = i%2 ? "positive":"negative";
-    const decision = (valence==="positive")
-        ? (Math.random()<0.7 ? "watch":"avoid")   // 70 % hedonic
-        : (Math.random()<0.7 ? "avoid":"watch");
-    return { trial:i+1, videoValence:valence, decision };
+     const valence = i%2 ? "positive":"negative";
+     const decision = (valence==="positive")
+         ? (Math.random()<0.7 ? "watch":"avoid")
+         : (Math.random()<0.7 ? "avoid":"watch");
+     return {trial:i+1, videoValence:valence, decision};
   });
 
-  /* 4.   Fuse everything together like your real code expects */
   const merged = Object.assign({}, bfiResp, affectResp);
-  return [merged, ...trials];   // first element holds all survey fields
+  return [merged, ...trials];
 }
 
-/* ---------- quick-launch function you can call from console ---------- */
-function testFeedback(){
+// 3.  Expose a global test function (attach to window)
+window.testFeedback = function(){
   const dummy = _mockParticipantChoices();
   showPersonalizedFeedback(dummy);
-}
+};
 
-/* ---------- URL switch (?devfeedback=1) ------------------------------ */
-(function(){
-  if (location.search.includes("devfeedback=1")){
-    console.log("%cDEV mode: rendering dummy feedback","color:green;font-weight:bold;");
-    testFeedback();
-  }
-})();
+// 4.  Auto-launch when URL includes ?devfeedback=1
+if (location.search.includes("devfeedback=1")){
+  console.log("%cDEV mode: rendering dummy feedback","color:green;font-weight:bold;");
+  window.testFeedback();
+}
