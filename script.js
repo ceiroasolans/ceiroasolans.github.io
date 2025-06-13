@@ -630,10 +630,290 @@ participantChoices.push({
 
 
 
-  ///////////////////////////////////////////////////////////////////////////////////////
-  ///////////////////////////////////////////////////////////////////////////////////////
-  ///////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////
+//                            FEEDBACK MODULE ADDED 2025‑06‑13
+///////////////////////////////////////////////////////////////////////////////////////
 
+// === Utility to dynamically load Chart.js (v4) ===
+function loadChartJs(callback){
+    if(window.Chart){ callback(); return; }
+    const script=document.createElement('script');
+    script.src='https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js';
+    script.onload=callback;
+    document.head.appendChild(script);
+}
+
+// --- Error‑function & Normal helpers ---
+function erf(x){ // Abramowitz & Stegun approximation
+    const sign = (x>=0)?1:-1;
+    x = Math.abs(x);
+    const a1= 0.278393, a2=0.230389, a3=0.000972, a4=0.078108;
+    const t = 1/(1+a1*x+a2*x*x+a3*x*x*x+a4*x*x*x*x);
+    return sign*(1-Math.pow(t,4));
+}
+function normalCdf(z){ return 0.5*(1+erf(z/Math.SQRT2)); }
+function normalPdf(z){ return Math.exp(-0.5*z*z)/Math.sqrt(2*Math.PI); }
+
+// === BFI scoring ===
+function scoreBFI(bfiObj){
+    /* expects keys 'BFI1' … 'BFI44' with 1‑5 responses              */
+    const reverse = [6,10,13,14,16,18,23,24,26,28,31,33,35,37,41,43];
+    const dimMap = {
+        Extraversion     : [1,6,11,16,21,26,31,36],
+        Agreeableness    : [2,7,12,17,22,27,32,37,42],
+        Conscientiousness: [3,8,13,18,23,28,33,38,43],
+        Neuroticism      : [4,9,14,19,24,29,34,39],
+        Openness         : [5,10,15,20,25,30,35,40,44]
+    };
+    function item(i){
+        let v = Number(bfiObj['BFI'+i] ?? 3);           // default midpoint if missing
+        if(reverse.includes(i)) v = 6-v;
+        return v;
+    }
+    const scores={};
+    Object.entries(dimMap).forEach(([dim,items])=>{
+        scores[dim]=items.reduce((a,i)=>a+item(i),0)/items.length;
+    });
+    return scores;
+}
+
+// === Convert BFI score to percentile (approx, US adult norms) ===
+function percentileFromScore(score){
+    const mean=3.5, sd=0.7;                   // rough BFI normative values
+    const z=(score-mean)/sd;
+    return Math.round(normalCdf(z)*100);
+}
+
+// === Affect scoring ===
+const posWords = ["Pleasant","Joyful","Calm","Excited","Interested",
+                  "Enthusiastic","Happy","Relaxed","Amused","Positive"];
+const negWords = ["Negative","Annoyed","Afraid","Sad","Anxious",
+                  "Bored","Angry","Down","Unpleasant","Scared"];
+
+function valencePercent(respObj){
+    /* Converts a word‑level 0‑6 response object to 0‑100 valence %  */
+    const max = 6;
+    let posSum=0,negSum=0,posN=0,negN=0;
+    posWords.forEach(w=>{ if(w in respObj){ posSum+=Number(respObj[w]); posN++; }});
+    negWords.forEach(w=>{ if(w in respObj){ negSum+=Number(respObj[w]); negN++; }});
+    const posAvg = posN?posSum/posN:0;
+    const negAvg = negN?negSum/negN:0;
+    const val    = posAvg - (max-negAvg);          // range −6 … +6
+    return Math.round(((val+6)/12)*100);           // → 0 … 100 %
+}
+
+// === Chosen Affect scoring ===
+function chosenAffectPercent(choiceArr){
+    /* choiceArr elements need keys {videoType, decision}             */
+    const positive = ["Joy","Calmness","Excitement","Amusement","Pleasant","Positive"];
+    const negative = ["Fear","Anger","Sadness","Disgust","Negative","Unpleasant"];
+    let congruent=0,total=0;
+    choiceArr.forEach(ch=>{
+        if(!ch || !ch.videoType || !ch.decision) return;
+        if(positive.includes(ch.videoType)){
+            total++; if(ch.decision.toLowerCase()==="watch"||ch.decision.toLowerCase()==="approach") congruent++;
+        }else if(negative.includes(ch.videoType)){
+            total++; if(ch.decision.toLowerCase()==="skip"||ch.decision.toLowerCase()==="avoid") congruent++;
+        }
+    });
+    return total ? Math.round(congruent/total*100) : 0;
+}
+
+// === Feedback screen ===
+function showFeedback(nextFn){
+    loadChartJs(()=>{
+
+        console.log("[FEEDBACK] Initialising …");
+
+        // --- Grab data collected earlier ---
+        const bfi   = window.bfiResponses             ?? {};
+        const emo1  = window.baselineEmoResponses     ?? {};
+        const emo2  = window.idealAffectResponses     ?? {};
+        const choices = window.participantChoices     ?? [];
+
+        // --- Compute scores ---
+        const bfiScores   = scoreBFI(bfi);
+        const everydayPct = valencePercent(emo1);
+        const idealPct    = valencePercent(emo2);
+        const chosenPct   = chosenAffectPercent(choices);
+
+        console.log("[FEEDBACK] BFI raw:",bfiScores,
+                    "Everyday%",everydayPct,
+                    "Ideal%",idealPct,
+                    "Chosen%",chosenPct);
+
+        // --- Build overlay ---
+        const overlay=document.createElement('div');
+        overlay.id='feedbackOverlay';
+        Object.assign(overlay.style,{
+            position:'fixed',top:0,left:0,width:'100%',height:'100%',
+            background:'#fff',zIndex:10000,overflow:'auto',
+            fontFamily:"'Helvetica Neue',Arial,sans-serif",padding:'20px'
+        });
+        document.body.appendChild(overlay);
+
+        overlay.innerHTML = `<h2 style="text-align:center;">Your Personalized Feedback</h2>
+        <h3>1. Personality Percentiles (BFI)</h3>`;
+
+        // === Section 1 : BFI charts ===
+        Object.entries(bfiScores).forEach(([dim,score])=>{
+            const pct = percentileFromScore(score);
+            const z   = ((score-3.5)/0.7).toFixed(2);
+            const c   = document.createElement('canvas');
+            c.width=400; c.height=180;
+            overlay.appendChild(document.createTextNode(`${dim} – ${pct}th percentile`));
+            overlay.appendChild(c);
+
+            // Build distribution curve
+            const xs=[],ys=[];
+            for(let x=-3;x<=3.01;x+=0.1){ xs.push(Number(x.toFixed(1))); ys.push(normalPdf(x)); }
+            const yMax=Math.max(...ys);
+
+            new Chart(c.getContext('2d'),{
+                type:'line',
+                data:{
+                    datasets:[
+                        {label:'Population',data:xs.map((x,i)=>({x, y:ys[i]})),
+                         borderWidth:1,pointRadius:0},
+                        {label:'You',type:'line',
+                         data:[{x:parseFloat(z),y:0},{x:parseFloat(z),y:yMax}],
+                         borderColor:'red',borderWidth:2,pointRadius:0}
+                    ]
+                },
+                options:{
+                    responsive:false,
+                    plugins:{legend:{display:false}},
+                    scales:{
+                        x:{type:'linear',title:{display:true,text:'Standard Deviations'}},
+                        y:{display:false}
+                    }
+                }
+            });
+        });
+
+        // === Section 2 : Affect profile ===
+        overlay.innerHTML += `<h3 style="margin-top:40px;">2. Your Affect Profile</h3>`;
+        const c2=document.createElement('canvas'); c2.width=600; c2.height=300;
+        overlay.appendChild(c2);
+        new Chart(c2.getContext('2d'),{
+            type:'bar',
+            data:{
+                labels:['Everyday Affect','Ideal Affect','Chosen Affect'],
+                datasets:[{label:'Valence (% of maximum)',
+                           data:[everydayPct,idealPct,chosenPct]}]
+            },
+            options:{
+                plugins:{legend:{display:false}},
+                scales:{
+                    y:{min:0,max:100,title:{display:true,text:'Valence (%)'}}
+                }
+            }
+        });
+
+        // === Continue button ===
+        const btn=document.createElement('button');
+        btn.textContent='Continue';
+        Object.assign(btn.style,{marginTop:'30px',padding:'10px 20px',fontSize:'1rem'});
+        btn.onclick=function(){
+            overlay.remove();
+            if(typeof nextFn==='function') nextFn();
+        };
+        overlay.appendChild(btn);
+    });
+}
+///////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////
+
+///////////////////////////////////////////////////////////////////////////////////////
+//                             QUICK MODE TOGGLE 2025‑06‑13
+///////////////////////////////////////////////////////////////////////////////////////
+
+// Persisted flag
+window.quickMode = JSON.parse(localStorage.getItem('quickMode')) || false;
+
+// Inject small toggle UI
+function injectQuickToggle(){
+    const bar = document.createElement('div');
+    bar.id    = 'quickToggleBar';
+    Object.assign(bar.style,{
+        position:'fixed',top:'0',right:'0',padding:'4px 8px',
+        background:'#f0f0f0',border:'1px solid #999',
+        borderBottomLeftRadius:'4px',fontFamily:"'Helvetica Neue',Arial,sans-serif",
+        fontSize:'12px',zIndex:10001
+    });
+    bar.innerHTML = `<label style="cursor:pointer;">
+        <input type="checkbox" id="quickToggleChk" ${window.quickMode?'checked':''}>
+        Quick&nbsp;Mode
+    </label>`;
+    document.body.appendChild(bar);
+    document.getElementById('quickToggleChk').addEventListener('change',e=>{
+        window.quickMode = e.target.checked;
+        localStorage.setItem('quickMode',JSON.stringify(window.quickMode));
+        location.reload();
+    });
+}
+if(document.readyState!=='loading') injectQuickToggle();
+else document.addEventListener('DOMContentLoaded',injectQuickToggle);
+
+// --- Helper: monkey‑patch a function once it exists ---
+function patchOnce(fnName, wrapper){
+    const t = setInterval(()=>{
+        const fn = window[fnName];
+        if(typeof fn === 'function' && !fn.__quickPatched){
+            window[fnName] = wrapper(fn);
+            window[fnName].__quickPatched = true;
+            clearInterval(t);
+        }
+    },50);
+}
+
+// Auto‑fill any createSurvey‑based questionnaires
+patchOnce('createSurvey', orig => function(surveyName, questions, onSubmit){
+    if(window.quickMode){
+        const resp = {};
+        questions.forEach(q=>{
+            const mid = Math.floor(q.scaleValues.length/2);
+            resp[q.id] = q.scaleValues[mid].toString();
+        });
+        console.log('[QUICK] Auto‑filled survey:', surveyName, resp);
+        onSubmit(resp);
+    }else{
+        orig(surveyName, questions, onSubmit);
+    }
+});
+
+// BaselineEmo shortcut
+patchOnce('baselineEmo', orig => function(){
+    if(window.quickMode){
+        const emoList = ["Pleasant","Negative","Joyful","Annoyed","Calm","Afraid","Excited",
+                         "Sad","Interested","Anxious","Enthusiastic","Bored","Happy","Angry",
+                         "Relaxed","Amused","Down","Positive","Unpleasant"];
+        baselineEmoResponses = {};
+        emoList.forEach(e => baselineEmoResponses[e] = '3'); // neutral midpoint
+        console.log('[QUICK] Skipped baselineEmo; default responses set.');
+        baselineSymptoms();          // proceed
+    }else{
+        orig();
+    }
+});
+
+// Skip baselineSymptoms entirely in quick mode
+patchOnce('baselineSymptoms', orig => function(){
+    if(window.quickMode){
+        baselineSymptomsResponses = {};
+        console.log('[QUICK] Skipped baselineSymptoms.');
+        GazeCalibration();
+    }else{
+        orig();
+    }
+});
+
+// Trim the number of video pairs so the flow is fast
+if(window.quickMode && Array.isArray(window.allPairs)){
+    window.allPairs.splice(2);   // keep only the first two pairs
+}
+///////////////////////////////////////////////////////////////////////////////////////
 //                                 INTRO EXPERIMENT
 
   ///////////////////////////////////////////////////////////////////////////////////////
@@ -6215,3 +6495,26 @@ intro();
 // or in short:         git add . && git commit -m "update" && git push && npx netlify deploy --prod
 
 // data: https://us-east-1.console.aws.amazon.com/console/home?region=us-east-1#  --> console home --> S3 service --> emotionregulation bucket --> same name folder --> files 
+
+///////////////////////////////////////////////////////////////////////////////////////
+// Patch to show personalized feedback just before instructions3 runs (2025-06-13)
+///////////////////////////////////////////////////////////////////////////////////////
+(function () {
+    function applyPatch() {
+        if (typeof instructions3 === 'function' && !instructions3.__patched) {
+            const original = instructions3;
+            instructions3 = function () {
+                showFeedback(original);
+            };
+            instructions3.__patched = true;
+        }
+    }
+    // Run immediately, then keep trying every 50 ms until instructions3 appears
+    applyPatch();
+    if (!instructions3.__patched) {
+        const timer = setInterval(() => {
+            applyPatch();
+            if (instructions3.__patched) clearInterval(timer);
+        }, 50);
+    }
+})();
