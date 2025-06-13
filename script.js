@@ -825,36 +825,10 @@ function showFeedback(nextFn){
 ///////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////
 
-///////////////////////////////////////////////////////////////////////////////////////
-//                             QUICK MODE TOGGLE 2025‑06‑13
-///////////////////////////////////////////////////////////////////////////////////////
+// INTERNAL QUICK-MODE SWITCH — set to true when testing.
+const QUICK_MODE = true;     // flip to false for full protocol
+window.quickMode = QUICK_MODE;
 
-// Persisted flag
-window.quickMode = JSON.parse(localStorage.getItem('quickMode')) || true;
-
-// Inject small toggle UI
-function injectQuickToggle(){
-    const bar = document.createElement('div');
-    bar.id    = 'quickToggleBar';
-    Object.assign(bar.style,{
-        position:'fixed',top:'0',right:'0',padding:'4px 8px',
-        background:'#f0f0f0',border:'1px solid #999',
-        borderBottomLeftRadius:'4px',fontFamily:"'Helvetica Neue',Arial,sans-serif",
-        fontSize:'12px',zIndex:10001
-    });
-    bar.innerHTML = `<label style="cursor:pointer;">
-        <input type="checkbox" id="quickToggleChk" ${window.quickMode?'checked':''}>
-        Quick&nbsp;Mode
-    </label>`;
-    document.body.appendChild(bar);
-    document.getElementById('quickToggleChk').addEventListener('change',e=>{
-        window.quickMode = e.target.checked;
-        localStorage.setItem('quickMode',JSON.stringify(window.quickMode));
-        location.reload();
-    });
-}
-if(document.readyState!=='loading') injectQuickToggle();
-else document.addEventListener('DOMContentLoaded',injectQuickToggle);
 
 // --- Helper: monkey‑patch a function once it exists ---
 function patchOnce(fnName, wrapper){
@@ -870,15 +844,16 @@ function patchOnce(fnName, wrapper){
 
 // Auto‑fill any createSurvey‑based questionnaires
 patchOnce('createSurvey', orig => function(surveyName, questions, onSubmit){
-    if(window.quickMode){
+    // In quick mode, auto-fill everything except the core BFI and Ideal Affect questionnaires
+    if (window.quickMode && !['BFI','IdealAffect','Ideal Affect','IdealAffect1','IdealAffect2'].includes(surveyName)) {
         const resp = {};
-        questions.forEach(q=>{
-            const mid = Math.floor(q.scaleValues.length/2);
+        questions.forEach(q => {
+            const mid = Math.floor(q.scaleValues.length / 2);
             resp[q.id] = q.scaleValues[mid].toString();
         });
-        console.log('[QUICK] Auto‑filled survey:', surveyName, resp);
+        console.log('[QUICK] Auto-filled survey:', surveyName, resp);
         onSubmit(resp);
-    }else{
+    } else {
         orig(surveyName, questions, onSubmit);
     }
 });
