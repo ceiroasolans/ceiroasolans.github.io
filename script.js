@@ -770,11 +770,11 @@ function importantScreen() {
     message.style.padding      = '20px';
     message.style.fontFamily   = "'Helvetica Neue', Arial, sans-serif";
     message.style.lineHeight   = '1.6';
-    message.style.textAlign    = 'left';
+    message.style.textAlign    = 'center';
     message.style.color        = '#333';
 
     message.innerHTML = `
-      <div style="max-width:800px; margin:auto; padding:20px; font-family:'Helvetica Neue', Arial, sans-serif; line-height:1.6; text-align:left; color:#333;">
+      <div style="max-width:800px; padding:20px; font-family:'Helvetica Neue', Arial, sans-serif; line-height:1.6; text-align:center; color:#333;">
         <p style="color:red; font-weight:bold;">IMPORTANT:</p>
         <p style="font-weight:bold;">
           At the end of this study, you will receive personalized feedback about your personality and emotional tendencies.
