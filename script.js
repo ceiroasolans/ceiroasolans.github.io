@@ -5465,30 +5465,42 @@ function attentionCheck(participantChoices) {
 
 
 // FEEDBACK!!!!
-src="https://cdn.jsdelivr.net/npm/chart.js"
+/* =======================================================================
+   PERSONALIZED FEEDBACK MODULE  (drop-in block)
+   ======================================================================= */
 
+/* ---------- 1. Dynamically load Chart.js (works inside .js files) ----- */
+(function loadChartJS(){
+  if (typeof Chart !== "undefined") return;          // already present?
+  const s = document.createElement("script");
+  s.src   = "https://cdn.jsdelivr.net/npm/chart.js";
+  s.defer = true;
+  document.head.appendChild(s);
+})();
 
-// ===========  PERSONALIZED-FEEDBACK MODULE  =========== //
-/*  Utilities  ------------------------------------------------------------ */
-function logStep(step, obj = null){ console.log(`[FEEDBACK] ${step}`, obj); }
-
-function reverseScore(val){ return 6 - val; }   // 5-point scale ➔ 1↔5
-function normCDF(z){
-    // Abramowitz & Stegun (1964) approximation
-    const t = 1/(1+0.2316419*Math.abs(z));
-    const d = 0.3989423*Math.exp(-z*z/2);
-    let prob = d*t*(0.3193815 + t*(-0.3565638 + t*(1.781478 + t*(-1.821256 + t*1.330274))));
-    if (z>0) prob = 1-prob;
-    return prob;
+/* Helper: run fn only once Chart is ready */
+function whenChartReady(cb){
+  if (typeof Chart !== "undefined") cb();
+  else setTimeout(() => whenChartReady(cb), 50);
 }
 
-/* ------------- 1.  BFI SCORING ----------------------------------------- */
+/* ---------- 2. Utility helpers --------------------------------------- */
+function logStep(step, obj=null){ console.log(`[FEEDBACK] ${step}`, obj); }
+function reverseScore(v){ return 6 - v; }           // Likert 1–5 → reverse
+function normCDF(z){                                // A&S (1964) approx
+  const t = 1/(1+0.2316419*Math.abs(z));
+  const d = 0.3989423*Math.exp(-z*z/2);
+  let p = d*t*(0.3193815+t*(-0.3565638+t*(1.781478+t*(-1.821256+t*1.330274))));
+  return z>0 ? 1-p : p;
+}
+
+/* ---------- 3. BFI scoring setup ------------------------------------- */
 const BFI_KEYS = {
-  Extraversion: ["bfi_1","bfi_6","bfi_11","bfi_16","bfi_21","bfi_26","bfi_31","bfi_36","bfi_41","bfi_46","bfi_51","bfi_56"],
-  Agreeableness:["bfi_2","bfi_7","bfi_12","bfi_17","bfi_22","bfi_27","bfi_32","bfi_37","bfi_42","bfi_47","bfi_52","bfi_57"],
-  Conscientiousness:["bfi_3","bfi_8","bfi_13","bfi_18","bfi_23","bfi_28","bfi_33","bfi_38","bfi_43","bfi_48","bfi_53","bfi_58"],
-  Neuroticism:["bfi_4","bfi_9","bfi_14","bfi_19","bfi_24","bfi_29","bfi_34","bfi_39","bfi_44","bfi_49","bfi_54","bfi_59"],
-  Openness:["bfi_5","bfi_10","bfi_15","bfi_20","bfi_25","bfi_30","bfi_35","bfi_40","bfi_45","bfi_50","bfi_55","bfi_60"]
+  Extraversion      :["bfi_1","bfi_6","bfi_11","bfi_16","bfi_21","bfi_26","bfi_31","bfi_36","bfi_41","bfi_46","bfi_51","bfi_56"],
+  Agreeableness     :["bfi_2","bfi_7","bfi_12","bfi_17","bfi_22","bfi_27","bfi_32","bfi_37","bfi_42","bfi_47","bfi_52","bfi_57"],
+  Conscientiousness :["bfi_3","bfi_8","bfi_13","bfi_18","bfi_23","bfi_28","bfi_33","bfi_38","bfi_43","bfi_48","bfi_53","bfi_58"],
+  Neuroticism       :["bfi_4","bfi_9","bfi_14","bfi_19","bfi_24","bfi_29","bfi_34","bfi_39","bfi_44","bfi_49","bfi_54","bfi_59"],
+  Openness          :["bfi_5","bfi_10","bfi_15","bfi_20","bfi_25","bfi_30","bfi_35","bfi_40","bfi_45","bfi_50","bfi_55","bfi_60"]
 };
 
 const BFI_REVERSE = new Set([
@@ -5498,166 +5510,140 @@ const BFI_REVERSE = new Set([
   "bfi_55","bfi_58","bfi_59"
 ]);
 
-// Norms from Soto & John (2017) U.S. adult sample, BFI-2 short
-const BFI_NORM_M = {Extraversion:3.29, Agreeableness:3.67, Conscientiousness:3.51, Neuroticism:2.70, Openness:3.50};
-const BFI_NORM_SD= {Extraversion:0.64, Agreeableness:0.52, Conscientiousness:0.58, Neuroticism:0.67, Openness:0.57};
+// Norms – Soto & John (2017) BFI-2 (US adults)
+const BFI_NORM_M  = {Extraversion:3.29, Agreeableness:3.67, Conscientiousness:3.51, Neuroticism:2.70, Openness:3.50};
+const BFI_NORM_SD = {Extraversion:0.64, Agreeableness:0.52, Conscientiousness:0.58, Neuroticism:0.67, Openness:0.57};
 
 function scoreBFI(responses){
-  const out={}; Object.entries(BFI_KEYS).forEach(([trait,items])=>{
+  const out = {};
+  Object.entries(BFI_KEYS).forEach(([trait,items])=>{
     const vals = items.map(k=>{
-      const v = parseInt(responses[k]); 
-      return BFI_REVERSE.has(k)? reverseScore(v): v;
+      const v = parseInt(responses[k]);
+      return BFI_REVERSE.has(k) ? reverseScore(v) : v;
     });
-    const avg = vals.reduce((a,b)=>a+b,0)/items.length;
+    const avg = vals.reduce((a,b)=>a+b,0) / items.length;
     const z   = (avg - BFI_NORM_M[trait]) / BFI_NORM_SD[trait];
     out[trait] = {avg, percentile: Math.round(normCDF(z)*100)};
   });
-  logStep("BFI scoring complete",out);
+  logStep("BFI scoring", out);
   return out;
 }
 
-/* ------------- 2.  AFFECT SCORING -------------------------------------- */
+/* ---------- 4. Affect scoring helpers -------------------------------- */
 const POS_WORDS = ["enthusiastic","astonished","joyful","quiet","relaxed","excited","surprised","interested","elated","strong","content","amused","funny","euphoric","happy","calm","satisfied","peaceful","serene"];
 const NEG_WORDS = ["down","disgusted","dull","anxious","gross","sleepy","passive","lonely","sad","afraid","unhappy","inactive","idle","sluggish","angry","annoyed","craving","tempted"];
 
-function affectPercent(responses,prefix){ // prefix = 'Actual_' or 'Ideal_'
-  let pos=0,neg=0, nPos=0,nNeg=0;
+function affectPercent(responses, prefix){ // prefix 'Actual_' or 'Ideal_'
+  let pos=0,neg=0,nPos=0,nNeg=0;
   POS_WORDS.forEach(w=>{
-     const key = `${prefix}${w}`;
-     if(key in responses){ pos += parseInt(responses[key]); nPos++; }
+    const k=`${prefix}${w}`; if(k in responses){ pos+=+responses[k]; nPos++; }
   });
   NEG_WORDS.forEach(w=>{
-     const key = `${prefix}${w}`;
-     if(key in responses){ neg += reverseScore(parseInt(responses[key])); nNeg++; }
+    const k=`${prefix}${w}`; if(k in responses){ neg+=reverseScore(+responses[k]); nNeg++; }
   });
-  const total = nPos + nNeg;
-  if(total===0) return 0;
-  const pct = ((pos+neg)/(total*5))*100;    // 0-100 scale
-  logStep(`${prefix} valence %`,pct);
+  const total = nPos+nNeg;
+  const pct = total? ((pos+neg)/(total*5))*100 : 0;
+  logStep(`${prefix} valence %`, pct);
   return Math.round(pct);
 }
 
-/* ------------- 3.  CHOSEN-AFFECT SCORE --------------------------------- */
-function chosenAffectPercent(choices){
-  let hedonic=0,total=0;
-  choices.forEach(trial=>{
-    if(!trial || typeof trial!=="object") return;
-    const valence = trial.videoValence || trial.valence || null; // expect 'positive'|'negative'
-    const decision = (trial.decision || trial.choice || "").toLowerCase(); // 'watch'|'avoid'
-    if(!valence||!decision) return;
-    const isHedonic = (valence==="positive" && decision==="watch") || (valence==="negative" && decision==="avoid");
-    if(isHedonic) hedonic++;
-    total++;
+function chosenAffectPercent(trials){
+  let hed=0,tot=0;
+  trials.forEach(t=>{
+    if(!t||typeof t!=="object") return;
+    const v=(t.videoValence||t.valence||"").toLowerCase();
+    const d=(t.decision||t.choice||"").toLowerCase();
+    if(!v||!d) return;
+    const isHed=(v==="positive"&&d==="watch")||(v==="negative"&&d==="avoid");
+    if(isHed) hed++; tot++;
   });
-  const pct = total? Math.round((hedonic/total)*100):0;
-  logStep("Chosen-affect %", {hedonic,total,pct});
-  return pct;
+  const pct = tot? (hed/tot)*100 : 0;
+  logStep("Chosen-affect %", {hed,tot,pct});
+  return Math.round(pct);
 }
 
-/* ------------- 4.  MAIN RENDERING FUNCTION ----------------------------- */
+/* ---------- 5. Main render function ---------------------------------- */
 function showPersonalizedFeedback(participantChoices){
-  //================ Grab responses (first record is fine) ================
-  const dataObj = participantChoices.find(o=>o && typeof o==="object") || {};
-  logStep("Using response object",dataObj);
+  whenChartReady(()=>{
 
-  /* --- Section 1: BFI Percentiles ----------------------------------- */
-  const bfi = scoreBFI(dataObj);
+    /* ---- grab first complete response object ---- */
+    const dataObj = participantChoices.find(o=>o && typeof o==="object") || {};
+    logStep("Data object", dataObj);
 
-  /* --- Section 2: Affect Scores ------------------------------------- */
-  const everydayPct = affectPercent(dataObj,"Actual_");  // from IdealAffect1
-  const idealPct    = affectPercent(dataObj,"Ideal_");   // from IdealAffect2
-  const chosenPct   = chosenAffectPercent(participantChoices);
+    const bfiScores   = scoreBFI(dataObj);
+    const everydayPct = affectPercent(dataObj,"Actual_");
+    const idealPct    = affectPercent(dataObj,"Ideal_");
+    const chosenPct   = chosenAffectPercent(participantChoices);
 
-  /* ------------ PAGE SCAFFOLD --------------------------------------- */
-  let container = document.getElementById("personalizedFeedback");
-  if(!container){
-      container=document.createElement("div");
-      container.id="personalizedFeedback";
-      document.body.appendChild(container);
-  }
-  container.innerHTML="";
-  container.style.maxWidth="900px";
-  container.style.margin="50px auto";
-  container.style.fontFamily="'Helvetica Neue',Arial,sans-serif";
-  container.style.textAlign="center";
+    /* ---- build page scaffold ---- */
+    let wrap=document.getElementById("personalizedFeedback");
+    if(!wrap){
+      wrap=document.createElement("div");
+      wrap.id="personalizedFeedback";
+      document.body.appendChild(wrap);
+    }
+    wrap.innerHTML="";
+    Object.assign(wrap.style,{maxWidth:"900px",margin:"50px auto",fontFamily:"Helvetica Neue,Arial,sans-serif",textAlign:"center"});
 
-  /* ------- TITLE ---------------------------------------------------- */
-  const h1=document.createElement("h2");
-  h1.textContent="Your Personalized Feedback";
-  container.appendChild(h1);
+    /* ---- Title ---- */
+    wrap.insertAdjacentHTML("beforeend","<h2>Your Personalized Feedback</h2>");
 
-  /* ---------- SECTION 1  (BFI) -------------------------------------- */
-  const sec1=document.createElement("div");
-  sec1.innerHTML="<h3>Where You Stand on the Big Five</h3><p>(Each curve = typical population; red bar = you.)</p>";
-  container.appendChild(sec1);
+    /* ========== Section 1: Big Five curves ========== */
+    wrap.insertAdjacentHTML("beforeend","<h3>Where You Stand on the Big Five</h3><p>(Curve = typical population; red bar = you)</p>");
+    const sec1=document.createElement("div"); wrap.appendChild(sec1);
 
-  Object.entries(bfi).forEach(([trait,obj],i)=>{
-      const c=document.createElement("canvas");
-      c.id=`bfiChart_${trait}`;
-      c.height=150; c.style.maxWidth="400px"; c.style.margin="20px auto";
-      sec1.appendChild(c);
+    Object.entries(bfiScores).forEach(([trait,obj])=>{
+      const cv=document.createElement("canvas");
+      cv.height=150; cv.style.maxWidth="400px"; cv.style.margin="20px auto";
+      sec1.appendChild(cv);
 
-      // build normal curve points
-      const pts=[]; const mean=BFI_NORM_M[trait], sd=BFI_NORM_SD[trait];
-      for(let x=mean-3*sd;x<=mean+3*sd;x+=sd/10){
-         const y=(1/(sd*Math.sqrt(2*Math.PI)))*Math.exp(-0.5*Math.pow((x-mean)/sd,2));
-         pts.push({x:parseFloat(x.toFixed(2)),y});
+      /* normal curve points */
+      const mean=BFI_NORM_M[trait], sd=BFI_NORM_SD[trait];
+      const pts=[];
+      for(let x=mean-3*sd; x<=mean+3*sd; x+=sd/10){
+        const y=(1/(sd*Math.sqrt(2*Math.PI)))*Math.exp(-0.5*Math.pow((x-mean)/sd,2));
+        pts.push({x,y});
       }
-      const lineX=obj.avg;
+      const lineX = obj.avg;
 
-      new Chart(c,{
+      new Chart(cv,{
         type:"line",
-        data:{ datasets:[
-          {label:"Distribution", data:pts, parsing:{xAxisKey:"x",yAxisKey:"y"}, borderWidth:2, fill:false, pointRadius:0, tension:0.25},
-          {label:"You", data:[{x:lineX, y:0},{x:lineX, y:Math.max(...pts.map(p=>p.y))*1.05}], borderColor:"red", borderWidth:3, pointRadius:0, fill:false}
+        data:{datasets:[
+          {data:pts, parsing:{xAxisKey:"x",yAxisKey:"y"}, borderWidth:2, pointRadius:0, fill:false, tension:0.25},
+          {data:[{x:lineX,y:0},{x:lineX,y:Math.max(...pts.map(p=>p.y))*1.05}], borderColor:"red", borderWidth:3, pointRadius:0, fill:false}
         ]},
-        options:{
-          plugins:{legend:{display:false}, tooltip:{enabled:false}},
-          scales:{x:{display:false},y:{display:false}}
-        }
+        options:{plugins:{legend:{display:false},tooltip:{enabled:false}},scales:{x:{display:false},y:{display:false}}}
       });
 
-      const lbl=document.createElement("p");
-      lbl.innerHTML=`<strong>${trait}</strong>: ${obj.percentile}<sup>th</sup> percentile`;
-      sec1.appendChild(lbl);
+      const p=document.createElement("p");
+      p.innerHTML=`<strong>${trait}</strong>: ${obj.percentile}<sup>th</sup> percentile`;
+      sec1.appendChild(p);
+    });
+
+    /* ========== Section 2: Valence bar chart ========== */
+    wrap.insertAdjacentHTML("beforeend","<h3>Your Affect Profile</h3>");
+    const bar=document.createElement("canvas");
+    bar.height=200; bar.style.maxWidth="600px"; wrap.appendChild(bar);
+
+    new Chart(bar,{
+      type:"bar",
+      data:{labels:["Everyday Affect","Ideal Affect","Chosen Affect"],
+            datasets:[{data:[everydayPct,idealPct,chosenPct],borderWidth:1}]},
+      options:{plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,max:100,title:{display:true,text:"Valence (%)"}}}}
+    });
+
+    /* ---- Continue button ---- */
+    const btn=document.createElement("button");
+    btn.textContent="Continue";
+    btn.style.marginTop="30px";
+    btn.onclick=()=>{ wrap.style.display="none"; Questionnaire2(participantChoices); };
+    wrap.appendChild(btn);
+
+    window.scrollTo(0,0);
+    logStep("Feedback rendered ✓");
   });
-
-  /* ---------- SECTION 2  (VALENCE BAR CHART) ------------------------ */
-  const sec2=document.createElement("div");
-  sec2.innerHTML="<h3>Your Affect Profile</h3>";
-  container.appendChild(sec2);
-
-  const barCanvas=document.createElement("canvas");
-  barCanvas.id="affectChart"; barCanvas.height=200; barCanvas.style.maxWidth="600px";
-  sec2.appendChild(barCanvas);
-
-  new Chart(barCanvas,{
-     type:"bar",
-     data:{
-        labels:["Everyday Affect","Ideal Affect","Chosen Affect"],
-        datasets:[{
-           data:[everydayPct, idealPct, chosenPct],
-           borderWidth:1
-        }]
-     },
-     options:{
-        plugins:{legend:{display:false}},
-        scales:{y:{beginAtZero:true, max:100, title:{display:true, text:"Valence (%)"}}}
-     }
-  });
-
-  /* ---------- CONTINUE BUTTON -------------------------------------- */
-  const contBtn=document.createElement("button");
-  contBtn.textContent="Continue";
-  contBtn.style.marginTop="30px";
-  contBtn.onclick=()=>{ container.style.display="none"; instructions3(); };
-  container.appendChild(contBtn);
-
-  window.scrollTo(0,0);
-  logStep("Feedback page rendered");
 }
-
-
+/* ======================================================================= */
 
 
 
