@@ -752,49 +752,45 @@ function consent() {
 
 
 function importantScreen() {
-    document.body.classList.add('instructions-body-align');
-    const message = document.getElementById("message");
-    // make it a full-screen overlay centered in X and Y
-    message.style.position    = 'fixed';
-    message.style.top         = '50%';
-    message.style.left        = '50%';
-    message.style.transform   = 'translate(-50%, -50%)';
-    message.style.zIndex      = '1000';
+    // Create an isolated full-screen overlay for the important screen
+    const overlay = document.createElement('div');
+    overlay.id = 'importantScreenOverlay';
+    overlay.style.position = 'fixed';
+    overlay.style.top = '0';
+    overlay.style.left = '0';
+    overlay.style.width = '100%';
+    overlay.style.height = '100%';
+    overlay.style.backgroundColor = 'rgba(255,255,255,0.95)';
+    overlay.style.display = 'flex';
+    overlay.style.alignItems = 'center';
+    overlay.style.justifyContent = 'center';
+    overlay.style.zIndex = '10000';
 
-    // existing styles
-    message.style.display      = 'block';
-    message.style.marginTop    = '0';
-    message.style.maxWidth     = '800px';
-    message.style.marginLeft   = 'auto';
-    message.style.marginRight  = 'auto';
-    message.style.padding      = '20px';
-    message.style.fontFamily   = "'Helvetica Neue', Arial, sans-serif";
-    message.style.lineHeight   = '1.6';
-    message.style.textAlign    = 'center';
-    message.style.color        = '#333';
+    // Content container
+    const content = document.createElement('div');
+    content.style.maxWidth = '800px';
+    content.style.padding = '20px';
+    content.style.fontFamily = "'Helvetica Neue', Arial, sans-serif";
+    content.style.lineHeight = '1.6';
+    content.style.textAlign = 'center';
+    content.style.color = '#333';
 
-    message.innerHTML = `
-      <div style="max-width:800px; padding:20px; font-family:'Helvetica Neue', Arial, sans-serif; line-height:1.6; text-align:center; color:#333;">
-        <p style="color:red; font-weight:bold;">IMPORTANT:</p>
-        <p style="font-weight:bold; margin-bottom: 2rem;">
-          At the end of this study, you will receive personalized feedback about your personality and emotional tendencies.
-          Please do your best to always respond truthfully and honestly.
+    content.innerHTML = `
+        <p style="color:red; font-weight:bold; margin-top:0;">IMPORTANT:</p>
+        <p style="font-weight:bold; margin-bottom:2rem;">
+            At the end of this study, you will receive personalized feedback about your personality and emotional tendencies.
+            Please do your best to always respond truthfully and honestly.
         </p>
-        <div style="text-align:center; margin-top:20px;">
-          <button onclick="submitImportant()">Continue</button>
-        </div>
-      </div>
+        <button id="importantContinueBtn">Continue</button>
     `;
-    message.style.display = 'block';
-    // Define what happens when the user clicks Continue on the important screen
-    window.submitImportant = function() {
-        // Hide the important screen
-        const message = document.getElementById("message");
-        message.style.display = "none";
-        document.body.classList.remove("instructions-body-align");
-        // Move to demographics
+    overlay.appendChild(content);
+    document.body.appendChild(overlay);
+
+    // Continue button behavior
+    document.getElementById('importantContinueBtn').addEventListener('click', () => {
+        document.body.removeChild(overlay);
         demographics();
-    };
+    });
 }
 
 
