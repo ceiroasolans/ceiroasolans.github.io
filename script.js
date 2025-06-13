@@ -785,6 +785,16 @@ function importantScreen() {
         </div>
       </div>
     `;
+    message.style.display = 'block';
+    // Define what happens when the user clicks Continue on the important screen
+    window.submitImportant = function() {
+        // Hide the important screen
+        const message = document.getElementById("message");
+        message.style.display = "none";
+        document.body.classList.remove("instructions-body-align");
+        // Move to demographics
+        demographics();
+    };
 }
 
 
