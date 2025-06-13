@@ -842,17 +842,16 @@ function patchOnce(fnName, wrapper){
     },50);
 }
 
-// Auto‑fill any createSurvey‑based questionnaires
-patchOnce('createSurvey', orig => function(surveyName, questions, onSubmit){
-    // In quick mode, auto-fill everything except the core BFI and Ideal Affect questionnaires
-    if (window.quickMode && !['BFI','IdealAffect','Ideal Affect','IdealAffect1','IdealAffect2'].includes(surveyName)) {
+// Auto‑fill any createSurvey‑based questionnaires (Quick‑mode fills everything)
+patchOnce('createSurvey', orig => function (surveyName, questions, onSubmit) {
+    if (window.quickMode) {
         const resp = {};
         questions.forEach(q => {
             const mid = Math.floor(q.scaleValues.length / 2);
             resp[q.id] = q.scaleValues[mid].toString();
         });
-        console.log('[QUICK] Auto-filled survey:', surveyName, resp);
-        onSubmit(resp);
+        console.log('[QUICK] Auto‑filled survey:', surveyName, resp);
+        onSubmit(resp);               // immediately submit
     } else {
         orig(surveyName, questions, onSubmit);
     }
@@ -1063,7 +1062,6 @@ window.submitImportant = function () {
         const jump = () => {
             if (typeof instructions1 === 'function') { console.log('[QUICK] → instructions1'); instructions1(); return true; }
             if (typeof instructions2 === 'function') { console.log('[QUICK] → instructions2'); instructions2(); return true; }
-            if (typeof instructions3 === 'function') { console.log('[QUICK] → instructions3'); instructions3(); return true; }
             if (typeof chooseVideos   === 'function') { console.log('[QUICK] → chooseVideos');  chooseVideos();  return true; }
             if (typeof beginTrials    === 'function') { console.log('[QUICK] → beginTrials');   beginTrials();   return true; }
             return false;
