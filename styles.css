@@ -75,7 +75,7 @@ button:disabled {
 #mainContainer {
     display: flex;
     height: auto !important;
-    width: 1080px;
+    width: 100%; /*BEFORE 1080px*/
     min-height: 60px; /* adjust as needed */
     align-items: center;
     position: relative;
@@ -264,4 +264,68 @@ thead th {
     -moz-user-select: none;      /* Old versions of Firefox */
     -ms-user-select: none;       /* Internet Explorer/Edge */
     user-select: none;           /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
+}
+
+
+
+
+#feedbackContainer2 {
+    width: 100%;
+    max-width: 95%; /* Optional: Set a max-width if desired */
+    margin: 0 auto; /* Center the container */
+    padding: 10px;
+    box-sizing: border-box;
+    background-color: #f0f0f0; /* Grey background */
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.forecast-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    gap: 0px; /* Space between columns */
+    box-sizing: border-box;
+    overflow: hidden; /* Prevent overflow */
+}
+
+.forecast-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #ccc;
+    margin: 10px;
+    padding: 10px;
+    width: 40%; /* Set to 45% to allow two columns side by side */
+    box-sizing: border-box;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    height: auto;
+    overflow: visible;
+}
+
+.divider {
+    border-left: 2px solid #ccc;
+    height: auto; /* Changed from 100% to auto */
+    align-self: stretch; /* Ensure the divider stretches to match column height */
+    margin: 0 10px;
+    box-sizing: border-box;
+}
+
+.likert-box2 {
+    border: 1px solid #999;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    flex: 1;
+    min-width: 45px;
+    text-align: center;
+    background-color: '';
+    transition: background-color 0.3s;
+    height: 45px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
