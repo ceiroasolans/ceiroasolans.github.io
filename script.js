@@ -5567,7 +5567,8 @@ function showPersonalizedFeedback(participantChoices){
   whenChartReady(()=>{
 
     /* ---- grab first complete response object ---- */
-    const dataObj = participantChoices.find(o=>o && typeof o==="object") || {};
+    const dataObj = participantChoices.reduce((acc, obj) =>
+  (obj && typeof obj === "object") ? Object.assign(acc, obj) : acc, {});
     logStep("Data object", dataObj);
 
     const bfiScores   = scoreBFI(dataObj);
@@ -6398,3 +6399,53 @@ experimentalInstructions();
 // or in short:         git add . && git commit -m "update" && git push && npx netlify deploy --prod
 
 // data: https://us-east-1.console.aws.amazon.com/console/home?region=us-east-1#  --> console home --> S3 service --> emotionregulation bucket --> same name folder --> files 
+
+
+
+
+
+/* ======================================================================
+   DEV SHORTCUT — instantly preview the personalised-feedback page
+   ====================================================================== */
+function _mockParticipantChoices(){
+  /* 1.   Mock BFI responses (random but legal 1-5) */
+  const bfiItems = [].concat(
+    ...Object.values(BFI_KEYS)           // reuse the real list
+  );
+  const bfiResp = {};
+  bfiItems.forEach(k => bfiResp[k] = Math.ceil(Math.random()*5));
+
+  /* 2.   Mock Actual & Ideal Affect ratings */
+  const affectResp = {};
+  [...POS_WORDS, ...NEG_WORDS].forEach(w=>{
+    affectResp["Actual_"+w] = Math.ceil(Math.random()*5);
+    affectResp["Ideal_"+w]  = Math.ceil(Math.random()*5);
+  });
+
+  /* 3.   Mock video-choice trials (20 trials, 50/50 pos/neg) */
+  const trials = Array.from({length:20},(_,i)=>{
+    const valence = i%2 ? "positive":"negative";
+    const decision = (valence==="positive")
+        ? (Math.random()<0.7 ? "watch":"avoid")   // 70 % hedonic
+        : (Math.random()<0.7 ? "avoid":"watch");
+    return { trial:i+1, videoValence:valence, decision };
+  });
+
+  /* 4.   Fuse everything together like your real code expects */
+  const merged = Object.assign({}, bfiResp, affectResp);
+  return [merged, ...trials];   // first element holds all survey fields
+}
+
+/* ---------- quick-launch function you can call from console ---------- */
+function testFeedback(){
+  const dummy = _mockParticipantChoices();
+  showPersonalizedFeedback(dummy);
+}
+
+/* ---------- URL switch (?devfeedback=1) ------------------------------ */
+(function(){
+  if (location.search.includes("devfeedback=1")){
+    console.log("%cDEV mode: rendering dummy feedback","color:green;font-weight:bold;");
+    testFeedback();
+  }
+})();
