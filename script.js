@@ -1042,10 +1042,41 @@ function importantScreen() {
     `;
 }
 
-window.submitImportant = function() {
+window.submitImportant = function () {
+    // QUICK‑MODE short‑circuit
+    if (window.quickMode) {
+        console.log('[QUICK] Skipping straight to video phase.');
+        const msg = document.getElementById('message');
+        msg.style.display = 'none';
+        // Clean up any inline styles set by the IMPORTANT overlay
+        ['position','top','left','transform','zIndex','maxWidth','marginLeft','marginRight',
+         'padding','textAlign'].forEach(p => msg.style[p] = '');
+        document.body.classList.remove('instructions-body-align');
+
+        /* Provide neutral baselineEmoResponses so feedback can compute Everyday Affect. */
+        baselineEmoResponses = {};
+        ["Pleasant","Negative","Joyful","Annoyed","Calm","Afraid","Excited","Sad","Interested",
+         "Anxious","Enthusiastic","Bored","Happy","Angry","Relaxed","Amused","Down","Positive",
+         "Unpleasant"].forEach(e => baselineEmoResponses[e] = '3');
+
+        /* Jump directly to the first instruction screen (or its successor) that
+           eventually leads to video‑choosing. We try a few known names until one exists. */
+        const jump = () => {
+            if (typeof instructions1 === 'function') { instructions1(); return true; }
+            if (typeof instructions2 === 'function') { instructions2(); return true; }
+            if (typeof chooseVideos  === 'function') { chooseVideos();  return true; }
+            return false;
+        };
+        if (!jump()) {
+            const iv = setInterval(() => { if (jump()) clearInterval(iv); }, 50);
+        }
+        return; // <‑‑ don’t run the normal (full‑mode) path
+    }
+
+    // === FULL‑PROTOCOL path (unchanged) ===
     const message = document.getElementById("message");
     message.style.display = 'none';
-    // --- Reset styles injected for the “IMPORTANT” overlay ---
+    // Reset styles from IMPORTANT overlay
     ['position','top','left','transform','zIndex','maxWidth','marginLeft','marginRight',
      'padding','textAlign'].forEach(prop => message.style[prop] = '');
     document.body.classList.remove('instructions-body-align');
