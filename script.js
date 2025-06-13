@@ -22,69 +22,69 @@ const trainingVideos = [
 
 const videos = [
     { id: "0", src: "0277.mp4", type: "Joy" },
-    { id: "1", src: "0273.mp4", type: "Joy" },
-    { id: "2", src: "0689.mp4", type: "Joy" },
-    { id: "3", src: "0762.mp4", type: "Joy" },
-    { id: "4", src: "0981.mp4", type: "Joy" },
-    { id: "5", src: "1432.mp4", type: "Joy" },
-    { id: "6", src: "2013.mp4", type: "Joy" },
-    { id: "7", src: "2102.mp4", type: "Joy" },
-    { id: "8", src: "2113.mp4", type: "Joy" },
-    { id: "9", src: "2117.mp4", type: "Joy" }, 
+    // { id: "1", src: "0273.mp4", type: "Joy" },
+    // { id: "2", src: "0689.mp4", type: "Joy" },
+    // { id: "3", src: "0762.mp4", type: "Joy" },
+    // { id: "4", src: "0981.mp4", type: "Joy" },
+    // { id: "5", src: "1432.mp4", type: "Joy" },
+    // { id: "6", src: "2013.mp4", type: "Joy" },
+    // { id: "7", src: "2102.mp4", type: "Joy" },
+    // { id: "8", src: "2113.mp4", type: "Joy" },
+    // { id: "9", src: "2117.mp4", type: "Joy" }, 
 
-    { id: "10", src: "0090.mp4", type: "Calmness" },
-    { id: "11", src: "1592.mp4", type: "Calmness" },
-    { id: "12", src: "0397.mp4", type: "Calmness" },
-     { id: "13", src: "0743.mp4", type: "Calmness" },
-    { id: "14", src: "1216.mp4", type: "Calmness" },
-    { id: "15", src: "1357.mp4", type: "Calmness" },
-    { id: "16", src: "0636.mp4", type: "Calmness" }, 
-    { id: "17", src: "0198.mp4", type: "Calmness" },
-    { id: "18", src: "1620.mp4", type: "Calmness" },
-    { id: "19", src: "1988.mp4", type: "Calmness" }, 
+    // { id: "10", src: "0090.mp4", type: "Calmness" },
+    // { id: "11", src: "1592.mp4", type: "Calmness" },
+    // { id: "12", src: "0397.mp4", type: "Calmness" },
+    //  { id: "13", src: "0743.mp4", type: "Calmness" },
+    // { id: "14", src: "1216.mp4", type: "Calmness" },
+    // { id: "15", src: "1357.mp4", type: "Calmness" },
+    // { id: "16", src: "0636.mp4", type: "Calmness" }, 
+    // { id: "17", src: "0198.mp4", type: "Calmness" },
+    // { id: "18", src: "1620.mp4", type: "Calmness" },
+    // { id: "19", src: "1988.mp4", type: "Calmness" }, 
 
-    { id: "20", src: "0041.mp4", type: "Excitement" },
-    { id: "21", src: "0264.mp4", type: "Excitement" },
-    { id: "22", src: "1131.mp4", type: "Excitement" }, 
-    { id: "23", src: "0540.mp4", type: "Excitement" },
-    { id: "24", src: "0899.mp4", type: "Excitement" },
-    { id: "25", src: "1130.mp4", type: "Excitement" },
-    { id: "26", src: "1570.mp4", type: "Excitement" }, 
-    { id: "27", src: "1718.mp4", type: "Excitement" },
-    { id: "28", src: "1781.mp4", type: "Excitement" },
-    { id: "29", src: "2078.mp4", type: "Excitement" },
+    // { id: "20", src: "0041.mp4", type: "Excitement" },
+    // { id: "21", src: "0264.mp4", type: "Excitement" },
+    // { id: "22", src: "1131.mp4", type: "Excitement" }, 
+    // { id: "23", src: "0540.mp4", type: "Excitement" },
+    // { id: "24", src: "0899.mp4", type: "Excitement" },
+    // { id: "25", src: "1130.mp4", type: "Excitement" },
+    // { id: "26", src: "1570.mp4", type: "Excitement" }, 
+    // { id: "27", src: "1718.mp4", type: "Excitement" },
+    // { id: "28", src: "1781.mp4", type: "Excitement" },
+    // { id: "29", src: "2078.mp4", type: "Excitement" },
 
-    { id: "30", src: "0225.mp4", type: "Anger" },
-    { id: "31", src: "0948.mp4", type: "Anger" }, 
-    { id: "32", src: "1901.mp4", type: "Anger" }, 
-    { id: "33", src: "0955.mp4", type: "Anger" },
-    { id: "34", src: "1229.mp4", type: "Anger" },
-    { id: "35", src: "0827.mp4", type: "Anger" }, 
-    { id: "36", src: "1576.mp4", type: "Anger" },
-    { id: "37", src: "1844.mp4", type: "Anger" },
-    { id: "38", src: "2014.mp4", type: "Anger" },
-    { id: "39", src: "2090.mp4", type: "Anger" },
+    // { id: "30", src: "0225.mp4", type: "Anger" },
+    // { id: "31", src: "0948.mp4", type: "Anger" }, 
+    // { id: "32", src: "1901.mp4", type: "Anger" }, 
+    // { id: "33", src: "0955.mp4", type: "Anger" },
+    // { id: "34", src: "1229.mp4", type: "Anger" },
+    // { id: "35", src: "0827.mp4", type: "Anger" }, 
+    // { id: "36", src: "1576.mp4", type: "Anger" },
+    // { id: "37", src: "1844.mp4", type: "Anger" },
+    // { id: "38", src: "2014.mp4", type: "Anger" },
+    // { id: "39", src: "2090.mp4", type: "Anger" },
 
-    { id: "40", src: "0015.mp4", type: "Fear" },
-    { id: "41", src: "0564.mp4", type: "Fear" },
-    { id: "42", src: "0025.mp4", type: "Fear" }, 
-    { id: "43", src: "1001.mp4", type: "Fear" },
-    { id: "44", src: "1214.mp4", type: "Fear" },
-    { id: "45", src: "1679.mp4", type: "Fear" }, 
-    { id: "46", src: "1419.mp4", type: "Fear" },
-    { id: "47", src: "1767.mp4", type: "Fear" },
-    { id: "48", src: "1931.mp4", type: "Fear" },
-    { id: "49", src: "1964.mp4", type: "Fear" },
+    // { id: "40", src: "0015.mp4", type: "Fear" },
+    // { id: "41", src: "0564.mp4", type: "Fear" },
+    // { id: "42", src: "0025.mp4", type: "Fear" }, 
+    // { id: "43", src: "1001.mp4", type: "Fear" },
+    // { id: "44", src: "1214.mp4", type: "Fear" },
+    // { id: "45", src: "1679.mp4", type: "Fear" }, 
+    // { id: "46", src: "1419.mp4", type: "Fear" },
+    // { id: "47", src: "1767.mp4", type: "Fear" },
+    // { id: "48", src: "1931.mp4", type: "Fear" },
+    // { id: "49", src: "1964.mp4", type: "Fear" },
 
-    { id: "50", src: "0009.mp4", type: "Sadness" },
-    { id: "51", src: "0611.mp4", type: "Sadness" }, 
-    { id: "52", src: "2136.mp4", type: "Sadness" },
-    { id: "53", src: "0700.mp4", type: "Sadness" },
-    { id: "54", src: "0803.mp4", type: "Sadness" }, 
-    { id: "55", src: "0860.mp4", type: "Sadness" }, 
-    { id: "56", src: "1164.mp4", type: "Sadness" },
-    { id: "57", src: "0975.mp4", type: "Sadness" }, 
-    { id: "58", src: "1623.mp4", type: "Sadness" }, 
+    // { id: "50", src: "0009.mp4", type: "Sadness" },
+    // { id: "51", src: "0611.mp4", type: "Sadness" }, 
+    // { id: "52", src: "2136.mp4", type: "Sadness" },
+    // { id: "53", src: "0700.mp4", type: "Sadness" },
+    // { id: "54", src: "0803.mp4", type: "Sadness" }, 
+    // { id: "55", src: "0860.mp4", type: "Sadness" }, 
+    // { id: "56", src: "1164.mp4", type: "Sadness" },
+    // { id: "57", src: "0975.mp4", type: "Sadness" }, 
+    // { id: "58", src: "1623.mp4", type: "Sadness" }, 
     { id: "59", src: "1959.mp4", type: "Sadness" } 
 ];
 let masterRowWithAllData = null;
@@ -4264,7 +4264,7 @@ function Questionnaire(participantChoices) {
                 feedbackContainer.style.marginTop = '0px';
                 
                 setTimeout(function() {
-                    Questionnaire2(participantChoices);
+                    IdealAffect1(participantChoices); // TESTING, for full, CHANGE to -> Questionnaire2(participantChoices);
                 }, 100); 
                 
             } else {
@@ -5452,7 +5452,7 @@ function attentionCheck(participantChoices) {
         });
         wrapper.style.display = 'none';
         generateAndUploadCSV(participantChoices);
-        instructions3(); // Move on to the next part
+        showPersonalizedFeedback(participantChoices); // Move on to the next part
       } else {
         alert("Please select an option.");
       }
@@ -5461,6 +5461,204 @@ function attentionCheck(participantChoices) {
   }
     
     
+
+
+
+// FEEDBACK!!!!
+src="https://cdn.jsdelivr.net/npm/chart.js"
+
+
+// ===========  PERSONALIZED-FEEDBACK MODULE  =========== //
+/*  Utilities  ------------------------------------------------------------ */
+function logStep(step, obj = null){ console.log(`[FEEDBACK] ${step}`, obj); }
+
+function reverseScore(val){ return 6 - val; }   // 5-point scale ➔ 1↔5
+function normCDF(z){
+    // Abramowitz & Stegun (1964) approximation
+    const t = 1/(1+0.2316419*Math.abs(z));
+    const d = 0.3989423*Math.exp(-z*z/2);
+    let prob = d*t*(0.3193815 + t*(-0.3565638 + t*(1.781478 + t*(-1.821256 + t*1.330274))));
+    if (z>0) prob = 1-prob;
+    return prob;
+}
+
+/* ------------- 1.  BFI SCORING ----------------------------------------- */
+const BFI_KEYS = {
+  Extraversion: ["bfi_1","bfi_6","bfi_11","bfi_16","bfi_21","bfi_26","bfi_31","bfi_36","bfi_41","bfi_46","bfi_51","bfi_56"],
+  Agreeableness:["bfi_2","bfi_7","bfi_12","bfi_17","bfi_22","bfi_27","bfi_32","bfi_37","bfi_42","bfi_47","bfi_52","bfi_57"],
+  Conscientiousness:["bfi_3","bfi_8","bfi_13","bfi_18","bfi_23","bfi_28","bfi_33","bfi_38","bfi_43","bfi_48","bfi_53","bfi_58"],
+  Neuroticism:["bfi_4","bfi_9","bfi_14","bfi_19","bfi_24","bfi_29","bfi_34","bfi_39","bfi_44","bfi_49","bfi_54","bfi_59"],
+  Openness:["bfi_5","bfi_10","bfi_15","bfi_20","bfi_25","bfi_30","bfi_35","bfi_40","bfi_45","bfi_50","bfi_55","bfi_60"]
+};
+
+const BFI_REVERSE = new Set([
+  "bfi_3","bfi_4","bfi_5","bfi_8","bfi_11","bfi_12","bfi_14","bfi_16","bfi_17","bfi_19",
+  "bfi_22","bfi_23","bfi_24","bfi_25","bfi_26","bfi_28","bfi_29","bfi_30","bfi_31","bfi_34",
+  "bfi_37","bfi_38","bfi_41","bfi_42","bfi_44","bfi_45","bfi_47","bfi_48","bfi_49","bfi_51",
+  "bfi_55","bfi_58","bfi_59"
+]);
+
+// Norms from Soto & John (2017) U.S. adult sample, BFI-2 short
+const BFI_NORM_M = {Extraversion:3.29, Agreeableness:3.67, Conscientiousness:3.51, Neuroticism:2.70, Openness:3.50};
+const BFI_NORM_SD= {Extraversion:0.64, Agreeableness:0.52, Conscientiousness:0.58, Neuroticism:0.67, Openness:0.57};
+
+function scoreBFI(responses){
+  const out={}; Object.entries(BFI_KEYS).forEach(([trait,items])=>{
+    const vals = items.map(k=>{
+      const v = parseInt(responses[k]); 
+      return BFI_REVERSE.has(k)? reverseScore(v): v;
+    });
+    const avg = vals.reduce((a,b)=>a+b,0)/items.length;
+    const z   = (avg - BFI_NORM_M[trait]) / BFI_NORM_SD[trait];
+    out[trait] = {avg, percentile: Math.round(normCDF(z)*100)};
+  });
+  logStep("BFI scoring complete",out);
+  return out;
+}
+
+/* ------------- 2.  AFFECT SCORING -------------------------------------- */
+const POS_WORDS = ["enthusiastic","astonished","joyful","quiet","relaxed","excited","surprised","interested","elated","strong","content","amused","funny","euphoric","happy","calm","satisfied","peaceful","serene"];
+const NEG_WORDS = ["down","disgusted","dull","anxious","gross","sleepy","passive","lonely","sad","afraid","unhappy","inactive","idle","sluggish","angry","annoyed","craving","tempted"];
+
+function affectPercent(responses,prefix){ // prefix = 'Actual_' or 'Ideal_'
+  let pos=0,neg=0, nPos=0,nNeg=0;
+  POS_WORDS.forEach(w=>{
+     const key = `${prefix}${w}`;
+     if(key in responses){ pos += parseInt(responses[key]); nPos++; }
+  });
+  NEG_WORDS.forEach(w=>{
+     const key = `${prefix}${w}`;
+     if(key in responses){ neg += reverseScore(parseInt(responses[key])); nNeg++; }
+  });
+  const total = nPos + nNeg;
+  if(total===0) return 0;
+  const pct = ((pos+neg)/(total*5))*100;    // 0-100 scale
+  logStep(`${prefix} valence %`,pct);
+  return Math.round(pct);
+}
+
+/* ------------- 3.  CHOSEN-AFFECT SCORE --------------------------------- */
+function chosenAffectPercent(choices){
+  let hedonic=0,total=0;
+  choices.forEach(trial=>{
+    if(!trial || typeof trial!=="object") return;
+    const valence = trial.videoValence || trial.valence || null; // expect 'positive'|'negative'
+    const decision = (trial.decision || trial.choice || "").toLowerCase(); // 'watch'|'avoid'
+    if(!valence||!decision) return;
+    const isHedonic = (valence==="positive" && decision==="watch") || (valence==="negative" && decision==="avoid");
+    if(isHedonic) hedonic++;
+    total++;
+  });
+  const pct = total? Math.round((hedonic/total)*100):0;
+  logStep("Chosen-affect %", {hedonic,total,pct});
+  return pct;
+}
+
+/* ------------- 4.  MAIN RENDERING FUNCTION ----------------------------- */
+function showPersonalizedFeedback(participantChoices){
+  //================ Grab responses (first record is fine) ================
+  const dataObj = participantChoices.find(o=>o && typeof o==="object") || {};
+  logStep("Using response object",dataObj);
+
+  /* --- Section 1: BFI Percentiles ----------------------------------- */
+  const bfi = scoreBFI(dataObj);
+
+  /* --- Section 2: Affect Scores ------------------------------------- */
+  const everydayPct = affectPercent(dataObj,"Actual_");  // from IdealAffect1
+  const idealPct    = affectPercent(dataObj,"Ideal_");   // from IdealAffect2
+  const chosenPct   = chosenAffectPercent(participantChoices);
+
+  /* ------------ PAGE SCAFFOLD --------------------------------------- */
+  let container = document.getElementById("personalizedFeedback");
+  if(!container){
+      container=document.createElement("div");
+      container.id="personalizedFeedback";
+      document.body.appendChild(container);
+  }
+  container.innerHTML="";
+  container.style.maxWidth="900px";
+  container.style.margin="50px auto";
+  container.style.fontFamily="'Helvetica Neue',Arial,sans-serif";
+  container.style.textAlign="center";
+
+  /* ------- TITLE ---------------------------------------------------- */
+  const h1=document.createElement("h2");
+  h1.textContent="Your Personalized Feedback";
+  container.appendChild(h1);
+
+  /* ---------- SECTION 1  (BFI) -------------------------------------- */
+  const sec1=document.createElement("div");
+  sec1.innerHTML="<h3>Where You Stand on the Big Five</h3><p>(Each curve = typical population; red bar = you.)</p>";
+  container.appendChild(sec1);
+
+  Object.entries(bfi).forEach(([trait,obj],i)=>{
+      const c=document.createElement("canvas");
+      c.id=`bfiChart_${trait}`;
+      c.height=150; c.style.maxWidth="400px"; c.style.margin="20px auto";
+      sec1.appendChild(c);
+
+      // build normal curve points
+      const pts=[]; const mean=BFI_NORM_M[trait], sd=BFI_NORM_SD[trait];
+      for(let x=mean-3*sd;x<=mean+3*sd;x+=sd/10){
+         const y=(1/(sd*Math.sqrt(2*Math.PI)))*Math.exp(-0.5*Math.pow((x-mean)/sd,2));
+         pts.push({x:parseFloat(x.toFixed(2)),y});
+      }
+      const lineX=obj.avg;
+
+      new Chart(c,{
+        type:"line",
+        data:{ datasets:[
+          {label:"Distribution", data:pts, parsing:{xAxisKey:"x",yAxisKey:"y"}, borderWidth:2, fill:false, pointRadius:0, tension:0.25},
+          {label:"You", data:[{x:lineX, y:0},{x:lineX, y:Math.max(...pts.map(p=>p.y))*1.05}], borderColor:"red", borderWidth:3, pointRadius:0, fill:false}
+        ]},
+        options:{
+          plugins:{legend:{display:false}, tooltip:{enabled:false}},
+          scales:{x:{display:false},y:{display:false}}
+        }
+      });
+
+      const lbl=document.createElement("p");
+      lbl.innerHTML=`<strong>${trait}</strong>: ${obj.percentile}<sup>th</sup> percentile`;
+      sec1.appendChild(lbl);
+  });
+
+  /* ---------- SECTION 2  (VALENCE BAR CHART) ------------------------ */
+  const sec2=document.createElement("div");
+  sec2.innerHTML="<h3>Your Affect Profile</h3>";
+  container.appendChild(sec2);
+
+  const barCanvas=document.createElement("canvas");
+  barCanvas.id="affectChart"; barCanvas.height=200; barCanvas.style.maxWidth="600px";
+  sec2.appendChild(barCanvas);
+
+  new Chart(barCanvas,{
+     type:"bar",
+     data:{
+        labels:["Everyday Affect","Ideal Affect","Chosen Affect"],
+        datasets:[{
+           data:[everydayPct, idealPct, chosenPct],
+           borderWidth:1
+        }]
+     },
+     options:{
+        plugins:{legend:{display:false}},
+        scales:{y:{beginAtZero:true, max:100, title:{display:true, text:"Valence (%)"}}}
+     }
+  });
+
+  /* ---------- CONTINUE BUTTON -------------------------------------- */
+  const contBtn=document.createElement("button");
+  contBtn.textContent="Continue";
+  contBtn.style.marginTop="30px";
+  contBtn.onclick=()=>{ container.style.display="none"; instructions3(); };
+  container.appendChild(contBtn);
+
+  window.scrollTo(0,0);
+  logStep("Feedback page rendered");
+}
+
+
+
 
 
 
