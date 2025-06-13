@@ -830,7 +830,7 @@ function showFeedback(nextFn){
 ///////////////////////////////////////////////////////////////////////////////////////
 
 // Persisted flag
-window.quickMode = JSON.parse(localStorage.getItem('quickMode')) || false;
+window.quickMode = JSON.parse(localStorage.getItem('quickMode')) || true;
 
 // Inject small toggle UI
 function injectQuickToggle(){
@@ -1070,6 +1070,9 @@ function importantScreen() {
 window.submitImportant = function() {
     const message = document.getElementById("message");
     message.style.display = 'none';
+    // --- Reset styles injected for the “IMPORTANT” overlay ---
+    ['position','top','left','transform','zIndex','maxWidth','marginLeft','marginRight',
+     'padding','textAlign'].forEach(prop => message.style[prop] = '');
     document.body.classList.remove('instructions-body-align');
     // small delay to let the DOM settle
     setTimeout(demographics, 100);
