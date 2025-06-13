@@ -6397,7 +6397,8 @@ function generateAndUploadCSV(participantChoices) {
 
 
 // START  
-intro(); 
+//intro(); 
+Experiment();
 
 //CHEAT CODE (to update):
 // <navigate to folder first>
